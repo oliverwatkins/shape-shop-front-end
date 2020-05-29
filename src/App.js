@@ -2,7 +2,10 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {HashRouter as Router, Route, Switch} from "react-router-dom";
+
+
+
 import Welcome from "./WelcomeScreen";
 import AdminScreen from "./AdminScreen";
 import LoginScreen from "./login/LoginScreen";
