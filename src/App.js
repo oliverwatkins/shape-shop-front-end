@@ -2,6 +2,7 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 
+//TODO change to hashrouter
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 
