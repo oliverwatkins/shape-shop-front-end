@@ -8,22 +8,36 @@ import { Link } from 'react-router-dom';
 
 export class BasicLoginForm extends React.PureComponent {
 
-
-	state = {
+	constructor() {
+		super();
+		this.state = {
 		username: '',
 		password: '',
 	};
+	}
 
-	handleChange = (e) => {
+	handleChange(e) {
 		const { name, value } = e.currentTarget;
 		this.setState({ [name]: value });
 	};
 
-	onSubmit = (e) => {
+	onSubmit(e) {
 		e !== undefined && e.preventDefault();
 		const { username, password } = this.state;
 		this.props.onSubmit(username, password);
 	};
+
+
+	// handleChange = (e) => {
+	// 	const { name, value } = e.currentTarget;
+	// 	this.setState({ [name]: value });
+	// };
+	//
+	// onSubmit = (e) => {
+	// 	e !== undefined && e.preventDefault();
+	// 	const { username, password } = this.state;
+	// 	this.props.onSubmit(username, password);
+	// };
 
 	render() {
 		if (this.props.isUserLoggedIn)

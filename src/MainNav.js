@@ -29,7 +29,7 @@ export class MainNav extends React.PureComponent {
 			<nav className={"main-nav"}>
 				<ul>
 					<li>
-						<Link to="/">HomeXX</Link>
+						<Link to="/">Home</Link>
 					</li>
 					<li>
 						<Link to="/order/productlist">Order</Link>

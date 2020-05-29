@@ -22,8 +22,6 @@ class App extends React.PureComponent{
     this.props.fetchProducts();
   }
 
-  // basename={"alpenhof"}
-
   render() {
     return (
       <div className="App">

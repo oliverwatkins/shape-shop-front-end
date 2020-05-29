@@ -23,14 +23,11 @@ export function OrderSummary(props: Props) {
 			{/*<h4>Order : </h4>*/}
 			<table>
 				<tr>
-					<td style={styleTD}>Drinks </td>
+					<td style={styleTD}><h4>Drinks </h4></td>
 					<td style={styleTD}></td>
 					<td style={styleTD}></td>
 					<td style={styleTD}></td>
 				</tr>
-
-
-
 
 				{
 					props.selectedDrinks.map((elem: Product) => {
@@ -44,7 +41,7 @@ export function OrderSummary(props: Props) {
 				}
 
 				<tr>
-					<td style={styleTD}>Mains </td>
+					<td style={styleTD}><h4>Mains </h4></td>
 					<td style={styleTD}></td>
 					<td style={styleTD}></td>
 					<td style={styleTD}></td>
@@ -64,7 +61,7 @@ export function OrderSummary(props: Props) {
 					<td style={styleTD}></td>
 					<td style={styleTD}><b>Total:</b></td>
 					<td style={styleTD}></td>
-					<td style={styleTD}>{calculateTotal(props.selectedProducts)}</td>
+					<td style={styleTD}>{calculateTotal(props.selectedProducts, props.selectedDrinks)}</td>
 				</tr>
 			</table>
 		</div>
@@ -78,13 +75,19 @@ function priceTimesQty(p, qty) {
 
 }
 
-function calculateTotal(selectedProducts) {
+function calculateTotal(selectedProducts, selectedDrinks) {
+
+	let d = selectedDrinks.reduce((acc, cur: Product) => {
+		return acc + (cur.quantity * cur.price);
+	}, 0)
 
 	let t = selectedProducts.reduce((acc, cur: Product) => {
 		return acc + (cur.quantity * cur.price);
 	}, 0)
 
-	t = t.toFixed(2);
+	t = (t + d).toFixed(2);
+
+	// d = d.toFixed(2);
 	return t
 }
 

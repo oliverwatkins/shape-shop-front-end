@@ -3,6 +3,9 @@ import login from '../login/LoginSaga'
 
 import productSaga from '../order/redux/ProductSaga'
 
+//hack to make sagas work. https://github.com/redux-saga/redux-saga/issues/280
+import "regenerator-runtime/runtime";
+
 import api from '../api/api';
 import api_mock from '../api/api_mock';
 import {MOCK_MODE} from "../constants";

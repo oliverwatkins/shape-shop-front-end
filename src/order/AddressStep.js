@@ -28,12 +28,19 @@ export const deliveryTypes = {
 
 export class Address extends React.PureComponent<Props, State> {
 
-	state = {
+	constructor() {
+		super();
+		this.state = {
 		redirect: false,
 		deliveryType: deliveryTypes.pickup,
 	}
+	}
+	// state = {
+	// 	redirect: false,
+	// 	deliveryType: deliveryTypes.pickup,
+	// }
 
-	setRedirect = () => {
+	setRedirect() {
 		this.setState({
 			redirect: true
 		})

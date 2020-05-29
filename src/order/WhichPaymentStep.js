@@ -8,12 +8,14 @@ import {connect} from "react-redux";
 
 export class WhichPayment extends React.PureComponent {
 
-	state = {
+	constructor() {
+		super();
+		this.state = {
 		redirect: false,
 		face2face: true,
 		online: false
 	}
-
+	}
 
 	onRadioChanged = (e) => {
 		this.setState({

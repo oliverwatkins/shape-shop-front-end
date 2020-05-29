@@ -1,8 +1,5 @@
 import * as React from 'react';
 import pizza from './../assets/img/pizza.png';
-import connect from "react-redux/es/connect/connect";
-import {OrderWizard} from "./OrderWizard";
-import {createFetchProductsAction} from "./redux/productActions";
 
 export class ItemBox extends React.PureComponent {
 
@@ -11,6 +8,7 @@ export class ItemBox extends React.PureComponent {
 		if (this.props.product.quantity > 0) {
 			selected = "selected"
 		}
+		// throw ""
 		return (
 			<div className={selected}>
 				<img src={pizza} alt="Pic of pizza" width={120}/>

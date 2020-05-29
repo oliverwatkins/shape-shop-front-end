@@ -5,7 +5,7 @@ export class AdminScreen extends React.PureComponent {
 	render() {
 		return (
 			<div>
-				Admin XX
+				Admin
 			</div>
 		);
 	}

@@ -1,6 +1,22 @@
 
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
 //border layout :
 .wizardPanel {
+
+
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .4s;
 
   color: #000000;
   background: #fff6fe;
@@ -33,19 +49,29 @@
 
 
   h1 {
-    color: #0a7d06;
+    color: #4dc449;
   }
 
   h2 {
-    color: #373c7d;
+    //font:
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    font-size: 90px;
+    font-weight: bold;
+    color: gray;
   }
 
   h3 {
-    color: #7d492b;
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    color: gray;
   }
 
   h4 {
-    color: #23af1d;
+
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    color: gray;
     padding-left: 50px;
   }
 
