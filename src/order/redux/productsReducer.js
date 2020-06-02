@@ -1,9 +1,6 @@
 import {Actions} from './productActions';
 
 export function reducer(state = initialState, action) {
-
-	console.info("xx in reducer with action " + action.type + " data " + action.data)
-
 	switch (action.type) {
 
 		case Actions.FETCH_PRODUCTS_SUCCESS:

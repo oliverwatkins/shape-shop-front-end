@@ -32,7 +32,7 @@ export function OrderSummary(props: Props) {
 
 				{
 					props.selectedDrinks.map((elem: Product) => {
-						return <tr>
+						return <tr key={elem.name}>
 							<td style={styleTD}>{elem.name}</td>
 							<td style={styleTD}>{elem.price}</td>
 							<td style={styleTD}>{elem.quantity > 1 ? elem.quantity : " "}</td>
