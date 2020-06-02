@@ -9,13 +9,23 @@ const create = () => {
 		'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiQ1VTVE9NRVIiLCJleHAiOjE1NDk1NTMxMjd9.U3LaGUbk8oq9sGB_PCzh05i1Xwlat2vAOa7x2toCM6pIUWx4_4eZoWIFRtj9nPBBvpBbxX7NcbFjrv2C1lkpAw';
 
 	const loginUser = credentials => {
-		let response = {
-			ok: true,
-			status: 200,
-			headers: {
-				authorization: BUSINESS_TOKEN,
-			},
-		};
+
+		let response
+
+		if ((credentials.email == "admin") && (credentials.password == "admin")) {
+			response = {
+				ok: true,
+				status: 200,
+				headers: {
+					authorization: BUSINESS_TOKEN,
+				},
+			};
+		}else {
+			response = {
+				ok: false,
+				status: 500,
+			};
+		}
 		return response;
 	};
 

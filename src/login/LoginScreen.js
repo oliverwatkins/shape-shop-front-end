@@ -16,12 +16,12 @@ export class BasicLoginForm extends React.PureComponent {
 	};
 	}
 
-	handleChange(e) {
+	handleChange = (e) => {
 		const { name, value } = e.currentTarget;
 		this.setState({ [name]: value });
 	};
 
-	onSubmit(e) {
+	onSubmit = (e) => {
 		e !== undefined && e.preventDefault();
 		const { username, password } = this.state;
 		this.props.onSubmit(username, password);
