@@ -1,8 +1,8 @@
 import * as React from 'react';
 
 import {wizardPages as pages} from "./OrderWizard"
-import {NextButton} from "./NextButton";
-import {BackButton} from "./BackButton";
+import {NextButton} from "./buttons/NextButton";
+import {BackButton} from "./buttons/BackButton";
 import PaymentPanel from "./PaymentPanel";
 import {connect} from "react-redux";
 

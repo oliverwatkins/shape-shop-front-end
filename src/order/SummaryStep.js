@@ -1,11 +1,11 @@
 import * as React from 'react';
 import OrderSummary from "./OrderSummary";
-import {NextButton} from "./NextButton";
+import {NextButton} from "./buttons/NextButton";
 import {wizardPages as pages} from "./OrderWizard";
 import AddressSummary from "./AddressSummary";
 import type {Address, Product} from "../AppState";
 import PaymentSummary from "./PaymentSummary";
-import {BackButton} from "./BackButton";
+import {BackButton} from "./buttons/BackButton";
 
 
 type Props = {

@@ -22,9 +22,9 @@ import OrderSummary from "./OrderSummary";
 
 
 import {wizardPages as pages} from "./OrderWizard"
-import {NextButton} from "./NextButton";
+import {NextButton} from "./buttons/NextButton";
 import type {Product} from "../AppState";
-import {BackButton} from "./BackButton";
+import {BackButton} from "./buttons/BackButton";
 
 type Props = {
 	drinks: Array<Product>,

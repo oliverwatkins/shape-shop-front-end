@@ -29,6 +29,7 @@ export type Product = {
 	price: string,
 	description: string,
 	type: string,
+	imageFilename: string,
 }
 
 

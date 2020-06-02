@@ -1,17 +1,35 @@
 import * as React from 'react';
-import pizza from './../assets/img/pizza.png';
+import type {Product} from "../AppState";
+// import pizza from './../assets/img/pizza.png';
 
-export class ItemBox extends React.PureComponent {
+type Props = {
+	product: Product
+}
+
+
+export class ItemBox extends React.PureComponent<Props> {
 
 	render() {
 		let selected = ""
 		if (this.props.product.quantity > 0) {
 			selected = "selected"
 		}
-		// throw ""
+
+		// let imageFilename = "pizza.png"
+		let imgSrc;
+		try {
+			imgSrc = require(`./../assets/img/${this.props.product.imageFilename}`)
+		}catch(e) {
+
+			console.info("attemptying to load " + this.props.product.imageFilename);
+
+			console.error(e);
+		}
+
+
 		return (
 			<div className={selected}>
-				<img src={pizza} alt="Pic of pizza" width={120}/>
+				<img src={imgSrc} alt="Pic of pizza" width={120}/>
 				<div>
 					<div>{this.props.product.name}</div>
 					<div><b> € {this.props.product.price}</b></div>

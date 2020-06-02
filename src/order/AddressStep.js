@@ -8,8 +8,8 @@ import {Redirect} from "react-router";
 import {createUpdateAddress, createUpdateDeliveryType} from "./redux/productActions";
 import connect from "react-redux/es/connect/connect";
 import {wizardPages as pages} from "./OrderWizard"
-import {NextButton} from "./NextButton";
-import {BackButton} from "./BackButton";
+import {NextButton} from "./buttons/NextButton";
+import {BackButton} from "./buttons/BackButton";
 
 type Props = {
 	updateAddress: (value, id)=>void,

@@ -14,12 +14,13 @@ type Props = {
 export class ProductSelection extends React.PureComponent<Props> {
 	render() {
 		let items = this.props.productItems;
+
 		return (
 			<div>
 				<div className="product-selection">
 					{
 						items && items.map((e) => (
-							<ItemBox product={e} handleChangeSelection={this.props.updateProductSelection}/>
+							<ItemBox key={e.name} product={e} handleChangeSelection={this.props.updateProductSelection}/>
 							)
 						)
 					}

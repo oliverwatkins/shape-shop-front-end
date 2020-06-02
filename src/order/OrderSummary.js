@@ -22,6 +22,7 @@ export function OrderSummary(props: Props) {
 		<div style={style}>
 			{/*<h4>Order : </h4>*/}
 			<table>
+				<tbody>
 				<tr>
 					<td style={styleTD}><h4>Drinks </h4></td>
 					<td style={styleTD}></td>
@@ -49,7 +50,7 @@ export function OrderSummary(props: Props) {
 
 				{
 					props.selectedProducts.map((elem: Product) => {
-						return <tr>
+						return <tr key={elem.name}>
 							<td style={styleTD}>{elem.name}</td>
 							<td style={styleTD}>{elem.price}</td>
 							<td style={styleTD}>{elem.quantity > 1 ? elem.quantity : " "}</td>
@@ -63,6 +64,7 @@ export function OrderSummary(props: Props) {
 					<td style={styleTD}></td>
 					<td style={styleTD}>{calculateTotal(props.selectedProducts, props.selectedDrinks)}</td>
 				</tr>
+				</tbody>
 			</table>
 		</div>
 	);

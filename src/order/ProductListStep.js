@@ -4,7 +4,7 @@ import OrderSummary from "./OrderSummary";
 
 
 import {wizardPages as pages} from "./OrderWizard"
-import {NextButton} from "./NextButton";
+import {NextButton} from "./buttons/NextButton";
 import type {Product} from "../AppState";
 
 type Props = {

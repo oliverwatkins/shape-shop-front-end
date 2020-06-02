@@ -5,13 +5,9 @@ import {MOCK_MODE} from "./constants";
 
 export class MainNav extends React.PureComponent {
 
-
-
-
 	render() {
 
 		let l = MOCK_MODE;
-
 
 		let style = {
 			color: "blue",
@@ -22,7 +18,6 @@ export class MainNav extends React.PureComponent {
 		let style2 = {
 			color: "blue",
 			float: "right",
-
 		}
 
 		return (
