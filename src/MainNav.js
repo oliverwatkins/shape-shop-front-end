@@ -2,19 +2,25 @@ import React from 'react';
 
 import {Link} from "react-router-dom";
 import {MOCK_MODE} from "./constants";
+import {isUserLoggedIn, selectUserEmail} from "./selectors";
+import {connect} from "react-redux";
 
-export class MainNav extends React.PureComponent {
+type Props = {
+	isUserLoggedIn: boolean,
+}
+
+class MainNav extends React.PureComponent<Props> {
 
 	render() {
 
 		let l = MOCK_MODE;
 
-		let style = {
-			color: "blue",
-			float: "right",
-			padding: 10
-
-		}
+		// let style = {
+		// 	color: "blue",
+		// 	float: "right",
+		// 	padding: 10
+		//
+		// }
 		let style2 = {
 			color: "blue",
 			float: "right",
@@ -29,12 +35,17 @@ export class MainNav extends React.PureComponent {
 					<li>
 						<Link to="/order/productlist">Order</Link>
 					</li>
-					<li style={style2}>
+					<li className={"admin"}>
 						<Link to="/login">Admin</Link>
 					</li>
 
-					<li style={style}>
+					<li className={"mock"}>
 						{l && <span>MOCK MODE</span>}
+					</li>
+					<li className={"loggedIn"}>
+						<span >
+						{this.props.isUserLoggedIn && <span>Logged in as {this.props.username}</span>}
+						</span>
 					</li>
 
 				</ul>
@@ -42,5 +53,23 @@ export class MainNav extends React.PureComponent {
 		);
 	}
 }
+
+const mapStateToProps = state => {
+	return {
+		isUserLoggedIn: isUserLoggedIn(state),
+		username: selectUserEmail(state),
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(MainNav);
+
 
 

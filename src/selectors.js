@@ -17,7 +17,7 @@ export const selectAuthorization = (state) => {
 };
 
 export const selectUserEmail = (state) => {
-	return state.login.loginToken.email;
+	return state.login.loginToken.username;
 };
 
 export const selectProducts = (state) => state.products;

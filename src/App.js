@@ -11,7 +11,7 @@ import Welcome from "./WelcomeScreen";
 import AdminScreen from "./AdminScreen";
 import LoginScreen from "./login/LoginScreen";
 import {createFetchProductsAction} from "./order/redux/productActions";
-import {MainNav} from "./MainNav";
+import MainNav from "./MainNav";
 
 import "./main.scss"
 

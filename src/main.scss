@@ -81,6 +81,24 @@ input[type="radio"] {
     padding: 16px;
     text-decoration: none;
   }
+  li.mock {
+    float: right;
+    padding: 16px;
+    color: #9dff00;
+  }
+  li.loggedIn {
+    padding: 16px;
+    color: red;
+    float: right;
+  }
+  li.admin {
+    //padding: 16px;
+    color: orange;
+    float: right;
+  }
+
+
+
 
   li a:hover {
     background-color: #111111;

@@ -25,7 +25,7 @@ export default api => {
 			identifier = identifier.trim().toLowerCase();
 		}
 		const credentials = {
-			email: identifier,
+			username: identifier,
 			password: password,
 		};
 		yield call(login, credentials, false);

@@ -12,7 +12,7 @@ const create = () => {
 
 		let response
 
-		if ((credentials.email == "admin") && (credentials.password == "admin")) {
+		if ((credentials.username == "admin") && (credentials.password == "admin")) {
 			response = {
 				ok: true,
 				status: 200,

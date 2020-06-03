@@ -18,7 +18,7 @@ export type OrderState = {
 		telephone: string,
 		street: string,
 		postcode: string,
-		email: string
+		username: string
 	}
 }
 

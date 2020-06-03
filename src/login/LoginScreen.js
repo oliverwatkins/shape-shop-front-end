@@ -4,9 +4,19 @@ import {createLoginAction} from './loginActions';
 import {isUserLoggedIn} from '../selectors';
 import {Link} from 'react-router-dom';
 import "./login.scss"
+import {LoggedIn} from "./LoggedIn";
 
+type Props = {
+	isUserLoggedIn: boolean,
+	errorMessage: string
+}
 
-export class BasicLoginForm extends React.PureComponent {
+type State = {
+	username: string,
+	password: string
+}
+
+export class BasicLoginForm extends React.PureComponent<Props, State> {
 
 	constructor() {
 		super();
@@ -29,29 +39,41 @@ export class BasicLoginForm extends React.PureComponent {
 
 	render() {
 		if (this.props.isUserLoggedIn)
-			return <span>Logged in</span>;
+			return <LoggedIn/>;
 
 		const {username, password} = this.state;
 
-		return <form onSubmit={this.onSubmit} className={"loginForm"}>
-			<div className="container">
-				<label htmlFor="uname"><b>Username</b></label>
-				<input type="text" placeholder="Enter Username" name="username" value={username} onChange={this.handleChange} required/>
+		if (this.props.errorMessage) {
+			alert("this.props.errorMessage " + this.props.errorMessage)
 
-				<label htmlFor="psw"><b>Password</b></label>
-				<input type="password" placeholder="Enter Password" name="password" value={password} onChange={this.handleChange} required/>
+		}
 
-				<button type="submit">Login</button>
-				<label>
-					<input type="checkbox" checked="checked" name="remember"/> Remember me
-				</label>
-			</div>
+		return (
+			<div>
+				<h1>Login </h1>
+				<form onSubmit={this.onSubmit} className={"loginForm"}>
+					<div className="container">
+						<label htmlFor="uname"><b>Username</b></label>
+						<input type="text" placeholder="Enter Username" name="username" value={username}
+									 onChange={this.handleChange}
+									 required/>
 
-			<div className="container" style={{backgroundColor: "#f1f1f1"}}>
-				<button type="button" className="cancelbtn">Cancel</button>
-				<span className="psw">Forgot <a href="#">password?</a></span>
-			</div>
-		</form>;
+						<label htmlFor="psw"><b>Password</b></label>
+						<input type="password" placeholder="Enter Password" name="password" value={password}
+									 onChange={this.handleChange} required/>
+
+						<button type="submit">Login</button>
+						<label>
+							<input type="checkbox" checked="checked" name="remember"/> Remember me
+						</label>
+					</div>
+
+					<div className="container" style={{backgroundColor: "#f1f1f1"}}>
+						<button type="button" className="cancelbtn">Cancel</button>
+						<span className="psw">Forgot <a href="#">password?</a></span>
+					</div>
+				</form>
+			</div>);
 	}
 }
 
