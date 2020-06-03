@@ -51,6 +51,11 @@ export class BasicLoginForm extends React.PureComponent<Props, State> {
 		return (
 			<div>
 				<h1>Login </h1>
+
+				{this.props.loginError &&
+				<div>{this.props.loginError}</div>
+				}
+
 				<form onSubmit={this.onSubmit} className={"loginForm"}>
 					<div className="container">
 						<label htmlFor="uname"><b>Username</b></label>
@@ -82,6 +87,7 @@ const mapStateToProps = state => {
 	return {
 		isUserLoggedIn: isUserLoggedIn(state),
 		errorMessage: state.login.errorMessage,
+		loginError: state.login.loginError
 	};
 };
 

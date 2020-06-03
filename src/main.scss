@@ -91,14 +91,17 @@ input[type="radio"] {
     color: red;
     float: right;
   }
+  li.logout {
+    cursor: pointer;
+    color: #4fe3c6;
+    float: right;
+  }
+
   li.admin {
     //padding: 16px;
     color: orange;
     float: right;
   }
-
-
-
 
   li a:hover {
     background-color: #111111;

@@ -44,9 +44,16 @@ class MainNav extends React.PureComponent<Props> {
 					</li>
 					<li className={"loggedIn"}>
 						<span >
-						{this.props.isUserLoggedIn && <span>Logged in as {this.props.username}</span>}
+						{this.props.isUserLoggedIn && <span>Logged in as {this.props.username} </span>}
 						</span>
 					</li>
+					{this.props.isUserLoggedIn &&
+					<li className={"logout"}>
+						<Link to="/logout">
+							(Logout)
+						</Link>
+					</li>
+					}
 
 				</ul>
 			</nav>
@@ -63,6 +70,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
+
 	};
 };
 

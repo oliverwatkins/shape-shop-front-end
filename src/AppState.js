@@ -4,10 +4,17 @@ export type AppState = {
 		items: Array<Product>,
 	},
 	order: OrderState,
-	login: {
-	},
+	login: LoginState,
 	user: Function, //??
 };
+
+
+export type LoginState = {
+	loginError: string,
+	loginToken: string,
+	role: string,
+	loggingIn: boolean,
+}
 
 
 export type OrderState = {

@@ -19,6 +19,7 @@ import "./alpenhofCss.scss"
 
 import OrderWizard from "./order/OrderWizard";
 import Footer from "./Footer";
+import {Logout} from "./login/Logout";
 
 
 class App extends React.PureComponent{
@@ -35,6 +36,9 @@ class App extends React.PureComponent{
             <Switch>
               <Route path="/admin">
                 <AdminScreen/>
+              </Route>
+              <Route path="/logout">
+                <Logout/>
               </Route>
               <Route path="/order">
                 <OrderWizard/>
