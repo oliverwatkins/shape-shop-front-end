@@ -30,7 +30,9 @@ const create = () => {
 	};
 
 	const logoutUser = Authorization => {
-		return 'todo';
+		return {
+			status: 200
+		};
 	};
 
 	const customerDetails = Authorization => {

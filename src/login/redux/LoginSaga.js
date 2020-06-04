@@ -7,7 +7,7 @@ import {
 	getCustomerDetails,
 	getAdminDetails,
 } from './loginActions';
-import {ADMIN_ROLE, CUSTOMER_ROLE} from "../constants";
+import {ADMIN_ROLE, CUSTOMER_ROLE} from "../../constants";
 
 export default api => {
 

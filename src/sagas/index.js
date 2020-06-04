@@ -1,5 +1,7 @@
 import {fork} from 'redux-saga/effects';
-import login from '../login/LoginSaga'
+import login from '../login/redux/LoginSaga'
+import logout from '../login/redux/LogoutSaga'
+
 
 import productSaga from '../order/redux/ProductSaga'
 
@@ -26,5 +28,6 @@ if (MOCK_MODE) {
  */
 export default function* root() {
 	yield fork(login(apiInstance).loginWatcher);
+	yield fork(logout(apiInstance).logoutWatcher);
 	yield fork(productSaga(apiInstance).getProductsWatcher);
 }

@@ -1,9 +1,9 @@
 import {LoginActions} from './loginActions';
-import type {LoginState} from "../AppState";
+import type {LoginState} from "../../AppState";
 
 export function reducer(state: LoginState = initialState, action) {
 
-	console.info("in reducer with action " + action)
+	console.info("in reducer with action " + action.type)
 	switch (action.type) {
 
 		case LoginActions.LOGIN_SUCCESS:
@@ -24,11 +24,13 @@ export function reducer(state: LoginState = initialState, action) {
 				loggingIn: false,
 			};
 		case LoginActions.LOGOUT:
+			alert("LOGOUT")
 			return {
 				...state,
 				logout: 'IN_PROGRESS',
 			};
 		case LoginActions.LOGOUT_SUCCESS:
+			alert("LOGOUT_SUCCESS")
 			return {
 				loginToken: {},
 			};

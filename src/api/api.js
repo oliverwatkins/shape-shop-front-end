@@ -1,8 +1,5 @@
 import getApiSauceInstance from '../api/getApiSauceInstance';
 
-
-
-
 const create = () => {
 
 	let api = getApiSauceInstance();
@@ -17,19 +14,6 @@ const create = () => {
 		});
 	};
 
-	const fetchProducts = () => {
-		// api.setHeaders({ ...Authorization });
-
-		return api.get('/products').then(response => response);
-	};
-
-
-	const customerDetails = (Authorization) => {
-		api.setHeaders({ ...Authorization });
-
-		return api.get('/customers').then(response => response);
-	};
-
 	const logoutUser = (Authorization) => {
 		api.setHeaders({ ...Authorization });
 
@@ -38,7 +22,9 @@ const create = () => {
 		});
 	};
 
-
+	const fetchProducts = () => {
+		return api.get('/products').then(response => response);
+	};
 
 	return {
 		setBaseURL,

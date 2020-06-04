@@ -43,6 +43,13 @@ class Nav extends React.PureComponent<Props> {
 							(Logout)
 						</Link>
 					</li>
+
+						// <Link className="dd-menu__span" to={'/logout'}>
+						// Logout
+						// </Link>
+
+
+
 					}
 
 				</ul>

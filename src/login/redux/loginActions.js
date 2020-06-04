@@ -21,13 +21,7 @@ export function createLoginFailAction() {
 	};
 }
 
-export function createLogoutAction(token, history) {
-	return {
-		type: LoginActions.LOGOUT,
-		token,
-		history,
-	};
-}
+
 
 export function getCustomerDetails(Authorization, role) {
 	return {
@@ -45,11 +39,20 @@ export function getAdminDetails(Authorization, role) {
 	};
 }
 
+export function createLogoutAction(token, history) {
+	return {
+		type: LoginActions.LOGOUT,
+		token,
+		history,
+	};
+}
+
 export function createLogoutSuccessAction() {
 	return {
 		type: LoginActions.LOGOUT_SUCCESS,
 	};
 }
+
 
 export const LoginActions = {
 	LOGIN: 'LOGIN',
