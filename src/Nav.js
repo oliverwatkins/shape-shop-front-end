@@ -4,27 +4,17 @@ import {Link} from "react-router-dom";
 import {MOCK_MODE} from "./constants";
 import {isUserLoggedIn, selectUserEmail} from "./selectors";
 import {connect} from "react-redux";
+import "./nav.scss"
 
 type Props = {
 	isUserLoggedIn: boolean,
 }
 
-class MainNav extends React.PureComponent<Props> {
+class Nav extends React.PureComponent<Props> {
 
 	render() {
 
 		let l = MOCK_MODE;
-
-		// let style = {
-		// 	color: "blue",
-		// 	float: "right",
-		// 	padding: 10
-		//
-		// }
-		let style2 = {
-			color: "blue",
-			float: "right",
-		}
 
 		return (
 			<nav className={"main-nav"}>
@@ -77,7 +67,7 @@ const mapDispatchToProps = dispatch => {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps,
-)(MainNav);
+)(Nav);
 
 
 

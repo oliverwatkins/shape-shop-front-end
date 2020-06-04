@@ -11,7 +11,7 @@ import Welcome from "./WelcomeScreen";
 import AdminScreen from "./AdminScreen";
 import LoginScreen from "./login/LoginScreen";
 import {createFetchProductsAction} from "./order/redux/productActions";
-import MainNav from "./MainNav";
+import Nav from "./Nav";
 
 import "./main.scss"
 
@@ -32,7 +32,7 @@ class App extends React.PureComponent{
       <div className="App">
         <Router>
           <div>
-            <MainNav/>
+            <Nav/>
             <Switch>
               <Route path="/admin">
                 <AdminScreen/>
