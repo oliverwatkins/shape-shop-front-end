@@ -39,15 +39,7 @@ class App extends React.PureComponent{
                 <AdminScreen/>
               </Route>
 
-              {/*not going in here*/}
               <Route path="/logout" component={Logout}/>
-
-
-              {/*but going in here*/}
-              {/*<Route path="/logout">*/}
-              {/*  <Logout/>*/}
-              {/*</Route>*/}
-
 
               <Route path="/logout2">
                 <Logout2/>

@@ -179,6 +179,7 @@ const create = () => {
 	};
 
 	return {
+		logoutUser,
 		loginUser,
 		fetchProducts
 	};
