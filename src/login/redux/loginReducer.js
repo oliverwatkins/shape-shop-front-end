@@ -24,13 +24,11 @@ export function reducer(state: LoginState = initialState, action) {
 				loggingIn: false,
 			};
 		case LoginActions.LOGOUT:
-			alert("LOGOUT")
 			return {
 				...state,
 				logout: 'IN_PROGRESS',
 			};
 		case LoginActions.LOGOUT_SUCCESS:
-			alert("LOGOUT_SUCCESS")
 			return {
 				loginToken: {},
 			};

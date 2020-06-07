@@ -1,12 +1,14 @@
 //@flow
 import * as React from 'react';
-import { connect } from 'react-redux';
-import { createLogoutAction } from './redux/loginActions';
-import {OrderWizard} from "../order/OrderWizard";
+import {connect} from 'react-redux';
+import {createLogoutAction} from './redux/loginActions';
+
+/**
+ * Just empty component. needed?
+ */
 
 class Logout extends React.PureComponent<any> {
 	componentDidMount(): void {
-
 		this.props.dispatch(createLogoutAction(this.props.token, this.props.history))
 		// this.props.logout === null
 		// 	? this.props.dispatch(createLogoutAction(this.props.token, this.props.history))
@@ -14,8 +16,7 @@ class Logout extends React.PureComponent<any> {
 	}
 
 	render() {
-		alert("in Logout!!")
-		return <div><h1>should be empty</h1></div>;
+		return null;
 	}
 }
 
