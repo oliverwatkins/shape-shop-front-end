@@ -4,10 +4,9 @@ import type {LoginState} from "../../AppState";
 export function reducer(state: LoginState = initialState, action) {
 
 	console.info("in reducer with action " + action.type)
+
 	switch (action.type) {
-
 		case LoginActions.LOGIN_SUCCESS:
-
 			return {
 				...state,
 				loginToken: action.token,

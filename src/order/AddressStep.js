@@ -6,7 +6,7 @@ import {Formik} from "formik";
 import "./order.scss"
 import {Redirect} from "react-router";
 import {createUpdateAddress, createUpdateDeliveryType} from "./redux/productActions";
-import connect from "react-redux/es/connect/connect";
+import {connect} from "react-redux";
 import {wizardPages as pages} from "./OrderWizard"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
