@@ -1,23 +1,14 @@
 import React from 'react';
-import Enzyme, {mount, shallow} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {BrowserRouter as Router, MemoryRouter, Route, Switch} from 'react-router-dom';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
-import OrderWizard, {wizardPages} from "../OrderWizard";
+import {renderToStaticMarkup} from "react-dom/server";
+import AddressStep from "../AddressStep";
+import {MemoryRouter} from "react-router-dom";
 
 
 // import { createMemoryHistory } from 'history'
-
-
-import renderer from 'react-test-renderer';
-import {renderToStaticMarkup} from "react-dom/server";
-import ProductList from "../ProductListStep";
-import DrinksStep from "../DrinksStep";
-import Address from "../AddressStep";
-import WhichPayment from "../WhichPaymentStep";
-import Summary from "../SummaryStep";
-import OKStep from "../OKStep";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -26,7 +17,7 @@ Enzyme.configure({adapter: new Adapter()});
  */
 
 
-xdescribe('OrderWizard test', () => {
+describe('Address Step test', () => {
 	let wrapper;
 	const mockStore = configureStore();
 
@@ -70,27 +61,12 @@ xdescribe('OrderWizard test', () => {
 		user: Function, //??
 	});
 
-	// <MemoryRouter initialEntries={[ '/random' ]}>
-	// 	<App/>
-	// </MemoryRouter>
-	// https://stackoverflow.com/questions/62266127/cannot-navigate-to-path-using-memory-router/62268032#62268032
 
 	beforeEach(() => {
 		wrapper = mount(
 			<Provider store={store}>
-				<MemoryRouter initialEntries={["/A"]}>
-					<div>
-						<Router>
-							<Switch>
-								<Route path={"/A"}>
-									<div>A</div>
-								</Route>
-								<Route path={"/B"}>
-									<div>B</div>
-								</Route>
-							</Switch>
-						</Router>
-					</div>
+				<MemoryRouter>
+					<AddressStep/>
 				</MemoryRouter>
 			</Provider>
 		);

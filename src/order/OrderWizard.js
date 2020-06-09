@@ -34,6 +34,7 @@ export class OrderWizard extends React.PureComponent<Props> {
 	render() {
 		return (
 			<div className={"order-wizard"}>
+				XXXX2
 				<Router>
 						<Switch>
 							<Route path={wizardPages.PRODUCT_LIST}>
@@ -49,6 +50,7 @@ export class OrderWizard extends React.PureComponent<Props> {
 							</Route>
 
 							<Route path={wizardPages.ADDRESS}>
+								ccc
 								<Address/>
 							</Route>
 							<Route path={wizardPages.WHICH_PAYMENT}>
