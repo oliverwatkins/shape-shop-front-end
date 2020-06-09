@@ -21,6 +21,7 @@ describe('Address Step test', () => {
 	let wrapper;
 	const mockStore = configureStore();
 
+
 	const store = mockStore({
 		products: {
 			items: [
@@ -78,6 +79,33 @@ describe('Address Step test', () => {
 	it('matches snapshot', () => {
 		expect(renderToStaticMarkup(wrapper)).toMatchSnapshot();
 	});
+	it('selects radio button', () => {
 
+		let elems = wrapper.find("input[type='radio']");
+		expect(elems.length).toBe(2);
+		let firstRadio = elems.at(0);
+		let secondRadio = elems.at(1);
+
+		checkNoAddressFields(wrapper);
+
+		secondRadio.simulate('change');
+
+		checkAddressFieldsDoExist(wrapper);
+
+		firstRadio.simulate('change');
+
+		checkNoAddressFields(wrapper);
+	});
 
 });
+
+let checkNoAddressFields = (wrapper) => {
+	let elems = wrapper.find("form");
+	expect(elems.length).toBe(0);
+}
+
+let checkAddressFieldsDoExist = (wrapper) => {
+	let elems = wrapper.find("form#addressForm");
+	expect(elems.length).toBe(1);
+}
+

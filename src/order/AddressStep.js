@@ -31,14 +31,11 @@ export class Address extends React.PureComponent<Props, State> {
 	constructor() {
 		super();
 		this.state = {
-		redirect: false,
-		deliveryType: deliveryTypes.pickup,
+			redirect: false,
+			deliveryType: deliveryTypes.pickup,
+		}
 	}
-	}
-	// state = {
-	// 	redirect: false,
-	// 	deliveryType: deliveryTypes.pickup,
-	// }
+
 
 	setRedirect() {
 		this.setState({
@@ -47,6 +44,7 @@ export class Address extends React.PureComponent<Props, State> {
 	}
 
 	onRadioChanged = (e) => {
+		// throw "errored"
 		this.setState({
 			deliveryType: e.currentTarget.value,
 		});
@@ -66,8 +64,6 @@ export class Address extends React.PureComponent<Props, State> {
 				<h2 className={"wizardHeader"}>Delivery or Pickup?</h2>
 				<div className="wizardMain">
 					<BackButton page={pages.PRODUCT_LIST}/>
-
-
 					<div className="wizardCenter">
 
 						<div className="icon-container">
@@ -80,7 +76,6 @@ export class Address extends React.PureComponent<Props, State> {
 										 name="pckupOrDelivery"
 										 value="pickup"
 										 onChange={this.onRadioChanged}
-								// onChange={this.onPickupChanged}
 										 checked={this.state.deliveryType === deliveryTypes.pickup}/>
 							<label htmlFor="contactChoice1">Pickup</label>
 							<input type="radio"
@@ -88,9 +83,7 @@ export class Address extends React.PureComponent<Props, State> {
 										 name="pckupOrDelivery"
 										 value="delivery"
 										 checked={this.state.deliveryType === deliveryTypes.delivery}
-										 onChange={this.onRadioChanged}
-								// onChange={this.onDeliveryChanged}
-							/>
+										 onChange={this.onRadioChanged}/>
 							<label htmlFor="contactChoice2">Delivery</label>
 						</div>
 
@@ -189,10 +182,10 @@ export class Address extends React.PureComponent<Props, State> {
 						}
 					</div>
 					{this.state.deliveryType === deliveryTypes.delivery &&
-					<NextButton label={"NEXT"} type={"submit"} form={"addressForm"}/> }
+					<NextButton label={"NEXT"} type={"submit"} form={"addressForm"}/>}
 
 					{(this.state.deliveryType === deliveryTypes.pickup) &&
-					<NextButton label={"NEXT"} page={pages.WHICH_PAYMENT}/> }
+					<NextButton label={"NEXT"} page={pages.WHICH_PAYMENT}/>}
 				</div>
 			</div>
 		);
@@ -216,7 +209,6 @@ let validator = (values) => {
 	}
 	return errors;
 }
-
 
 
 const mapDispatchToProps = dispatch => {
