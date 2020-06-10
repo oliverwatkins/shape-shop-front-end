@@ -19,7 +19,7 @@ const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 export class PaymentPanel extends React.PureComponent {
 	render() {
 		return (
-			<div style={{display: "flex"}} className="wizardPanel">
+			<div style={{display: "flex"}} className="wizardPanel paymentPanel">
 
 				{/*<Link to="/order/address">*/}
 					{/*<FontAwesomeIcon icon={faArrowCircleLeft} style={{fontSize: "100px", color: "gray"}}/>*/}

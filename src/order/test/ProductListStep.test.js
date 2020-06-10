@@ -4,20 +4,20 @@ import Adapter from 'enzyme-adapter-react-16';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {renderToStaticMarkup} from "react-dom/server";
-import AddressStep from "../AddressStep";
 import {MemoryRouter} from "react-router-dom";
+import ProductListStep from "../ProductListStep";
+import {selectSelectedDrinks, selectSelectedProducts} from "../../selectors";
 
 
 // import { createMemoryHistory } from 'history'
 
 Enzyme.configure({adapter: new Adapter()});
 
-describe('Address Step test', () => {
+describe('Payment Step test', () => {
 	let wrapper;
 	const mockStore = configureStore();
 
-
-	const store = mockStore({
+	const store = {
 		products: {
 			items: [
 				{
@@ -55,14 +55,17 @@ describe('Address Step test', () => {
 			loggingIn: false,
 		},
 		user: Function, //??
-	});
+	};
 
 
 	beforeEach(() => {
 		wrapper = mount(
 			<Provider store={store}>
 				<MemoryRouter>
-					<AddressStep/>
+					<ProductListStep
+						productItems={store.products}
+						selectedDrinks={selectSelectedProducts(store)}
+						selectedProducts={selectSelectedDrinks(store)}/>
 				</MemoryRouter>
 			</Provider>
 		);
@@ -95,12 +98,12 @@ describe('Address Step test', () => {
 });
 
 let checkNoAddressFields = (wrapper) => {
-	let elems = wrapper.find("form");
+	let elems = wrapper.find(".paymentPanel");
 	expect(elems.length).toBe(0);
 }
 
 let checkAddressFieldsDoExist = (wrapper) => {
-	let elems = wrapper.find("form#addressForm");
+	let elems = wrapper.find(".paymentPanel");
 	expect(elems.length).toBe(1);
 }
 

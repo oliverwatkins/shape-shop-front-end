@@ -2,8 +2,7 @@ import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {BrowserRouter as Router, MemoryRouter, Route, Switch} from 'react-router-dom';
-import {renderToStaticMarkup} from "react-dom/server";
-
+import { createMemoryHistory } from 'history';
 Enzyme.configure({adapter: new Adapter()});
 
 /**
@@ -14,17 +13,17 @@ Enzyme.configure({adapter: new Adapter()});
  * TODO put some bounty on this question!!
  */
 
-describe('OrderWizard test', () => {
+describe('Routing test', () => {
 	let wrapper;
 
 	beforeEach(() => {
 		wrapper = mount(
-				<MemoryRouter initialEntries={["/A"]}>
-					<div className={"blah"}>Test
+			<Router history={createMemoryHistory({ initialEntries: ['/A'] })}>
+					<div className={"Test"}>This is my Test Component and should not have any test specific code in it
 						<Router>
 							<Switch>
 								<Route path={"/A"}>
-									<div className={"asdf"}>A</div>
+									<div className={"A"}>A</div>
 								</Route>
 								<Route path={"/B"}>
 									<div>B</div>
@@ -32,7 +31,7 @@ describe('OrderWizard test', () => {
 							</Switch>
 						</Router>
 					</div>
-				</MemoryRouter>
+				</Router>
 		);
 	});
 	afterEach(() => {
@@ -40,10 +39,10 @@ describe('OrderWizard test', () => {
 	});
 
 	it('matches snapshot', () => {
-
-		expect(wrapper.find(".blah")).toHaveLength(1); //this ok
-		expect(wrapper.find(".asdf")).toHaveLength(1); //but this is not ok :( It should find under A
-
-		// expect(renderToStaticMarkup(wrapper)).toMatchSnapshot();
+		expect(wrapper.find(".Test")).toHaveLength(1); //this ok
+		expect(wrapper.find(".A")).toHaveLength(1); //but this is not ok :( It should find  A
 	});
 });
+
+
+// <MemoryRouter history={createMemoryHistory({ initialEntries: ['/A'] })}>
