@@ -3,8 +3,7 @@ import OrderSummary from "./OrderSummary";
 import {NextButton} from "./buttons/NextButton";
 import {wizardPages as pages} from "./OrderWizard";
 import AddressSummary from "./AddressSummary";
-import type {Address, Product} from "../AppState";
-import PaymentSummary from "./PaymentSummary";
+import type {Address, DeliveryType, PaymentType, Product} from "../AppState";
 import {BackButton} from "./buttons/BackButton";
 
 
@@ -12,7 +11,8 @@ type Props = {
 	selectedProducts: Array<Product>,
 	selectedDrinks: Array<Product>,
 	address: Address,
-	deliveryType: string,
+	deliveryType: DeliveryType,
+	paymentType: PaymentType,
 }
 
 
@@ -24,21 +24,28 @@ export class Summary extends React.PureComponent<Props> {
 				<div className="wizardMain">
 					<BackButton page={"/order/address??"}/>
 					<div className="wizardCenter">
-						<h3>Order</h3>
+						<h2>Order</h2>
 						<OrderSummary selectedProducts={this.props.selectedProducts} selectedDrinks={this.props.selectedDrinks}/>
-						<h3>Delivery Type</h3>
-						<h4>
-							{this.props.deliveryType}
-						</h4>
+
+						<h4>Delivery Type</h4>
+
 
 						{this.props.deliveryType === "delivery" &&
 						<AddressSummary address={this.props.address}/>}
 
-						<h3>Payment Type</h3>
+						{this.props.deliveryType === "pickup" &&
+						<span>Pickup!</span>}
 
-						<h4>pay at door</h4>
+						<h4>Payment Type</h4>
 
-						<PaymentSummary/>
+						{this.props.paymentType === "cash" &&
+						<span>cash!</span>
+						}
+						{this.props.paymentType === "card" &&
+						<span>card!</span>
+						}
+
+						{/*<PaymentSummary/>*/}
 					</div>
 					<NextButton label={"OK"} page={pages.OK}/>
 				</div>

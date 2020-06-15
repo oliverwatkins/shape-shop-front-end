@@ -5,16 +5,30 @@ import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
 import PaymentPanel from "./PaymentPanel";
 import {connect} from "react-redux";
+import {PaymentType} from "../constants";
+import {deliveryTypes} from "./AddressStep";
+import {createUpdatePaymentType} from "./redux/productActions";
 
-export class WhichPayment extends React.PureComponent {
+
+type Props = {
+	updatePaymentType: (value)=>void
+}
+
+type State = {
+	redirect: boolean,
+	paymentType: string,
+}
+
+
+
+export class WhichPayment extends React.PureComponent<Props, State> {
 
 	constructor() {
 		super();
 		this.state = {
-		redirect: false,
-		face2face: true,
-		online: false
-	}
+			redirect: false,
+			paymentType: PaymentType.cash
+		}
 	}
 
 	onRadioChanged = (e) => {
@@ -24,55 +38,36 @@ export class WhichPayment extends React.PureComponent {
 		this.props.updatePaymentType(e.currentTarget.value)
 	}
 
-
-
-	// onFace2faceChanged = (e) => {
-	// 	this.setState({
-	// 		face2face: e.currentTarget.value === 'face2face',
-	// 		online:false
-	// 	});
-	// }
-	//
-	// onOnlineChanged = (e) => {
-	// 	this.setState({
-	// 		online: e.currentTarget.value === 'online',
-	// 		face2face: false
-	// 	});
-	// }
-
 	render() {
+
+		console.info("this.state.delivery " + this.state.paymentType)
+
 		return (
 			<div className="wizardPanel">
-
 				<h2 className="wizardHeader">How do you wish to pay?</h2>
-
 				<div className="wizardMain">
-
 					<BackButton page={pages.ADDRESS}/>
-
-					<div className="wizardCenter" >
+					<div className="wizardCenter">
 						<input type="radio"
-									 id="contactChoice2"
-									 name="pickupOrDelivery"
-									 value="face2face"
-									 checked={this.state.face2face}
+									 id="choice1"
+									 name="cashOrCard"
+									 value="cash"
+									 checked={this.state.paymentType === PaymentType.cash}
 									 onChange={this.onRadioChanged}
 						/>
-
 						<label htmlFor="contactChoice2">Pay on arrival</label>
-
 						<input type="radio"
-									 id="contactChoice1"
-									 name="pickupOrDelivery"
-									 value="online"
-									 checked={this.state.online}
+									 id="choice2"
+									 name="cashOrCard"
+									 value="card"
+									 checked={this.state.paymentType === PaymentType.card}
 									 onChange={this.onRadioChanged}
 
 						/>
 						<label htmlFor="contactChoice1">Online</label>
 					</div>
 
-					{this.state.online && !this.state.face2face &&
+					{(this.state.paymentType === PaymentType.card) &&
 					<div>
 						<PaymentPanel/>
 					</div>}
@@ -84,12 +79,10 @@ export class WhichPayment extends React.PureComponent {
 	}
 }
 
-
 const mapDispatchToProps = dispatch => {
 	return {
 		updatePaymentType: (value, id) => {
-			alert("here  " + value)
-			// dispatch(createUpdatePayment(value, id));
+			dispatch(createUpdatePaymentType(value, id));
 		},
 	};
 };

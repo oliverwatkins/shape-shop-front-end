@@ -17,7 +17,7 @@ describe('Payment Step test', () => {
 	let wrapper;
 	const mockStore = configureStore();
 
-	const store = {
+	const data = {
 		products: {
 			items: [
 				{
@@ -58,14 +58,17 @@ describe('Payment Step test', () => {
 	};
 
 
+	let store = mockStore(data);
+
+
 	beforeEach(() => {
 		wrapper = mount(
 			<Provider store={store}>
 				<MemoryRouter>
 					<ProductListStep
-						productItems={store.products}
-						selectedDrinks={selectSelectedProducts(store)}
-						selectedProducts={selectSelectedDrinks(store)}/>
+						productItems={data.products}
+						selectedDrinks={selectSelectedProducts(data)}
+						selectedProducts={selectSelectedDrinks(data)}/>
 				</MemoryRouter>
 			</Provider>
 		);

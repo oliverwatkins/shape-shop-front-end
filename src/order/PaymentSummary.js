@@ -11,10 +11,6 @@ export class PaymentSummary extends React.PureComponent {
 	render() {
 		return (
 			<div style={{display: "flex"}} className="wizardPanel">
-
-
-
-				$10
 			</div>
 		);
 	}

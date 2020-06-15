@@ -28,13 +28,13 @@ type Props = {
 	selectedDrinks: Array<Product>,
 	address: Address,
 	deliveryType: string,
+	paymentType: string,
 }
 
 export class OrderWizard extends React.PureComponent<Props> {
 	render() {
 		return (
 			<div className={"order-wizard"}>
-				XXXX2
 				<Router>
 						<Switch>
 							<Route path={wizardPages.PRODUCT_LIST}>
@@ -42,15 +42,12 @@ export class OrderWizard extends React.PureComponent<Props> {
 														 selectedProducts={this.props.selectedProducts}
 														 selectedDrinks={this.props.selectedDrinks}/>
 							</Route>
-
 							<Route path={wizardPages.DRINK_LIST}>
 								<DrinksStep drinks={this.props.drinks} selectedProducts={this.props.selectedProducts}
 														selectedDrinks={this.props.selectedDrinks}
 									/>
 							</Route>
-
 							<Route path={wizardPages.ADDRESS}>
-								ccc
 								<Address/>
 							</Route>
 							<Route path={wizardPages.WHICH_PAYMENT}>
@@ -63,6 +60,7 @@ export class OrderWizard extends React.PureComponent<Props> {
 									selectedDrinks={this.props.selectedDrinks}
 								 	address={this.props.address}
 									deliveryType={this.props.deliveryType}
+									paymentType={this.props.paymentType}
 								/>
 							</Route>
 							<Route path={wizardPages.OK}>

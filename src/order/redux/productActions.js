@@ -36,8 +36,16 @@ export function createUpdateDeliveryType(value) {
 	};
 }
 
+export function createUpdatePaymentType(value) {
+	return {
+		type: Actions.UPDATE_PAYMENT_TYPE,
+		value: value
+	};
+}
+
+
 export const Actions = {
-	UPDATE_PAYMENT:'UPDATE_PAYMENT',
+	UPDATE_PAYMENT_TYPE:'UPDATE_PAYMENT_TYPE',
 	UPDATE_PRODUCT_SELECTION: 'UPDATE_PRODUCT_SELECTION',
 	UPDATE_ADDRESS: 'UPDATE_ADDRESS',
 	UPDATE_DELIVERY_TYPE: 'UPDATE_DELIVERY_TYPE',

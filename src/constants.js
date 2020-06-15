@@ -10,10 +10,14 @@ export const BUSINESS_TYPE_ASSOCIATION = 'ASSOCIATION';
 export const CUSTOMER_ROLE = 'CUSTOMER';
 export const ADMIN_ROLE = 'MERCHANT'; //TODO backend returns 'merchant' (not 'BUSINESS')
 
-// user status
-export const STATUS_ACTIVE = 'active';
-export const STATUS_INACTIVE = 'inactive';
-export const STATUS_NOT_VERIFIED = 'not verified';
+export const PaymentType = {
+	cash: "cash",
+	card: "card"
+}
+export const DeliveryType = {
+	pickup: "pickup",
+	delivery: "delivery"
+}
 
 
 export const MOCK_MODE = true;

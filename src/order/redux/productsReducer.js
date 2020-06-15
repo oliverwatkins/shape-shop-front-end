@@ -14,7 +14,7 @@ export function reducer(state = initialState, action) {
 		// 		...state,
 		// 		address: action.value
 		// 	}
-		// case Actions.UPDATE_PAYMENT:
+		// case Actions.UPDATE_PAYMENT_TYPE:
 		// 	return {
 		// 		...state,
 		// 		payment: action.values

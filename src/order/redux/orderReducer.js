@@ -1,5 +1,6 @@
 import {Actions} from './productActions';
 import type {OrderState} from "../../AppState";
+import {DeliveryType, PaymentType} from "../../constants";
 
 export function reducer(state: OrderState = initialState , action) {
 	switch (action.type) {
@@ -8,12 +9,12 @@ export function reducer(state: OrderState = initialState , action) {
 				...state,
 				address: action.value
 			}
-		case Actions.UPDATE_PAYMENT:
+		case Actions.UPDATE_PAYMENT_TYPE:
 
-			alert("in here ")
+			// alert("UPDATE_PAYMENT_TYPE")
 			return {
 				...state,
-				payment: action.values
+				paymentType: action.value
 			}
 
 		case Actions.UPDATE_DELIVERY_TYPE:
@@ -27,5 +28,7 @@ export function reducer(state: OrderState = initialState , action) {
 }
 
 const initialState = {
-	items: []
+	items: [],
+	paymentType: PaymentType.cash,
+	deliveryType: DeliveryType.pickup,
 };

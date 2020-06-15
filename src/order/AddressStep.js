@@ -56,7 +56,6 @@ export class Address extends React.PureComponent<Props, State> {
 			return <Redirect to={pages.WHICH_PAYMENT}/>
 		}
 
-		console.info("this.state.delivery " + this.state.delivery)
 
 		return (
 			<div className="wizardPanel">

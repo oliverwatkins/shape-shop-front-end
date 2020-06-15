@@ -1,11 +1,12 @@
 //@flow
+import {PaymentType} from "./constants";
+
 export type AppState = {
 	products: {
 		items: Array<Product>,
 	},
 	order: OrderState,
 	login: LoginState,
-	user: Function, //??
 };
 
 
@@ -16,9 +17,8 @@ export type LoginState = {
 	loggingIn: boolean,
 }
 
-
 export type OrderState = {
-	paymentType: string;
+	paymentType: string,
 	deliveryType: string;
 	address: {
 		name: string,
@@ -29,6 +29,9 @@ export type OrderState = {
 	}
 }
 
+// export type DeliveryType = "pickup" | "delivery"
+
+// export type PaymentType = "cash" | "card"
 
 export type Product = {
 	name: string,
