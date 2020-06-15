@@ -1,14 +1,11 @@
 import React from 'react';
 
 import {connect} from 'react-redux';
-
 //TODO change to hashrouter
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
 
-
 import Welcome from "./WelcomeScreen";
-import AdminScreen from "./AdminScreen";
 import LoginScreen from "./login/LoginScreen";
 import {createFetchProductsAction} from "./order/redux/productActions";
 import Nav from "./Nav";
@@ -21,6 +18,7 @@ import OrderWizard from "./order/OrderWizard";
 import Footer from "./Footer";
 import Logout from "./login/Logout";
 import {Logout2} from "./login/Logout2";
+import AdminScreen from "./admin/AdminScreen";
 
 
 class App extends React.PureComponent{

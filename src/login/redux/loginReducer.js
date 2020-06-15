@@ -34,15 +34,10 @@ export function reducer(state: LoginState = initialState, action) {
 			};
 
 		case LoginActions.GET_MERCHANT_DETAILS_SUCCESS:
-
-// 			this.props.dispatch(registerStep1Success())
-// 			browserHistory.push('/registrationStep2')
-
 			return {
 				...state,
 				...action.data,
 			};
-
 		default :
 			return state;
 	}

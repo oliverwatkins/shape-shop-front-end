@@ -26,7 +26,7 @@ export class AdminScreen extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: AppState) => {
 	return {
-		orders: state.admin.orders,
+		// orders: state.admin.orders,
 	};
 };
 
