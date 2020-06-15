@@ -39,6 +39,7 @@ class App extends React.PureComponent{
                 <AdminScreen/>
               </Route>
 
+              {/*this component just redirects to logout2*/}
               <Route path="/logout" component={Logout}/>
 
               <Route path="/logout2">

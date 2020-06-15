@@ -1,16 +1,10 @@
-import { take, put, call } from 'redux-saga/effects';
+import {call, put, take} from 'redux-saga/effects';
 import jwtDecode from 'jwt-decode';
-import {
-	LoginActions,
-	createLoginSuccessAction,
-	createLoginFailAction,
-	getCustomerDetails,
-	getAdminDetails,
-} from './loginActions';
-import {ADMIN_ROLE, CUSTOMER_ROLE} from "../../constants";
+import {createLoginFailAction, createLoginSuccessAction, getAdminDetails, LoginActions} from './loginActions';
+import {ADMIN_ROLE} from "../../constants";
+import historyObj2 from "../../historyObj2";
 
 export default api => {
-
 
 	function* loginWatcher() {
 		while (true) {
@@ -53,16 +47,21 @@ export default api => {
 				delete userCredentials.password;
 				yield put(createLoginSuccessAction(userCredentials)); //this is being caught by the reducer and put into storage!
 
-				if (decodedToken.role === CUSTOMER_ROLE) {
-					yield put(getCustomerDetails(userCredentials.token, userCredentials.role));
-				} else if (decodedToken.role === ADMIN_ROLE) {
+				if (decodedToken.role === ADMIN_ROLE) {
+
+					// alert("here " + userCredentials.role + " userCredentials.token " + userCredentials.token)
+
+					// yield put(getAdminDetails(userCredentials.token, userCredentials.role));
 					yield put(getAdminDetails(userCredentials.token, userCredentials.role));
+
+
+					// action.history.push('/logout2/');
+					// window.location.reload();
 				} else {
 					yield put(createLoginFailAction());
 					throw new Error('Unknown user role type');
 				}
 			} else {
-				// notify('error', 'Username or password wrong', 'Please, try again'); // We should remove it when we have the login design
 				yield put(createLoginFailAction());
 			}
 		} catch (e) {
@@ -76,6 +75,11 @@ export default api => {
 		login,
 	};
 };
+
+
+function forwardTo(location) {
+	historyObj2.push(location);
+}
 
 
 

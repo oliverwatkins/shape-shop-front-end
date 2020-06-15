@@ -1,5 +1,6 @@
 import {LoginActions} from './loginActions';
 import type {LoginState} from "../../AppState";
+import { browserHistory } from 'react-router'
 
 export function reducer(state: LoginState = initialState, action) {
 
@@ -31,6 +32,17 @@ export function reducer(state: LoginState = initialState, action) {
 			return {
 				loginToken: {},
 			};
+
+		case LoginActions.GET_MERCHANT_DETAILS_SUCCESS:
+
+// 			this.props.dispatch(registerStep1Success())
+// 			browserHistory.push('/registrationStep2')
+
+			return {
+				...state,
+				...action.data,
+			};
+
 		default :
 			return state;
 	}

@@ -1,5 +1,4 @@
 //@flow
-import {PaymentType} from "./constants";
 
 export type AppState = {
 	products: {
@@ -7,8 +6,12 @@ export type AppState = {
 	},
 	order: OrderState,
 	login: LoginState,
+	admin: AdminState
 };
 
+export type AdminState = {
+	orders: Array<OrderState>,
+}
 
 export type LoginState = {
 	loginError: string,
@@ -28,10 +31,6 @@ export type OrderState = {
 		username: string
 	}
 }
-
-// export type DeliveryType = "pickup" | "delivery"
-
-// export type PaymentType = "cash" | "card"
 
 export type Product = {
 	name: string,

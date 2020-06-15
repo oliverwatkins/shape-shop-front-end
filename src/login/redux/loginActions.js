@@ -23,21 +23,25 @@ export function createLoginFailAction() {
 
 
 
-export function getCustomerDetails(Authorization, role) {
-	return {
-		type: LoginActions.RECEIVE_CUSTOMER_DETAILS,
-		Authorization,
-		role,
-	};
-}
 
-export function getAdminDetails(Authorization, role) {
+
+export function getAdminDetails(Authorization, role, history) {
+
 	return {
 		type: LoginActions.GET_MERCHANT_DETAILS,
 		Authorization,
 		role,
+		history,
 	};
 }
+
+export function getMerchantDetailsSuccess(data: Object) {
+	return {
+		type: LoginActions.GET_MERCHANT_DETAILS_SUCCESS,
+		data,
+	};
+}
+
 
 export function createLogoutAction(token, history) {
 	return {
@@ -60,7 +64,9 @@ export const LoginActions = {
 	LOGIN_FAIL: 'LOGIN_FAIL',
 	LOGOUT: 'LOGOUT',
 	LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
+
 	USER_DETAILS_RECEIVED: 'USER_DETAILS_RECEIVED',
-	RECEIVE_CUSTOMER_DETAILS:'RECEIVE_CUSTOMER_DETAILS',
-	GET_MERCHANT_DETAILS:'GET_MERCHANT_DETAILS'
+
+	GET_MERCHANT_DETAILS:'GET_MERCHANT_DETAILS',
+	GET_MERCHANT_DETAILS_SUCCESS: 'GET_MERCHANT_DETAILS_SUCCESS',
 };

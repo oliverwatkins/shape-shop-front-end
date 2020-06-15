@@ -6,6 +6,21 @@ export class AdminScreen extends React.PureComponent {
 		return (
 			<div>
 				Admin
+				Admin
+
+
+				AdminAdminAdminAdminAdminAdminAdminAdminAdminAdminAdminAdminAdminAdminAdminAdminAdminAdminAdmin
+
+
+				Admin
+				AdminAdmin
+				AdminAdminAdmin
+
+
+
+
+
+
 			</div>
 		);
 	}

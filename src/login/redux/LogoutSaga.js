@@ -14,8 +14,14 @@ export default (api) => {
 
 		yield call(api.logoutUser, Authorization);
 		yield put(createLogoutSuccessAction());
+
+
+
+		//redirect
 		action.history.push('/logout2/');
 		window.location.reload();
+
+
 	}
 
 	return { logoutWatcher };
