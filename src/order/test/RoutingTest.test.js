@@ -9,11 +9,7 @@ import {Provider} from "react-redux";
 
 Enzyme.configure({adapter: new Adapter()});
 
-
 const history = createMemoryHistory();
-// const tree = mount(<Router history={history} />);
-//
-// history.push('/foo');
 
 /**
  * Gold standard. If can get this working then it should be possible to test all the routing stuff
@@ -28,48 +24,7 @@ describe('Routing test', () => {
 
 	const mockStore = configureStore();
 
-	// <Provider store={store}>
-	// 	<App/>,
-	// </Provider>,
-	const store = mockStore({
-		products: {
-			items: [
-				{
-					name: "prod1",
-					quantity: 1,
-					price: 123,
-					description: "asfd",
-					type: "main",
-					imageFilename: "pizza.png",
-				},
-				{
-					name: "prod2",
-					quantity: 2,
-					price: 124,
-					description: "fasfdasfd",
-					type: "drink",
-					imageFilename: "pizza.png",
-				},
-			]
-		},
-		order: {
-			paymentType: "cash",
-			deliveryType: "pickup",
-			address: {
-				name: "fasdfas",
-				telephone: "1234444",
-				street: "asdfasdfasdf",
-				postcode: "sfdsd23",
-				username: "asdfasdf"
-			}
-		},
-		login: {
-			loginToken: "should something be here?",
-			role: "asfd",
-			loggingIn: false,
-		},
-		user: Function, //??
-	});
+	const store = mockStore(testData);
 
 	// order/productlist
 	beforeEach(() => {
@@ -98,3 +53,44 @@ describe('Routing test', () => {
 		expect(wrapper.find(".product-selection")).toHaveLength(0);
 	});
 });
+
+
+let testData = {
+	products: {
+		items: [
+			{
+				name: "prod1",
+				quantity: 1,
+				price: 123,
+				description: "asfd",
+				type: "main",
+				imageFilename: "pizza.png",
+			},
+			{
+				name: "prod2",
+				quantity: 2,
+				price: 124,
+				description: "fasfdasfd",
+				type: "drink",
+				imageFilename: "pizza.png",
+			},
+		]
+	},
+	order: {
+		paymentType: "cash",
+		deliveryType: "pickup",
+		address: {
+			name: "fasdfas",
+			telephone: "1234444",
+			street: "asdfasdfasdf",
+			postcode: "sfdsd23",
+			username: "asdfasdf"
+		}
+	},
+	login: {
+		loginToken: "should something be here?",
+		role: "asfd",
+		loggingIn: false,
+	},
+	user: Function, //??
+}

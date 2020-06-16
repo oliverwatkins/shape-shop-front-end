@@ -9,10 +9,10 @@ type Props = {
 
 export function BackButton(props: Props) {
 	return (
-		<button className={"next-prev-button"}>
-			<Link to={props.page}>
-				<FontAwesomeIcon icon={faArrowCircleLeft} className={"icon"} />
-			</Link>
-		</button>
+		<Link to={props.page}>
+			<button className={"next-prev-button"}>
+				<FontAwesomeIcon icon={faArrowCircleLeft} className={"icon"}/>
+			</button>
+		</Link>
 	);
 }
