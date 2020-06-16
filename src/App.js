@@ -29,7 +29,6 @@ class App extends React.PureComponent{
   render() {
     return (
       <div className="App">
-        <Router>
           <div>
             <Nav/>
             <Switch>
@@ -54,7 +53,6 @@ class App extends React.PureComponent{
               </Route>
             </Switch>
           </div>
-        </Router>
         <Footer></Footer>
       </div>
     );

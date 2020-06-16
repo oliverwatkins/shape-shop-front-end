@@ -21,7 +21,7 @@ export class ItemBox extends React.PureComponent<Props> {
 			imgSrc = require(`./../assets/img/${this.props.product.imageFilename}`)
 		}catch(e) {
 
-			console.info("attemptying to load " + this.props.product.imageFilename);
+			console.info("attemptying to load : " + this.props.product.imageFilename);
 
 			console.error(e);
 		}
