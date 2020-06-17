@@ -37,7 +37,7 @@ type Props = {
 export class DrinksStep extends React.PureComponent<Props> {
 	render() {
 		return (
-			<div className="wizardPanel">
+			<div className="wizardPanel drinks-step">
 
 				<h2 className={"wizardHeader"}>Maybe some drinks?</h2>
 

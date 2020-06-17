@@ -43,7 +43,7 @@ export class WhichPayment extends React.PureComponent<Props, State> {
 		console.info("this.state.delivery " + this.state.paymentType)
 
 		return (
-			<div className="wizardPanel">
+			<div className="wizardPanel payment-step">
 				<h2 className="wizardHeader">How do you wish to pay?</h2>
 				<div className="wizardMain">
 					<BackButton page={pages.ADDRESS}/>

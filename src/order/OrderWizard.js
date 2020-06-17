@@ -16,7 +16,7 @@ export const wizardPages = {
 	DRINK_LIST: "/order/drinklist",
 	ADDRESS : "/order/address",
 	WHICH_PAYMENT : "/order/whichPayment",
-	PAYMENT : "/order/payment",
+	// PAYMENT : "/order/payment",
 	SUMMARY : "/order/summary",
 	OK: "/order/OK"
 }

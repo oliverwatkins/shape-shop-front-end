@@ -58,11 +58,11 @@ export class Address extends React.PureComponent<Props, State> {
 
 
 		return (
-			<div className="wizardPanel">
+			<div className="wizardPanel address-step">
 
 				<h2 className={"wizardHeader"}>Delivery or Pickup?</h2>
 				<div className="wizardMain">
-					<BackButton page={pages.PRODUCT_LIST}/>
+					<BackButton page={pages.DRINK_LIST}/>
 					<div className="wizardCenter">
 
 						<div className="icon-container">

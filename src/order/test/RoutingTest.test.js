@@ -6,27 +6,19 @@ import {createMemoryHistory} from "history";
 import App from "../../App";
 import configureStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {testData1} from "./mockData";
 
 Enzyme.configure({adapter: new Adapter()});
 
 const history = createMemoryHistory();
 
-/**
- * Gold standard. If can get this working then it should be possible to test all the routing stuff
- *
- * https://stackoverflow.com/questions/62266127/cannot-navigate-to-path-using-memory-router
- *
- * TODO put some bounty on this question!!
- */
-
-describe('Routing test', () => {
+describe('Routing test (next and back buttons)', () => {
 	let wrapper;
 
 	const mockStore = configureStore();
 
-	const store = mockStore(testData);
+	const store = mockStore(testData1);
 
-	// order/productlist
 	beforeEach(() => {
 		wrapper = mount(
 			<MemoryRouter history={history} initialEntries={['/order/productlist']}>
@@ -40,57 +32,51 @@ describe('Routing test', () => {
 		wrapper.unmount();
 	});
 
-	it('click through next button ', () => {
-		expect(wrapper.find(".product-selection")).toHaveLength(1);
+	it('tests the wizard navigability: clicks through next and back buttons ', () => {
+
+		expect(wrapper.find(".backButton")).toHaveLength(0);
+		expect(wrapper.find(".product-list-step")).toHaveLength(1); //mains
 		expect(wrapper.find(".nextButton")).toHaveLength(1);
 
 		wrapper.find('.nextButton').simulate('click', { button: 0 });
 
-		expect(wrapper.find(".product-selection")).toHaveLength(1);  //drinks
+		expect(wrapper.find(".backButton")).toHaveLength(1);
+		expect(wrapper.find(".drinks-step")).toHaveLength(1);  //drinks
+		expect(wrapper.find(".nextButton")).toHaveLength(1);
 
 		wrapper.find('.nextButton').simulate('click', { button: 0 });
 
-		expect(wrapper.find(".product-selection")).toHaveLength(0);
+		expect(wrapper.find(".backButton")).toHaveLength(1);
+		expect(wrapper.find(".address-step")).toHaveLength(1); //address
+		expect(wrapper.find(".nextButton")).toHaveLength(1);
+
+		wrapper.find('.nextButton').simulate('click', { button: 0 });
+
+		expect(wrapper.find(".backButton")).toHaveLength(1);
+		expect(wrapper.find(".payment-step")).toHaveLength(1); //payment
+		expect(wrapper.find(".nextButton")).toHaveLength(1);
+
+		wrapper.find('.nextButton').simulate('click', { button: 0 });
+
+		expect(wrapper.find(".backButton")).toHaveLength(1);
+		expect(wrapper.find(".summary-step")).toHaveLength(1); //summary
+		expect(wrapper.find(".nextButton")).toHaveLength(1);
+
+		wrapper.find('.backButton').simulate('click', { button: 0 });
+
+		expect(wrapper.find(".payment-step")).toHaveLength(1); //payment
+
+		wrapper.find('.backButton').simulate('click', { button: 0 });
+
+		expect(wrapper.find(".address-step")).toHaveLength(1); //address
+
+		wrapper.find('.backButton').simulate('click', { button: 0 });
+
+		expect(wrapper.find(".drinks-step")).toHaveLength(1);  //drinks
+
+		wrapper.find('.backButton').simulate('click', { button: 0 });
+
+		expect(wrapper.find(".product-list-step")).toHaveLength(1); //mains
+
 	});
 });
-
-
-let testData = {
-	products: {
-		items: [
-			{
-				name: "prod1",
-				quantity: 1,
-				price: 123,
-				description: "asfd",
-				type: "main",
-				imageFilename: "pizza.png",
-			},
-			{
-				name: "prod2",
-				quantity: 2,
-				price: 124,
-				description: "fasfdasfd",
-				type: "drink",
-				imageFilename: "pizza.png",
-			},
-		]
-	},
-	order: {
-		paymentType: "cash",
-		deliveryType: "pickup",
-		address: {
-			name: "fasdfas",
-			telephone: "1234444",
-			street: "asdfasdfasdf",
-			postcode: "sfdsd23",
-			username: "asdfasdf"
-		}
-	},
-	login: {
-		loginToken: "should something be here?",
-		role: "asfd",
-		loggingIn: false,
-	},
-	user: Function, //??
-}

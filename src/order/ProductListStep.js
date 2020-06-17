@@ -16,7 +16,7 @@ type Props = {
 export class ProductList extends React.PureComponent<Props> {
 	render() {
 		return (
-			<div>
+			<div className={"product-list-step"}>
 				<div className="wizardPanel">
 					<h2 className="wizardHeader">Mains</h2>
 					<div className="wizardMain">

@@ -8,58 +8,13 @@ import {MemoryRouter} from "react-router-dom";
 import ProductListStep from "../ProductListStep";
 import {selectSelectedDrinks, selectSelectedProducts} from "../../selectors";
 
-
-// import { createMemoryHistory } from 'history'
-
 Enzyme.configure({adapter: new Adapter()});
 
-describe('Payment Step test', () => {
+xdescribe('Payment Step test', () => {
 	let wrapper;
 	const mockStore = configureStore();
 
-	const data = {
-		products: {
-			items: [
-				{
-					name: "prod1",
-					quantity: 1,
-					price: 123,
-					description: "asfd",
-					type: "main",
-					imageFilename: "",
-				},
-				{
-					name: "prod2",
-					quantity: 2,
-					price: 124,
-					description: "fasfdasfd",
-					type: "drink",
-					imageFilename: "",
-				},
-			]
-		},
-		order: {
-			paymentType: "cash",
-			deliveryType: "pickup",
-			address: {
-				name: "fasdfas",
-				telephone: "1234444",
-				street: "asdfasdfasdf",
-				postcode: "sfdsd23",
-				username: "asdfasdf"
-			}
-		},
-		login: {
-			loginToken: "should something be here?",
-			role: "asfd",
-			loggingIn: false,
-		},
-		user: Function, //??
-	};
-
-
 	let store = mockStore(data);
-
 
 	beforeEach(() => {
 		wrapper = mount(
@@ -97,7 +52,6 @@ describe('Payment Step test', () => {
 
 		checkNoAddressFields(wrapper);
 	});
-
 });
 
 let checkNoAddressFields = (wrapper) => {
@@ -110,3 +64,42 @@ let checkAddressFieldsDoExist = (wrapper) => {
 	expect(elems.length).toBe(1);
 }
 
+const data = {
+	products: {
+		items: [
+			{
+				name: "prod1",
+				quantity: 1,
+				price: 123,
+				description: "asfd",
+				type: "main",
+				imageFilename: "",
+			},
+			{
+				name: "prod2",
+				quantity: 2,
+				price: 124,
+				description: "fasfdasfd",
+				type: "drink",
+				imageFilename: "",
+			},
+		]
+	},
+	order: {
+		paymentType: "cash",
+		deliveryType: "pickup",
+		address: {
+			name: "fasdfas",
+			telephone: "1234444",
+			street: "asdfasdfasdf",
+			postcode: "sfdsd23",
+			username: "asdfasdf"
+		}
+	},
+	login: {
+		loginToken: "should something be here?",
+		role: "asfd",
+		loggingIn: false,
+	},
+	user: Function, //??
+};

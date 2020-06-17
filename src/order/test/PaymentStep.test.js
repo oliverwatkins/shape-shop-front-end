@@ -9,11 +9,15 @@ import {MemoryRouter} from "react-router-dom";
 import WhichPaymentStep from "../WhichPaymentStep";
 
 
+/**
+ * TODO
+ */
+
 // import { createMemoryHistory } from 'history'
 
 Enzyme.configure({adapter: new Adapter()});
 
-describe('Payment Step test', () => {
+xdescribe('Payment Step test', () => {
 	let wrapper;
 	const mockStore = configureStore();
 

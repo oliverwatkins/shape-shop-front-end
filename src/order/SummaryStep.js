@@ -19,10 +19,10 @@ type Props = {
 export class Summary extends React.PureComponent<Props> {
 	render() {
 		return (
-			<div className="wizardPanel">
+			<div className="wizardPanel summary-step">
 				<h2 className="wizardHeader">Summary</h2>
 				<div className="wizardMain">
-					<BackButton page={"/order/address??"}/>
+					<BackButton page={pages.WHICH_PAYMENT}/>
 					<div className="wizardCenter">
 						<h2>Order</h2>
 						<OrderSummary selectedProducts={this.props.selectedProducts} selectedDrinks={this.props.selectedDrinks}/>
