@@ -2,6 +2,7 @@
  * Mock API for running/testing my-wee standalone.
  */
 import {mockProds} from "../__mock__/mockProducts";
+import {mockOrders} from "../__mock__/mockOrders";
 
 const create = () => {
 
@@ -36,6 +37,14 @@ const create = () => {
 		};
 	};
 
+
+	const fetchOrders = () => {
+		return {
+			status: 200,
+			data: mockOrders
+		};
+	};
+
 	const fetchProducts = () => {
 		return {
 			status: 200,
@@ -54,7 +63,8 @@ const create = () => {
 		logoutUser,
 		loginUser,
 		fetchProducts,
-		merchantDetails
+		merchantDetails,
+		fetchOrders
 	};
 };
 

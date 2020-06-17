@@ -8,19 +8,6 @@ export function reducer(state = initialState, action) {
 				...state,
 				items: action.data,
 			};
-
-		// case Actions.UPDATE_ADDRESS:
-		// 	return {
-		// 		...state,
-		// 		address: action.value
-		// 	}
-		// case Actions.UPDATE_PAYMENT_TYPE:
-		// 	return {
-		// 		...state,
-		// 		payment: action.values
-		// 	}
-
-
 		case Actions.UPDATE_PRODUCT_SELECTION:
 
 			let foundProd = state.items.filter(item => item.id === action.id);

@@ -10,13 +10,10 @@ export function reducer(state: OrderState = initialState , action) {
 				address: action.value
 			}
 		case Actions.UPDATE_PAYMENT_TYPE:
-
-			// alert("UPDATE_PAYMENT_TYPE")
 			return {
 				...state,
 				paymentType: action.value
 			}
-
 		case Actions.UPDATE_DELIVERY_TYPE:
 			return {
 				...state,

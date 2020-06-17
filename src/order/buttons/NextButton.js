@@ -17,9 +17,11 @@ export function NextButton(props: Props) {
 
 	if (!props.page) {
 		return (
-			<div>
-				<FontAwesomeIcon className={"icon testtest"} icon={faArrowCircleRight}/>
-			</div>
+			<button className={"nextButton next-prev-button"} type={props.type} form={props.form}>
+				<div>
+					<FontAwesomeIcon className={"icon"} icon={faArrowCircleRight}/>
+				</div>
+			</button>
 		)
 	} else {
 		return (
@@ -30,7 +32,7 @@ export function NextButton(props: Props) {
 							{props.label}
 						</div>
 						<div>
-							<FontAwesomeIcon className={"icon testtest"} icon={faArrowCircleRight}/>
+							<FontAwesomeIcon className={"icon"} icon={faArrowCircleRight}/>
 						</div>
 					</div>
 				</button>

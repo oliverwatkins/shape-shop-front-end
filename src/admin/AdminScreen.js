@@ -1,9 +1,6 @@
 import * as React from 'react';
 import {connect} from "react-redux";
-import {selectDrinks, selectMains, selectSelectedDrinks, selectSelectedProducts} from "../selectors";
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import type {AppState, Product} from "../AppState";
-import {createFetchProductsAction} from "../order/redux/productActions";
+import type {AppState} from "../AppState";
 import {createFetchOrdersAction} from "./redux/adminActions";
 
 
@@ -19,11 +16,16 @@ export class AdminScreen extends React.PureComponent<Props> {
 	}
 
 
-
 	render() {
 		return (
 			<div className={"admin"}>
-				Admin
+				<h1>Admin Screen</h1>
+
+				{this.props.orders && <div>we have orders</div>}
+
+				{this.props.orders && this.props.orders.map(e => <div> elem </div>) }
+
+				{!this.props.orders && <div>we have no orders</div>}
 			</div>
 		);
 	}
