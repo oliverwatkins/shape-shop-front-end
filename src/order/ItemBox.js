@@ -19,31 +19,35 @@ export class ItemBox extends React.PureComponent<Props> {
 		let imgSrc;
 		try {
 			imgSrc = require(`./../assets/img/${this.props.product.imageFilename}`)
-		}catch(e) {
+		} catch (e) {
 
 			console.info("attemptying to load : " + this.props.product.imageFilename);
 
 			console.error(e);
 		}
 
-
+		// style={{display:"flex"}}
 		return (
 			<div className={selected}>
 				<img src={imgSrc} alt="Pic of pizza" width={120}/>
-				<div>
-					<div>{this.props.product.name}</div>
-					<div><b> € {this.props.product.price}</b></div>
+				<div>{this.props.product.name}</div>
+				<div style={{display:"flex", justifyContent:"space-between"}}>
+					<div style={{flexGrow:4}}>
+						<b> € {this.props.product.price}</b>
+					</div>
+
+					<input  style={{flexGrow:1}} type="checkbox"
+								 id="selectCheckbox"
+								 onChange={this.handleChangeCheckbox}/>
+
+					<select  style={{flexGrow:2}} id="qty" onChange={this.handleChangeQuantity} value={this.props.product.quantity}>
+						<option value="0">0</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+					</select>
 				</div>
-				<input type="checkbox"
-							 id="selectCheckbox"
-							 onChange={this.handleChangeCheckbox}/>
-				<select id="qty" onChange={this.handleChangeQuantity} value={this.props.product.quantity}>
-					<option value="0">0</option>
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>
-					<option value="4">4</option>
-				</select>
 			</div>
 		);
 	}
@@ -51,7 +55,7 @@ export class ItemBox extends React.PureComponent<Props> {
 	handleChangeCheckbox = (e) => {
 		if (e.currentTarget.checked) {
 			this.props.handleChangeSelection(1, this.props.product.id)
-		}else {
+		} else {
 			this.props.handleChangeSelection(0, this.props.product.id)
 		}
 	}

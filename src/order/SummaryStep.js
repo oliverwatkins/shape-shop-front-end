@@ -29,7 +29,6 @@ export class Summary extends React.PureComponent<Props> {
 
 						<h4>Delivery Type</h4>
 
-
 						{this.props.deliveryType === "delivery" &&
 						<AddressSummary address={this.props.address}/>}
 
