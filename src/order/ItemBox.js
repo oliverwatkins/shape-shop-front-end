@@ -29,14 +29,19 @@ export class ItemBox extends React.PureComponent<Props> {
 		// style={{display:"flex"}}
 		return (
 			<div className={selected}>
-				<img src={imgSrc} alt="Pic of pizza" width={120}/>
-				<div>{this.props.product.name}</div>
+				<img src={imgSrc} alt="Pic of pizza" width={160}/>
+
+				<div title={this.props.product.name} style={{height:"70px", overflow: "hidden", fontSize:14}}>
+					{this.props.product.name}
+				</div>
+
 				<div style={{display:"flex", justifyContent:"space-between"}}>
+
 					<div style={{flexGrow:4}}>
 						<b> € {this.props.product.price}</b>
 					</div>
 
-					<input  style={{flexGrow:1}} type="checkbox"
+					<input style={{flexGrow:1}} type="checkbox"
 								 id="selectCheckbox"
 								 onChange={this.handleChangeCheckbox}/>
 
