@@ -1,16 +1,15 @@
 export const mockProds = [{
-	"id": 7,
-	"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
-	"price": 4.50,
-	"type": "main",
-	"imageFilename": "pizza.png",
-}, {
-	"id": 8,
-	"name": "Gegrillte Calamari gefüllt mit Zucchini und Paprika auf Aurberginen-Püree",
-	"price": 7.90, "type": "main",
-	"imageFilename": "pizza.png",
-
-},
+		"id": 7,
+		"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
+		"price": 4.50,
+		"type": "main",
+		"imageFilename": "pizza.png",
+	}, {
+		"id": 8,
+		"name": "Gegrillte Calamari gefüllt mit Zucchini und Paprika auf Aurberginen-Püree",
+		"price": 7.90, "type": "main",
+		"imageFilename": "pizza.png",
+	},
 	{
 		"id": 9,
 		"name": "Zucchiniröllchen gefüllt mit Ziegenkäse und Honig auf Rucolasalat mit Roten Beten und gerösteten Mandeln",
@@ -23,7 +22,6 @@ export const mockProds = [{
 		"name": "Lachs-Spinat-Lasagne",
 		"price": 10.90, "type": "main",
 		"imageFilename": "pizza.png",
-
 	},
 	{
 		"id": 11,

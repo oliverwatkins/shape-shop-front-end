@@ -3,13 +3,6 @@ import * as React from 'react';
 
 export class Footer extends React.PureComponent {
 	render() {
-
-		let style = {
-
-		}
-
-
-
 		return (
 			<div className="container">
 				<div className="ce_bs_gridStart mt-30 first row">
@@ -40,13 +33,9 @@ export class Footer extends React.PureComponent {
 					</div>
 				</div>
 				<div className="ce_text text-center mb-4 mt-4 block">
-
-
 					<p style={{textAlign: "center"}}>täglich 12.00 - 21.00 Uhr: Mitnehmen</p>
 					<p style={{textAlign: "center"}}>täglich 18.00 - 21.00 Uhr: Liefern</p>
 					<p style={{textAlign: "center"}}>Wein vom "Weinberg" gegenüber gibt es bei uns zum Ladenverkaufspreis.</p>
-
-
 				</div>
 				<div className="ce_text text-center last block">
 					<p>.</p>

@@ -1,13 +1,16 @@
 import * as React from 'react';
 import {connect} from "react-redux";
-import type {AppState} from "../AppState";
+import type {AppState, OrderState} from "../AppState";
 import {createFetchOrdersAction} from "./redux/adminActions";
 
+import "./admin.scss"
+import OrderPanel from "./OrderPanel";
 
 type Props = {
-	orders: Array<string>,
+	orders: Array<OrderState>,
 	fetchOrders: ()=>void
 }
+
 
 export class AdminScreen extends React.PureComponent<Props> {
 
@@ -15,16 +18,31 @@ export class AdminScreen extends React.PureComponent<Props> {
 		this.props.fetchOrders();
 	}
 
-
 	render() {
 		return (
-			<div className={"admin"}>
+			<div className={"admin-screen"}>
 				<h1>Admin Screen</h1>
-
-				{this.props.orders && <div>we have orders</div>}
-
-				{this.props.orders && this.props.orders.map(e => <div> elem </div>) }
-
+				{this.props.orders && <h4>Orders</h4>}
+				<table className={"orderTable"}>
+					<thead>
+						<tr>
+							<th>
+								type
+							</th>
+							<th>
+								asdf
+							</th>
+							<th>
+								address
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						{this.props.orders && this.props.orders.map(order =>
+							<OrderPanel order={order}/>
+						)}
+					</tbody>
+				</table>
 				{!this.props.orders && <div>we have no orders</div>}
 			</div>
 		);

@@ -1,14 +1,37 @@
-
 export const mockOrders = [
- {
-		"id": 23,
-		"name": "order1",
+	{
+		id: 1,
+		deliveryType: "pickup",
+		paymentType: "cash",
+		address: {
+			name: "John Doe",
+			telephone: "142342423",
+			street: "12 Bankstr",
+			postcode: "52354",
+			username: "asdfasdf"
+		},
 	}, {
-		"id": 24,
-		"name": "order2",
+		id: 2,
+		deliveryType: "delivery",
+		paymentType: "cash",
+		address: {
+			name: "Jane Doe",
+			telephone: "142342423",
+			street: "12 Bankstr",
+			postcode: "52354",
+			username: "asdfasdf"
+		},
 	},
 	{
-		"id": 25,
-		"name": "order3",
+		id: 3,
+		deliveryType: "pickup",
+		paymentType: "card",
+		address: {
+			name: "Vincent Van Gogh",
+			telephone: "142342423",
+			street: "12 Bankstr",
+			postcode: "52354",
+			username: "asdfasdf"
+		},
 	},
 ]
