@@ -31,6 +31,10 @@ class App extends React.PureComponent{
       <div className="App">
           <div>
             <Nav/>
+            <div className={"marquee"} >
+              <p>-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Übernachtungen wieder möglich! -- </p>
+            </div>
+
             <Switch>
               <Route path="/admin">
                 <AdminScreen/>
@@ -53,7 +57,7 @@ class App extends React.PureComponent{
               </Route>
             </Switch>
           </div>
-        <Footer></Footer>
+        <Footer>xxxx</Footer>
       </div>
     );
   }

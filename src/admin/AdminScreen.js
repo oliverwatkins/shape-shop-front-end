@@ -44,6 +44,10 @@ export class AdminScreen extends React.PureComponent<Props> {
 					</tbody>
 				</table>
 				{!this.props.orders && <div>we have no orders</div>}
+
+				<div>
+					settings : marquee on/off
+				</div>
 			</div>
 		);
 	}
