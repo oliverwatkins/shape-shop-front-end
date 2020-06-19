@@ -25,7 +25,7 @@ export function NextButton(props: Props) {
 		)
 	} else {
 		return (
-			<Link to={props.page}>
+			<Link to={props.page}  style={{ textDecoration: 'none' }}>
 				<button className={"nextButton next-prev-button"} type={props.type} form={props.form}>
 					<div style={{display: "flex"}}>
 						<div className={"label"}>

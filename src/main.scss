@@ -22,6 +22,10 @@
 }
 
 
+a {
+  text-decoration: none;
+}
+
 
 
 .order-wizard {
@@ -30,23 +34,5 @@
 }
 
 
-//product selection
-.product-selection {
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #fff6fe;
-}
 
-.product-selection > div {
-  background-color: #fff6fe;
-  font-size: medium;
-  width: 250px;
-  height: 250px;
-  margin: 10px;
-  text-align: center;
-}
 
-.product-selection > div.selected {
-  background-color: #dbceda;
-  //border: 3px dotted blue;
-}

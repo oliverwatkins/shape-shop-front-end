@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type {Product} from "../AppState";
-// import pizza from './../assets/img/pizza.png';
+import './itemBox.scss';
 
 type Props = {
 	product: Product
@@ -11,8 +11,10 @@ export class ItemBox extends React.PureComponent<Props> {
 
 	render() {
 		let selected = ""
+		let checked = false
 		if (this.props.product.quantity > 0) {
 			selected = "selected"
+			checked = true
 		}
 
 		// let imageFilename = "pizza.png"
@@ -20,32 +22,33 @@ export class ItemBox extends React.PureComponent<Props> {
 		try {
 			imgSrc = require(`./../assets/img/${this.props.product.imageFilename}`)
 		} catch (e) {
-
 			console.info("attemptying to load : " + this.props.product.imageFilename);
-
 			console.error(e);
 		}
 
-		// style={{display:"flex"}}
-		return (
-			<div className={selected}>
-				<img src={imgSrc} alt="Pic of pizza" width={160}/>
 
-				<div title={this.props.product.name} style={{height:"70px", overflow: "hidden", fontSize:14}}>
+
+
+		return (
+			<div className={"item-box " + selected}>
+				<img className={"item-box-image"} src={imgSrc} alt="Pic of pizza"/>
+				<div className={"item-box-desc " + selected} title={this.props.product.name} >
 					{this.props.product.name}
 				</div>
-
-				<div style={{display:"flex", justifyContent:"space-between"}}>
-
-					<div style={{flexGrow:4}}>
-						<b> € {this.props.product.price}</b>
+				<div className={"item-box-bottom"} >
+					<div className={"item-box-price"}>
+						 € {this.props.product.price}
 					</div>
-
-					<input style={{flexGrow:1}} type="checkbox"
+					<input className={"item-box-checkbox"}
+								 type="checkbox"
 								 id="selectCheckbox"
+
+								 checked={checked}
+
+
 								 onChange={this.handleChangeCheckbox}/>
 
-					<select  style={{flexGrow:2}} id="qty" onChange={this.handleChangeQuantity} value={this.props.product.quantity}>
+					<select className={"item-box-options"} id="qty" onChange={this.handleChangeQuantity} value={this.props.product.quantity}>
 						<option value="0">0</option>
 						<option value="1">1</option>
 						<option value="2">2</option>
