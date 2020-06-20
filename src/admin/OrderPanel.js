@@ -11,7 +11,7 @@ export default function OrderPanel(props) {
 			<div className={"name"}> {props.order.address.name} </div>
 			<div className={"street"}> {props.order.address.street} </div>
 			<div className={"postcode"}> {props.order.address.postcode} </div>
-			<div className={"tel"}> {props.order.address.telephone} </div>
+			<div className={"tele"}>Tel: {props.order.address.telephone} </div>
 		</td>}
 	</tr>;
 }
