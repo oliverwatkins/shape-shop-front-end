@@ -24,25 +24,31 @@ export class Summary extends React.PureComponent<Props> {
 				<div className="wizardMain">
 					<BackButton page={pages.WHICH_PAYMENT}/>
 					<div className="wizardCenter">
-						<h2>Order</h2>
+						<h3>Order</h3>
 						<OrderSummary selectedProducts={this.props.selectedProducts} selectedDrinks={this.props.selectedDrinks}/>
 
-						<h4>Delivery Type</h4>
+						<h3>Delivery Type :
+							{this.props.deliveryType === "pickup" && <span>pickup</span>}
+							{this.props.deliveryType === "delivery" && <span>delivery</span>}
+						</h3>
 
 						{this.props.deliveryType === "delivery" &&
 						<AddressSummary address={this.props.address}/>}
 
-						{this.props.deliveryType === "pickup" &&
-						<span>Pickup!</span>}
+						{/*{this.props.deliveryType === "pickup" &&*/}
+						{/*<span>Pickup!</span>}*/}
 
-						<h4>Payment Type</h4>
+						<h3>Payment Type:
+							{this.props.paymentType === "cash" && <span>cash</span>}
+							{this.props.paymentType === "card" && <span>card</span>}
+						</h3>
 
-						{this.props.paymentType === "cash" &&
-						<span>cash!</span>
-						}
-						{this.props.paymentType === "card" &&
-						<span>card!</span>
-						}
+						{/*{this.props.paymentType === "cash" &&*/}
+						{/*<span>cash!</span>*/}
+						{/*}*/}
+						{/*{this.props.paymentType === "card" &&*/}
+						{/*<span>card!</span>*/}
+						{/*}*/}
 
 						{/*<PaymentSummary/>*/}
 					</div>

@@ -23,12 +23,13 @@ export function OrderSummary(props: Props) {
 			{/*<h4>Order : </h4>*/}
 			<table>
 				<tbody>
-				<tr>
+				{props.selectedDrinks && props.selectedDrinks.length > 0 && <tr>
 					<td style={styleTD}><h4>Drinks </h4></td>
 					<td style={styleTD}></td>
 					<td style={styleTD}></td>
 					<td style={styleTD}></td>
 				</tr>
+				}
 
 				{
 					props.selectedDrinks.map((elem: Product) => {
@@ -41,12 +42,15 @@ export function OrderSummary(props: Props) {
 					})
 				}
 
+				{props.selectedProducts && props.selectedProducts.length > 0 &&
+
 				<tr>
 					<td style={styleTD}><h4>Mains </h4></td>
 					<td style={styleTD}></td>
 					<td style={styleTD}></td>
 					<td style={styleTD}></td>
 				</tr>
+				}
 
 				{
 					props.selectedProducts.map((elem: Product) => {
