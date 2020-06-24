@@ -9,35 +9,26 @@ type Props = {
 
 export function OrderSummary(props: Props) {
 
-	let style = {
-		background: "white",
-		width: 500
-	}
-
-	let styleTD = {
-		padding: "5px 9px 12px 23px"
-	}
-
 	return (
-		<div style={style}>
+		<div className={"order-summary"}>
 			{/*<h4>Order : </h4>*/}
 			<table>
 				<tbody>
 				{props.selectedDrinks && props.selectedDrinks.length > 0 && <tr>
-					<td style={styleTD}><h4>Drinks </h4></td>
-					<td style={styleTD}></td>
-					<td style={styleTD}></td>
-					<td style={styleTD}></td>
+					<td><h4>Drinks </h4></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 				}
 
 				{
 					props.selectedDrinks.map((elem: Product) => {
 						return <tr key={elem.name}>
-							<td style={styleTD}>{elem.name}</td>
-							<td style={styleTD}>{elem.price}</td>
-							<td style={styleTD}>{elem.quantity > 1 ? elem.quantity : " "}</td>
-							<td style={styleTD}>{priceTimesQty(elem.price, elem.quantity)}</td>
+							<td>{elem.name}</td>
+							<td>{elem.price}</td>
+							<td>{elem.quantity > 1 ? elem.quantity : " "}</td>
+							<td>{priceTimesQty(elem.price, elem.quantity)}</td>
 						</tr>
 					})
 				}
@@ -45,28 +36,28 @@ export function OrderSummary(props: Props) {
 				{props.selectedProducts && props.selectedProducts.length > 0 &&
 
 				<tr>
-					<td style={styleTD}><h4>Mains </h4></td>
-					<td style={styleTD}></td>
-					<td style={styleTD}></td>
-					<td style={styleTD}></td>
+					<td><h4>Mains </h4></td>
+					<td/>
+					<td/>
+					<td/>
 				</tr>
 				}
 
 				{
 					props.selectedProducts.map((elem: Product) => {
 						return <tr key={elem.name}>
-							<td style={styleTD}>{elem.name}</td>
-							<td style={styleTD}>{elem.price}</td>
-							<td style={styleTD}>{elem.quantity > 1 ? elem.quantity : " "}</td>
-							<td style={styleTD}>{priceTimesQty(elem.price, elem.quantity)}</td>
+							<td>{elem.name}</td>
+							<td>{elem.price}</td>
+							<td>{elem.quantity > 1 ? elem.quantity : " "}</td>
+							<td>{priceTimesQty(elem.price, elem.quantity)}</td>
 						</tr>
 					})
 				}
 				<tr>
-					<td style={styleTD}></td>
-					<td style={styleTD}><b>Total:</b></td>
-					<td style={styleTD}></td>
-					<td style={styleTD}>{calculateTotal(props.selectedProducts, props.selectedDrinks)}</td>
+					<td></td>
+					<td><b>Total:</b></td>
+					<td></td>
+					<td>{calculateTotal(props.selectedProducts, props.selectedDrinks)}</td>
 				</tr>
 				</tbody>
 			</table>

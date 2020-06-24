@@ -3,16 +3,20 @@ import OrderSummary from "./OrderSummary";
 import {NextButton} from "./buttons/NextButton";
 import {wizardPages as pages} from "./OrderWizard";
 import AddressSummary from "./AddressSummary";
-import type {Address, DeliveryType, PaymentType, Product} from "../AppState";
+
+import {DeliveryType, PaymentType} from "../constants";
+
 import {BackButton} from "./buttons/BackButton";
+
+import type {Address, Product} from "../AppState";
 
 
 type Props = {
 	selectedProducts: Array<Product>,
 	selectedDrinks: Array<Product>,
 	address: Address,
-	deliveryType: DeliveryType,
-	paymentType: PaymentType,
+	deliveryType: string,
+	paymentType: string,
 }
 
 
@@ -52,7 +56,11 @@ export class Summary extends React.PureComponent<Props> {
 
 						{/*<PaymentSummary/>*/}
 					</div>
-					<NextButton label={"OK"} page={pages.OK}/>
+
+					{this.props.paymentType === PaymentType.card && <span><NextButton label={"To Payment"} page={pages.PAYMENT}/></span>}
+					{this.props.paymentType !== PaymentType.card && <span><NextButton label={"OK"} page={pages.OK}/></span>}
+
+
 				</div>
 			</div>
 		);

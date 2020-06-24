@@ -25,6 +25,7 @@
   background-color: #fff6fe;
 }
 
+
 //border layout :
 .wizardPanel {
   opacity: 1;
@@ -139,4 +140,31 @@
     float: right;
     color: grey;
   }
+
+  .address-summary {
+    width: 500px;
+    div {
+      background: #ffffff;
+      div {
+        padding: 5px 5px 5px 50px;
+      }
+    }
+  }
+
+  .payment-panel {
+    display: flex;
+    border: 2px #3bdef0 dashed;
+  }
+
+
+  //floating panel on right throughout wizard
+  .order-summary {
+    width:500px;
+    //background: #3bdef0;
+    td {
+      padding: 5px 9px 12px 23px;
+    }
+  }
+
+
 }

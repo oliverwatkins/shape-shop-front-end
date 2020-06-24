@@ -9,6 +9,7 @@ import WhichPayment from "./WhichPaymentStep";
 import OKStep from "./OKStep";
 import type {AppState, Product} from "../AppState";
 import DrinksStep from "./DrinksStep";
+import PaymentStep from "./PaymentStep";
 
 //navigation links
 export const wizardPages = {
@@ -16,7 +17,7 @@ export const wizardPages = {
 	DRINK_LIST: "/order/drinklist",
 	ADDRESS : "/order/address",
 	WHICH_PAYMENT : "/order/whichPayment",
-	// PAYMENT : "/order/payment",
+	PAYMENT : "/order/payment",
 	SUMMARY : "/order/summary",
 	OK: "/order/OK"
 }
@@ -65,6 +66,9 @@ export class OrderWizard extends React.PureComponent<Props> {
 							</Route>
 							<Route path={wizardPages.OK}>
 								<OKStep/>
+							</Route>
+							<Route path={wizardPages.PAYMENT}>
+								<PaymentStep/>
 							</Route>
 						</Switch>
 				</Router>

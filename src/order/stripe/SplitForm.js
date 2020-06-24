@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, {useMemo} from "react";
 import {
 	useStripe,
 	useElements,
@@ -8,6 +8,8 @@ import {
 } from "@stripe/react-stripe-js";
 
 import useResponsiveFontSize from "./useResponsiveFontSize";
+
+import "./split.scss"
 
 const useOptions = () => {
 	const fontSize = useResponsiveFontSize();
@@ -56,61 +58,68 @@ const SplitForm = () => {
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<label>
-				Card number
-				<CardNumberElement
-					options={options}
-					onReady={() => {
-						console.log("CardNumberElement [ready]");
-					}}
-					onChange={event => {
-						console.log("CardNumberElement [change]", event);
-					}}
-					onBlur={() => {
-						console.log("CardNumberElement [blur]");
-					}}
-					onFocus={() => {
-						console.log("CardNumberElement [focus]");
-					}}
-				/>
-			</label>
-			<label>
-				Expiration date
-				<CardExpiryElement
-					options={options}
-					onReady={() => {
-						console.log("CardNumberElement [ready]");
-					}}
-					onChange={event => {
-						console.log("CardNumberElement [change]", event);
-					}}
-					onBlur={() => {
-						console.log("CardNumberElement [blur]");
-					}}
-					onFocus={() => {
-						console.log("CardNumberElement [focus]");
-					}}
-				/>
-			</label>
-			<label>
-				CVC
-				<CardCvcElement
-					options={options}
-					onReady={() => {
-						console.log("CardNumberElement [ready]");
-					}}
-					onChange={event => {
-						console.log("CardNumberElement [change]", event);
-					}}
-					onBlur={() => {
-						console.log("CardNumberElement [blur]");
-					}}
-					onFocus={() => {
-						console.log("CardNumberElement [focus]");
-					}}
-				/>
-			</label>
+		<form className={"splitform"} onSubmit={handleSubmit}>
+			<div>
+				<label>
+					Card number
+					<CardNumberElement
+						options={options}
+						onReady={() => {
+							console.log("CardNumberElement [ready]");
+						}}
+						onChange={event => {
+							console.log("CardNumberElement [change]", event);
+						}}
+						onBlur={() => {
+							console.log("CardNumberElement [blur]");
+						}}
+						onFocus={() => {
+							console.log("CardNumberElement [focus]");
+						}}
+					/>
+				</label>
+			</div>
+			<div>
+				<label>
+					Expiration date
+					<CardExpiryElement
+						options={options}
+						onReady={() => {
+							console.log("CardNumberElement [ready]");
+						}}
+						onChange={event => {
+							console.log("CardNumberElement [change]", event);
+						}}
+						onBlur={() => {
+							console.log("CardNumberElement [blur]");
+						}}
+						onFocus={() => {
+							console.log("CardNumberElement [focus]");
+						}}
+					/>
+				</label>
+			</div>
+			<div>
+				<label>
+					CVC
+					<CardCvcElement
+						className={"cvcElement"}
+						options={options}
+						onReady={() => {
+							console.log("CardNumberElement [ready]");
+						}}
+						onChange={event => {
+							console.log("CardNumberElement [change]", event);
+						}}
+						onBlur={() => {
+							console.log("CardNumberElement [blur]");
+						}}
+						onFocus={() => {
+							console.log("CardNumberElement [focus]");
+						}}
+					/>
+				</label>
+			</div>
 			<button type="submit" disabled={!stripe}>
 				Pay
 			</button>

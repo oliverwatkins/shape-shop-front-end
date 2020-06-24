@@ -3,7 +3,7 @@ import * as React from 'react';
 import {wizardPages as pages} from "./OrderWizard"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
-import PaymentPanel from "./PaymentPanel";
+// import PaymentStep from "./PaymentPanel";
 import {connect} from "react-redux";
 import {PaymentType} from "../constants";
 import {deliveryTypes} from "./AddressStep";
@@ -64,13 +64,16 @@ export class WhichPayment extends React.PureComponent<Props, State> {
 									 onChange={this.onRadioChanged}
 
 						/>
-						<label htmlFor="contactChoice1">Online</label>
+						<label htmlFor="contactChoice1">Pay online now with credit card</label>
+
+						{(this.state.paymentType === PaymentType.card) &&
+						<div>
+							{/*<PaymentStep/>*/}
+						</div>}
+
 					</div>
 
-					{(this.state.paymentType === PaymentType.card) &&
-					<div>
-						<PaymentPanel/>
-					</div>}
+
 
 					<NextButton label={"NEXT"} page={pages.SUMMARY}/>
 				</div>

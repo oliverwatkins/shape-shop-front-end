@@ -9,17 +9,12 @@ type Props = {
 export function AddressSummary(props: Props) {
 
 	// alert("props " + JSON.stringify(props))
-	let style = {
-		background: "white",
-		width: 500
-	}
-	let styleTD = {
-		padding: "5px 9px 12px 23px"
-	}
+	// let style = {
+	// 	background: "white",
+	// 	width: 500
+	// }
 	return (
-		<div style={style}>
-
-
+		<div className={"address-summary"}>
 			{props.address &&
 			<div>
 				<div><b>Name: </b>

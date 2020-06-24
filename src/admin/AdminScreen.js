@@ -67,7 +67,7 @@ export class AdminScreen extends React.PureComponent<Props> {
 										 id="street"
 										 type="text"
 										 name="street"
-										 value={"-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Übernachtungen wieder möglich! -- "}
+										 value={"-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- "}
 							/>
 						</div>
 					</div>

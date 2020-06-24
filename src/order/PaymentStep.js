@@ -7,7 +7,7 @@ import {faArrowCircleLeft, faArrowCircleRight, faCreditCard} from "@fortawesome/
 
 // import CheckoutForm from "./stripe/CheckoutForm";
 
-import CheckoutForm from "./stripe/SplitForm";
+import {CheckoutForm} from "./stripe/HooksExample";
 
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
@@ -16,30 +16,30 @@ import {loadStripe} from '@stripe/stripe-js';
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
-export class PaymentPanel extends React.PureComponent {
+export class PaymentStep extends React.PureComponent {
 	render() {
 		return (
-			<div style={{display: "flex"}} className="wizardPanel paymentPanel">
+			<div className="payment-panel">
 
-				{/*<Link to="/order/address">*/}
-					{/*<FontAwesomeIcon icon={faArrowCircleLeft} style={{fontSize: "100px", color: "gray"}}/>*/}
-				{/*</Link>*/}
+				Please enter your credit card details
 
-
-
-				<Elements stripe={stripePromise}>
+				{/*<Elements stripe={stripePromise}>*/}
+				{/*	<CheckoutForm />*/}
+				{/*</Elements>*/}
+				<Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
 					<CheckoutForm />
 				</Elements>
-
-
-				{/*<div className={"aside"}>*/}
-					{/*<Link to="/order/summary">*/}
-						{/*<FontAwesomeIcon icon={faArrowCircleRight} style={{fontSize: "100px", color: "gray"}}/>*/}
-					{/*</Link>*/}
-				{/*</div>*/}
 			</div>
 		);
 	}
 }
 
-export default PaymentPanel;
+const ELEMENTS_OPTIONS = {
+	fonts: [
+		{
+			cssSrc: 'https://fonts.googleapis.com/css?family=Roboto',
+		},
+	],
+};
+
+export default PaymentStep;
