@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 // https://github.com/stripe/react-stripe-js/blob/90b7992c5232de7312d0fcc226541b62db95017b/examples/hooks/1-Card-Detailed.js
 
 
+// amount
 // Test Card :
 // 4242424242424242	Visa	Any 3 digits	Any future date
 
@@ -17,7 +18,7 @@ import { useHistory } from "react-router-dom";
 
 
 
-export const CheckoutForm = () => {
+export const CheckoutForm = (props) => {
 	const history = useHistory();
 	const stripe = useStripe();
 	const elements = useElements();
@@ -153,7 +154,7 @@ export const CheckoutForm = () => {
 			</fieldset>
 			{error && <ErrorMessage>{error.message}</ErrorMessage>}
 			<SubmitButton processing={processing} error={error} disabled={!stripe}>
-				Pay {"$26"}
+				Pay {props.amount} €
 			</SubmitButton>
 		</form>
 	);

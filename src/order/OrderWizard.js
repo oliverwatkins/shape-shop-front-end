@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ProductList from "./ProductListStep";
+import ProductListStep from "./ProductListStep";
 import {connect} from "react-redux";
 import {selectDrinks, selectMains, selectSelectedDrinks, selectSelectedProducts} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
@@ -39,9 +39,9 @@ export class OrderWizard extends React.PureComponent<Props> {
 				<Router>
 						<Switch>
 							<Route path={wizardPages.PRODUCT_LIST}>
-								<ProductList productItems={this.props.products}
-														 selectedProducts={this.props.selectedProducts}
-														 selectedDrinks={this.props.selectedDrinks}/>
+								<ProductListStep productItems={this.props.products}
+																 selectedProducts={this.props.selectedProducts}
+																 selectedDrinks={this.props.selectedDrinks}/>
 							</Route>
 							<Route path={wizardPages.DRINK_LIST}>
 								<DrinksStep drinks={this.props.drinks} selectedProducts={this.props.selectedProducts}
@@ -68,7 +68,10 @@ export class OrderWizard extends React.PureComponent<Props> {
 								<OKStep/>
 							</Route>
 							<Route path={wizardPages.PAYMENT}>
-								<PaymentStep/>
+								<PaymentStep
+									selectedProducts={this.props.selectedProducts}
+									selectedDrinks={this.props.selectedDrinks}
+								/>
 							</Route>
 						</Switch>
 				</Router>

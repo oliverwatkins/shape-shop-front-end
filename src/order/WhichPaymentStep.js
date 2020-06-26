@@ -65,16 +65,7 @@ export class WhichPayment extends React.PureComponent<Props, State> {
 
 						/>
 						<label htmlFor="contactChoice1">Pay online now with credit card</label>
-
-						{(this.state.paymentType === PaymentType.card) &&
-						<div>
-							{/*<PaymentStep/>*/}
-						</div>}
-
 					</div>
-
-
-
 					<NextButton label={"NEXT"} page={pages.SUMMARY}/>
 				</div>
 			</div>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import type {Product} from "../AppState";
+import {calculateTotal} from "./utils";
 
 
 type Props = {
@@ -72,20 +73,6 @@ function priceTimesQty(p, qty) {
 
 }
 
-function calculateTotal(selectedProducts, selectedDrinks) {
 
-	let d = selectedDrinks.reduce((acc, cur: Product) => {
-		return acc + (cur.quantity * cur.price);
-	}, 0)
-
-	let t = selectedProducts.reduce((acc, cur: Product) => {
-		return acc + (cur.quantity * cur.price);
-	}, 0)
-
-	t = (t + d).toFixed(2);
-
-	// d = d.toFixed(2);
-	return t
-}
 
 export default OrderSummary;

@@ -12,7 +12,7 @@
 //
 // import renderer from 'react-test-renderer';
 // import {renderToStaticMarkup} from "react-dom/server";
-// import ProductList from "../ProductListStep";
+// import ProductListStep from "../ProductListStep";
 // import DrinksStep from "../DrinksStep";
 // import Address from "../AddressStep";
 // import WhichPayment from "../WhichPaymentStep";
