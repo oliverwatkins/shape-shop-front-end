@@ -8,6 +8,8 @@ import {calculateTotal} from "./utils";
 import {wizardPages as pages} from "./OrderWizard";
 import {BackButton} from "./buttons/BackButton";
 
+import "./order.scss"
+
 // import CheckoutForm from "./stripe/CheckoutForm";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
@@ -18,12 +20,12 @@ export class PaymentStep extends React.PureComponent {
 	render() {
 
 		return (
-			<div className="wizardPanel">
-				<h2 className="wizardHeader">Credit Card Payment</h2>
+			<div className="wizardPanel payment-panel">
+				<h2 className="wizardHeader">Credit Card PaymentX</h2>
 				<div className="wizardMain">
 					<BackButton page={pages.SUMMARY}/>
 					<div className="wizardCenter">
-						<div>
+						<div className={"description"}>
 							Please enter your credit card details and click 'Pay'
 						</div>
 						<div className={"stripe-payment-panel"}>

@@ -1,24 +1,19 @@
 
-
-$color-unselected: #fcf4f6;
-$color-selected: #a4bef3;
+@import "./../index.scss";
 
 .item-box.selected {
-  background-color: $color-selected;
-  //border: 3px dotted blue;
+  background-color: $itembox-color-selected;
 }
 
 .item-box {
-  background-color: $color-unselected;
+  background-color: $itembox-color-unselected;
   font-size: medium;
   margin: 10px;
   width: 250px;
-  //height: 180px;
 
   .item-box-image {
     width: 246px;
     margin: 2px;
-    //height: 300px;
   }
 
   .item-box-desc {
@@ -32,47 +27,32 @@ $color-selected: #a4bef3;
   }
 
   .item-box-desc {
-    background: lighten($color-unselected, 5%);
+    background: lighten($itembox-color-unselected, 5%);
   }
 
   .item-box-desc.selected {
-    background: lighten($color-selected, 10%);
+    background: lighten($itembox-color-selected, 10%);
   }
 
   .item-box-bottom {
-
     display: flex;
     justify-content: space-between;
     margin: 4px;
-    //margin-left: 5px;
 
     .item-box-price {
-
       flex-grow: 4;
       font-weight: bold;
-      //background: #3bdef0;
-      //border: #0e2426 2px dashed;
       text-align: left;
     }
 
     .item-box-checkbox {
-      //background: #3bdef0;
       height: 30px;
       flex-grow: 1;
     }
 
     .item-box-options {
-      //background: #3bdef0;
       height: 30px;
       flex-grow: 1;
     }
-    //
-    //.item-box-checkbox:checked {
-    //  background: #ee7111;
-    //  color: #ee7111;
-    //
-    //  height: 30px;
-    //  flex-grow: 1;
-    //}
   }
 }

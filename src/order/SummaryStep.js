@@ -36,8 +36,7 @@ export class Summary extends React.PureComponent<Props> {
 							{this.props.deliveryType === "delivery" && <span>delivery</span>}
 						</h3>
 
-						{this.props.deliveryType === "delivery" &&
-						<AddressSummary address={this.props.address}/>}
+						{this.props.deliveryType === "delivery" && <AddressSummary address={this.props.address}/>}
 
 						{/*{this.props.deliveryType === "pickup" &&*/}
 						{/*<span>Pickup!</span>}*/}
@@ -56,11 +55,8 @@ export class Summary extends React.PureComponent<Props> {
 
 						{/*<PaymentSummary/>*/}
 					</div>
-
 					{this.props.paymentType === PaymentType.card && <span><NextButton label={"To Payment"} page={pages.PAYMENT}/></span>}
 					{this.props.paymentType !== PaymentType.card && <span><NextButton label={"OK"} page={pages.OK}/></span>}
-
-
 				</div>
 			</div>
 		);

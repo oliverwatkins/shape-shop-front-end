@@ -1,25 +1,20 @@
 
-.next-prev-button {
-  cursor: pointer;
-  height: 100px;
-  background-color: #fff6fe;
-  border: none;
-  color: white;
-  padding: 20px;
-  text-align: center;
-  vertical-align: middle;
-  display: table-cell;
 
-  .icon {
-    font-size: 100px;
-    color: gray
-  }
+$base-background-color: #c6538c;
+$base-foreground-color: rgba($base-background-color, 0.88);
 
-  .label {
-    font-size: 65px;
-    color: gray;
-  }
-}
+$base-text-color: #5e95f6;
+
+$itembox-color-unselected: #fcf4f6;
+$itembox-color-selected: #f30e43;
+
+$error-color: red;
+
+$base-header-color: #c6538c;
+$h1-color: darken($base-header-color, 8%);
+$h2-color:darken($base-header-color, 5%);
+$h3-color:darken($base-header-color, 2%);
+$h4-color: darken($base-header-color, 1%);
 
 
 a {
@@ -51,6 +46,9 @@ a {
   display: flex;
   background: #fff6fe;
 }
+
+
+
 
 
 

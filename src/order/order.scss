@@ -1,3 +1,5 @@
+@import "./../index.scss";
+
 @keyframes fadeInOpacity {
   0% {
     opacity: 0;
@@ -7,6 +9,34 @@
   }
 }
 
+//Product selection
+.product-selection {
+  display: flex;
+  flex-wrap: wrap;
+  //background-color: #fff6fe;
+}
+
+
+//credit card
+.payment-panel {
+
+  .description {
+    padding: 10px;
+    color: $base-text-color;
+    //font-style: ;
+    //background: #0DA108;
+  }
+}
+
+.payment-step {
+  label {
+    color: $base-text-color;
+  }
+}
+
+.summary-step {
+
+}
 
 //OK Panel
 .okPanel {
@@ -17,15 +47,6 @@
   text-align: center;
 }
 
-
-//Product selection
-.product-selection {
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #fff6fe;
-}
-
-
 //border layout :
 .wizardPanel {
   opacity: 1;
@@ -35,8 +56,7 @@
   animation-timing-function: ease-in;
   animation-duration: .4s;
 
-  color: #000000;
-  background: #fff6fe;
+  //background: #ef17d7;
 
   width: 100%;
   display: flex;
@@ -44,7 +64,7 @@
 
 
   h1 {
-    color: #4dc449;
+    color: $h1-color;
   }
 
   h2 {
@@ -53,19 +73,19 @@
     font-style: italic;
     font-size: 50px;
     font-weight: bold;
-    color: #bf4747;
+    color: $h2-color;
   }
 
   h3 {
     font-family: "Times New Roman", Times, serif;
     font-style: italic;
-    color: gray;
+    color: $h3-color;
   }
 
   h4 {
     font-family: "Arial", Times, serif;
     font-style: normal;
-    color: #0c0606;
+    color: $h4-color;
     //padding-left: 50px;
   }
 
@@ -90,7 +110,7 @@
 
 
   select {
-    padding: 0px;
+    padding: 0;
     //size: 100px;
     //color: pink;
     //font-size: 20px;
@@ -116,7 +136,7 @@
 
   //address form
   span.error {
-    color: red
+    color: $error-color
   }
 
 
@@ -128,7 +148,7 @@
     width: 50%;
     margin-bottom: 20px;
     padding: 12px;
-    border: 1px solid #ccc;
+    border: 2px solid #ccc;
     border-radius: 3px;
   }
 
@@ -144,23 +164,20 @@
 
   .address-summary {
     width: 500px;
+
     div {
       background: #ffffff;
+
       div {
         padding: 5px 5px 5px 50px;
       }
     }
   }
 
-  .payment-panel {
-    display: flex;
-    border: 2px #3bdef0 dashed;
-  }
-
 
   //floating panel on right throughout wizard
   .order-summary {
-    width:500px;
+    width: 500px;
     //background: #3bdef0;
     td {
       padding: 5px 9px 12px 23px;
@@ -169,3 +186,5 @@
 
 
 }
+
+

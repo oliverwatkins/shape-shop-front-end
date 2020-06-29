@@ -1,0 +1,23 @@
+@import "./../../index.scss";
+
+.next-prev-button {
+  cursor: pointer;
+  height: 100px;
+  background-color: rgba(0, 0, 0, 0); //transparent
+  border: none;
+  //color: white;
+  padding: 20px;
+  text-align: center;
+  vertical-align: middle;
+  display: table-cell;
+
+  .icon {
+    font-size: 100px;
+    color: lighten(gray, 6);
+  }
+
+  .label {
+    font-size: 65px;
+    color: lighten(gray, 6);
+  }
+}

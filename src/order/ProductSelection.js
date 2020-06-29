@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import "./../main.scss"
+// import "./../main.scss"
 
 import ItemBox from "./ItemBox";
 import {createUpdateProductSelection} from "./redux/productActions";
