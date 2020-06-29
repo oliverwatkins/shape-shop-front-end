@@ -44,7 +44,24 @@ export function createUpdatePaymentType(value) {
 }
 
 
+export function createPlaceOrderAction(value) {
+	return {
+		type: Actions.PLACE_ORDER,
+		value: value
+	};
+}
+
+export function createPlaceOrderSuccessAction(value) {
+	return {
+		type: Actions.PLACE_ORDER_SUCCESS,
+		value: value
+	};
+}
+
+
 export const Actions = {
+	PLACE_ORDER: "PLACE_ORDER",
+	PLACE_ORDER_SUCCESS: "PLACE_ORDER_SUCCESS",
 	UPDATE_PAYMENT_TYPE:'UPDATE_PAYMENT_TYPE',
 	UPDATE_PRODUCT_SELECTION: 'UPDATE_PRODUCT_SELECTION',
 	UPDATE_ADDRESS: 'UPDATE_ADDRESS',

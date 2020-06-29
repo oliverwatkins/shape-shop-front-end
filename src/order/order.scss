@@ -16,6 +16,19 @@
   //background-color: #fff6fe;
 }
 
+.address-step {
+  label {
+    color: $base-text-color;
+    font-weight: bold;
+  }
+}
+
+.payment-step {
+  label {
+    font-weight: bold;
+    color: $base-text-color;
+  }
+}
 
 //credit card
 .payment-panel {
@@ -23,16 +36,13 @@
   .description {
     padding: 10px;
     color: $base-text-color;
+    font-weight: bold;
     //font-style: ;
     //background: #0DA108;
   }
 }
 
-.payment-step {
-  label {
-    color: $base-text-color;
-  }
-}
+
 
 .summary-step {
 

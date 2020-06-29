@@ -52,6 +52,15 @@ const create = () => {
 		};
 	};
 
+	const placeOrder = () => {
+		return {
+			status: 200,
+			data: "tododooooo"
+		};
+	};
+
+
+
 	const logoutUser = Authorization => {
 		return {
 			status: 200
@@ -60,6 +69,7 @@ const create = () => {
 
 
 	return {
+		placeOrder,
 		logoutUser,
 		loginUser,
 		fetchProducts,

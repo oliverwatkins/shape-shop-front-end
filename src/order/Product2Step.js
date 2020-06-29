@@ -34,7 +34,7 @@ type Props = {
 }
 
 //redundant
-export class DrinksStep extends React.PureComponent<Props> {
+export class Product2Step extends React.PureComponent<Props> {
 	render() {
 		return (
 			<div className="wizardPanel drinks-step">
@@ -58,4 +58,4 @@ export class DrinksStep extends React.PureComponent<Props> {
 	}
 }
 
-export default DrinksStep;
+export default Product2Step;

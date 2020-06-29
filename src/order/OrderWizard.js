@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ProductListStep from "./ProductListStep";
+import ProductListStep from "./Product1Step";
 import {connect} from "react-redux";
 import {selectDrinks, selectMains, selectSelectedDrinks, selectSelectedProducts} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
@@ -8,7 +8,7 @@ import Summary from "./SummaryStep";
 import WhichPayment from "./WhichPaymentStep";
 import OKStep from "./OKStep";
 import type {AppState, Product} from "../AppState";
-import DrinksStep from "./DrinksStep";
+import Product2Step from "./Product2Step";
 import PaymentStep from "./PaymentStep";
 
 //navigation links
@@ -44,8 +44,8 @@ export class OrderWizard extends React.PureComponent<Props> {
 																 selectedDrinks={this.props.selectedDrinks}/>
 							</Route>
 							<Route path={wizardPages.DRINK_LIST}>
-								<DrinksStep drinks={this.props.drinks} selectedProducts={this.props.selectedProducts}
-														selectedDrinks={this.props.selectedDrinks}
+								<Product2Step drinks={this.props.drinks} selectedProducts={this.props.selectedProducts}
+															selectedDrinks={this.props.selectedDrinks}
 									/>
 							</Route>
 							<Route path={wizardPages.ADDRESS}>

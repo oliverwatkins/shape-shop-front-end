@@ -2,8 +2,7 @@ import {fork} from 'redux-saga/effects';
 import login from '../login/redux/LoginSaga'
 import logout from '../login/redux/LogoutSaga'
 
-import merchantSaga from '../login/redux/MerchantSaga'
-
+import placeOrderSaga from '../order/redux/PlaceOrderSaga'
 import productSaga from '../order/redux/ProductSaga'
 import ordersSaga from '../admin/redux/OrdersSaga'
 //hack to make sagas work. https://github.com/redux-saga/redux-saga/issues/280
@@ -31,6 +30,7 @@ export default function* root() {
 	yield fork(logout(apiInstance).logoutWatcher);
 	yield fork(productSaga(apiInstance).getProductsWatcher);
 	yield fork(ordersSaga(apiInstance).getProductsWatcher);
-	yield fork(merchantSaga(apiInstance).merchantDetailsWatcher);
+	yield fork(placeOrderSaga(apiInstance).placeOrderWatcher);
+	// yield fork(merchantSaga(apiInstance).merchantDetailsWatcher);
 
 }
