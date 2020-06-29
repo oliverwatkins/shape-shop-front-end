@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, Elements, useElements, useStripe} from "@stripe/react-stripe-js";
-import './hooks.scss';
+import './PaymentForm.scss';
 
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 // from here :
 
@@ -13,9 +13,6 @@ import { useHistory } from "react-router-dom";
 // amount
 // Test Card :
 // 4242424242424242	Visa	Any 3 digits	Any future date
-
-
-
 
 
 export const CheckoutForm = (props) => {
@@ -69,16 +66,10 @@ export const CheckoutForm = (props) => {
 			setError(payload.error);
 		} else {
 			alert("success")
+
 			setPaymentMethod(payload.paymentMethod);
 
-
-			// function handleClick() {
-				history.push("/order/OK");
-			// }
-			// http://localhost:3000/order/OK
-
-			// windows.location
-
+			history.push("/order/OK");
 		}
 	};
 
@@ -102,7 +93,7 @@ export const CheckoutForm = (props) => {
 				Thanks for trying Stripe Elements. No money was charged, but we
 				generated a PaymentMethod: {paymentMethod.id}
 			</div>
-			<ResetButton onClick={reset} />
+			<ResetButton onClick={reset}/>
 		</div>
 	) : (
 		<form className="Form" onSubmit={handleSubmit}>
@@ -161,25 +152,14 @@ export const CheckoutForm = (props) => {
 };
 
 
-
 const CARD_OPTIONS = {};
-
 const CardField = ({onChange}) => (
 	<div className="FormRow">
-		<CardElement options={CARD_OPTIONS} onChange={onChange} />
+		<CardElement options={CARD_OPTIONS} onChange={onChange}/>
 	</div>
 );
 
-const Field = ({
-								 label,
-								 id,
-								 type,
-								 placeholder,
-								 required,
-								 autoComplete,
-								 value,
-								 onChange,
-							 }) => (
+const Field = ({label, id, type, placeholder, required, autoComplete, value, onChange}) => (
 	<div className="FormRow">
 		<label htmlFor={id} className="FormRowLabel">
 			{label}

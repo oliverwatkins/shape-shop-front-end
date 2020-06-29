@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {CheckoutForm} from "./stripe/HooksExample";
+import {CheckoutForm} from "./stripe/PaymentForm";
 
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
