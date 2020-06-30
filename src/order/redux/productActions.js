@@ -44,10 +44,10 @@ export function createUpdatePaymentType(value) {
 }
 
 
-export function createPlaceOrderAction(value) {
+export function createPlaceOrderAction(data) {
 	return {
 		type: Actions.PLACE_ORDER,
-		value: value
+		value: data
 	};
 }
 

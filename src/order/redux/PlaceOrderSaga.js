@@ -13,6 +13,8 @@ export default api => {
 			// alert("1")
 			const response = yield call(api.placeOrder, orderData);
 
+			alert("orderData: " + JSON.stringify(orderData))
+
 			if (response.status === 200) {
 
 				yield delay(3000);

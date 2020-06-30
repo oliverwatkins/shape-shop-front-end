@@ -32,6 +32,27 @@ export const selectMains = (state) => state.products.items.filter(product => pro
 
 export const selectDrinks = (state) => state.products.items.filter(product => product.type === "drinks");
 
+//total order
+export const selectOrder = (state) => {
+	return {
+		address: state.order && state.order.address,
+		selectedProducts: selectSelectedProducts(state),
+		selectedDrinks: selectSelectedDrinks(state),
+		deliveryType: state.order && state.order.deliveryType,
+		paymentType: state.order && state.order.paymentType,
+		submittingOrder: state.order && state.order.submittingOrder,
+	}
+}
+
+
+// address: state.order && state.order.address,
+// 	selectedProducts: selectSelectedProducts(state),
+// 	selectedDrinks: selectSelectedDrinks(state),
+// 	deliveryType: state.order && state.order.deliveryType,
+// 	paymentType: state.order && state.order.paymentType,
+// 	submittingOrder: state.order && state.order.submittingOrder,
+
+
 
 // products: selectMains(state),
 // 	drinks: selectDrinks(state),

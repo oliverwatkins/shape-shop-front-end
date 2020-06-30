@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import LoadingView from "../misc/LoadingView";
 import type {Address, AppState, Product} from "../AppState";
-import {selectDrinks, selectMains, selectSelectedDrinks, selectSelectedProducts} from "../selectors";
+import {selectDrinks, selectMains, selectOrder, selectSelectedDrinks, selectSelectedProducts} from "../selectors";
 import {connect} from "react-redux";
 import {createPlaceOrderAction} from "./redux/productActions";
 
@@ -21,7 +21,7 @@ export class OKStep extends React.PureComponent<Props> {
 
 	constructor(props) {
 		super();
-		props.placeOrder();
+		props.placeOrder(props.order);
 	}
 
 
@@ -41,9 +41,7 @@ export class OKStep extends React.PureComponent<Props> {
 							<FontAwesomeIcon size={"10x"} color={"green"} className={"icon"} icon={faCheckCircle}/>
 						</div>
 					</div>
-
 				}
-
 			</div>
 		);
 	}
@@ -51,8 +49,8 @@ export class OKStep extends React.PureComponent<Props> {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		placeOrder: () => {
-			dispatch(createPlaceOrderAction());
+		placeOrder: (data) => {
+			dispatch(createPlaceOrderAction(data));
 		},
 	};
 };
@@ -61,6 +59,7 @@ const mapStateToProps = (state: AppState) => {
 	return {
 		products: selectMains(state),
 		drinks: selectDrinks(state),
+		order: selectOrder(state),
 		address: state.order && state.order.address,
 		selectedProducts: selectSelectedProducts(state),
 		selectedDrinks: selectSelectedDrinks(state),
