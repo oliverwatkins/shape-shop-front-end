@@ -26,11 +26,26 @@ const create = () => {
 		return api.get('/products').then(response => response);
 	};
 
+	const placeOrder = (values, Authorization) => {
+
+		api.setHeaders({ ...Authorization });
+
+		return api.post('/order', values).then(response => response);
+	};
+
+	// const updatePassword: UpdatePassword = (values, Authorization) => {
+	// 	api.setHeaders({ Authorization });
+	//
+	// 	return api.post('/changePassword', values).then(response => response);
+	// };
+
+
 	return {
 		setBaseURL,
 		fetchProducts,
 		loginUser,
-		logoutUser
+		logoutUser,
+		placeOrder
 	};
 };
 

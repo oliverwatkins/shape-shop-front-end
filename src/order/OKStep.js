@@ -21,7 +21,7 @@ export class OKStep extends React.PureComponent<Props> {
 
 	constructor(props) {
 		super();
-		props.placeOrder(props.order);
+		props.placeOrder(props.order, "asdfasdf");
 	}
 
 
