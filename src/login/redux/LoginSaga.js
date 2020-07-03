@@ -29,24 +29,28 @@ export default api => {
 
 			const response = yield call(api.loginUser, credentials);
 
+			console.info(JSON.stringify(response));
+
 			if (response.ok) {
-				if (!response.headers.authorization) {
+
+
+				if (!response.data.jwt) {
 					yield put(createLoginFailAction());
 				}
 
-				const decodedToken = jwtDecode(response.headers.authorization);
+				const decodedToken = jwtDecode(response.data.jwt);
 
 				const userCredentials = {
 					...credentials,
-					token: response.headers.authorization,
-					role: decodedToken.role,
-					status: decodedToken.status,
+					token: response.data.jwt,
+					role: decodedToken.scopes,
+					// status: decodedToken.status,
 				};
 
 				delete userCredentials.password;
 				yield put(createLoginSuccessAction(userCredentials)); //this is being caught by the reducer and put into storage!
 
-				if (decodedToken.role === ADMIN_ROLE) {
+				if (decodedToken.scopes === "ROLE_ADMIN") {
 					yield put(getAdminDetails(userCredentials.token, userCredentials.role));
 				} else {
 					yield put(createLoginFailAction());

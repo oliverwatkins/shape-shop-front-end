@@ -9,7 +9,7 @@ const create = () => {
 	};
 
 	const loginUser = (credentials) => {
-		return api.post('/login', credentials).then(response => {
+		return api.post('/authenticate', credentials).then(response => {
 			return response;
 		});
 	};
@@ -26,11 +26,18 @@ const create = () => {
 		return api.get('/products').then(response => response);
 	};
 
+
+	const fetchOrders = () => {
+		return api.get('/orders').then(response => response);
+	};
+
+
+
 	const placeOrder = (values, Authorization) => {
 
 		api.setHeaders({ ...Authorization });
 
-		return api.post('/order', values).then(response => response);
+		return api.post('/orders', values).then(response => response);
 	};
 
 	// const updatePassword: UpdatePassword = (values, Authorization) => {
@@ -45,7 +52,8 @@ const create = () => {
 		fetchProducts,
 		loginUser,
 		logoutUser,
-		placeOrder
+		placeOrder,
+		fetchOrders
 	};
 };
 

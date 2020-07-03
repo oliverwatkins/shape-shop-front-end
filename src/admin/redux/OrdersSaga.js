@@ -19,7 +19,7 @@ export default api => {
 				alert("error : " + response)
 			}
 		} catch (e) {
-			console.error('Error fetching shops!!');
+			console.error('Error fetching orders!!');
 			debugger;
 
 			console.error(e);
