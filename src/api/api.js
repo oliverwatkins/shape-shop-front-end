@@ -15,7 +15,11 @@ const create = () => {
 	};
 
 	const logoutUser = (Authorization) => {
-		api.setHeaders({ ...Authorization });
+
+		//TODO
+		api.setHeaders({
+				Authorization: Authorization}
+			);
 
 		return api.post('/logout').then(response => {
 			return response;
@@ -27,15 +31,18 @@ const create = () => {
 	};
 
 
-	const fetchOrders = () => {
+	const fetchOrders = (Authorization) => {
+		api.setHeaders({
+				Authorization: "Bearer " + Authorization.token
+			}
+		);
 		return api.get('/orders').then(response => response);
 	};
 
 
-
 	const placeOrder = (values, Authorization) => {
 
-		api.setHeaders({ ...Authorization });
+		api.setHeaders({...Authorization});
 
 		return api.post('/orders', values).then(response => response);
 	};

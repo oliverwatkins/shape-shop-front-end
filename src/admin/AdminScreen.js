@@ -9,14 +9,17 @@ import {Tabs} from "../misc/TabbedPanel";
 
 type Props = {
 	orders: Array<OrderState>,
-	fetchOrders: ()=>void
+	fetchOrders: ()=>void,
+	dispatch: Function,
+	Authorization: string,
+	orderError: string
 }
 
 
 export class AdminScreen extends React.PureComponent<Props> {
 
 	componentDidMount() {
-		this.props.fetchOrders();
+			this.props.dispatch(createFetchOrdersAction(this.props.Authorization));
 	}
 
 	render() {
@@ -24,7 +27,7 @@ export class AdminScreen extends React.PureComponent<Props> {
 			<div className={"admin-screen"}>
 				<h1>Admin Screen</h1>
 
-
+				{this.props.orderError && <span className={"error"}>{this.props.orderError}</span>}
 				<Tabs>
 					<div label={"Orders"}>
 						{this.props.orders && <h4>Current Open Orders</h4>}
@@ -72,8 +75,6 @@ export class AdminScreen extends React.PureComponent<Props> {
 						</div>
 					</div>
 				</Tabs>
-
-
 			</div>
 		);
 	}
@@ -82,18 +83,20 @@ export class AdminScreen extends React.PureComponent<Props> {
 const mapStateToProps = (state: AppState) => {
 	return {
 		orders: state.admin.orders,
+		orderError: state.admin.orderError,
+		Authorization: state.login.loginToken,
 	};
 };
 
-const mapDispatchToProps = (dispatch) => {
-	return {
-		fetchOrders: () => {
-			dispatch(createFetchOrdersAction());
-		},
-	};
-};
+// const mapDispatchToProps = (dispatch) => {
+// 	return {
+// 		fetchOrders: () => {
+// 			// dispatch(createFetchOrdersAction(Auth));
+// 		},
+// 	};
+// };
 
 export default connect(
 	mapStateToProps,
-	mapDispatchToProps,
+	null,
 )(AdminScreen);

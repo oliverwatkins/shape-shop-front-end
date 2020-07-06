@@ -41,6 +41,10 @@ a {
   animation: marquee 15s linear infinite;
 }
 
+//address form
+span.error {
+  color: $error-color
+}
 
 .order-wizard {
   display: flex;

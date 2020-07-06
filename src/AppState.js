@@ -11,6 +11,7 @@ export type AppState = {
 
 export type AdminState = {
 	orders: Array<OrderState>,
+	orderError: string,
 }
 
 export type LoginState = {

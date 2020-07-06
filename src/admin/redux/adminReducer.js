@@ -8,6 +8,13 @@ export function reducer(state: OrderState = initialState , action) {
 				...state,
 				orders: action.data,
 			};
+		case Actions.FETCH_ORDERS_FAIL:
+			return {
+				...state,
+				orders: [],
+				orderError: action.errorMsg,
+				// errorMsg
+			};
 		default :
 			return state;
 	}
