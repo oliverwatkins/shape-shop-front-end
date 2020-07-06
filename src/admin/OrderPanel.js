@@ -1,17 +1,38 @@
 import * as React from "react";
 
 
-
 export default function OrderPanel(props) {
-	return <tr className={"orderBox"}>
-		<td className={"deliveryType"}> {props.order.deliveryType} </td>
-		<td className={"paymentType"}> {props.order.paymentType} </td>
-		{props.order.address &&
-		<td className={"addressBox"}>
-			<div className={"name"}> {props.order.address.name} </div>
-			<div className={"street"}> {props.order.address.street} </div>
-			<div className={"postcode"}> {props.order.address.postcode} </div>
-			<div className={"tele"}>Tel: {props.order.address.telephone} </div>
-		</td>}
-	</tr>;
+	return (
+		<table className={"orderTable"}>
+			<thead>
+			<tr>
+				<th>
+					id
+				</th>
+				<th>
+					name
+				</th>
+				<th>
+					delivery/pickup
+				</th>
+				<th>
+					cash/card
+				</th>
+				<th>
+					address
+				</th>
+			</tr>
+			</thead>
+			<tbody>
+			{props.orders && props.orders.map(order =>
+				<tr className={"orderBox"} key={order.id}>
+					<td>{order.id} </td>
+					<td>Date: {order.date} </td>
+					<td>Descrpition: {order.description} </td>
+					<td className={"deliveryType"}> {order.deliveryType} </td>
+					<td className={"paymentType"}> {order.paymentType} </td>
+				</tr>
+			)}
+			</tbody>
+		</table>)
 }

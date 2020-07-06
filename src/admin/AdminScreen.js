@@ -31,31 +31,41 @@ export class AdminScreen extends React.PureComponent<Props> {
 				<Tabs>
 					<div label={"Orders"}>
 						{this.props.orders && <h4>Current Open Orders</h4>}
-						<table className={"orderTable"}>
-							<thead>
-							<tr>
-								<th>
-									delivery/pickup
-								</th>
-								<th>
-									cash/card
-								</th>
-								<th>
-									address
-								</th>
-							</tr>
-							</thead>
-							<tbody>
-							{this.props.orders && this.props.orders.map(order =>
-								<OrderPanel order={order}/>
-							)}
-							</tbody>
-						</table>
+
+
+						{/*<table className={"orderTable"}>*/}
+						{/*	<thead>*/}
+						{/*	<tr>*/}
+						{/*		<th>*/}
+						{/*			id*/}
+						{/*		</th>*/}
+						{/*		<th>*/}
+						{/*			name*/}
+						{/*		</th>*/}
+						{/*		<th>*/}
+						{/*			delivery/pickup*/}
+						{/*		</th>*/}
+						{/*		<th>*/}
+						{/*			cash/card*/}
+						{/*		</th>*/}
+						{/*		<th>*/}
+						{/*			address*/}
+						{/*		</th>*/}
+						{/*	</tr>*/}
+						{/*	</thead>*/}
+						{/*	<tbody>*/}
+						{/*	{this.props.orders && this.props.orders.map(order =>*/}
+						{/*		<OrderPanel order={order}/>*/}
+						{/*	)}*/}
+						{/*	</tbody>*/}
+						<OrderPanel orders={this.props.orders}/>
+
+
+
+
 						{!this.props.orders && <div>we have no orders</div>}
 					</div>
-
 					<div label={"Settings"}>
-
 						<h3 style={{padding: "25px"}}>
 							Marquee on/off :
 						</h3>
@@ -63,9 +73,7 @@ export class AdminScreen extends React.PureComponent<Props> {
 						<div style={{padding: "25px"}}>
 							<input
 								style={{padding: "5px"}}
-
-								type="checkbox"
-								/>
+								type="checkbox" />
 							<input style={{margin: "5px", width: "700px"}}
 										 id="street"
 										 type="text"

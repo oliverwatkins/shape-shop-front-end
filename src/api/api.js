@@ -9,6 +9,10 @@ const create = () => {
 	};
 
 	const loginUser = (credentials) => {
+
+		console.info(" " + JSON.stringify("credentialis " + credentials))
+
+
 		return api.post('/authenticate', credentials).then(response => {
 			return response;
 		});
