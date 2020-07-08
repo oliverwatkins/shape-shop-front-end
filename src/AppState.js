@@ -31,7 +31,8 @@ export type OrderState = {
 		postcode: string,
 		username: string
 	}
-	submittingOrder:boolean
+	submittingOrder:boolean,
+	orderError:string,
 }
 
 export type Product = {

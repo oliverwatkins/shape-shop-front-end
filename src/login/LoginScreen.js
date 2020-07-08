@@ -52,7 +52,7 @@ export class BasicLoginForm extends React.PureComponent<Props, State> {
 				<h1>Login </h1>
 
 				{this.props.loginError &&
-				<div>{this.props.loginError}</div>
+				<span className={"error"}>{this.props.loginError}</span>
 				}
 
 				<form onSubmit={this.onSubmit} className={"loginForm"}>

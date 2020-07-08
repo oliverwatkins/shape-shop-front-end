@@ -11,12 +11,12 @@ export const CUSTOMER_ROLE = 'CUSTOMER';
 export const ADMIN_ROLE = 'MERCHANT'; //TODO backend returns 'merchant' (not 'BUSINESS')
 
 export const PaymentType = {
-	cash: "cash",
-	card: "card"
+	cash: "CASH",
+	card: "CARD"
 }
 export const DeliveryType = {
-	pickup: "pickup",
-	delivery: "delivery"
+	pickup: "PICKUP",
+	delivery: "DELIVERY"
 }
 
 

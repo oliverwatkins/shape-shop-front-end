@@ -20,7 +20,7 @@ export function reducer(state: LoginState = initialState, action) {
 				...state,
 				loginToken: null,
 				role: false,
-				loginError: "logged in bad bad",
+				loginError: "Error logging in",
 				loggingIn: false,
 			};
 		case LoginActions.LOGOUT:

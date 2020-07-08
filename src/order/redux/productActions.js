@@ -1,4 +1,3 @@
-
 export function createFetchProductsAction() {
 	return {
 		type: Actions.FETCH_PRODUCTS,
@@ -58,14 +57,25 @@ export function createPlaceOrderSuccessAction(value) {
 	};
 }
 
+export function createPlaceOrderErrorAction(response, value) {
+	return {
+		type: Actions.PLACE_ORDER_ERROR,
+		value: value
+	};
+}
+
+
 
 export const Actions = {
 	PLACE_ORDER: "PLACE_ORDER",
 	PLACE_ORDER_SUCCESS: "PLACE_ORDER_SUCCESS",
-	UPDATE_PAYMENT_TYPE:'UPDATE_PAYMENT_TYPE',
+	PLACE_ORDER_ERROR: "PLACE_ORDER_ERROR",
+
+	UPDATE_PAYMENT_TYPE: 'UPDATE_PAYMENT_TYPE',
 	UPDATE_PRODUCT_SELECTION: 'UPDATE_PRODUCT_SELECTION',
 	UPDATE_ADDRESS: 'UPDATE_ADDRESS',
 	UPDATE_DELIVERY_TYPE: 'UPDATE_DELIVERY_TYPE',
+
 	FETCH_PRODUCTS: 'FETCH_PRODUCTS',
 	FETCH_PRODUCTS_SUCCESS: 'FETCH_PRODUCTS_SUCCESS',
 };

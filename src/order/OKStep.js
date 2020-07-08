@@ -14,22 +14,27 @@ type Props = {
 	address: Address,
 	deliveryType: string,
 	paymentType: string,
-	submittingOrder: boolean
+	submittingOrder: boolean,
+	orderError: string,
 }
 
 export class OKStep extends React.PureComponent<Props> {
 
 	constructor(props) {
 		super();
-		props.placeOrder(props.order, "asdfasdf");
+		props.placeOrder(props.order);
 	}
 
 
 	render() {
 		return (
 			<div className={"okPanel"}>
+
+				{this.props.orderError && <span className={"error"}>{this.props.orderError}</span>}
+
+
 				{this.props.submittingOrder && <LoadingView/>}
-				{!this.props.submittingOrder &&
+				{!this.props.submittingOrder && !this.props.orderError &&
 					<div>
 						<div>
 							<h1>OK</h1>
@@ -66,6 +71,8 @@ const mapStateToProps = (state: AppState) => {
 		deliveryType: state.order && state.order.deliveryType,
 		paymentType: state.order && state.order.paymentType,
 		submittingOrder: state.order && state.order.submittingOrder,
+		orderError: state.order && state.order.orderError,
+
 	};
 };
 

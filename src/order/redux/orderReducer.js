@@ -29,6 +29,12 @@ export function reducer(state: OrderState = initialState , action) {
 				...state,
 				submittingOrder: false,
 			}
+		case Actions.PLACE_ORDER_ERROR:
+			return {
+				...state,
+				submittingOrder: false,
+				orderError: action.value,
+			}
 		default :
 			return state;
 	}
