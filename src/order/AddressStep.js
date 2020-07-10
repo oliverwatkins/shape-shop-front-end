@@ -10,6 +10,7 @@ import {connect} from "react-redux";
 import {wizardPages as pages} from "./OrderWizard"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
+import {DeliveryType} from "../constants";
 
 type Props = {
 	updateAddress: (value, id)=>void,
@@ -18,12 +19,7 @@ type Props = {
 
 type State = {
 	redirect: boolean,
-	deliveryType: "delivery" | "pickup",
-}
-
-export const deliveryTypes = {
-	pickup: "pickup",
-	delivery: "delivery"
+	deliveryType: "DELIVERY" | "PICKUP",
 }
 
 export class Address extends React.PureComponent<Props, State> {
@@ -32,7 +28,7 @@ export class Address extends React.PureComponent<Props, State> {
 		super();
 		this.state = {
 			redirect: false,
-			deliveryType: deliveryTypes.pickup,
+			deliveryType: DeliveryType.pickup,
 		}
 	}
 
@@ -73,20 +69,20 @@ export class Address extends React.PureComponent<Props, State> {
 							<input type="radio"
 										 id="contactChoice1"
 										 name="pckupOrDelivery"
-										 value="pickup"
+										 value={DeliveryType.pickup}
 										 onChange={this.onRadioChanged}
-										 checked={this.state.deliveryType === deliveryTypes.pickup}/>
+										 checked={this.state.deliveryType === DeliveryType.pickup}/>
 							<label htmlFor="contactChoice1">Pickup</label>
 							<input type="radio"
 										 id="contactChoice2"
 										 name="pckupOrDelivery"
-										 value="delivery"
-										 checked={this.state.deliveryType === deliveryTypes.delivery}
+										 value={DeliveryType.delivery}
+										 checked={this.state.deliveryType === DeliveryType.delivery}
 										 onChange={this.onRadioChanged}/>
 							<label htmlFor="contactChoice2">Delivery</label>
 						</div>
 
-						{this.state.deliveryType && (this.state.deliveryType === deliveryTypes.delivery) &&
+						{this.state.deliveryType && (this.state.deliveryType === DeliveryType.delivery) &&
 						<Formik
 							initialValues={{email: '', password: '', name: ''}}
 							validate={validator}
@@ -180,10 +176,10 @@ export class Address extends React.PureComponent<Props, State> {
 						</Formik>
 						}
 					</div>
-					{this.state.deliveryType === deliveryTypes.delivery &&
+					{this.state.deliveryType === DeliveryType.delivery &&
 					<NextButton label={"NEXT"} type={"submit"} form={"addressForm"}/>}
 
-					{(this.state.deliveryType === deliveryTypes.pickup) &&
+					{(this.state.deliveryType === DeliveryType.pickup) &&
 					<NextButton label={"NEXT"} page={pages.WHICH_PAYMENT}/>}
 				</div>
 			</div>

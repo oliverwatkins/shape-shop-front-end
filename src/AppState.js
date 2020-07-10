@@ -31,6 +31,12 @@ export type OrderState = {
 		postcode: string,
 		username: string
 	}
+	creditCard: {
+		number: string,
+		expDate: string,
+		name: string,
+		type: string,
+	}
 	submittingOrder:boolean,
 	orderError:string,
 }

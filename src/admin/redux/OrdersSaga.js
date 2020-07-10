@@ -16,10 +16,6 @@ export default api => {
 
 			const response = yield call(api.fetchOrders, action.Authorization);
 
-			// debugger;
-
-
-
 			if (response.status === 200) {
 				yield put(createFetchOrdersSuccessAction(response.data));
 				console.info("success : " + response.data)
@@ -30,7 +26,8 @@ export default api => {
 				console.error(JSON.stringify(response))
 				yield put(createFetchOrdersFailAction(response.data, "500 Internal Server Error "));
 			} else {
-				alert("unknown error : " + response)
+				console.error(JSON.stringify(response))
+				yield put(createFetchOrdersFailAction(response.data, "Unknown Error "));
 			}
 		} catch (e) {
 			console.error('Error fetching orders!!');

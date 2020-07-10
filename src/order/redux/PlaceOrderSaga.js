@@ -16,27 +16,28 @@ export default api => {
 
 	function* placeOrder(orderData) {
 		try {
-			// alert("1")
-			console.info("orderData: " + JSON.stringify(orderData))
+			console.info("orderData before : " + JSON.stringify(orderData))
 
-			if (orderData.value.selectedDrinks)
-				orderData.value.selectedProducts.concat(orderData.value.selectedDrinks)
+			let prods = [
+				...orderData.value.selectedDrinks,
+				...orderData.value.selectedProducts,
+			]
 
 			let nOrderData = {
-				...orderData.value.address,
 				deliveryType:orderData.value.deliveryType,
 				paymentType:orderData.value.paymentType,
-				selectedProducts:orderData.value.selectedProducts,
+				selectedProducts: prods,
+				address:orderData.value.address,
+				creditCard:orderData.value.creditCard
 			}
 
-			console.info("orderData 2: " + JSON.stringify(nOrderData))
+			console.info("orderData after : " + JSON.stringify(nOrderData))
 
 
 			const response = yield call(api.placeOrder, nOrderData);
 
-			// alert("xxorderData: " + JSON.stringify(orderData))
 
-			console.info("orderData: " + JSON.stringify(orderData))
+			console.info("response: " + JSON.stringify(response))
 
 			if (response.status === 200) {
 				yield delay(1000);

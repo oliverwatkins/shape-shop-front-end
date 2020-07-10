@@ -51,7 +51,7 @@ export class WhichPayment extends React.PureComponent<Props, State> {
 						<input type="radio"
 									 id="choice1"
 									 name="cashOrCard"
-									 value="cash"
+									 value={PaymentType.cash}
 									 checked={this.state.paymentType === PaymentType.cash}
 									 onChange={this.onRadioChanged}
 						/>
@@ -59,7 +59,7 @@ export class WhichPayment extends React.PureComponent<Props, State> {
 						<input type="radio"
 									 id="choice2"
 									 name="cashOrCard"
-									 value="card"
+									 value={PaymentType.card}
 									 checked={this.state.paymentType === PaymentType.card}
 									 onChange={this.onRadioChanged}
 

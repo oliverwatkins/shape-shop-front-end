@@ -1,10 +1,3 @@
-// registration
-export const CUSTOMER_REG_TYPE = 'customer';
-export const BUSINESS_REG_TYPE = 'business';
-
-export const BUSINESS_TYPE_MERCHANT = 'MERCHANT';
-export const BUSINESS_TYPE_BUSINESSMAN = 'BUSINESSMAN';
-export const BUSINESS_TYPE_ASSOCIATION = 'ASSOCIATION';
 
 // role
 export const CUSTOMER_ROLE = 'CUSTOMER';
