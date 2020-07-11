@@ -28,7 +28,7 @@ export const persistConfig = {
 	whitelist: ['login'],
 };
 
-let NO_CACHE = true;
+let NO_CACHE = false;
 
 
 let reducers = combineReducers({
