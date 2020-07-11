@@ -11,6 +11,11 @@ const create = () => {
 	const loginUser = (credentials) => {
 		console.info(" " + JSON.stringify("credentialis " + credentials))
 
+		api.setHeaders({
+				Authorization: null
+			}
+		);
+
 		return api.post('/authenticate', credentials).then(response => {
 			return response;
 		});

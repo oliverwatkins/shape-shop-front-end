@@ -30,12 +30,18 @@ type Props = {
 	address: Address,
 	deliveryType: string,
 	paymentType: string,
+	productsError: string,
 }
 
 export class OrderWizard extends React.PureComponent<Props> {
 	render() {
+
+		// if (this.props.productsError)
+		// 	alert("this.props.productsError")
+
 		return (
 			<div className={"order-wizard"}>
+				{this.props.productsError && <span className={"error"}>{this.props.productsError}</span>}
 				<Router>
 						<Switch>
 							<Route path={wizardPages.PRODUCT_LIST}>
@@ -83,6 +89,7 @@ export class OrderWizard extends React.PureComponent<Props> {
 const mapStateToProps = (state: AppState) => {
 	return {
 		products: selectMains(state),
+		productsError: state.products.productsError,
 		drinks: selectDrinks(state),
 		address: state.order && state.order.address,
 		selectedProducts: selectSelectedProducts(state),

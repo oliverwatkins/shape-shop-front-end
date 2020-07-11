@@ -11,6 +11,13 @@ export function createFetchProductsSuccessAction(data) {
 	};
 }
 
+export function createFetchProductsErrorAction(response, value)  {
+	return {
+		type: Actions.FETCH_PRODUCTS_ERROR,
+		value: value
+	};
+}
+
 
 export function createUpdateProductSelection(value, id) {
 	return {
@@ -78,4 +85,5 @@ export const Actions = {
 
 	FETCH_PRODUCTS: 'FETCH_PRODUCTS',
 	FETCH_PRODUCTS_SUCCESS: 'FETCH_PRODUCTS_SUCCESS',
+	FETCH_PRODUCTS_ERROR: 'FETCH_PRODUCTS_ERROR'
 };

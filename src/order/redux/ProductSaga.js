@@ -1,6 +1,6 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 
-import { Actions, createFetchProductsSuccessAction } from './productActions';
+import {Actions, createFetchProductsErrorAction, createFetchProductsSuccessAction} from './productActions';
 
 export default api => {
 	function* getProductsWatcher() {
@@ -16,8 +16,7 @@ export default api => {
 
 				console.info("success : " + response.data)
 			} else {
-				alert("error : " + response)
-				// notifyApiError(response);
+				yield put(createFetchProductsErrorAction(response.data));
 			}
 		} catch (e) {
 			console.error('Error fetching shops!!');

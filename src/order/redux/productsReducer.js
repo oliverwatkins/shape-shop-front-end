@@ -1,6 +1,9 @@
 import {Actions} from './productActions';
 
-export function reducer(state = initialState, action) {
+import type {ProductsState} from "../../AppState";
+
+
+export function reducer(state:ProductsState = initialState, action) {
 	switch (action.type) {
 
 		case Actions.FETCH_PRODUCTS_SUCCESS:
@@ -8,6 +11,14 @@ export function reducer(state = initialState, action) {
 				...state,
 				items: action.data,
 			};
+
+		case Actions.FETCH_PRODUCTS_ERROR:
+			return {
+				...state,
+				items: [],
+				productsError: "Error Getting Products"
+			};
+
 		case Actions.UPDATE_PRODUCT_SELECTION:
 
 			let foundProd = state.items.filter(item => item.id === action.id);

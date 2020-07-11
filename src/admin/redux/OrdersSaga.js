@@ -10,6 +10,8 @@ export default api => {
 	function* getOrders(action) {
 		try {
 
+			console.info("action.Authorization.token " + action.Authorization.token);
+
 			// debugger;
 			if (!action.Authorization.token)
 				yield put(createFetchOrdersFailAction({}, "No token"));
@@ -27,7 +29,7 @@ export default api => {
 				yield put(createFetchOrdersFailAction(response.data, "500 Internal Server Error "));
 			} else {
 				console.error(JSON.stringify(response))
-				yield put(createFetchOrdersFailAction(response.data, "Unknown Error "));
+				yield put(createFetchOrdersFailAction(response.data, "Unknown Error "+ JSON.stringify(response)));
 			}
 		} catch (e) {
 			console.error('Error fetching orders!!');

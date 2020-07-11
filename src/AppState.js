@@ -1,13 +1,16 @@
 //@flow
 
 export type AppState = {
-	products: {
-		items: Array<Product>,
-	},
+	products: ProductsState,
 	order: OrderState,
 	login: LoginState,
 	admin: AdminState
 };
+
+export type ProductsState = {
+	productsError: string,
+	items: Array<Product>,
+}
 
 export type AdminState = {
 	orders: Array<OrderState>,
