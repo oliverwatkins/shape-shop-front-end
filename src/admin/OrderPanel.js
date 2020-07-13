@@ -32,7 +32,7 @@ export default function OrderPanel(props) {
 			{props.orders && props.orders.map(order =>
 				<tr className={"orderBox"} key={order.id}>
 					<td>{order.id} </td>
-					<td> {order.name} </td>
+					<td> {order.addressEntity && order.addressEntity.name} </td>
 					<td>Date: {order.date} </td>
 					<td>
 						<ProductListPanel products={order.selectedProducts}/>
@@ -40,13 +40,13 @@ export default function OrderPanel(props) {
 					<td className={"deliveryType"}>
 						{order.deliveryType}
 
-						{order.deliveryType === DeliveryType.delivery && <div>address panel {JSON.stringify(order.address)}</div>}
+						{order.deliveryType === DeliveryType.delivery && <div>address panel {JSON.stringify(order.addressEntity)}</div>}
 
 					</td>
 					<td className={"paymentType"}>
 						{order.paymentType}
 
-						{order.paymentType === PaymentType.card && <div>card panel {JSON.stringify(order.creditCard)}</div>}
+						{order.paymentType === PaymentType.card && <div>card panel {JSON.stringify(order.creditCardEntity)}</div>}
 
 					</td>
 

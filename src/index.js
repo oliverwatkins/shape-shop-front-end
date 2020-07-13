@@ -24,11 +24,11 @@ const sessionKey = 'wee3.0';
 export const persistConfig = {
 	key: sessionKey,
 	storage,
-	// whitelist: ['login', 'countriesList', 'languageList', 'i18n', 'customer', 'merchant', 'myArea'],
 	whitelist: ['login'],
 };
 
-let NO_CACHE = false;
+//persist
+let CACHE = true;
 
 
 let reducers = combineReducers({
@@ -55,7 +55,7 @@ if (window.location.search.includes('purgeCache')) {
 	window.location.replace(`${window.location.protocol}//${window.location.host}${window.location.pathname}`);
 }
 
-if (NO_CACHE) {
+if (!CACHE) {
 	persistor.purge();
 }
 

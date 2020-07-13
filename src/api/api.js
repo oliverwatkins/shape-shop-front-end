@@ -1,4 +1,5 @@
 import getApiSauceInstance from '../api/getApiSauceInstance';
+import * as constants from "../constants";
 
 const create = () => {
 
@@ -43,7 +44,8 @@ const create = () => {
 				Authorization: "Bearer " + Authorization.token
 			}
 		);
-		return api.get('/orders').then(response => response);
+
+		return api.get('/' + constants.company + '/orders').then(response => response);
 	};
 
 

@@ -6,15 +6,15 @@ export default function ProductListPanel(props) {
 		<table className={"prodcutListTable"}>
 			<thead>
 			<tr>
-				<th>
-					product
-				</th>
-				<th>
-					price
-				</th>
-				<th>
-					type
-				</th>
+				{/*<th>*/}
+				{/*	product*/}
+				{/*</th>*/}
+				{/*<th>*/}
+				{/*	price*/}
+				{/*</th>*/}
+				{/*<th>*/}
+				{/*	type*/}
+				{/*</th>*/}
 			</tr>
 			</thead>
 			<tbody>

@@ -13,4 +13,7 @@ export const DeliveryType = {
 }
 
 
+
+export const company = "higgins";
+
 export const MOCK_MODE = false;
