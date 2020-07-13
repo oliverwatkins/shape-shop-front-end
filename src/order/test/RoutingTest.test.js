@@ -41,7 +41,7 @@ describe('Routing test (next and back buttons)', () => {
 		wrapper.find('.nextButton').simulate('click', { button: 0 });
 
 		expect(wrapper.find(".backButton")).toHaveLength(1);
-		expect(wrapper.find(".drinks-step")).toHaveLength(1);  //drinks
+		expect(wrapper.find(".products2-step")).toHaveLength(1);  //drinks
 		expect(wrapper.find(".nextButton")).toHaveLength(1);
 
 		wrapper.find('.nextButton').simulate('click', { button: 0 });
@@ -72,7 +72,7 @@ describe('Routing test (next and back buttons)', () => {
 
 		wrapper.find('.backButton').simulate('click', { button: 0 });
 
-		expect(wrapper.find(".drinks-step")).toHaveLength(1);  //drinks
+		expect(wrapper.find(".products2-step")).toHaveLength(1);  //drinks
 
 		wrapper.find('.backButton').simulate('click', { button: 0 });
 

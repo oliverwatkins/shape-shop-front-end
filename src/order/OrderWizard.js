@@ -24,7 +24,7 @@ export const wizardPages = {
 
 type Props = {
 	products: Array<Product>,
-	drinks:Array<Product>,
+	products2:Array<Product>,
 	selectedProducts: Array<Product>,
 	selectedDrinks: Array<Product>,
 	address: Address,
@@ -50,8 +50,8 @@ export class OrderWizard extends React.PureComponent<Props> {
 																 selectedDrinks={this.props.selectedDrinks}/>
 							</Route>
 							<Route path={wizardPages.DRINK_LIST}>
-								<Product2Step drinks={this.props.drinks} selectedProducts={this.props.selectedProducts}
-															selectedDrinks={this.props.selectedDrinks}
+								<Product2Step products2={this.props.products2} selectedProducts={this.props.selectedProducts}
+															selectedProducts2={this.props.selectedDrinks}
 									/>
 							</Route>
 							<Route path={wizardPages.ADDRESS}>
@@ -90,7 +90,7 @@ const mapStateToProps = (state: AppState) => {
 	return {
 		products: selectMains(state),
 		productsError: state.products.productsError,
-		drinks: selectDrinks(state),
+		products2: selectDrinks(state),
 		address: state.order && state.order.address,
 		selectedProducts: selectSelectedProducts(state),
 		selectedDrinks: selectSelectedDrinks(state),

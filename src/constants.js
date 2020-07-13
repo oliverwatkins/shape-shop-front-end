@@ -14,6 +14,6 @@ export const DeliveryType = {
 
 
 
-export const company = "higgins";
+export const company = "alpenhof";
 
 export const MOCK_MODE = false;

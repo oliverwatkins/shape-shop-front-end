@@ -63,7 +63,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = (state: AppState) => {
 	return {
 		products: selectMains(state),
-		drinks: selectDrinks(state),
+		products2: selectDrinks(state),
 		order: selectOrder(state),
 		address: state.order && state.order.address,
 		selectedProducts: selectSelectedProducts(state),

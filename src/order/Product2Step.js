@@ -27,9 +27,9 @@ import type {Product} from "../AppState";
 import {BackButton} from "./buttons/BackButton";
 
 type Props = {
-	drinks: Array<Product>,
+	products2: Array<Product>,
 	selectedProducts: Array<Product>,
-	selectedDrinks: Array<Product>,
+	selectedProducts2: Array<Product>,
 
 }
 
@@ -37,7 +37,7 @@ type Props = {
 export class Product2Step extends React.PureComponent<Props> {
 	render() {
 		return (
-			<div className="wizardPanel drinks-step">
+			<div className="wizardPanel products2-step">
 
 				<h2 className={"wizardHeader"}>Maybe some drinks?</h2>
 
@@ -46,11 +46,11 @@ export class Product2Step extends React.PureComponent<Props> {
 					<BackButton page={pages.PRODUCT_LIST}/>
 
 					<div className="wizardCenter">
-						<ProductSelection productItems={this.props.drinks}/>
+						<ProductSelection productItems={this.props.products2}/>
 					</div>
 					<div style={{textAlign: "right"}}>
 						<NextButton label={"NEXT"} page={pages.ADDRESS}/>
-						<OrderSummary selectedProducts={this.props.selectedProducts} selectedDrinks={this.props.selectedDrinks}/>
+						<OrderSummary selectedProducts={this.props.selectedProducts} selectedDrinks={this.props.selectedProducts2}/>
 					</div>
 				</div>
 			</div>

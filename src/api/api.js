@@ -35,7 +35,7 @@ const create = () => {
 	};
 
 	const fetchProducts = () => {
-		return api.get('/products').then(response => response);
+		return api.get('/' + constants.company + '/products').then(response => response);
 	};
 
 
@@ -53,7 +53,7 @@ const create = () => {
 
 		api.setHeaders({...Authorization});
 
-		return api.post('/orders', values).then(response => response);
+		return api.post('/' + constants.company + '/orders', values).then(response => response);
 	};
 
 	// const updatePassword: UpdatePassword = (values, Authorization) => {
