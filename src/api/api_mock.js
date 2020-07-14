@@ -37,7 +37,6 @@ const create = () => {
 		};
 	};
 
-
 	const fetchOrders = () => {
 		return {
 			status: 200,

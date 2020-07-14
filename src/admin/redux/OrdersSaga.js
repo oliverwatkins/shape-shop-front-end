@@ -12,7 +12,6 @@ export default api => {
 
 			console.info("action.Authorization.token " + action.Authorization.token);
 
-			// debugger;
 			if (!action.Authorization.token)
 				yield put(createFetchOrdersFailAction({}, "No token"));
 
@@ -33,8 +32,6 @@ export default api => {
 			}
 		} catch (e) {
 			console.error('Error fetching orders!!');
-			debugger;
-
 			console.error(e);
 		}
 	}

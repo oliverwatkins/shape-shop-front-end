@@ -32,8 +32,6 @@ export default api => {
 			console.info(JSON.stringify(response));
 
 			if (response.ok) {
-
-
 				if (!response.data.jwt) {
 					yield put(createLoginFailAction());
 				}

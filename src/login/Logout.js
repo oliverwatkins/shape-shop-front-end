@@ -10,9 +10,6 @@ import {createLogoutAction} from './redux/loginActions';
 class Logout extends React.PureComponent<any> {
 	componentDidMount(): void {
 		this.props.dispatch(createLogoutAction(this.props.token, this.props.history))
-		// this.props.logout === null
-		// 	? this.props.dispatch(createLogoutAction(this.props.token, this.props.history))
-		// 	: this.props.history.push('/sandwich');
 	}
 
 	render() {

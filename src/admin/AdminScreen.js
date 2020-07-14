@@ -31,38 +31,7 @@ export class AdminScreen extends React.PureComponent<Props> {
 				<Tabs>
 					<div label={"Orders"}>
 						{this.props.orders && <h4>Current Open Orders</h4>}
-
-
-						{/*<table className={"orderTable"}>*/}
-						{/*	<thead>*/}
-						{/*	<tr>*/}
-						{/*		<th>*/}
-						{/*			id*/}
-						{/*		</th>*/}
-						{/*		<th>*/}
-						{/*			name*/}
-						{/*		</th>*/}
-						{/*		<th>*/}
-						{/*			delivery/pickup*/}
-						{/*		</th>*/}
-						{/*		<th>*/}
-						{/*			cash/card*/}
-						{/*		</th>*/}
-						{/*		<th>*/}
-						{/*			address*/}
-						{/*		</th>*/}
-						{/*	</tr>*/}
-						{/*	</thead>*/}
-						{/*	<tbody>*/}
-						{/*	{this.props.orders && this.props.orders.map(order =>*/}
-						{/*		<OrderPanel order={order}/>*/}
-						{/*	)}*/}
-						{/*	</tbody>*/}
-						<OrderPanel orders={this.props.orders}/>
-
-
-
-
+							<OrderPanel orders={this.props.orders}/>
 						{!this.props.orders && <div>we have no orders</div>}
 					</div>
 					<div label={"Settings"}>
@@ -95,14 +64,6 @@ const mapStateToProps = (state: AppState) => {
 		Authorization: state.login.loginToken,
 	};
 };
-
-// const mapDispatchToProps = (dispatch) => {
-// 	return {
-// 		fetchOrders: () => {
-// 			// dispatch(createFetchOrdersAction(Auth));
-// 		},
-// 	};
-// };
 
 export default connect(
 	mapStateToProps,

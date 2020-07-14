@@ -13,7 +13,6 @@ export function reducer(state: OrderState = initialState , action) {
 				...state,
 				orders: [],
 				orderError: action.errorMsg,
-				// errorMsg
 			};
 		default :
 			return state;

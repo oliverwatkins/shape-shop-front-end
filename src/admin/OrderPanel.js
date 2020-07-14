@@ -1,5 +1,4 @@
 import * as React from "react";
-import ProductListPanel from "./ProductListPanel";
 import {DeliveryType, PaymentType} from "../constants";
 
 
@@ -15,7 +14,7 @@ export default function OrderPanel(props) {
 					name
 				</th>
 				<th>
-					date
+					date / time
 				</th>
 				<th>
 					order
@@ -33,24 +32,70 @@ export default function OrderPanel(props) {
 				<tr className={"orderBox"} key={order.id}>
 					<td>{order.id} </td>
 					<td> {order.addressEntity && order.addressEntity.name} </td>
-					<td>Date: {order.date} </td>
+					<td>{order.date} </td>
 					<td>
 						<ProductListPanel products={order.selectedProducts}/>
 					</td>
 					<td className={"deliveryType"}>
 						{order.deliveryType}
-
-						{order.deliveryType === DeliveryType.delivery && <div>address panel {JSON.stringify(order.addressEntity)}</div>}
-
+						<AddressPanel address={order.addressEntity}/>
 					</td>
 					<td className={"paymentType"}>
 						{order.paymentType}
-
-						{order.paymentType === PaymentType.card && <div>card panel {JSON.stringify(order.creditCardEntity)}</div>}
-
+						<CardPanel creditCard={order.creditCardEntity}/>
 					</td>
+				</tr>
+			)}
+			</tbody>
+		</table>)
+}
 
 
+function AddressPanel(props) {
+	if (!props.address)
+		return <span> NO ADDRESS</span>;
+
+	return (
+		<div>
+			<table>
+				<tr>
+					<td>{props.address.name && <span>{props.address.name}</span>}</td>
+					<td>{props.address.street && <span>{props.address.street}</span>}</td>
+					<td>{props.address.postcode && <span>{props.address.postcode}</span>}</td>
+					<td>{props.address.postcode && <span>{props.address.telephone}</span>}</td>
+				</tr>
+			</table>
+		</div>
+	)
+}
+
+function CardPanel(props) {
+	if (!props.creditCard)
+		return <span>  </span>;
+
+	return (
+		<div>
+			<table>
+				<tr>
+					<td>{props.creditCard.number && <span>{props.creditCard.number}</span>}</td>
+					<td>{props.creditCard.expDate && <span>{props.creditCard.expDate}</span>}</td>
+					<td>{props.creditCard.name && <span>{props.creditCard.name}</span>}</td>
+					<td>{props.creditCard.type && <span>{props.creditCard.type}</span>}</td>
+				</tr>
+			</table>
+		</div>
+	)
+}
+
+function ProductListPanel(props) {
+	return (
+		<table className={"prodcutListTable"}>
+			<tbody>
+			{props.products && props.products.map(order =>
+				<tr className={"orderBox"} key={order.id}>
+					<td>{order.name} </td>
+					<td> {order.price} </td>
+					<td> {order.type} </td>
 				</tr>
 			)}
 			</tbody>
