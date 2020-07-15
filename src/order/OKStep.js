@@ -55,6 +55,9 @@ export class OKStep extends React.PureComponent<Props> {
 const mapDispatchToProps = dispatch => {
 	return {
 		placeOrder: (data) => {
+
+			debugger;
+
 			dispatch(createPlaceOrderAction(data));
 		},
 	};
@@ -64,7 +67,9 @@ const mapStateToProps = (state: AppState) => {
 	return {
 		products: selectMains(state),
 		products2: selectDrinks(state),
+
 		order: selectOrder(state),
+
 		address: state.order && state.order.address,
 		selectedProducts: selectSelectedProducts(state),
 		selectedDrinks: selectSelectedDrinks(state),

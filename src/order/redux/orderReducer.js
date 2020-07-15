@@ -7,7 +7,25 @@ export function reducer(state: OrderState = initialState , action) {
 		case Actions.UPDATE_ADDRESS:
 			return {
 				...state,
-				address: action.value
+				addressEntity: action.value
+			}
+		case Actions.UPDATE_CREDIT_CARD:
+
+			let cardType = action.value.paymentMethod.card.brand;
+
+
+			let m = action.value.paymentMethod.card.exp_month;
+			let y = action.value.paymentMethod.card.exp_year;
+
+			let last4 = action.value.paymentMethod.card.last4;
+
+			return {
+				...state,
+				creditCardEntity: {
+					type: cardType,
+					expDate: "" + m + y,
+					number: "xxxx-xxxxx-xxxxx-" + last4
+				}
 			}
 		case Actions.UPDATE_PAYMENT_TYPE:
 			return {

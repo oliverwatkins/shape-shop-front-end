@@ -27,14 +27,14 @@ export type LoginState = {
 export type OrderState = {
 	paymentType: string,
 	deliveryType: string;
-	address: {
+	addressEntity: {
 		name: string,
 		telephone: string,
 		street: string,
 		postcode: string,
 		username: string
 	}
-	creditCard: {
+	creditCardEntity: {
 		number: string,
 		expDate: string,
 		name: string,

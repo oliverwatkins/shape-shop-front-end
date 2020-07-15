@@ -9,6 +9,11 @@ import {wizardPages as pages} from "./OrderWizard";
 import {BackButton} from "./buttons/BackButton";
 
 import "./order.scss"
+import {createUpdateAddress, createUpdateCreditCard, createUpdateDeliveryType} from "./redux/productActions";
+import {connect} from "react-redux";
+import {Address} from "./AddressStep";
+import type {Product} from "../AppState";
+// import {useHistory} from "../__mocks__/react-router-dom";
 
 // import CheckoutForm from "./stripe/CheckoutForm";
 
@@ -16,12 +21,18 @@ import "./order.scss"
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
-export class PaymentStep extends React.PureComponent {
+
+type Props = {
+	updateCC: Function,
+}
+
+export class PaymentStep extends React.PureComponent<Props> {
 	render() {
+		// const history = useHistory();
 
 		return (
 			<div className="wizardPanel payment-panel">
-				<h2 className="wizardHeader">Credit Card PaymentX</h2>
+				<h2 className="wizardHeader">Credit Card Payment</h2>
 				<div className="wizardMain">
 					<BackButton page={pages.SUMMARY}/>
 					<div className="wizardCenter">
@@ -30,7 +41,7 @@ export class PaymentStep extends React.PureComponent {
 						</div>
 						<div className={"stripe-payment-panel"}>
 							<Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-								<CheckoutForm amount={calculateTotal(this.props.selectedProducts, this.props.selectedDrinks)}/>
+								<CheckoutForm updateCC={this.props.updateCC} amount={calculateTotal(this.props.selectedProducts, this.props.selectedDrinks)}/>
 							</Elements>
 						</div>
 					</div>
@@ -49,4 +60,37 @@ const ELEMENTS_OPTIONS = {
 	],
 };
 
-export default PaymentStep;
+
+
+const mapDispatchToProps = dispatch => {
+	return {
+		updateCC: (value) => {
+
+			// alert("got " + JSON.stringify(value))
+
+
+			console.info(" " + JSON.stringify(value))
+			// history.push("/order/OK");
+
+			let redirect = () => {
+				// history.push("/order/OK");
+			}
+
+
+			let l = dispatch(createUpdateCreditCard(value, redirect));
+
+			debugger;
+
+		},
+		// updateDeliveryType: (value) => {
+		// 	dispatch(createUpdateDeliveryType(value));
+		// },
+	};
+};
+
+export default connect(
+	null,
+	mapDispatchToProps,
+)(PaymentStep);
+
+// export default PaymentStep;

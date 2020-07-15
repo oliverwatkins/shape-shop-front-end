@@ -65,7 +65,7 @@ export class Address extends React.PureComponent<Props, State> {
 							<FontAwesomeIcon icon={faTruck} style={{fontSize: "60px", color: "navy", margin: "25px"}}/>
 						</div>
 
-						<div>
+						<div className={"radioBox"}>
 							<input type="radio"
 										 id="contactChoice1"
 										 name="pckupOrDelivery"
@@ -73,6 +73,29 @@ export class Address extends React.PureComponent<Props, State> {
 										 onChange={this.onRadioChanged}
 										 checked={this.state.deliveryType === DeliveryType.pickup}/>
 							<label htmlFor="contactChoice1">Pickup</label>
+
+							{/*{this.state.deliveryType && (this.state.deliveryType === DeliveryType.pickup) &&*/}
+							{/*<div>*/}
+							{/*	<label htmlFor="name">Name</label>*/}
+							{/*	<input*/}
+							{/*		id="name"*/}
+							{/*		type="text"*/}
+							{/*		name="name"*/}
+							{/*		// onChange={handleChange}*/}
+							{/*		// onBlur={handleBlur}*/}
+							{/*		value={"values.name"}*/}
+							{/*	/>*/}
+							{/*	<label htmlFor="tel">Telefon</label>*/}
+							{/*	<input*/}
+							{/*		id="tel"*/}
+							{/*		type="text"*/}
+							{/*		name="telephone"*/}
+							{/*		// onChange={handleChange}*/}
+							{/*		// onBlur={handleBlur}*/}
+							{/*		value={"values.telephone"}*/}
+							{/*	/>*/}
+							{/*</div>}*/}
+
 							<input type="radio"
 										 id="contactChoice2"
 										 name="pckupOrDelivery"
@@ -81,6 +104,73 @@ export class Address extends React.PureComponent<Props, State> {
 										 onChange={this.onRadioChanged}/>
 							<label htmlFor="contactChoice2">Delivery</label>
 						</div>
+
+
+						{this.state.deliveryType && (this.state.deliveryType === DeliveryType.pickup) &&
+						<Formik
+							initialValues={{email: '', password: '', name: ''}}
+							validate={validator}
+							onSubmit={(values, blah) => {
+								setTimeout(() => {
+									// alert(JSON.stringify(values, null, 2));
+									blah.setSubmitting(false);
+
+									this.props.updateAddress(values);
+									this.setRedirect()
+								}, 400);
+							}}>
+
+							{({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
+								<form onSubmit={handleSubmit} id="addressForm">
+									<div>
+										<label htmlFor="name">Name</label>
+										<input
+											id="name"
+											type="text"
+											name="name"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.name}
+										/>
+										<span className={"error"}>
+									{errors.name && touched.name && errors.name}
+									</span>
+									</div>
+									<div>
+										<label htmlFor="tel">Telefon</label>
+										<input
+											id="tel"
+											type="text"
+											name="telephone"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.telephone}
+										/>
+										<span className={"error"}>
+									{errors.telephone && touched.telephone && errors.telephone}
+									</span>
+									</div>
+									<div>
+										<label htmlFor="email">Email</label>
+										<input
+											id="email"
+											type="email"
+											name="email"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.email}
+										/>
+										<span className={"error"}>
+									{errors.email && touched.email && errors.email}
+									</span>
+									</div>
+									<button type="submit" disabled={isSubmitting}>
+										Submit
+									</button>
+								</form>
+							)}
+						</Formik>
+						}
 
 						{this.state.deliveryType && (this.state.deliveryType === DeliveryType.delivery) &&
 						<Formik

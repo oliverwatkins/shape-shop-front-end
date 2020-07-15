@@ -1,4 +1,4 @@
-import type {Product} from "./AppState";
+import type {AppState, Product} from "./AppState";
 
 export const isUserLoggedIn = (state) => {
 	return Boolean(state.login.loginToken && state.login.loginToken.role);
@@ -33,9 +33,10 @@ export const selectMains = (state) => state.products.items.filter(product => pro
 export const selectDrinks = (state) => state.products.items.filter(product => product.type === "drinks");
 
 //total order
-export const selectOrder = (state) => {
+export const selectOrder = (state: AppState) => {
 	return {
-		address: state.order && state.order.address,
+		addressEntity: state.order && state.order.addressEntity,
+		creditCardEntity: state.order && state.order.creditCardEntity,
 		selectedProducts: selectSelectedProducts(state),
 		selectedDrinks: selectSelectedDrinks(state),
 		deliveryType: state.order && state.order.deliveryType,

@@ -32,8 +32,6 @@ export const CheckoutForm = (props) => {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		// alert("here")
-
 		if (!stripe || !elements) {
 			// Stripe.js has not loaded yet. Make sure to disable
 			// form submission until Stripe.js has loaded.
@@ -42,15 +40,15 @@ export const CheckoutForm = (props) => {
 
 		if (error) {
 			elements.getElement('card').focus();
-
 			alert("error : " + error)
-
 			return;
 		}
 
 		if (cardComplete) {
 			setProcessing(true);
 		}
+
+		debugger;
 
 		const payload = await stripe.createPaymentMethod({
 			type: 'card',
@@ -67,9 +65,11 @@ export const CheckoutForm = (props) => {
 		} else {
 			alert("success")
 
+			props.updateCC(payload)
+
 			setPaymentMethod(payload.paymentMethod);
 
-			history.push("/order/OK");
+			// history.push("/order/OK");
 		}
 	};
 

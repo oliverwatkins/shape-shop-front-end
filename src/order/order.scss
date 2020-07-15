@@ -21,6 +21,21 @@
     color: $base-text-color;
     font-weight: bold;
   }
+
+  .radioBox {
+    //background: red;
+    display: flex;
+    margin: 20px;
+    //padding: 20px;
+
+    input {
+      margin:15px;
+    }
+    label{
+      margin:15px;
+    }
+
+  }
 }
 
 .payment-step {

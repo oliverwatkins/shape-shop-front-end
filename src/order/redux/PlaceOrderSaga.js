@@ -27,9 +27,11 @@ export default api => {
 				deliveryType:orderData.value.deliveryType,
 				paymentType:orderData.value.paymentType,
 				selectedProducts: prods,
-				address:orderData.value.address,
+				addressEntity:orderData.value.addressEntity,
 				creditCard:orderData.value.creditCard
 			}
+
+			debugger;
 
 			console.info("orderData after : " + JSON.stringify(nOrderData))
 
