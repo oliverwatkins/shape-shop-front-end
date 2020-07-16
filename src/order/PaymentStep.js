@@ -12,7 +12,9 @@ import "./order.scss"
 import {createUpdateAddress, createUpdateCreditCard, createUpdateDeliveryType} from "./redux/productActions";
 import {connect} from "react-redux";
 import {Address} from "./AddressStep";
-import type {Product} from "../AppState";
+import type {AppState, Product} from "../AppState";
+import {selectDrinks, selectMains, selectSelectedDrinks, selectSelectedProducts} from "../selectors";
+import {Redirect, useHistory} from "react-router";
 // import {useHistory} from "../__mocks__/react-router-dom";
 
 // import CheckoutForm from "./stripe/CheckoutForm";
@@ -24,11 +26,16 @@ const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
 type Props = {
 	updateCC: Function,
+	creditCardEntity: Object
 }
 
 export class PaymentStep extends React.PureComponent<Props> {
+
 	render() {
-		// const history = useHistory();
+
+		if(this.props.creditCardEntity){
+			return <Redirect to="/order/OK/" />
+		}
 
 		return (
 			<div className="wizardPanel payment-panel">
@@ -60,37 +67,22 @@ const ELEMENTS_OPTIONS = {
 	],
 };
 
-
-
 const mapDispatchToProps = dispatch => {
 	return {
 		updateCC: (value) => {
-
-			// alert("got " + JSON.stringify(value))
-
-
 			console.info(" " + JSON.stringify(value))
-			// history.push("/order/OK");
-
-			let redirect = () => {
-				// history.push("/order/OK");
-			}
-
-
-			let l = dispatch(createUpdateCreditCard(value, redirect));
-
-			debugger;
-
+			dispatch(createUpdateCreditCard(value));
 		},
-		// updateDeliveryType: (value) => {
-		// 	dispatch(createUpdateDeliveryType(value));
-		// },
+	};
+};
+
+const mapStateToProps = (state: AppState) => {
+	return {
+		creditCardEntity: state.order.creditCardEntity,
 	};
 };
 
 export default connect(
-	null,
+	mapStateToProps,
 	mapDispatchToProps,
 )(PaymentStep);
-
-// export default PaymentStep;

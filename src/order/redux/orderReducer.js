@@ -43,8 +43,32 @@ export function reducer(state: OrderState = initialState , action) {
 				submittingOrder: true,
 			}
 		case Actions.PLACE_ORDER_SUCCESS:
+
+			// paymentType: string,
+			// 	deliveryType: string;
+			// addressEntity: {
+			// 	name: string,
+			// 		telephone: string,
+			// 		street: string,
+			// 		postcode: string,
+			// 		username: string
+			// }
+			// creditCardEntity: {
+			// 	number: string,
+			// 		expDate: string,
+			// 		name: string,
+			// 		type: string,
+			// }
+			// submittingOrder:boolean,
+			// 	orderError:string,
+
+
 			return {
 				...state,
+				paymentType: null,
+				deliveryType: null,
+				addressEntity: null,
+				creditCardEntity: null,
 				submittingOrder: false,
 			}
 		case Actions.PLACE_ORDER_ERROR:
@@ -53,6 +77,11 @@ export function reducer(state: OrderState = initialState , action) {
 				submittingOrder: false,
 				orderError: action.value,
 			}
+
+
+
+
+
 		default :
 			return state;
 	}

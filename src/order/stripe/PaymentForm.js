@@ -48,8 +48,6 @@ export const CheckoutForm = (props) => {
 			setProcessing(true);
 		}
 
-		debugger;
-
 		const payload = await stripe.createPaymentMethod({
 			type: 'card',
 			card: elements.getElement(CardElement),
@@ -63,13 +61,9 @@ export const CheckoutForm = (props) => {
 			alert("errror : " + JSON.stringify(payload.error))
 			setError(payload.error);
 		} else {
-			alert("success")
-
 			props.updateCC(payload)
 
 			setPaymentMethod(payload.paymentMethod);
-
-			// history.push("/order/OK");
 		}
 	};
 

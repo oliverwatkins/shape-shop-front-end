@@ -28,16 +28,12 @@ export default api => {
 				paymentType:orderData.value.paymentType,
 				selectedProducts: prods,
 				addressEntity:orderData.value.addressEntity,
-				creditCard:orderData.value.creditCard
+				creditCardEntity:orderData.value.creditCardEntity
 			}
-
-			debugger;
 
 			console.info("orderData after : " + JSON.stringify(nOrderData))
 
-
 			const response = yield call(api.placeOrder, nOrderData);
-
 
 			console.info("response: " + JSON.stringify(response))
 
