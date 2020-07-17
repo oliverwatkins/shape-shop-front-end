@@ -38,6 +38,9 @@ export function reducer(state: OrderState = initialState , action) {
 				deliveryType: action.value
 			}
 		case Actions.PLACE_ORDER:
+
+			alert("state.addressEntity " + state.addressEntity)
+
 			return {
 				...state,
 				submittingOrder: true,

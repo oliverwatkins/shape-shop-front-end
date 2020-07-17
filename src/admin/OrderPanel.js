@@ -62,7 +62,8 @@ function AddressPanel(props) {
 					<td>{props.address.name && <span>{props.address.name}</span>}</td>
 					<td>{props.address.street && <span>{props.address.street}</span>}</td>
 					<td>{props.address.postcode && <span>{props.address.postcode}</span>}</td>
-					<td>{props.address.postcode && <span>{props.address.telephone}</span>}</td>
+					<td>{props.address.telephone && <span>{props.address.telephone}</span>}</td>
+					<td>{props.address.email && <span>{props.address.email}</span>}</td>
 				</tr>
 			</table>
 		</div>
