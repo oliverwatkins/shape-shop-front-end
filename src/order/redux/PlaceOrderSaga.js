@@ -1,4 +1,4 @@
-import { put, call, takeLatest } from 'redux-saga/effects';
+import {put, call, takeLatest} from 'redux-saga/effects';
 
 import {
 	Actions,
@@ -8,6 +8,7 @@ import {
 } from './productActions';
 import {delay} from "@redux-saga/core/effects";
 import {createFetchOrdersFailAction} from "../../admin/redux/adminActions";
+import type {Product} from "../../AppState";
 
 export default api => {
 	function* placeOrderWatcher() {
@@ -23,12 +24,28 @@ export default api => {
 				...orderData.value.selectedProducts,
 			]
 
+
+			let orderItems = prods.map((prod: Product) => {
+				return {
+					product: {
+						id: prod.id,
+						name: prod.name,
+					},
+					amount: prod.quantity
+				};
+			})
+
 			let nOrderData = {
-				deliveryType:orderData.value.deliveryType,
-				paymentType:orderData.value.paymentType,
-				selectedProducts: prods,
-				addressEntity:orderData.value.addressEntity,
-				creditCardEntity:orderData.value.creditCardEntity
+				deliveryType: orderData.value.deliveryType,
+				paymentType: orderData.value.paymentType,
+
+				orderItems: orderItems,
+
+				// selectedProducts: prods,
+
+
+				addressEntity: orderData.value.addressEntity,
+				creditCardEntity: orderData.value.creditCardEntity
 			}
 
 			console.info("orderData after : " + JSON.stringify(nOrderData))

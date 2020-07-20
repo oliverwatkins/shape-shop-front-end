@@ -25,13 +25,11 @@ export class OKStep extends React.PureComponent<Props> {
 		props.placeOrder(props.order);
 	}
 
-
 	render() {
 		return (
 			<div className={"okPanel"}>
 
 				{this.props.orderError && <span className={"error"}>{this.props.orderError}</span>}
-
 
 				{this.props.submittingOrder && <LoadingView/>}
 				{!this.props.submittingOrder && !this.props.orderError &&
@@ -55,9 +53,6 @@ export class OKStep extends React.PureComponent<Props> {
 const mapDispatchToProps = dispatch => {
 	return {
 		placeOrder: (data) => {
-
-			debugger;
-
 			dispatch(createPlaceOrderAction(data));
 		},
 	};
