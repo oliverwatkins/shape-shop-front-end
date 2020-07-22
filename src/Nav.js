@@ -17,6 +17,8 @@ class Nav extends React.PureComponent<Props> {
 		let l = MOCK_MODE;
 
 		return (
+
+
 			<nav className={"main-nav"}>
 				<ul>
 					<li>
@@ -53,6 +55,13 @@ class Nav extends React.PureComponent<Props> {
 					}
 
 				</ul>
+
+				<div>
+
+					HIGGINS
+
+				</div>
+
 			</nav>
 		);
 	}
