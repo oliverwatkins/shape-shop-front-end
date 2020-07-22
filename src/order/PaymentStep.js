@@ -13,7 +13,6 @@ import {createUpdateAddress, createUpdateCreditCard, createUpdateDeliveryType} f
 import {connect} from "react-redux";
 import {Address} from "./AddressStep";
 import type {AppState, Product} from "../AppState";
-import {selectDrinks, selectMains, selectSelectedDrinks, selectSelectedProducts} from "../selectors";
 import {Redirect, useHistory} from "react-router";
 // import {useHistory} from "../__mocks__/react-router-dom";
 
@@ -48,11 +47,11 @@ export class PaymentStep extends React.PureComponent<Props> {
 						</div>
 						<div className={"stripe-payment-panel"}>
 							<Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-								<CheckoutForm updateCC={this.props.updateCC} amount={calculateTotal(this.props.selectedProducts, this.props.selectedDrinks)}/>
+								<CheckoutForm updateCC={this.props.updateCC} amount={calculateTotal(this.props.selectedProducts, this.props.selectedProducts2)}/>
 							</Elements>
 						</div>
 					</div>
-					<OrderSummary selectedProducts={this.props.selectedProducts} selectedDrinks={this.props.selectedDrinks}/>
+					<OrderSummary selectedProducts={this.props.selectedProducts} selectedProducts2={this.props.selectedProducts2}/>
 				</div>
 			</div>
 		);

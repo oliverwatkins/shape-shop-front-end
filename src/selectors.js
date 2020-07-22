@@ -24,21 +24,26 @@ export const selectProducts = (state) => state.products;
 
 export const selectProductById = (state, id) => state.products.filter(product => product.id === id);
 
-export const selectSelectedProducts = (state) => state.products.items.filter(product => product.quantity > 0  && product.type === "main");
+// export const selectSelectedProducts = (state) => state.products.items.filter(product => product.quantity > 0  && product.type === "main");
+//
+// export const selectSelectedProducts2 = (state) => state.products.items.filter((product: Product ) => product.quantity > 0 && product.type === "drinks");
 
-export const selectSelectedDrinks = (state) => state.products.items.filter((product: Product ) => product.quantity > 0 && product.type === "drinks");
+// export const selectMains = (state) => state.products.items.filter(product => product.type === "main");
+//
+// export const selectDrinks = (state) => state.products.items.filter(product => product.type === "drinks");
 
-export const selectMains = (state) => state.products.items.filter(product => product.type === "main");
+export const selectProductType = (state, type) => state.products.items.filter(product => product.type === type);
 
-export const selectDrinks = (state) => state.products.items.filter(product => product.type === "drinks");
+
+export const selectSelectedProductType = (state, type) => state.products.items.filter(product => product.quantity > 0  && product.type === type);
 
 //total order
 export const selectOrder = (state: AppState) => {
 	return {
 		addressEntity: state.order && state.order.addressEntity,
 		creditCardEntity: state.order && state.order.creditCardEntity,
-		selectedProducts: selectSelectedProducts(state),
-		selectedDrinks: selectSelectedDrinks(state),
+		selectedProducts: selectSelectedProductType(state, "main"),
+		selectedProducts2: selectSelectedProductType(state, "drinks"),
 		deliveryType: state.order && state.order.deliveryType,
 		paymentType: state.order && state.order.paymentType,
 		submittingOrder: state.order && state.order.submittingOrder,

@@ -13,7 +13,7 @@ import type {Address, Product} from "../AppState";
 
 type Props = {
 	selectedProducts: Array<Product>,
-	selectedDrinks: Array<Product>,
+	selectedProducts2: Array<Product>,
 	address: Address,
 	deliveryType: string,
 	paymentType: string,
@@ -29,7 +29,7 @@ export class Summary extends React.PureComponent<Props> {
 					<BackButton page={pages.WHICH_PAYMENT}/>
 					<div className="wizardCenter">
 						<h3>Order</h3>
-						<OrderSummary selectedProducts={this.props.selectedProducts} selectedDrinks={this.props.selectedDrinks}/>
+						<OrderSummary selectedProducts={this.props.selectedProducts} selectedProducts2={this.props.selectedProducts2}/>
 
 						<h3>Delivery Type :
 							{this.props.deliveryType === "pickup" && <span>pickup</span>}

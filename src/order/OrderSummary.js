@@ -5,7 +5,7 @@ import {calculateTotal} from "./utils";
 
 type Props = {
 	selectedProducts: Array<Product>,
-	selectedDrinks: Array<Product>,
+	selectedProducts2: Array<Product>,
 }
 
 export function OrderSummary(props: Props) {
@@ -15,7 +15,7 @@ export function OrderSummary(props: Props) {
 			{/*<h4>Order : </h4>*/}
 			<table>
 				<tbody>
-				{props.selectedDrinks && props.selectedDrinks.length > 0 && <tr>
+				{props.selectedProducts2 && props.selectedProducts2.length > 0 && <tr>
 					<td><h4>Drinks </h4></td>
 					<td></td>
 					<td></td>
@@ -24,7 +24,7 @@ export function OrderSummary(props: Props) {
 				}
 
 				{
-					props.selectedDrinks.map((elem: Product) => {
+					props.selectedProducts2.map((elem: Product) => {
 						return <tr key={elem.name}>
 							<td>{elem.name}</td>
 							<td>{elem.price}</td>
@@ -58,7 +58,7 @@ export function OrderSummary(props: Props) {
 					<td></td>
 					<td><b>Total:</b></td>
 					<td></td>
-					<td>{calculateTotal(props.selectedProducts, props.selectedDrinks)}</td>
+					<td>{calculateTotal(props.selectedProducts, props.selectedProducts2)}</td>
 				</tr>
 				</tbody>
 			</table>

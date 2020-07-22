@@ -1,7 +1,10 @@
 import * as React from 'react';
 import ProductListStep from "./Product1Step";
 import {connect} from "react-redux";
-import {selectDrinks, selectMains, selectSelectedDrinks, selectSelectedProducts} from "../selectors";
+import {
+	selectProductType,
+	selectSelectedProductType
+} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Address from "./AddressStep";
 import Summary from "./SummaryStep";
@@ -26,7 +29,7 @@ type Props = {
 	products: Array<Product>,
 	products2:Array<Product>,
 	selectedProducts: Array<Product>,
-	selectedDrinks: Array<Product>,
+	selectedProducts2: Array<Product>,
 	address: Address,
 	deliveryType: string,
 	paymentType: string,
@@ -47,11 +50,11 @@ export class OrderWizard extends React.PureComponent<Props> {
 							<Route path={wizardPages.PRODUCT_LIST}>
 								<ProductListStep productItems={this.props.products}
 																 selectedProducts={this.props.selectedProducts}
-																 selectedDrinks={this.props.selectedDrinks}/>
+																 selectedProducts2={this.props.selectedProducts2}/>
 							</Route>
 							<Route path={wizardPages.DRINK_LIST}>
 								<Product2Step products2={this.props.products2} selectedProducts={this.props.selectedProducts}
-															selectedProducts2={this.props.selectedDrinks}
+															selectedProducts2={this.props.selectedProducts2}
 									/>
 							</Route>
 							<Route path={wizardPages.ADDRESS}>
@@ -64,7 +67,7 @@ export class OrderWizard extends React.PureComponent<Props> {
 								<Summary
 									products={this.props.products}
 								 	selectedProducts={this.props.selectedProducts}
-									selectedDrinks={this.props.selectedDrinks}
+									selectedProducts2={this.props.selectedProducts2}
 								 	address={this.props.address}
 									deliveryType={this.props.deliveryType}
 									paymentType={this.props.paymentType}
@@ -76,7 +79,7 @@ export class OrderWizard extends React.PureComponent<Props> {
 							<Route path={wizardPages.PAYMENT}>
 								<PaymentStep
 									selectedProducts={this.props.selectedProducts}
-									selectedDrinks={this.props.selectedDrinks}
+									selectedProducts2={this.props.selectedProducts2}
 								/>
 							</Route>
 						</Switch>
@@ -88,12 +91,12 @@ export class OrderWizard extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: AppState) => {
 	return {
-		products: selectMains(state),
+		products: selectProductType(state, "main"),
+		products2: selectProductType(state, "drinks"),
+		selectedProducts: selectSelectedProductType(state, "main"),
+		selectedProducts2: selectSelectedProductType(state, "drinks"),
 		productsError: state.products.productsError,
-		products2: selectDrinks(state),
 		address: state.order && state.order.address,
-		selectedProducts: selectSelectedProducts(state),
-		selectedDrinks: selectSelectedDrinks(state),
 		deliveryType: state.order && state.order.deliveryType,
 		paymentType: state.order && state.order.paymentType,
 	};

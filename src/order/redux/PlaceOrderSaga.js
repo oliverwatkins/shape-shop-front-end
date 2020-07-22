@@ -20,9 +20,12 @@ export default api => {
 			console.info("orderData before : " + JSON.stringify(orderData))
 
 			let prods = [
-				...orderData.value.selectedDrinks,
 				...orderData.value.selectedProducts,
+				...orderData.value.selectedProducts2,
 			]
+
+			if (prods.length == 0)
+				throw "prods.length == 0"
 
 
 			let orderItems = prods.map((prod: Product) => {

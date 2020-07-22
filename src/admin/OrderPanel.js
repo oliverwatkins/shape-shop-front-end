@@ -44,11 +44,13 @@ export default function OrderPanel(props) {
 					<td>
 						{moment(order.date).format('HH:mm DD/MM/YYYY')}
 					</td>
+
 					<td>
 						<ProductListPanel orderItems={order.orderItems}/>
 
 						<b>TOTAL PRICE : TODO </b>
 					</td>
+
 					<td className={"deliveryType"}>
 						{order.deliveryType === DeliveryType.delivery && <div className="icon-container">
 							<FontAwesomeIcon icon={faTruck} style={{fontSize: "14px", color: "navy", margin: "1px"}}/> {order.deliveryType}

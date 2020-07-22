@@ -3,14 +3,18 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import LoadingView from "../misc/LoadingView";
 import type {Address, AppState, Product} from "../AppState";
-import {selectDrinks, selectMains, selectOrder, selectSelectedDrinks, selectSelectedProducts} from "../selectors";
+import {
+	selectOrder,
+	selectProductType,
+	selectSelectedProducts, selectSelectedProductType
+} from "../selectors";
 import {connect} from "react-redux";
 import {createPlaceOrderAction} from "./redux/productActions";
 
 
 type Props = {
 	selectedProducts: Array<Product>,
-	selectedDrinks: Array<Product>,
+	selectedProducts2: Array<Product>,
 	address: Address,
 	deliveryType: string,
 	paymentType: string,
@@ -60,14 +64,12 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state: AppState) => {
 	return {
-		products: selectMains(state),
-		products2: selectDrinks(state),
-
+		products: selectProductType(state, "main"),
+		products2: selectProductType(state, "drinks"),
 		order: selectOrder(state),
-
 		address: state.order && state.order.address,
-		selectedProducts: selectSelectedProducts(state),
-		selectedDrinks: selectSelectedDrinks(state),
+		selectedProducts: selectSelectedProductType(state, "main"),
+		selectedProducts2: selectSelectedProductType(state, "drinks"),
 		deliveryType: state.order && state.order.deliveryType,
 		paymentType: state.order && state.order.paymentType,
 		submittingOrder: state.order && state.order.submittingOrder,

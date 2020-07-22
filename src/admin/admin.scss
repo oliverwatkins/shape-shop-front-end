@@ -25,33 +25,8 @@
     color: #0c0606;
     padding-left: 40px;
     padding-top: 10px;
-
   }
-
-
-
 }
-
-
-
-
-//.orderBox {
-//  background: #ffffff;
-//  padding:5px;
-//  margin:5px;
-//  .deliveryType{
-//    width:10%
-//  }
-//  .paymentType{
-//    width:10%
-//  }
-//}
-//.orderBox .deliveryType{
-//  width:10%
-//}
-//.orderBox .paymentType{
-//  width:10%
-//}
 
 
 
@@ -63,8 +38,6 @@ table.orderTable {
   text-align: left;
   border-collapse: collapse;
   margin:20px;
-
-
 
   thead {
     background: #1C6EA4;
@@ -90,10 +63,6 @@ table.orderTable {
     border: 1px solid #AAAAAA;
     padding: 3px 2px;
   }
-
-  //tr td:first-child {
-  //  width:200px
-  //}
 
   .addressBox {
     padding:5px;
@@ -130,11 +99,9 @@ table.orderTable {
     }
   }
 
-
   tbody td {
     font-size: 13px;
   }
-
 
   tfoot {
     font-size: 14px;
