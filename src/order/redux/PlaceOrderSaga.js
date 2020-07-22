@@ -38,12 +38,7 @@ export default api => {
 			let nOrderData = {
 				deliveryType: orderData.value.deliveryType,
 				paymentType: orderData.value.paymentType,
-
 				orderItems: orderItems,
-
-				// selectedProducts: prods,
-
-
 				addressEntity: orderData.value.addressEntity,
 				creditCardEntity: orderData.value.creditCardEntity
 			}

@@ -13,7 +13,6 @@ export function reducer(state: OrderState = initialState , action) {
 
 			let cardType = action.value.paymentMethod.card.brand;
 
-
 			let m = action.value.paymentMethod.card.exp_month;
 			let y = action.value.paymentMethod.card.exp_year;
 
@@ -38,34 +37,11 @@ export function reducer(state: OrderState = initialState , action) {
 				deliveryType: action.value
 			}
 		case Actions.PLACE_ORDER:
-
-			alert("state.addressEntity " + state.addressEntity)
-
 			return {
 				...state,
 				submittingOrder: true,
 			}
 		case Actions.PLACE_ORDER_SUCCESS:
-
-			// paymentType: string,
-			// 	deliveryType: string;
-			// addressEntity: {
-			// 	name: string,
-			// 		telephone: string,
-			// 		street: string,
-			// 		postcode: string,
-			// 		username: string
-			// }
-			// creditCardEntity: {
-			// 	number: string,
-			// 		expDate: string,
-			// 		name: string,
-			// 		type: string,
-			// }
-			// submittingOrder:boolean,
-			// 	orderError:string,
-
-
 			return {
 				...state,
 				paymentType: null,
@@ -80,11 +56,6 @@ export function reducer(state: OrderState = initialState , action) {
 				submittingOrder: false,
 				orderError: action.value,
 			}
-
-
-
-
-
 		default :
 			return state;
 	}
