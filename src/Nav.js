@@ -6,6 +6,9 @@ import {isUserLoggedIn, selectUserEmail} from "./selectors";
 import {connect} from "react-redux";
 import "./nav.scss"
 
+import welcome from './assets/img/ezgif-5-e18193c8ba03.png';
+
+
 type Props = {
 	isUserLoggedIn: boolean,
 }
@@ -19,7 +22,16 @@ class Nav extends React.PureComponent<Props> {
 		return (
 
 
+
+
+
 			<nav className={"main-nav"}>
+				<div className={"upper"}>
+					Maxvorstadt, 80333, München, Bayern, Germany
+					+491728462474
+				</div>
+
+
 				<ul>
 					<li>
 						<Link to="/">Home</Link>
@@ -49,19 +61,16 @@ class Nav extends React.PureComponent<Props> {
 						// <Link className="dd-menu__span" to={'/logout'}>
 						// Logout
 						// </Link>
-
-
-
 					}
-
 				</ul>
-
 				<div>
-
-					HIGGINS
-
+					<div>
+						<img className="asdfasdf" style={{width:"20%"}} src={welcome} alt="  " />
+					</div>
+					<div className={"lower"}>
+					ONLINE SHOP
+					</div>
 				</div>
-
 			</nav>
 		);
 	}

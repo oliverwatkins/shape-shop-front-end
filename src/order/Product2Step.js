@@ -39,7 +39,7 @@ export class Product2Step extends React.PureComponent<Props> {
 		return (
 			<div className="wizardPanel products2-step">
 
-				<h2 className={"wizardHeader"}>Maybe some drinks?</h2>
+				<h2 className={"wizardHeader"}>Maybe some Accesories?</h2>
 
 				<div className={"wizardMain"}>
 

@@ -18,7 +18,7 @@ export class ProductList extends React.PureComponent<Props> {
 		return (
 			<div className={"product-list-step"}>
 				<div className="wizardPanel">
-					<h2 className="wizardHeader">Mains</h2>
+					<h2 className="wizardHeader">Our Beer Selection</h2>
 					<div className="wizardMain">
 						<div className="wizardCenter">
 							<ProductSelection productItems={this.props.productItems}/>
@@ -26,7 +26,6 @@ export class ProductList extends React.PureComponent<Props> {
 						<div style={{textAlign: "right"}}>
 							<NextButton label={"NEXT"} page={pages.DRINK_LIST}/>
 							<OrderSummary selectedProducts={this.props.selectedProducts} selectedProducts2={this.props.selectedProducts2}/>
-
 						</div>
 					</div>
 				</div>
