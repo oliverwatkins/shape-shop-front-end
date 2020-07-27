@@ -16,7 +16,7 @@ export function OrderSummary(props: Props) {
 			<table>
 				<tbody>
 				{props.selectedProducts2 && props.selectedProducts2.length > 0 && <tr>
-					<td><h4>Drinks </h4></td>
+					<td><h4>Accessories </h4></td>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -37,7 +37,7 @@ export function OrderSummary(props: Props) {
 				{props.selectedProducts && props.selectedProducts.length > 0 &&
 
 				<tr>
-					<td><h4>Mains </h4></td>
+					<td><h4>Beer </h4></td>
 					<td/>
 					<td/>
 					<td/>

@@ -5,12 +5,12 @@ $base-foreground-color: rgba($base-background-color, 0.88);
 
 $base-text-color: #5e95f6;
 
-$itembox-color-unselected: #fcf4f6;
-$itembox-color-selected: #f30e43;
+$itembox-color-unselected: #cbefcb;
+$itembox-color-selected: #44f144;
 
 $error-color: red;
 
-$base-header-color: #80b363;
+$base-header-color: rgb(42,98,41);
 $h1-color: darken($base-header-color, 8%);
 $h2-color:darken($base-header-color, 5%);
 $h3-color:darken($base-header-color, 2%);
@@ -19,6 +19,23 @@ $h4-color: darken($base-header-color, 1%);
 
 a {
   text-decoration: none;
+}
+
+.welcome {
+  padding: 10px;
+  background-image: url(assets/img/hops.jpg);
+  background-size: 100%;
+  color:white;
+  font-size: 20px;
+  height:300px;
+  width: 100%;
+  background-repeat: no-repeat;
+}
+
+.footer {
+  background: rgb(255, 255, 255);
+  font-family: Arial;
+  text-align: center;
 }
 
 
@@ -48,7 +65,7 @@ span.error {
 
 .order-wizard {
   display: flex;
-  background: #fff6fe;
+  background: rgb(246, 246, 246);
 }
 
 

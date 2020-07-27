@@ -1,12 +1,12 @@
 export const mockOrders = [
 	{
-		"id": 36,
+		"id": 49,
 		"company": {
-			"id": 1,
-			"name": "alpenhof"
+			"id": 2,
+			"name": "higgins"
 		},
 		"creditCardEntity": {
-			"id": 32,
+			"id": 35,
 			"number": "xxx-xxx-xxxx-6345",
 			"expDate": "22/22",
 			"name": "JJ Binks",
@@ -21,273 +21,63 @@ export const mockOrders = [
 		},
 		"orderItems": [
 			{
-				"id": 34,
+				"id": 47,
 				"product": {
-					"id": 13,
-					"name": "Gegrillte Calamari gefüllt mit Zucchini und Paprika auf Aurberginen-Püree",
-					"price": 7.9,
+					"id": 3,
+					"name": "Limit Session IPA",
+					"price": 7.5,
 					"type": "main",
-					"imageFilename": "pizza.png"
+					"imageFilename": "beer.png"
 				},
-				"amount": 2
+				"amount": 99
 			},
-			{
-				"id": 35,
-				"product": {
-					"id": 14,
-					"name": "Zucchiniröllchen gefüllt mit Ziegenkäse und Honig auf Rucolasalat mit Roten Beten und gerösteten Mandeln",
-					"price": 7.9,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 1
-			}
-		],
-		"date": "2020-07-22T14:01:19.524+0000",
-		"paymentType": "CARD",
-		"deliveryType": "DELIVERY",
-		"amount": null,
-		"payment": "CARD",
-		"selectedProducts": [
-			{
-				"id": 34,
-				"product": {
-					"id": 13,
-					"name": "Gegrillte Calamari gefüllt mit Zucchini und Paprika auf Aurberginen-Püree",
-					"price": 7.9,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 2
-			},
-			{
-				"id": 35,
-				"product": {
-					"id": 14,
-					"name": "Zucchiniröllchen gefüllt mit Ziegenkäse und Honig auf Rucolasalat mit Roten Beten und gerösteten Mandeln",
-					"price": 7.9,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 1
-			}
-		]
-	},
-	{
-		"id": 39,
-		"company": {
-			"id": 1,
-			"name": "alpenhof"
-		},
-		"creditCardEntity": null,
-		"addressEntity": {
-			"name": "Luke Skywalker",
-			"street": "1 Baker st",
-			"postcode": "62344",
-			"telephone": "+(09)34534444",
-			"email": "ls@gmail.com"
-		},
-		"orderItems": [
-			{
-				"id": 37,
-				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
-					"price": 4.5,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 3
-			},
-			{
-				"id": 38,
-				"product": {
-					"id": 13,
-					"name": "Gegrillte Calamari gefüllt mit Zucchini und Paprika auf Aurberginen-Püree",
-					"price": 7.9,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 2
-			}
-		],
-		"date": "2020-07-22T14:01:19.556+0000",
-		"paymentType": "CASH",
-		"deliveryType": "DELIVERY",
-		"amount": null,
-		"payment": "CASH",
-		"selectedProducts": [
-			{
-				"id": 37,
-				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
-					"price": 4.5,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 3
-			},
-			{
-				"id": 38,
-				"product": {
-					"id": 13,
-					"name": "Gegrillte Calamari gefüllt mit Zucchini und Paprika auf Aurberginen-Püree",
-					"price": 7.9,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 2
-			}
-		]
-	},
-	{
-		"id": 43,
-		"company": {
-			"id": 1,
-			"name": "alpenhof"
-		},
-		"creditCardEntity": {
-			"id": 33,
-			"number": "xxx-xxx-xxxx-6523",
-			"expDate": "12/24",
-			"name": "P Leah",
-			"type": "MASTERCARD"
-		},
-		"addressEntity": {
-			"name": "Darth Vader",
-			"street": null,
-			"postcode": null,
-			"telephone": "+(09)42344333",
-			"email": null
-		},
-		"orderItems": [
-			{
-				"id": 40,
-				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
-					"price": 4.5,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 3
-			},
-			{
-				"id": 41,
-				"product": {
-					"id": 14,
-					"name": "Zucchiniröllchen gefüllt mit Ziegenkäse und Honig auf Rucolasalat mit Roten Beten und gerösteten Mandeln",
-					"price": 7.9,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 2
-			},
-			{
-				"id": 42,
-				"product": {
-					"id": 14,
-					"name": "Zucchiniröllchen gefüllt mit Ziegenkäse und Honig auf Rucolasalat mit Roten Beten und gerösteten Mandeln",
-					"price": 7.9,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 2
-			}
-		],
-		"date": "2020-07-22T14:01:19.567+0000",
-		"paymentType": "CARD",
-		"deliveryType": "PICKUP",
-		"amount": null,
-		"payment": "CARD",
-		"selectedProducts": [
-			{
-				"id": 40,
-				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
-					"price": 4.5,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 3
-			},
-			{
-				"id": 41,
-				"product": {
-					"id": 14,
-					"name": "Zucchiniröllchen gefüllt mit Ziegenkäse und Honig auf Rucolasalat mit Roten Beten und gerösteten Mandeln",
-					"price": 7.9,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 2
-			},
-			{
-				"id": 42,
-				"product": {
-					"id": 14,
-					"name": "Zucchiniröllchen gefüllt mit Ziegenkäse und Honig auf Rucolasalat mit Roten Beten und gerösteten Mandeln",
-					"price": 7.9,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 2
-			}
-		]
-	},
-	{
-		"id": 49,
-		"company": {
-			"id": 1,
-			"name": "alpenhof"
-		},
-		"creditCardEntity": null,
-		"addressEntity": {
-			"name": "Oliver Watkins",
-			"street": "",
-			"postcode": "",
-			"telephone": "017670271260",
-			"email": "o_watkins@yahoo.com"
-		},
-		"orderItems": [
 			{
 				"id": 48,
 				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
+					"id": 4,
+					"name": "Idaho NE Pale Ale",
 					"price": 4.5,
 					"type": "main",
-					"imageFilename": "pizza.png"
+					"imageFilename": "beer.png"
 				},
-				"amount": 1
+				"amount": 9
 			}
 		],
-		"date": null,
-		"paymentType": "CASH",
-		"deliveryType": "PICKUP",
+		"date": "2020-07-23T11:31:09.260+0000",
+		"paymentType": "CARD",
+		"deliveryType": "DELIVERY",
 		"amount": null,
-		"payment": "CASH",
 		"selectedProducts": [
+			{
+				"id": 47,
+				"product": {
+					"id": 3,
+					"name": "Limit Session IPA",
+					"price": 7.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 99
+			},
 			{
 				"id": 48,
 				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
+					"id": 4,
+					"name": "Idaho NE Pale Ale",
 					"price": 4.5,
 					"type": "main",
-					"imageFilename": "pizza.png"
+					"imageFilename": "beer.png"
 				},
-				"amount": 1
+				"amount": 9
 			}
-		]
+		],
+		"payment": "CARD"
 	},
 	{
-		"id": 52,
+		"id": 53,
 		"company": {
-			"id": 1,
-			"name": "alpenhof"
+			"id": 2,
+			"name": "higgins"
 		},
 		"creditCardEntity": null,
 		"addressEntity": {
@@ -301,39 +91,61 @@ export const mockOrders = [
 			{
 				"id": 51,
 				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
+					"id": 4,
+					"name": "Idaho NE Pale Ale",
 					"price": 4.5,
 					"type": "main",
-					"imageFilename": "pizza.png"
+					"imageFilename": "beer.png"
 				},
-				"amount": 1
+				"amount": 3
+			},
+			{
+				"id": 52,
+				"product": {
+					"id": 13,
+					"name": "T-Shirt",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "tshirt.jpg"
+				},
+				"amount": 3
 			}
 		],
 		"date": null,
 		"paymentType": "CASH",
 		"deliveryType": "PICKUP",
 		"amount": null,
-		"payment": "CASH",
 		"selectedProducts": [
 			{
 				"id": 51,
 				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
+					"id": 4,
+					"name": "Idaho NE Pale Ale",
 					"price": 4.5,
 					"type": "main",
-					"imageFilename": "pizza.png"
+					"imageFilename": "beer.png"
 				},
-				"amount": 1
+				"amount": 3
+			},
+			{
+				"id": 52,
+				"product": {
+					"id": 13,
+					"name": "T-Shirt",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "tshirt.jpg"
+				},
+				"amount": 3
 			}
-		]
+		],
+		"payment": "CASH"
 	},
 	{
-		"id": 57,
+		"id": 62,
 		"company": {
-			"id": 1,
-			"name": "alpenhof"
+			"id": 2,
+			"name": "higgins"
 		},
 		"creditCardEntity": null,
 		"addressEntity": {
@@ -345,78 +157,256 @@ export const mockOrders = [
 		},
 		"orderItems": [
 			{
-				"id": 54,
-				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
-					"price": 4.5,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 4
-			},
-			{
 				"id": 55,
 				"product": {
-					"id": 13,
-					"name": "Gegrillte Calamari gefüllt mit Zucchini und Paprika auf Aurberginen-Püree",
-					"price": 7.9,
+					"id": 3,
+					"name": "Limit Session IPA",
+					"price": 7.5,
 					"type": "main",
-					"imageFilename": "pizza.png"
+					"imageFilename": "beer.png"
 				},
-				"amount": 4
+				"amount": 1
 			},
 			{
 				"id": 56,
 				"product": {
-					"id": 28,
-					"name": "Shiraz",
+					"id": 4,
+					"name": "Idaho NE Pale Ale",
 					"price": 4.5,
-					"type": "drinks",
-					"imageFilename": "pizza.png"
+					"type": "main",
+					"imageFilename": "beer.png"
 				},
-				"amount": 4
+				"amount": 2
+			},
+			{
+				"id": 57,
+				"product": {
+					"id": 5,
+					"name": "Eclipse Black IPA",
+					"price": 3.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 3
+			},
+			{
+				"id": 58,
+				"product": {
+					"id": 8,
+					"name": "Escape English Special Bitter",
+					"price": 7.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 59,
+				"product": {
+					"id": 12,
+					"name": "2L stainless steel growlers",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "growler.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 60,
+				"product": {
+					"id": 13,
+					"name": "T-Shirt",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "tshirt.jpg"
+				},
+				"amount": 1
+			},
+			{
+				"id": 61,
+				"product": {
+					"id": 14,
+					"name": "Beer Mats",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "beermat.jpg"
+				},
+				"amount": 3
 			}
 		],
 		"date": null,
-		"paymentType": null,
-		"deliveryType": null,
+		"paymentType": "CASH",
+		"deliveryType": "PICKUP",
 		"amount": null,
-		"payment": null,
 		"selectedProducts": [
-			{
-				"id": 54,
-				"product": {
-					"id": 12,
-					"name": "Minestone - italienische Gemüsesuppe mit Basilikumpesto",
-					"price": 4.5,
-					"type": "main",
-					"imageFilename": "pizza.png"
-				},
-				"amount": 4
-			},
 			{
 				"id": 55,
 				"product": {
-					"id": 13,
-					"name": "Gegrillte Calamari gefüllt mit Zucchini und Paprika auf Aurberginen-Püree",
-					"price": 7.9,
+					"id": 3,
+					"name": "Limit Session IPA",
+					"price": 7.5,
 					"type": "main",
-					"imageFilename": "pizza.png"
+					"imageFilename": "beer.png"
 				},
-				"amount": 4
+				"amount": 1
 			},
 			{
 				"id": 56,
 				"product": {
-					"id": 28,
-					"name": "Shiraz",
+					"id": 4,
+					"name": "Idaho NE Pale Ale",
 					"price": 4.5,
-					"type": "drinks",
-					"imageFilename": "pizza.png"
+					"type": "main",
+					"imageFilename": "beer.png"
 				},
-				"amount": 4
+				"amount": 2
+			},
+			{
+				"id": 57,
+				"product": {
+					"id": 5,
+					"name": "Eclipse Black IPA",
+					"price": 3.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 3
+			},
+			{
+				"id": 58,
+				"product": {
+					"id": 8,
+					"name": "Escape English Special Bitter",
+					"price": 7.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 59,
+				"product": {
+					"id": 12,
+					"name": "2L stainless steel growlers",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "growler.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 60,
+				"product": {
+					"id": 13,
+					"name": "T-Shirt",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "tshirt.jpg"
+				},
+				"amount": 1
+			},
+			{
+				"id": 61,
+				"product": {
+					"id": 14,
+					"name": "Beer Mats",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "beermat.jpg"
+				},
+				"amount": 3
 			}
-		]
+		],
+		"payment": "CASH"
+	},
+	{
+		"id": 67,
+		"company": {
+			"id": 2,
+			"name": "higgins"
+		},
+		"creditCardEntity": null,
+		"addressEntity": {
+			"name": "Oliver Watkins",
+			"street": "Danklstr 12",
+			"postcode": "81371",
+			"telephone": "017670271260",
+			"email": "o_watkins@yahoo.com"
+		},
+		"orderItems": [
+			{
+				"id": 64,
+				"product": {
+					"id": 5,
+					"name": "Eclipse Black IPA",
+					"price": 3.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 65,
+				"product": {
+					"id": 6,
+					"name": "NEW Release! Outer Limit Session IPA",
+					"price": 1.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 66,
+				"product": {
+					"id": 14,
+					"name": "Beer Mats",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "beermat.jpg"
+				},
+				"amount": 1
+			}
+		],
+		"date": null,
+		"paymentType": "CASH",
+		"deliveryType": "DELIVERY",
+		"amount": null,
+		"selectedProducts": [
+			{
+				"id": 64,
+				"product": {
+					"id": 5,
+					"name": "Eclipse Black IPA",
+					"price": 3.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 65,
+				"product": {
+					"id": 6,
+					"name": "NEW Release! Outer Limit Session IPA",
+					"price": 1.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 66,
+				"product": {
+					"id": 14,
+					"name": "Beer Mats",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "beermat.jpg"
+				},
+				"amount": 1
+			}
+		],
+		"payment": "CASH"
 	}
 ]

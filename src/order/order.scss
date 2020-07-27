@@ -65,7 +65,7 @@
 
 //OK Panel
 .okPanel {
-  background: #fdfcfc;
+  background: rgb(246, 246, 246);
   //display: flex;
   width: 100%;
   border: 1px solid #180404;
@@ -97,7 +97,7 @@
     font-family: Lato, arial, sans-serif;
     //font-style: italic;
     font-size: 50px;
-    //font-weight: bold;
+    font-weight: normal;
     color: $h2-color;
   }
 
@@ -188,7 +188,7 @@
     width: 500px;
 
     div {
-      background: #ffffff;
+      background: rgb(246, 246, 246);;
 
       div {
         padding: 5px 5px 5px 50px;
