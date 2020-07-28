@@ -35,12 +35,14 @@ export class Summary extends React.PureComponent<Props> {
 				<div className="wizardMain">
 					<BackButton page={pages.WHICH_PAYMENT}/>
 					<div className="wizardCenter">
-						<h3>Order</h3>
+						<h3><u>Order</u></h3>
 						<OrderSummary selectedProducts={this.props.selectedProducts} selectedProducts2={this.props.selectedProducts2}/>
 
-						<div>Delivery type :
-							{this.props.deliveryType === DeliveryType.pickup && <span><FontAwesomeIcon icon={faHandHolding} style={{fontSize: "14px", color: "pink", margin: "1px"}}/> pickup</span>}
-							{this.props.deliveryType === DeliveryType.delivery && <span><FontAwesomeIcon icon={faTruck} style={{fontSize: "14px", color: "blue", margin: "1px"}}/> delivery</span>}
+						<div>Delivery type -
+							{this.props.deliveryType === DeliveryType.pickup && <span>
+								<b> pickup</b></span>}
+							{this.props.deliveryType === DeliveryType.delivery && <span>
+								<b> delivery</b></span>}
 						</div>
 
 						{this.props.deliveryType === "delivery" && <AddressSummary address={this.props.address}/>}
@@ -48,9 +50,11 @@ export class Summary extends React.PureComponent<Props> {
 						{/*{this.props.deliveryType === "pickup" &&*/}
 						{/*<span>Pickup!</span>}*/}
 
-						<div>Payment type :
-							{this.props.paymentType === PaymentType.cash && <span><FontAwesomeIcon icon={faMoneyBill} style={{fontSize: "14px", color: "green", margin: "1px"}}/> cash</span>}
-							{this.props.paymentType === PaymentType.card && <span><FontAwesomeIcon icon={faCreditCard} style={{fontSize: "14px", color: "blue", margin: "1px"}}/> card</span>}
+						<div>Payment type -
+							{this.props.paymentType === PaymentType.cash && <span>
+								<b> cash</b></span>}
+							{this.props.paymentType === PaymentType.card && <span>
+								<b> card</b></span>}
 						</div>
 
 						{/*{this.props.paymentType === "cash" &&*/}
