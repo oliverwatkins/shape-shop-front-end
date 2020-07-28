@@ -1,13 +1,13 @@
 /**
- * Mock API for running/testing my-wee standalone.
+ * Mock API for running/testing standalone.
  */
 import {mockProds} from "../__mock__/mockProducts";
 import {mockOrders} from "../__mock__/mockOrders";
+import {ADMIN_TOKEN2} from "../__mock__/testTokens";
 
 const create = () => {
 
-	const ADMIN_TOKEN =
-		'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiTUVSQ0hBTlQiLCJleHAiOjE1NTAyNDc5MjAsInN0YXR1cyI6ImFjdGl2ZSJ9.Y0Qg1meZb2t7fUFLJ9l0WN-smsN1Wrg7bgXVlKLA26O2SM5l_NYGQ6NXy3d16QGAiyFOyV0wKN6DvDjDfUPn5g';
+	const ADMIN_TOKEN = ADMIN_TOKEN2
 
 	const loginUser = credentials => {
 
@@ -17,8 +17,8 @@ const create = () => {
 			response = {
 				ok: true,
 				status: 200,
-				headers: {
-					authorization: ADMIN_TOKEN,
+				data: {
+					jwt: ADMIN_TOKEN,
 				},
 			};
 		} else {

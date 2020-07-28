@@ -24,7 +24,7 @@ export class ProductList extends React.PureComponent<Props> {
 							<ProductSelection productItems={this.props.productItems}/>
 						</div>
 						<div style={{textAlign: "right"}}>
-							<NextButton label={"NEXT"} page={pages.DRINK_LIST}/>
+							<NextButton label={"next"} page={pages.DRINK_LIST}/>
 							<OrderSummary selectedProducts={this.props.selectedProducts} selectedProducts2={this.props.selectedProducts2}/>
 						</div>
 					</div>

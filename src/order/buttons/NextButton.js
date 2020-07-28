@@ -18,7 +18,10 @@ export function NextButton(props: Props) {
 	if (!props.page) {
 		return (
 			<button className={"nextButton next-prev-button"} type={props.type} form={props.form}>
-				<div>
+				<div style={{display: "flex"}}>
+					<div className={"label"}>
+						{props.label}
+					</div>
 					<FontAwesomeIcon className={"icon"} icon={faArrowCircleRight}/>
 				</div>
 			</button>

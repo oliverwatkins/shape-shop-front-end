@@ -14,7 +14,7 @@ export const mockOrders = [
 		},
 		"addressEntity": {
 			"name": "Jar Jar Binks",
-			"street": "Bluw Lane Hwy 12",
+			"street": "Bluw Lane Hwy 11",
 			"postcode": "41412",
 			"telephone": "+(09)928423444",
 			"email": "jj@gmail.com"

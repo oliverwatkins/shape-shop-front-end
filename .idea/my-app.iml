@@ -6,6 +6,8 @@
       <sourceFolder url="file://$MODULE_DIR$/src/__mock__" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/src/__mocks__" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/build/static/js" />
+      <excludeFolder url="file://$MODULE_DIR$/src/dist" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
     </content>

@@ -115,10 +115,7 @@ export class Address extends React.PureComponent<Props, State> {
 									{errors.name && touched.name && errors.name}
 									</span>
 									</div>
-
-
 									{this.state.deliveryType && (this.state.deliveryType === DeliveryType.delivery) &&
-
 									<div>
 										<div>
 											<label htmlFor="street">Strasse</label>
@@ -168,7 +165,7 @@ export class Address extends React.PureComponent<Props, State> {
 										<label htmlFor="email">Email</label>
 										<input
 											id="email"
-											type="email"
+											type="text"
 											name="email"
 											onChange={handleChange}
 											onBlur={handleBlur}
@@ -185,7 +182,9 @@ export class Address extends React.PureComponent<Props, State> {
 							)}
 						</Formik>
 					</div>
-					<NextButton label={"NEXT"} type={"submit"} form={"addressForm"}/>}
+
+					{/*<NextButton label={"next"} page={pages.ADDRESS}/>*/}
+					<NextButton label={"next"} type={"submit"} form={"addressForm"}/>
 				</div>
 			</div>
 		);
