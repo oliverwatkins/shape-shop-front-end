@@ -46,10 +46,10 @@ export default api => {
 				};
 
 				delete userCredentials.password;
-				yield put(createLoginSuccessAction(userCredentials)); //this is being caught by the reducer and put into storage!
 
 				if (decodedToken.scopes === "ROLE_ADMIN") {
-					yield put(getAdminDetails(userCredentials.token, userCredentials.role));
+					// yield put(getAdminDetails(userCredentials.token, userCredentials.role));
+					yield put(createLoginSuccessAction(userCredentials)); //this is being caught by the reducer and put into storage!
 				} else {
 					yield put(createLoginFailAction());
 					throw new Error('Unknown user role type');

@@ -11,6 +11,13 @@ import {BackButton} from "./buttons/BackButton";
 import type {Address, Product} from "../AppState";
 
 
+import {faTruck} from "@fortawesome/free-solid-svg-icons";
+import {faHandHolding} from "@fortawesome/free-solid-svg-icons";
+import {faMoneyBill} from "@fortawesome/free-solid-svg-icons";
+
+import {faCreditCard} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
 type Props = {
 	selectedProducts: Array<Product>,
 	selectedProducts2: Array<Product>,
@@ -31,20 +38,20 @@ export class Summary extends React.PureComponent<Props> {
 						<h3>Order</h3>
 						<OrderSummary selectedProducts={this.props.selectedProducts} selectedProducts2={this.props.selectedProducts2}/>
 
-						<h3>Delivery Type :
-							{this.props.deliveryType === "pickup" && <span>pickup</span>}
-							{this.props.deliveryType === "delivery" && <span>delivery</span>}
-						</h3>
+						<div>Delivery type :
+							{this.props.deliveryType === DeliveryType.pickup && <span><FontAwesomeIcon icon={faHandHolding} style={{fontSize: "14px", color: "pink", margin: "1px"}}/> pickup</span>}
+							{this.props.deliveryType === DeliveryType.delivery && <span><FontAwesomeIcon icon={faTruck} style={{fontSize: "14px", color: "blue", margin: "1px"}}/> delivery</span>}
+						</div>
 
 						{this.props.deliveryType === "delivery" && <AddressSummary address={this.props.address}/>}
 
 						{/*{this.props.deliveryType === "pickup" &&*/}
 						{/*<span>Pickup!</span>}*/}
 
-						<h3>Payment Type:
-							{this.props.paymentType === "cash" && <span>cash</span>}
-							{this.props.paymentType === "card" && <span>card</span>}
-						</h3>
+						<div>Payment type :
+							{this.props.paymentType === PaymentType.cash && <span><FontAwesomeIcon icon={faMoneyBill} style={{fontSize: "14px", color: "green", margin: "1px"}}/> cash</span>}
+							{this.props.paymentType === PaymentType.card && <span><FontAwesomeIcon icon={faCreditCard} style={{fontSize: "14px", color: "blue", margin: "1px"}}/> card</span>}
+						</div>
 
 						{/*{this.props.paymentType === "cash" &&*/}
 						{/*<span>cash!</span>*/}

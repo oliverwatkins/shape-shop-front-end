@@ -49,7 +49,7 @@ export class Product2Step extends React.PureComponent<Props> {
 						<ProductSelection productItems={this.props.products2}/>
 					</div>
 					<div style={{textAlign: "right"}}>
-						<NextButton label={"NEXT"} page={pages.ADDRESS}/>
+						<NextButton label={"next"} page={pages.ADDRESS}/>
 						<OrderSummary selectedProducts={this.props.selectedProducts} selectedProducts2={this.props.selectedProducts2}/>
 					</div>
 				</div>

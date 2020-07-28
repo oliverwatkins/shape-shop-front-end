@@ -36,6 +36,38 @@
     }
 
   }
+
+  input[type=text]{
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+  }
+
+  input[type=text]#name{
+    width: 50%;
+  }
+
+  input[type=text]#street{
+    width: 50%;
+  }
+
+  input[type=text]#postcode{
+    width: 20%;
+  }
+
+  input[type=text]#tel{
+    width: 20%;
+  }
+
+  input[type=text]#email{
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+  }
+
 }
 
 .payment-step {
@@ -90,20 +122,22 @@
 
   h1 {
     color: $h1-color;
+    font-family: "Arial", Times, serif;
   }
 
   h2 {
     //font:
-    font-family: "Times New Roman", Times, serif;
-    font-style: italic;
-    font-size: 50px;
-    font-weight: bold;
     color: $h2-color;
+    font-family: "Arial", Times, serif;
+    font-style: normal;
+    font-size: 50px;
+    font-weight: normal;
+
   }
 
   h3 {
-    font-family: "Times New Roman", Times, serif;
-    font-style: italic;
+    font-family: "Arial", Times, serif;
+    font-style: normal;
     color: $h3-color;
   }
 
@@ -133,6 +167,18 @@
     padding-top: 6px;
   }
 
+  input[type=checkbox] {
+    size: 30px;
+  }
+
+  //input[type=text] {
+  //  width: 50%;
+  //  margin-bottom: 20px;
+  //  padding: 12px;
+  //  border: 2px solid #ccc;
+  //  border-radius: 3px;
+  //}
+
 
   select {
     padding: 0;
@@ -160,20 +206,6 @@
   }
 
 
-
-
-  input[type=checkbox] {
-    size: 30px;
-  }
-
-  input[type=text] {
-    width: 50%;
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 2px solid #ccc;
-    border-radius: 3px;
-  }
-
   label {
     margin-bottom: 10px;
     display: block;
@@ -186,7 +218,6 @@
 
   .address-summary {
     width: 500px;
-
     div {
       background: #ffffff;
 
@@ -196,7 +227,6 @@
     }
   }
 
-
   //floating panel on right throughout wizard
   .order-summary {
     width: 500px;
@@ -205,8 +235,6 @@
       padding: 5px 9px 12px 23px;
     }
   }
-
-
 }
 
 
