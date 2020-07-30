@@ -2,6 +2,10 @@
 import * as React from 'react';
 import './loading.scss';
 
+
+/**
+ * Basic spinner
+ */
 const LoadingView = () => {
 	return (
 		<div className="loading">

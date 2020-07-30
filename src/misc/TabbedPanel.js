@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 
-// import Tab from './Tab';
-
 import "./tabs.scss"
 
+
+/**
+ * Simple tabbed pane component
+ */
 
 export class Tabs extends Component {
 
@@ -60,11 +62,6 @@ export class Tabs extends Component {
 
 
 class Tab extends Component {
-	// static propTypes = {
-	// 	activeTab: PropTypes.string.isRequired,
-	// 	label: PropTypes.string.isRequired,
-	// 	onClick: PropTypes.func.isRequired,
-	// };
 
 	onClick = () => {
 		const { label, onClick } = this.props;
