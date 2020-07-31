@@ -17,7 +17,7 @@ export class Product1Step extends React.PureComponent<Props> {
 	render() {
 		return (
 				<div className="wizardPanel products1-step">
-					<h2 className="wizardHeader">Mains</h2>
+					<h2 className="wizardHeader">Our Selection Of Beers</h2>
 					<div className="wizardMain">
 						<div className="wizardCenter">
 							<ProductSelection productItems={this.props.productItems}/>
