@@ -35,7 +35,7 @@ describe('Routing test (next and back buttons)', () => {
 	it('tests the wizard navigability: clicks through next and back buttons ', () => {
 
 		expect(wrapper.find(".backButton")).toHaveLength(0);
-		expect(wrapper.find(".product-list-step")).toHaveLength(1); //mains
+		expect(wrapper.find(".product1-step")).toHaveLength(1); //mains
 		expect(wrapper.find(".nextButton")).toHaveLength(1);
 
 		wrapper.find('.nextButton').simulate('click', { button: 0 });
@@ -76,7 +76,7 @@ describe('Routing test (next and back buttons)', () => {
 
 		wrapper.find('.backButton').simulate('click', { button: 0 });
 
-		expect(wrapper.find(".product-list-step")).toHaveLength(1); //mains
+		expect(wrapper.find(".products1-step")).toHaveLength(1); //mains
 
 	});
 });

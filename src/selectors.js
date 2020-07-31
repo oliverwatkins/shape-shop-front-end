@@ -22,6 +22,11 @@ export const selectUserEmail = (state) => {
 
 export const selectProducts = (state) => state.products;
 
+export const selectOpenOrders = (orders) => orders.filter(o => o.state === "OPEN");
+
+export const selectClosedOrders = (orders) => orders.filter(o => o.state === "CLOSED");
+
+
 export const selectProductById = (state, id) => state.products.filter(product => product.id === id);
 
 // export const selectSelectedProducts = (state) => state.products.items.filter(product => product.quantity > 0  && product.type === "main");

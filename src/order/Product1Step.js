@@ -13,11 +13,10 @@ type Props = {
 	selectedProducts2: Array<Product>,
 }
 
-export class ProductList extends React.PureComponent<Props> {
+export class Product1Step extends React.PureComponent<Props> {
 	render() {
 		return (
-			<div className={"product-list-step"}>
-				<div className="wizardPanel">
+				<div className="wizardPanel products1-step">
 					<h2 className="wizardHeader">Mains</h2>
 					<div className="wizardMain">
 						<div className="wizardCenter">
@@ -26,13 +25,11 @@ export class ProductList extends React.PureComponent<Props> {
 						<div style={{textAlign: "right"}}>
 							<NextButton label={"next"} page={pages.DRINK_LIST}/>
 							<OrderSummary selectedProducts={this.props.selectedProducts} selectedProducts2={this.props.selectedProducts2}/>
-
 						</div>
 					</div>
 				</div>
-			</div>
 		);
 	}
 }
 
-export default ProductList;
+export default Product1Step;

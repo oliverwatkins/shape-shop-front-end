@@ -6,9 +6,11 @@ import {createFetchOrdersAction} from "./redux/adminActions";
 import "./admin.scss"
 import OrderPanel from "./OrderPanel";
 import {Tabs} from "../misc/TabbedPanel";
+import {selectClosedOrders, selectOpenOrders} from "../selectors";
 
 type Props = {
 	orders: Array<OrderState>,
+	closedOrders: Array<OrderState>,
 	fetchOrders: ()=>void,
 	dispatch: Function,
 	Authorization: string,
@@ -31,8 +33,13 @@ export class AdminScreen extends React.PureComponent<Props> {
 				<Tabs>
 					<div label={"Orders"}>
 						{this.props.orders && <h4>Current Open Orders</h4>}
-							<OrderPanel orders={this.props.orders}/>
+							<OrderPanel type={"open"} orders={this.props.orders}/>
 						{!this.props.orders && <div>we have no orders</div>}
+					</div>
+					<div label={"Closed Orders"}>
+						{this.props.closedOrders && <h4>Closed Orders</h4>}
+						<OrderPanel orders={this.props.closedOrders}/>
+						{!this.props.closedOrders && <div>no closed orders</div>}
 					</div>
 					<div label={"Settings"}>
 						<h3 style={{padding: "25px"}}>
@@ -59,7 +66,8 @@ export class AdminScreen extends React.PureComponent<Props> {
 
 const mapStateToProps = (state: AppState) => {
 	return {
-		orders: state.admin.orders,
+		orders: selectOpenOrders(state.admin.orders),
+		closedOrders: selectClosedOrders(state.admin.orders),
 		orderError: state.admin.orderError,
 		Authorization: state.login.loginToken,
 	};
