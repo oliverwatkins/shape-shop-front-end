@@ -1,6 +1,7 @@
 export const mockOrders = [
 	{
 		"id": 49,
+		"state": "OPEN",
 		"company": {
 			"id": 2,
 			"name": "higgins"
@@ -75,6 +76,7 @@ export const mockOrders = [
 	},
 	{
 		"id": 53,
+		"state": "OPEN",
 		"company": {
 			"id": 2,
 			"name": "higgins"
@@ -143,6 +145,7 @@ export const mockOrders = [
 	},
 	{
 		"id": 62,
+		"state": "OPEN",
 		"company": {
 			"id": 2,
 			"name": "higgins"
@@ -321,6 +324,7 @@ export const mockOrders = [
 	},
 	{
 		"id": 67,
+		"state": "OPEN",
 		"company": {
 			"id": 2,
 			"name": "higgins"
@@ -329,6 +333,97 @@ export const mockOrders = [
 		"addressEntity": {
 			"name": "Oliver Watkins",
 			"street": "Danklstr 12",
+			"postcode": "81371",
+			"telephone": "017670271260",
+			"email": "o_watkins@yahoo.com"
+		},
+		"orderItems": [
+			{
+				"id": 64,
+				"product": {
+					"id": 5,
+					"name": "Eclipse Black IPA",
+					"price": 3.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 65,
+				"product": {
+					"id": 6,
+					"name": "NEW Release! Outer Limit Session IPA",
+					"price": 1.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 66,
+				"product": {
+					"id": 14,
+					"name": "Beer Mats",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "beermat.jpg"
+				},
+				"amount": 1
+			}
+		],
+		"date": null,
+		"paymentType": "CASH",
+		"deliveryType": "DELIVERY",
+		"amount": null,
+		"selectedProducts": [
+			{
+				"id": 64,
+				"product": {
+					"id": 5,
+					"name": "Eclipse Black IPA",
+					"price": 3.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 65,
+				"product": {
+					"id": 6,
+					"name": "NEW Release! Outer Limit Session IPA",
+					"price": 1.5,
+					"type": "main",
+					"imageFilename": "beer.png"
+				},
+				"amount": 1
+			},
+			{
+				"id": 66,
+				"product": {
+					"id": 14,
+					"name": "Beer Mats",
+					"price": 12.5,
+					"type": "accessories",
+					"imageFilename": "beermat.jpg"
+				},
+				"amount": 1
+			}
+		],
+		"payment": "CASH"
+	},
+	{
+		"id": 167,
+		"state": "CLOSED",
+		"company": {
+			"id": 2,
+			"name": "higgins"
+		},
+		"creditCardEntity": null,
+		"addressEntity": {
+			"name": "Jane Goodall",
+			"street": "51 Gorilla Avenue",
 			"postcode": "81371",
 			"telephone": "017670271260",
 			"email": "o_watkins@yahoo.com"
