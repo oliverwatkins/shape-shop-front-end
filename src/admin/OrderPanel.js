@@ -10,6 +10,7 @@ import {faCreditCard} from "@fortawesome/free-solid-svg-icons";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import moment from "moment";
+import {calculateTotal, calculateTotal2} from "../order/utils";
 
 export default function OrderPanel(props) {
 	return (
@@ -34,6 +35,9 @@ export default function OrderPanel(props) {
 				<th>
 					cash/card
 				</th>
+
+				{props.type === "open" && <th>close</th>}
+
 			</tr>
 			</thead>
 			<tbody>
@@ -48,7 +52,7 @@ export default function OrderPanel(props) {
 					<td>
 						<ProductListPanel orderItems={order.orderItems}/>
 
-						<b>TOTAL PRICE : TODO </b>
+						<b>TOTAL PRICE : {calculateTotal2(order.orderItems)} </b>
 					</td>
 
 					<td className={"deliveryType"}>
@@ -69,6 +73,13 @@ export default function OrderPanel(props) {
 							<CardPanel creditCard={order.creditCardEntity}/>
 						</div>}
 					</td>
+
+					{props.type === "open" && <td>
+						<button>CLOSE</button>
+
+					</td>}
+
+
 				</tr>
 			)}
 			</tbody>
