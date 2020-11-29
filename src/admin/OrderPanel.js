@@ -1,16 +1,12 @@
 import * as React from "react";
 import {DeliveryType, PaymentType} from "../constants";
 
-import {faTruck} from "@fortawesome/free-solid-svg-icons";
-import {faHandHolding} from "@fortawesome/free-solid-svg-icons";
-import {faMoneyBill} from "@fortawesome/free-solid-svg-icons";
-
-import {faCreditCard} from "@fortawesome/free-solid-svg-icons";
+import {faCreditCard, faHandHolding, faMoneyBill, faTruck} from "@fortawesome/free-solid-svg-icons";
 
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import moment from "moment";
-import {calculateTotal, calculateTotal2} from "../order/utils";
+import {calculateTotal2} from "../order/utils";
 
 export default function OrderPanel(props) {
 	return (
@@ -73,13 +69,9 @@ export default function OrderPanel(props) {
 							<CardPanel creditCard={order.creditCardEntity}/>
 						</div>}
 					</td>
-
 					{props.type === "open" && <td>
 						<button>CLOSE</button>
-
 					</td>}
-
-
 				</tr>
 			)}
 			</tbody>

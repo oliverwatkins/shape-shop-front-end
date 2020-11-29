@@ -1,0 +1,24 @@
+window.addEventListener("load", function()
+{
+window.cookieconsent.initialise({
+  "palette": {
+    "popup": {
+      "background": "#000",
+		"text": "#fff"
+    },
+    "button": {
+      "background": "#fff",
+      "text": "#000"
+    }
+  },
+  "position": "bottom-left",
+  "content": {
+    "message": "Cookies erleichtern die Bereitstellung unserer Dienste. Mit der Nutzung unserer Dienste erklären Sie sich damit einverstanden, dass wir Cookies verwenden.",
+    "dismiss": "ok, akzeptieren und fortfahren",
+    "link": "mehr dazu lesen...",
+    "href": "datenschutz.html"
+  }
+})}
+);
+
+
