@@ -6,10 +6,11 @@ import type {Address, AppState, Product} from "../AppState";
 import {
 	selectOrder,
 	selectProductType,
-	selectSelectedProducts, selectSelectedProductType
+	selectSelectedProductType
 } from "../selectors";
 import {connect} from "react-redux";
 import {createPlaceOrderAction} from "./redux/productActions";
+import {useEffect} from "react";
 
 
 type Props = {
@@ -22,36 +23,29 @@ type Props = {
 	orderError: string,
 }
 
-export class OKStep extends React.PureComponent<Props> {
+function OKStep(props: Props) {
 
-	constructor(props) {
-		super();
+	useEffect(() => {
 		props.placeOrder(props.order);
-	}
+	}, []);
 
-	render() {
-		return (
-			<div className={"okPanel"}>
-
-				{this.props.orderError && <span className={"error"}>{this.props.orderError}</span>}
-
-				{this.props.submittingOrder && <LoadingView/>}
-				{!this.props.submittingOrder && !this.props.orderError &&
-					<div>
-						<div>
-							<h1>OK</h1>
-						</div>
-
-						Order has been placed!
-
-						<div>
-							<FontAwesomeIcon size={"10x"} color={"green"} className={"icon"} icon={faCheckCircle}/>
-						</div>
-					</div>
-				}
+	return (
+		<div className={"okPanel"}>
+			{props.orderError && <span className={"error"}>{props.orderError}</span>}
+			{props.submittingOrder && <LoadingView/>}
+			{!props.submittingOrder && !props.orderError &&
+			<div>
+				<div>
+					<h1>OK</h1>
+				</div>
+				Order has been placed!
+				<div>
+					<FontAwesomeIcon size={"10x"} color={"green"} className={"icon"} icon={faCheckCircle}/>
+				</div>
 			</div>
-		);
-	}
+			}
+		</div>
+	);
 }
 
 const mapDispatchToProps = dispatch => {
@@ -74,7 +68,6 @@ const mapStateToProps = (state: AppState) => {
 		paymentType: state.order && state.order.paymentType,
 		submittingOrder: state.order && state.order.submittingOrder,
 		orderError: state.order && state.order.orderError,
-
 	};
 };
 

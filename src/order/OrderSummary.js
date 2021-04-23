@@ -2,14 +2,12 @@ import * as React from 'react';
 import type {Product} from "../AppState";
 import {calculateTotal} from "./utils";
 
-
 type Props = {
 	selectedProducts: Array<Product>,
 	selectedProducts2: Array<Product>,
 }
 
 export function OrderSummary(props: Props) {
-
 	return (
 		<div className={"order-summary"}>
 			{/*<h4>Order : </h4>*/}
@@ -22,7 +20,6 @@ export function OrderSummary(props: Props) {
 					<td></td>
 				</tr>
 				}
-
 				{
 					props.selectedProducts2.map((elem: Product) => {
 						return <tr key={elem.name}>
@@ -33,9 +30,7 @@ export function OrderSummary(props: Props) {
 						</tr>
 					})
 				}
-
 				{props.selectedProducts && props.selectedProducts.length > 0 &&
-
 				<tr>
 					<td><h4>Mains </h4></td>
 					<td/>
@@ -43,7 +38,6 @@ export function OrderSummary(props: Props) {
 					<td/>
 				</tr>
 				}
-
 				{
 					props.selectedProducts.map((elem: Product) => {
 						return <tr key={elem.name}>
@@ -70,9 +64,6 @@ function priceTimesQty(p, qty) {
 	let t = p * qty
 	t = t.toFixed(2);
 	return t
-
 }
-
-
 
 export default OrderSummary;

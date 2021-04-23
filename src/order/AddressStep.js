@@ -22,175 +22,147 @@ type State = {
 	deliveryType: "DELIVERY" | "PICKUP",
 }
 
+function Address(props) {
 
-/**
- * TODO rename to Contact
- */
+	const [redirect, setRedirect]  = React.useState(false);
+	const [deliveryType, setDeliveryType]  = React.useState(DeliveryType.pickup);
 
-export class Address extends React.PureComponent<Props, State> {
-
-	constructor() {
-		super();
-		this.state = {
-			redirect: false,
-			deliveryType: DeliveryType.pickup,
-		}
+	function onRadioChanged(e) {
+		setDeliveryType(e.currentTarget.value)
+		props.updateDeliveryType(e.currentTarget.value)
 	}
 
-
-	setRedirect() {
-		this.setState({
-			redirect: true
-		})
+	if (redirect) {
+		return <Redirect to={pages.WHICH_PAYMENT}/>
 	}
 
-	onRadioChanged = (e) => {
-		// throw "errored"
-		this.setState({
-			deliveryType: e.currentTarget.value,
-		});
-		this.props.updateDeliveryType(e.currentTarget.value)
-	}
+	return (
+		<div className="wizardPanel address-step">
+			<h2 className={"wizardHeader"}>Delivery or Pickup?</h2>
+			<div className="wizardMain">
+				<BackButton page={pages.DRINK_LIST}/>
+				<div className="wizardCenter">
 
-	render() {
-		if (this.state.redirect) {
-			return <Redirect to={pages.WHICH_PAYMENT}/>
-		}
-
-
-		return (
-			<div className="wizardPanel address-step">
-
-				<h2 className={"wizardHeader"}>Delivery or Pickup?</h2>
-				<div className="wizardMain">
-					<BackButton page={pages.DRINK_LIST}/>
-					<div className="wizardCenter">
-
-						<div className="icon-container">
-							<FontAwesomeIcon icon={faTruck} style={{fontSize: "60px", color: "navy", margin: "25px"}}/>
-						</div>
-
-						<div className={"radioBox"}>
-							<input type="radio"
-										 id="contactChoice1"
-										 name="pckupOrDelivery"
-										 value={DeliveryType.pickup}
-										 onChange={this.onRadioChanged}
-										 checked={this.state.deliveryType === DeliveryType.pickup}/>
-							<label htmlFor="contactChoice1">Pickup</label>
-							<input type="radio"
-										 id="contactChoice2"
-										 name="pckupOrDelivery"
-										 value={DeliveryType.delivery}
-										 checked={this.state.deliveryType === DeliveryType.delivery}
-										 onChange={this.onRadioChanged}/>
-							<label htmlFor="contactChoice2">Delivery</label>
-						</div>
-						<Formik
-							initialValues={{email: '', street: '', name: '', telephone: '', postcode: ''}}
-							validate={validator}
-							onSubmit={(values, blah) => {
-								setTimeout(() => {
-									// alert(JSON.stringify(values, null, 2));
-									blah.setSubmitting(false);
-
-									this.props.updateAddress(values);
-									this.setRedirect()
-								}, 400);
-							}}>
-
-							{({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
-								<form onSubmit={handleSubmit} id="addressForm">
-									<div>
-										<label htmlFor="name">Name</label>
-										<input
-											id="name"
-											type="text"
-											name="name"
-											onChange={handleChange}
-											onBlur={handleBlur}
-											value={values.name}
-										/>
-										<span className={"error"}>
-									{errors.name && touched.name && errors.name}
-									</span>
-									</div>
-									{this.state.deliveryType && (this.state.deliveryType === DeliveryType.delivery) &&
-									<div>
-										<div>
-											<label htmlFor="street">Strasse</label>
-											<input
-												id="street"
-												type="text"
-												name="street"
-												onChange={handleChange}
-												onBlur={handleBlur}
-												value={values.street}
-											/>
-											<span className={"error"}>
-									{errors.street && touched.street && errors.street}
-									</span>
-										</div>
-										<div>
-											<label htmlFor="postcode">Postleitzahl</label>
-											<input
-												id="postcode"
-												type="text"
-												name="postcode"
-												onChange={handleChange}
-												onBlur={handleBlur}
-												value={values.postcode}
-											/>
-											<span className={"error"}>
-										{errors.postcode && touched.postcode && errors.postcode}
-										</span>
-										</div>
-									</div>
-									}
-									<div>
-										<label htmlFor="tel">Telefon</label>
-										<input
-											id="tel"
-											type="text"
-											name="telephone"
-											onChange={handleChange}
-											onBlur={handleBlur}
-											value={values.telephone}
-										/>
-										<span className={"error"}>
-										{errors.telephone && touched.telephone && errors.telephone}
-										</span>
-									</div>
-									<div>
-										<label htmlFor="email">Email</label>
-										<input
-											id="email"
-											type="text"
-											name="email"
-											onChange={handleChange}
-											onBlur={handleBlur}
-											value={values.email}
-										/>
-										<span className={"error"}>
-										{errors.email && touched.email && errors.email}
-										</span>
-									</div>
-									<button type="submit" disabled={isSubmitting}>
-										Submit
-									</button>
-								</form>
-							)}
-						</Formik>
+					<div className="icon-container">
+						<FontAwesomeIcon icon={faTruck} style={{fontSize: "60px", color: "navy", margin: "25px"}}/>
 					</div>
 
-					{/*<NextButton label={"next"} page={pages.ADDRESS}/>*/}
-					<NextButton label={"next"} type={"submit"} form={"addressForm"}/>
-				</div>
-			</div>
-		);
-	}
-}
+					<div className={"radioBox"}>
+						<input type="radio"
+							   id="contactChoice1"
+							   name="pckupOrDelivery"
+							   value={DeliveryType.pickup}
+							   onChange={onRadioChanged}
+							   checked={deliveryType === DeliveryType.pickup}/>
+						<label htmlFor="contactChoice1">Pickup</label>
+						<input type="radio"
+							   id="contactChoice2"
+							   name="pckupOrDelivery"
+							   value={DeliveryType.delivery}
+							   checked={deliveryType === DeliveryType.delivery}
+							   onChange={onRadioChanged}/>
+						<label htmlFor="contactChoice2">Delivery</label>
+					</div>
+					<Formik
+						initialValues={{email: '', street: '', name: '', telephone: '', postcode: ''}}
+						validate={validator}
+						onSubmit={(values, blah) => {
+							setTimeout(() => {
+								blah.setSubmitting(false);
+								props.updateAddress(values);
+								setRedirect(true)
+							}, 400);
+						}}>
 
+						{({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
+							<form onSubmit={handleSubmit} id="addressForm">
+								<div>
+									<label htmlFor="name">Name</label>
+									<input
+										id="name"
+										type="text"
+										name="name"
+										onChange={handleChange}
+										onBlur={handleBlur}
+										value={values.name}
+									/>
+									<span className={"error"}>
+								{errors.name && touched.name && errors.name}
+								</span>
+								</div>
+								{deliveryType && (deliveryType === DeliveryType.delivery) &&
+								<div>
+									<div>
+										<label htmlFor="street">Strasse</label>
+										<input
+											id="street"
+											type="text"
+											name="street"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.street}
+										/>
+										<span className={"error"}>
+								{errors.street && touched.street && errors.street}
+								</span>
+									</div>
+									<div>
+										<label htmlFor="postcode">Postleitzahl</label>
+										<input
+											id="postcode"
+											type="text"
+											name="postcode"
+											onChange={handleChange}
+											onBlur={handleBlur}
+											value={values.postcode}
+										/>
+										<span className={"error"}>
+									{errors.postcode && touched.postcode && errors.postcode}
+									</span>
+									</div>
+								</div>
+								}
+								<div>
+									<label htmlFor="tel">Telefon</label>
+									<input
+										id="tel"
+										type="text"
+										name="telephone"
+										onChange={handleChange}
+										onBlur={handleBlur}
+										value={values.telephone}
+									/>
+									<span className={"error"}>
+									{errors.telephone && touched.telephone && errors.telephone}
+									</span>
+								</div>
+								<div>
+									<label htmlFor="email">Email</label>
+									<input
+										id="email"
+										type="text"
+										name="email"
+										onChange={handleChange}
+										onBlur={handleBlur}
+										value={values.email}
+									/>
+									<span className={"error"}>
+									{errors.email && touched.email && errors.email}
+									</span>
+								</div>
+								<button type="submit" disabled={isSubmitting}>
+									Submit
+								</button>
+							</form>
+						)}
+					</Formik>
+				</div>
+				{/*<NextButton label={"next"} page={pages.ADDRESS}/>*/}
+				<NextButton label={"next"} type={"submit"} form={"addressForm"}/>
+			</div>
+		</div>
+	);
+}
 
 let validator = (values) => {
 	const errors = {};

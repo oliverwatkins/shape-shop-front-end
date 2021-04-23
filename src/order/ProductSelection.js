@@ -11,23 +11,21 @@ type Props = {
 	productItems: Array<Product>
 }
 
-export class ProductSelection extends React.PureComponent<Props> {
-	render() {
-		let items = this.props.productItems;
+function ProductSelection(props: Props) {
+	let items = props.productItems;
 
-		return (
-			<div>
-				<div className="product-selection">
-					{
-						items && items.map((e) => (
-							<ItemBox key={e.name} product={e} handleChangeSelection={this.props.updateProductSelection}/>
-							)
+	return (
+		<div>
+			<div className="product-selection">
+				{
+					items && items.map((e) => (
+						<ItemBox key={e.name} product={e} handleChangeSelection={props.updateProductSelection}/>
 						)
-					}
-				</div>
+					)
+				}
 			</div>
-		);
-	}
+		</div>
+	);
 }
 
 const mapDispatchToProps = dispatch => {

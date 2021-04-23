@@ -78,12 +78,10 @@ export default function OrderPanel(props) {
 						<button>CLOSE</button>
 
 					</td>}
-
-
 				</tr>
 			)}
-			</tbody>
-		</table>)
+		</tbody>
+	</table>)
 }
 
 

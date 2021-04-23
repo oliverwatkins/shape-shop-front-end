@@ -30,7 +30,6 @@ export const persistConfig = {
 //persist
 let CACHE = true;
 
-
 let reducers = combineReducers({
 	login,
 	products,
@@ -45,7 +44,6 @@ const sagaMiddleware = createSagaMiddleware();
 //for redux plugin
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-
 const store = createStore(pReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
 // const store = createStore(cr, composeEnhancers(applyMiddleware(sagaMiddleware)));
 const persistor = persistStore(store);
@@ -59,10 +57,7 @@ if (!CACHE) {
 	persistor.purge();
 }
 
-
-
 sagaMiddleware.run(saga);
-
 
 ReactDOM.render(
 	<Provider store={store}>

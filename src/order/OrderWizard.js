@@ -36,57 +36,51 @@ type Props = {
 	productsError: string,
 }
 
-export class OrderWizard extends React.PureComponent<Props> {
-	render() {
-
-		// if (this.props.productsError)
-		// 	alert("this.props.productsError")
-
-		return (
-			<div className={"order-wizard"}>
-				{this.props.productsError && <span className={"error"}>{this.props.productsError}</span>}
-				<Router>
-						<Switch>
-							<Route path={wizardPages.PRODUCT_LIST}>
-								<ProductListStep productItems={this.props.products}
-																 selectedProducts={this.props.selectedProducts}
-																 selectedProducts2={this.props.selectedProducts2}/>
-							</Route>
-							<Route path={wizardPages.DRINK_LIST}>
-								<Product2Step products2={this.props.products2} selectedProducts={this.props.selectedProducts}
-															selectedProducts2={this.props.selectedProducts2}
-									/>
-							</Route>
-							<Route path={wizardPages.ADDRESS}>
-								<Address/>
-							</Route>
-							<Route path={wizardPages.WHICH_PAYMENT}>
-								<WhichPayment/>
-							</Route>
-							<Route path={wizardPages.SUMMARY}>
-								<Summary
-									products={this.props.products}
-								 	selectedProducts={this.props.selectedProducts}
-									selectedProducts2={this.props.selectedProducts2}
-								 	address={this.props.address}
-									deliveryType={this.props.deliveryType}
-									paymentType={this.props.paymentType}
-								/>
-							</Route>
-							<Route path={wizardPages.OK}>
-								<OKStep/>
-							</Route>
-							<Route path={wizardPages.PAYMENT}>
-								<PaymentStep
-									selectedProducts={this.props.selectedProducts}
-									selectedProducts2={this.props.selectedProducts2}
-								/>
-							</Route>
-						</Switch>
-				</Router>
-			</div>
-		);
-	}
+function OrderWizard(props: Props) {
+	return (
+		<div className={"order-wizard"}>
+			{props.productsError && <span className={"error"}>{props.productsError}</span>}
+			<Router>
+				<Switch>
+					<Route path={wizardPages.PRODUCT_LIST}>
+						<ProductListStep productItems={props.products}
+										 selectedProducts={props.selectedProducts}
+										 selectedProducts2={props.selectedProducts2}/>
+					</Route>
+					<Route path={wizardPages.DRINK_LIST}>
+						<Product2Step products2={props.products2} selectedProducts={props.selectedProducts}
+									  selectedProducts2={props.selectedProducts2}
+						/>
+					</Route>
+					<Route path={wizardPages.ADDRESS}>
+						<Address/>
+					</Route>
+					<Route path={wizardPages.WHICH_PAYMENT}>
+						<WhichPayment/>
+					</Route>
+					<Route path={wizardPages.SUMMARY}>
+						<Summary
+							products={props.products}
+							selectedProducts={props.selectedProducts}
+							selectedProducts2={props.selectedProducts2}
+							address={props.address}
+							deliveryType={props.deliveryType}
+							paymentType={props.paymentType}
+						/>
+					</Route>
+					<Route path={wizardPages.OK}>
+						<OKStep/>
+					</Route>
+					<Route path={wizardPages.PAYMENT}>
+						<PaymentStep
+							selectedProducts={props.selectedProducts}
+							selectedProducts2={props.selectedProducts2}
+						/>
+					</Route>
+				</Switch>
+			</Router>
+		</div>
+	)
 }
 
 const mapStateToProps = (state: AppState) => {
