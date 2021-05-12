@@ -14,7 +14,7 @@ import Nav from "./Nav";
 
 import "./alpenhofCss.scss"
 
-import OrderWizard from "./order/OrderWizard";
+import OrderWizard from "./order/OrderWizardContainer";
 import Footer from "./Footer";
 import Logout from "./login/Logout";
 import {Logout2} from "./login/Logout2";

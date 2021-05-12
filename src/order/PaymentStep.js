@@ -5,7 +5,7 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import OrderSummary from "./OrderSummary";
 import {calculateTotal} from "./utils";
-import {wizardPages as pages} from "./OrderWizard";
+import {wizardPages as pages} from "./OrderWizardContainer";
 import {BackButton} from "./buttons/BackButton";
 
 import "./order.scss"

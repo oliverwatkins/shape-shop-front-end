@@ -58,14 +58,11 @@ const create = () => {
 		};
 	};
 
-
-
 	const logoutUser = Authorization => {
 		return {
 			status: 200
 		};
 	};
-
 
 	return {
 		placeOrder,

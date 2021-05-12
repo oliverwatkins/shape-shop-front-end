@@ -36,7 +36,7 @@ type Props = {
 	productsError: string,
 }
 
-function OrderWizard(props: Props) {
+function OrderWizardContainer(props: Props) {
 	return (
 		<div className={"order-wizard"}>
 			{props.productsError && <span className={"error"}>{props.productsError}</span>}
@@ -96,8 +96,7 @@ const mapStateToProps = (state: AppState) => {
 	};
 };
 
-
 export default connect(
 	mapStateToProps,
 	null,
-)(OrderWizard);
+)(OrderWizardContainer);

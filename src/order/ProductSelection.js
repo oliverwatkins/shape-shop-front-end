@@ -13,7 +13,6 @@ type Props = {
 
 function ProductSelection(props: Props) {
 	let items = props.productItems;
-
 	return (
 		<div>
 			<div className="product-selection">

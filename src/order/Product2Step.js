@@ -3,7 +3,7 @@ import ProductSelection from "./ProductSelection";
 import OrderSummary from "./OrderSummary";
 
 
-import {wizardPages as pages} from "./OrderWizard"
+import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import type {Product} from "../AppState";
 import {BackButton} from "./buttons/BackButton";

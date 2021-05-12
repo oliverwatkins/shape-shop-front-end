@@ -6,12 +6,6 @@ type Props = {
 }
 
 export function AddressSummary(props: Props) {
-
-	// alert("props " + JSON.stringify(props))
-	// let style = {
-	// 	background: "white",
-	// 	width: 500
-	// }
 	return (
 		<div className={"address-summary"}>
 			{props.address &&

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import OrderSummary from "./OrderSummary";
 import {NextButton} from "./buttons/NextButton";
-import {wizardPages as pages} from "./OrderWizard";
+import {wizardPages as pages} from "./OrderWizardContainer";
 import AddressSummary from "./AddressSummary";
 
 import {DeliveryType, PaymentType} from "../constants";
@@ -25,8 +25,7 @@ type Props = {
 	paymentType: string,
 }
 
-
-function Summary(props) {
+function Summary(props: Props) {
 	return (
 		<div className="wizardPanel summary-step">
 			<h2 className="wizardHeader">Summary</h2>

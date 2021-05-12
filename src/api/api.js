@@ -3,6 +3,22 @@ import * as constants from "../constants";
 
 
 
+
+export const AdminService = {
+	fetchOrders: async (handleResult: Function) => {
+		const result = await fetch('/' + constants.company + '/orders', {
+			method: "GET",
+			headers: [
+				["authorization", "???"]]
+		});
+		handleResult(result);
+	}
+};
+
+/**
+ * TODO convert all the API calls to how its done for AdminService
+ */
+
 const create = () => {
 
 	let api = getApiSauceInstance();

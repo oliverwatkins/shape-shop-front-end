@@ -10,3 +10,12 @@ uses netlify for deployment.
 https://www.netlify.com/blog/2016/07/22/deploy-react-apps-in-less-than-30-seconds/
 
 
+
+
+
+
+Connecting to Docker Container :
+
+
+
+

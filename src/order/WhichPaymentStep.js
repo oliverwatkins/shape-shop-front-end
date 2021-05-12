@@ -1,22 +1,16 @@
 import * as React from 'react';
 
-import {wizardPages as pages} from "./OrderWizard"
+import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
-// import PaymentStep from "./PaymentPanel";
 import {connect} from "react-redux";
 import {DeliveryType, PaymentType} from "../constants";
-import {deliveryTypes} from "./AddressStep";
 import {createUpdatePaymentType} from "./redux/productActions";
 
 type Props = {
 	updatePaymentType: (value)=>void
 }
 
-type State = {
-	redirect: boolean,
-	paymentType: string,
-}
 
 function WhichPayment(props: Props) {
 

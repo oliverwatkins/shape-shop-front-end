@@ -7,7 +7,7 @@ import "./order.scss"
 import {Redirect} from "react-router";
 import {createUpdateAddress, createUpdateDeliveryType} from "./redux/productActions";
 import {connect} from "react-redux";
-import {wizardPages as pages} from "./OrderWizard"
+import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
 import {DeliveryType} from "../constants";

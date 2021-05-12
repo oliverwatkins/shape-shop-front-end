@@ -8,6 +8,7 @@ import OrderPanel from "./OrderPanel";
 import {Tabs} from "../misc/TabbedPanel";
 import {selectClosedOrders, selectOpenOrders} from "../selectors";
 import {useEffect} from "react";
+import {TestEffect} from "./TestEffect";
 
 type Props = {
 	orders: Array<OrderState>,
@@ -54,6 +55,9 @@ function AdminScreen(props: Props) {
 							   value={"-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- "}
 						/>
 					</div>
+				</div>
+				<div label={"Testing something"}>
+					<TestEffect/>
 				</div>
 			</Tabs>
 		</div>
