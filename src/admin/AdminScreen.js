@@ -7,6 +7,8 @@ import "./admin.scss"
 import OrderPanel from "./OrderPanel";
 import {Tabs} from "../misc/TabbedPanel";
 import {selectClosedOrders, selectOpenOrders} from "../selectors";
+import {useEffect} from "react";
+import {TestEffect} from "./TestEffect";
 
 type Props = {
 	orders: Array<OrderState>,
@@ -17,51 +19,49 @@ type Props = {
 	orderError: string
 }
 
+function AdminScreen(props: Props) {
 
-export class AdminScreen extends React.PureComponent<Props> {
+	useEffect(() => {
+		props.dispatch(createFetchOrdersAction(props.Authorization));
+	}, []);
 
-	componentDidMount() {
-			this.props.dispatch(createFetchOrdersAction(this.props.Authorization));
-	}
-
-	render() {
-		return (
-			<div className={"admin-screen"}>
-				<h1>Admin Screen</h1>
-
-				{this.props.orderError && <span className={"error"}>{this.props.orderError}</span>}
-				<Tabs>
-					<div label={"Orders"}>
-						{this.props.orders && <h4>Current Open Orders</h4>}
-							<OrderPanel type={"open"} orders={this.props.orders}/>
-						{!this.props.orders && <div>we have no orders</div>}
+	return (
+		<div className={"admin-screen"}>
+			<h1>Admin Screen</h1>
+			{props.orderError && <span className={"error"}>{props.orderError}</span>}
+			<Tabs>
+				<div label={"Orders"}>
+					{props.orders && <h4>Current Open Orders</h4>}
+					<OrderPanel type={"open"} orders={props.orders}/>
+					{!props.orders && <div>we have no orders</div>}
+				</div>
+				<div label={"Closed Orders"}>
+					{props.closedOrders && <h4>Closed Orders</h4>}
+					<OrderPanel orders={props.closedOrders}/>
+					{!props.closedOrders && <div>no closed orders</div>}
+				</div>
+				<div label={"Settings"}>
+					<h3 style={{padding: "25px"}}>
+						Marquee on/off :
+					</h3>
+					<div style={{padding: "25px"}}>
+						<input
+							style={{padding: "5px"}}
+							type="checkbox" />
+						<input style={{margin: "5px", width: "700px"}}
+							   id="street"
+							   type="text"
+							   name="street"
+							   value={"-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- "}
+						/>
 					</div>
-					<div label={"Closed Orders"}>
-						{this.props.closedOrders && <h4>Closed Orders</h4>}
-						<OrderPanel orders={this.props.closedOrders}/>
-						{!this.props.closedOrders && <div>no closed orders</div>}
-					</div>
-					<div label={"Settings"}>
-						<h3 style={{padding: "25px"}}>
-							Marquee on/off :
-						</h3>
-
-						<div style={{padding: "25px"}}>
-							<input
-								style={{padding: "5px"}}
-								type="checkbox" />
-							<input style={{margin: "5px", width: "700px"}}
-										 id="street"
-										 type="text"
-										 name="street"
-										 value={"-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- "}
-							/>
-						</div>
-					</div>
-				</Tabs>
-			</div>
-		);
-	}
+				</div>
+				<div label={"Testing something"}>
+					<TestEffect/>
+				</div>
+			</Tabs>
+		</div>
+	);
 }
 
 const mapStateToProps = (state: AppState) => {

@@ -17,7 +17,7 @@ import WhichPaymentStep from "../WhichPaymentStep";
 
 Enzyme.configure({adapter: new Adapter()});
 
-xdescribe('Payment Step test', () => {
+describe('Payment Step test', () => {
 	let wrapper;
 	const mockStore = configureStore();
 

@@ -5,7 +5,7 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import OrderSummary from "./OrderSummary";
 import {calculateTotal} from "./utils";
-import {wizardPages as pages} from "./OrderWizard";
+import {wizardPages as pages} from "./OrderWizardContainer";
 import {BackButton} from "./buttons/BackButton";
 
 import "./order.scss"
@@ -28,34 +28,30 @@ type Props = {
 	creditCardEntity: Object
 }
 
-export class PaymentStep extends React.PureComponent<Props> {
-
-	render() {
-
-		if(this.props.creditCardEntity){
-			return <Redirect to="/order/OK/" />
-		}
-
-		return (
-			<div className="wizardPanel payment-panel">
-				<h2 className="wizardHeader">Credit Card Payment</h2>
-				<div className="wizardMain">
-					<BackButton page={pages.SUMMARY}/>
-					<div className="wizardCenter">
-						<div className={"description"}>
-							Please enter your credit card details and click 'Pay'
-						</div>
-						<div className={"stripe-payment-panel"}>
-							<Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-								<CheckoutForm updateCC={this.props.updateCC} amount={calculateTotal(this.props.selectedProducts, this.props.selectedProducts2)}/>
-							</Elements>
-						</div>
-					</div>
-					<OrderSummary selectedProducts={this.props.selectedProducts} selectedProducts2={this.props.selectedProducts2}/>
-				</div>
-			</div>
-		);
+function PaymentStep(props: Props) {
+	if(props.creditCardEntity){
+		return <Redirect to="/order/OK/" />
 	}
+
+	return (
+		<div className="wizardPanel payment-panel">
+			<h2 className="wizardHeader">Credit Card Payment</h2>
+			<div className="wizardMain">
+				<BackButton page={pages.SUMMARY}/>
+				<div className="wizardCenter">
+					<div className={"description"}>
+						Please enter your credit card details and click 'Pay'
+					</div>
+					<div className={"stripe-payment-panel"}>
+						<Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
+							<CheckoutForm updateCC={props.updateCC} amount={calculateTotal(props.selectedProducts, props.selectedProducts2)}/>
+						</Elements>
+					</div>
+				</div>
+				<OrderSummary selectedProducts={props.selectedProducts} selectedProducts2={props.selectedProducts2}/>
+			</div>
+		</div>
+	);
 }
 
 const ELEMENTS_OPTIONS = {

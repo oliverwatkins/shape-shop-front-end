@@ -74,8 +74,8 @@ export default function OrderPanel(props) {
 					</td>}
 				</tr>
 			)}
-			</tbody>
-		</table>)
+		</tbody>
+	</table>)
 }
 
 

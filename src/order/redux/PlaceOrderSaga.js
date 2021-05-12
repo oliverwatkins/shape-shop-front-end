@@ -18,7 +18,6 @@ export default api => {
 	function* placeOrder(orderData) {
 		try {
 			console.info("orderData before : " + JSON.stringify(orderData))
-
 			let prods = [
 				...orderData.value.selectedProducts,
 				...orderData.value.selectedProducts2,

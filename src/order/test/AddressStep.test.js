@@ -7,15 +7,12 @@ import {renderToStaticMarkup} from "react-dom/server";
 import AddressStep from "../AddressStep";
 import {MemoryRouter} from "react-router-dom";
 
-
 // import { createMemoryHistory } from 'history'
-
 Enzyme.configure({adapter: new Adapter()});
 
 describe('Address Step test', () => {
 	let wrapper;
 	const mockStore = configureStore();
-
 
 	const store = mockStore({
 		products: {
@@ -56,7 +53,6 @@ describe('Address Step test', () => {
 		},
 		user: Function, //??
 	});
-
 
 	beforeEach(() => {
 		wrapper = mount(

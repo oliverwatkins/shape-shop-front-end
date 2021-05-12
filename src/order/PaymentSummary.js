@@ -7,13 +7,11 @@ import {loadStripe} from '@stripe/stripe-js';
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
-export class PaymentSummary extends React.PureComponent {
-	render() {
-		return (
-			<div style={{display: "flex"}} className="wizardPanel">
-			</div>
-		);
-	}
+function PaymentSummary(props) {
+	return (
+		<div style={{display: "flex"}} className="wizardPanel">
+		</div>
+	);
 }
 
 export default PaymentSummary;

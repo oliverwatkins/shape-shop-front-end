@@ -1,6 +1,7 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 
 import {Actions, createFetchProductsErrorAction, createFetchProductsSuccessAction} from './productActions';
+import {mockProds} from "../../__mock__/mockProducts";
 
 export default api => {
 	function* getProductsWatcher() {
@@ -9,7 +10,16 @@ export default api => {
 
 	function* getProducts({ Authorization }) {
 		try {
-			const response = yield call(api.fetchProducts, { Authorization });
+
+			// TODO temp -
+			const fetchProducts = () => {
+				return {
+					status: 200,
+					data: mockProds
+				};
+			};
+
+			const response = yield call(fetchProducts, { Authorization });
 
 			if (response.status === 200) {
 				yield put(createFetchProductsSuccessAction(response.data));
