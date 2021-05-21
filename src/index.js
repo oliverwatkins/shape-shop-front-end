@@ -28,7 +28,7 @@ export const persistConfig = {
 };
 
 //persist
-let CACHE = true;
+let CACHE = false;
 
 let reducers = combineReducers({
 	login,

@@ -2,17 +2,69 @@ import getApiSauceInstance from '../api/getApiSauceInstance';
 import * as constants from "../constants";
 
 
+let baseURL = 'http://localhost:8080/';
+
+export const ShapeShopService = {
+	fetchProducts: async () => {
+		return await fetch(baseURL + constants.company + '/products', {
+			method: "GET",
+			headers: {
+				'Content-Type': 'application/json'
+			}
+		}).then(response => {
+			return response.json()
+		}).then(data => {
+				return {
+					status:200,
+					data: data
+				}
+			}
+		)
+	},
 
 
-export const AdminService = {
-	fetchOrders: async (handleResult: Function) => {
-		const result = await fetch('/' + constants.company + '/orders', {
+	// const fetchOrders = (Authorization) => {
+	// 	api.setHeaders({fetchProducts
+	// 			Authorization: "Bearer " + Authorization.token
+	// 		}
+	// 	);
+	// 	return api.get('/' + constants.company + '/orders').then(response => response);
+	// };
+
+	// http://localhost:8080';
+
+	fetchOrders: async (handleResult: Function, Authorization) => {
+		const result = await fetch('http://localhost:8080/' + constants.company + '/orders', {
 			method: "GET",
 			headers: [
-				["authorization", "???"]]
+				["Authorization", "Bearer " + Authorization.token]]
 		});
 		handleResult(result);
+	},
+	loginUser: async (credentials) => {
+		// console.info(" " + JSON.stringify("credentialis " + credentials))
+		//
+		//
+		// const result = await fetch('/' + constants.company + '/orders', {
+		// 	method: "GET",
+		// 	headers: [
+		// 		["authorization", "???"]]
+		// });
+		// handleResult(result);
+		//
+		// ////
+		//
+		// api.setHeaders({
+		// 		Authorization: null
+		// 	}
+		// );
+		//
+		// return api.post('/authenticate', credentials).then(response => {
+		// 	return response;
+		// });
 	}
+
+
 };
 
 /**
@@ -53,6 +105,9 @@ const create = () => {
 	};
 
 	const fetchProducts = () => {
+
+		console.info("fetchProducts API " + fetchProducts)
+
 		return api.get('/' + constants.company + '/products').then(response => response);
 	};
 

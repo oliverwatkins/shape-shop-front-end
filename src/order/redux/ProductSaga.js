@@ -2,6 +2,7 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 
 import {Actions, createFetchProductsErrorAction, createFetchProductsSuccessAction} from './productActions';
 import {mockProds} from "../../__mock__/mockProducts";
+import {ShapeShopService} from "../../api/api";
 
 export default api => {
 	function* getProductsWatcher() {
@@ -11,17 +12,13 @@ export default api => {
 	function* getProducts({ Authorization }) {
 		try {
 
-			// TODO temp -
-			const fetchProducts = () => {
-				return {
-					status: 200,
-					data: mockProds
-				};
-			};
-
-			const response = yield call(fetchProducts, { Authorization });
+			const response = yield call(ShapeShopService.fetchProducts, { Authorization });
+			// const response = yield call(api.fetchProducts, { Authorization });
 
 			if (response.status === 200) {
+
+
+
 				yield put(createFetchProductsSuccessAction(response.data));
 
 				console.info("success : " + response.data)
@@ -29,9 +26,7 @@ export default api => {
 				yield put(createFetchProductsErrorAction(response.data));
 			}
 		} catch (e) {
-			console.error('Error fetching shops!!');
-			debugger;
-
+			console.error('Error fetching products!!');
 			console.error(e);
 		}
 	}

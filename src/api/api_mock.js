@@ -4,6 +4,28 @@
 import {mockProds} from "../__mock__/mockProducts";
 import {mockOrders} from "../__mock__/mockOrders";
 import {ADMIN_TOKEN2} from "../__mock__/testTokens";
+import * as constants from "../constants";
+
+// const fetchOrders = () => {
+// 	return {
+// 		status: 200,
+// 		data: mockOrders
+// 	};
+// };
+
+
+export const ShapeShopService = {
+	fetchOrders: async (handleResult: Function) => {
+		const result = await fetch('/' + constants.company + '/orders', {
+			method: "GET",
+			headers: [
+				["authorization", "???"]]
+		});
+		handleResult(result);
+	}
+};
+
+
 
 const create = () => {
 
@@ -45,6 +67,9 @@ const create = () => {
 	};
 
 	const fetchProducts = () => {
+
+		console.info("fetchProducts MOCK ")
+
 		return {
 			status: 200,
 			data: mockProds
