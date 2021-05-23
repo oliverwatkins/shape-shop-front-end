@@ -11,10 +11,10 @@ export function createFetchProductsSuccessAction(data) {
 	};
 }
 
-export function createFetchProductsErrorAction(response, value)  {
+export function createFetchProductsErrorAction(response)  {
 	return {
 		type: Actions.FETCH_PRODUCTS_ERROR,
-		value: value
+		value: response
 	};
 }
 

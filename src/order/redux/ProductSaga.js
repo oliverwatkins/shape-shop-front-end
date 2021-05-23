@@ -11,16 +11,10 @@ export default api => {
 
 	function* getProducts({ Authorization }) {
 		try {
-
-			const response = yield call(ShapeShopService.fetchProducts, { Authorization });
-			// const response = yield call(api.fetchProducts, { Authorization });
+			const response = yield call(api.fetchProducts, { Authorization });
 
 			if (response.status === 200) {
-
-
-
 				yield put(createFetchProductsSuccessAction(response.data));
-
 				console.info("success : " + response.data)
 			} else {
 				yield put(createFetchProductsErrorAction(response.data));

@@ -1,6 +1,8 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 
 import {Actions, createFetchOrdersFailAction, createFetchOrdersSuccessAction} from './adminActions';
+import {ShapeShopService} from "../../api/api";
+import {toast} from "react-toastify";
 
 export default api => {
 	function* getOrdersWatcher() {
@@ -13,7 +15,9 @@ export default api => {
 			console.info("action.Authorization.token " + action.Authorization.token);
 
 			if (!action.Authorization.token)
-				yield put(createFetchOrdersFailAction({}, "No token"));
+				yield put(createFetchOrdersFailAction({}, "No authorisation token supplied"));
+
+			// const response = yield call(api.fetchOrders, action.Authorization);
 
 			const response = yield call(api.fetchOrders, action.Authorization);
 
@@ -28,14 +32,15 @@ export default api => {
 				yield put(createFetchOrdersFailAction(response.data, "500 Internal Server Error "));
 			} else {
 				console.error(JSON.stringify(response))
-				yield put(createFetchOrdersFailAction(response.data, "Unknown Error "+ JSON.stringify(response)));
+				yield put(createFetchOrdersFailAction(response.data, "Unknown Error Y "+ JSON.stringify(response)));
 			}
 		} catch (e) {
+
 			console.error('Error fetching orders!!');
 			console.error(e);
+			yield put(createFetchOrdersFailAction("", "Unknown Error X " + e.message));
 		}
 	}
-
 	return {
 		getProductsWatcher: getOrdersWatcher,
 	};

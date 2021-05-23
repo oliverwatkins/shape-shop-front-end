@@ -15,8 +15,8 @@ type Props = {
 	closedOrders: Array<OrderState>,
 	fetchOrders: ()=>void,
 	dispatch: Function,
-	Authorization: string,
-	orderError: string
+	Authorization: string
+	// orderError: string
 }
 
 function AdminScreen(props: Props) {
@@ -28,7 +28,7 @@ function AdminScreen(props: Props) {
 	return (
 		<div className={"admin-screen"}>
 			<h1>Admin Screen</h1>
-			{props.orderError && <span className={"error"}>{props.orderError}</span>}
+			{/*{props.orderError && <span className={"error"}>{props.orderError}</span>}*/}
 			<Tabs>
 				<div label={"Orders"}>
 					{props.orders && <h4>Current Open Orders</h4>}
@@ -68,7 +68,7 @@ const mapStateToProps = (state: AppState) => {
 	return {
 		orders: selectOpenOrders(state.admin.orders),
 		closedOrders: selectClosedOrders(state.admin.orders),
-		orderError: state.admin.orderError,
+		// orderError: state.admin.orderError,
 		Authorization: state.login.loginToken,
 	};
 };

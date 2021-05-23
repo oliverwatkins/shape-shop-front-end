@@ -8,7 +8,7 @@ import ordersSaga from '../admin/redux/OrdersSaga'
 //hack to make sagas work. https://github.com/redux-saga/redux-saga/issues/280
 import "regenerator-runtime/runtime";
 
-import api from '../api/api';
+import api, {ShapeShopService, ShapeShopService_MOCK} from '../api/api';
 import api_mock from '../api/api_mock';
 import {MOCK_MODE} from "../constants";
 
@@ -16,9 +16,9 @@ import {MOCK_MODE} from "../constants";
 let apiInstance;
 
 if (MOCK_MODE) {
-	apiInstance = api_mock.create();
+	apiInstance = ShapeShopService_MOCK;
 } else {
-	apiInstance = api.create();
+	apiInstance = ShapeShopService;
 }
 
 

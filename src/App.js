@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 //TODO change to hashrouter
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 
+import "react-toastify/dist/ReactToastify.css";
+
 
 import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
@@ -19,6 +21,7 @@ import Footer from "./Footer";
 import Logout from "./login/Logout";
 import {Logout2} from "./login/Logout2";
 import AdminScreen from "./admin/AdminScreen";
+import {ToastContainer} from "react-toastify";
 
 
 class App extends React.PureComponent{
@@ -28,13 +31,24 @@ class App extends React.PureComponent{
 
   render() {
     return (
+
       <div className="App">
           <div>
             <Nav/>
             <div className={"marquee"} >
               <p>-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- </p>
             </div>
-
+            <ToastContainer
+                position="top-right"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+            />
             <Switch>
               <Route path="/admin">
                 <AdminScreen/>
@@ -59,7 +73,7 @@ class App extends React.PureComponent{
           </div>
         <Footer>xxxx</Footer>
       </div>
-    );
+  );
   }
 }
 

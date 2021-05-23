@@ -1,6 +1,7 @@
 import {Actions} from './productActions';
 
 import type {ProductsState} from "../../AppState";
+import {Notify} from "../../notify";
 
 
 export function reducer(state:ProductsState = initialState, action) {
@@ -13,6 +14,9 @@ export function reducer(state:ProductsState = initialState, action) {
 			};
 
 		case Actions.FETCH_PRODUCTS_ERROR:
+
+			Notify.error(action.errorMsg)
+
 			return {
 				...state,
 				items: [],
