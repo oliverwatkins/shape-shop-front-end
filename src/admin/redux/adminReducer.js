@@ -6,19 +6,16 @@ import {Notify} from "../../notify";
 export function reducer(state: OrderState = initialState , action) {
 	switch (action.type) {
 		case Actions.FETCH_ORDERS_SUCCESS:
-
-			toast.success("MY SUCCESS");
-
 			return {
 				...state,
 				orders: action.data,
 			};
 		case Actions.FETCH_ORDERS_FAIL:
-			Notify.error(action.errorMsg)
+			Notify.error(action.errorMessage)
 			return {
 				...state,
 				orders: [],
-				orderError: action.errorMsg,
+				orderError: action.errorMessage,
 			};
 		default :
 			return state;

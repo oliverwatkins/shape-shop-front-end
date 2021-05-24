@@ -12,11 +12,10 @@ export function createFetchOrdersSuccessAction(data) {
 		data,
 	};
 }
-export function createFetchOrdersFailAction(data, msg) {
+export function createFetchOrdersFailAction(errorMessage: string) {
 	return {
 		type: Actions.FETCH_ORDERS_FAIL,
-		data,
-		errorMsg: msg
+		errorMessage: errorMessage
 	};
 }
 

@@ -1,10 +1,10 @@
 import React from 'react';
 
 import {Link} from "react-router-dom";
-import {MOCK_MODE} from "./constants";
 import {isUserLoggedIn, selectUserEmail} from "./selectors";
 import {connect} from "react-redux";
 import "./nav.scss"
+import {MOCK_MODE} from "./constants";
 
 type Props = {
 	isUserLoggedIn: boolean,

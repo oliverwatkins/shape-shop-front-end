@@ -50,11 +50,6 @@ export class BasicLoginForm extends React.PureComponent<Props, State> {
 		return (
 			<div>
 				<h1>Login </h1>
-
-				{this.props.loginError &&
-				<span className={"error"}>{this.props.loginError}</span>
-				}
-
 				<form onSubmit={this.onSubmit} className={"loginForm"}>
 					<div className="container">
 						<label htmlFor="uname"><b>Username</b></label>

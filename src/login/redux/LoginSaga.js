@@ -31,34 +31,31 @@ export default api => {
 
 			console.info(JSON.stringify(response));
 
-			if (response.ok) {
-				if (!response.data.jwt) {
-					yield put(createLoginFailAction());
-				}
-
-				const decodedToken = jwtDecode(response.data.jwt);
-
-				const userCredentials = {
-					...credentials,
-					token: response.data.jwt,
-					role: decodedToken.scopes,
-					// status: decodedToken.status,
-				};
-
-				delete userCredentials.password;
-
-				if (decodedToken.scopes === "ROLE_ADMIN") {
-					// yield put(getAdminDetails(userCredentials.token, userCredentials.role));
-					yield put(createLoginSuccessAction(userCredentials)); //this is being caught by the reducer and put into storage!
-				} else {
-					yield put(createLoginFailAction());
-					throw new Error('Unknown user role type');
-				}
-			} else {
+			if (!response.data.jwt) {
 				yield put(createLoginFailAction());
 			}
+
+			const decodedToken = jwtDecode(response.data.jwt);
+
+			const userCredentials = {
+				...credentials,
+				token: response.data.jwt,
+				role: decodedToken.scopes,
+				// status: decodedToken.status,
+			};
+
+			delete userCredentials.password;
+
+			if (decodedToken.scopes === "ROLE_ADMIN") {
+				// yield put(getAdminDetails(userCredentials.token, userCredentials.role));
+				yield put(createLoginSuccessAction(userCredentials)); //this is being caught by the reducer and put into storage!
+			} else {
+				yield put(createLoginFailAction());
+				throw new Error('Unknown user role type');
+			}
 		} catch (e) {
-			throw new Error(e);
+			console.error(e)
+			yield put(createLoginFailAction(e.message));
 		}
 	}
 

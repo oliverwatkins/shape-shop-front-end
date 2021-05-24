@@ -6,32 +6,16 @@ import {mockOrders} from "../__mock__/mockOrders";
 import {ADMIN_TOKEN2} from "../__mock__/testTokens";
 import * as constants from "../constants";
 
-// const fetchOrders = () => {
-// 	return {
-// 		status: 200,
-// 		data: mockOrders
-// 	};
-// };
+interface APIinteface {
+	// TODO
+	// loginUser(string): string;
+}
 
+const ADMIN_TOKEN = ADMIN_TOKEN2
 
-export const ShapeShopService = {
-	fetchOrders: async (handleResult: Function) => {
-		const result = await fetch('/' + constants.company + '/orders', {
-			method: "GET",
-			headers: [
-				["authorization", "???"]]
-		});
-		handleResult(result);
-	}
-};
+export const ShapeShopService_MOCK: APIinteface = {
 
-
-
-const create = () => {
-
-	const ADMIN_TOKEN = ADMIN_TOKEN2
-
-	const loginUser = credentials => {
+	loginUser : credentials => {
 
 		let response
 
@@ -50,23 +34,22 @@ const create = () => {
 			};
 		}
 		return response;
-	};
+	},
 
-	const merchantDetails = Authorization => {
+	placeOrder : () => {
 		return {
 			status: 200,
-			data: merchantData,
+			data: "tododooooo"
 		};
-	};
+	},
 
-	const fetchOrders = () => {
+	logoutUser : Authorization => {
 		return {
-			status: 200,
-			data: mockOrders
+			status: 200
 		};
-	};
+	},
 
-	const fetchProducts = () => {
+	fetchProducts: () => {
 
 		console.info("fetchProducts MOCK ")
 
@@ -74,65 +57,70 @@ const create = () => {
 			status: 200,
 			data: mockProds
 		};
-	};
+	},
 
-	const placeOrder = () => {
+	fetchOrders: () => {
 		return {
 			status: 200,
-			data: "tododooooo"
+			data: mockOrders
 		};
-	};
+	}
+}
 
-	const logoutUser = Authorization => {
-		return {
-			status: 200
-		};
-	};
+//
+// const create = () => {
+//
+// 	const ADMIN_TOKEN = ADMIN_TOKEN2
+//
+// 	const loginUser = credentials => {
+//
+// 		let response
+//
+// 		if ((credentials.username == "admin") && (credentials.password == "admin")) {
+// 			response = {
+// 				ok: true,
+// 				status: 200,
+// 				data: {
+// 					jwt: ADMIN_TOKEN,
+// 				},
+// 			};
+// 		} else {
+// 			response = {
+// 				ok: false,
+// 				status: 500,
+// 			};
+// 		}
+// 		return response;
+// 	};
+//
+//
+//
+//
+// 	const placeOrder = () => {
+// 		return {
+// 			status: 200,
+// 			data: "tododooooo"
+// 		};
+// 	};
+//
+// 	const logoutUser = Authorization => {
+// 		return {
+// 			status: 200
+// 		};
+// 	};
+//
+// 	return {
+// 		placeOrder,
+// 		logoutUser,
+// 		loginUser,
+// 		fetchProducts,
+// 		merchantDetails,
+// 		fetchOrders
+// 	};
+// };
+//
+// export default {
+// 	create,
+// };
 
-	return {
-		placeOrder,
-		logoutUser,
-		loginUser,
-		fetchProducts,
-		merchantDetails,
-		fetchOrders
-	};
-};
 
-export default {
-	create,
-};
-
-
-let merchantData = {
-	email: 'asdf@asdf.asdf',
-	firstName: 'Mr Mock',
-	lastName: 'asdf',
-	address: {
-		additionalAddress: 'string',
-		city: 'Timbuktoo',
-		country: 'de',
-		postalCode: '23452',
-		street: 'company street',
-	},
-	companyAddress: {
-		additionalAddress: 'additional somehwereqwer2',
-		city: 'Timbuktoo',
-		country: 'de',
-		postalCode: '98765',
-		street: 'company street',
-	},
-	cashBackRate: 55,
-	companyFirstName: 'company first name',
-	companyLastName: 'company last name',
-	companyName: 'company name',
-	dateOfBirth: '12/12/1988',
-	paymentInformation: {
-		accountHolder: 'commerzbank company',
-		bic: '1236666',
-		iban: '1236666COM12333',
-		taxId: '91212312341234',
-	},
-	telephoneNumber: '123442323',
-	wantNewsLetter: true,
-};

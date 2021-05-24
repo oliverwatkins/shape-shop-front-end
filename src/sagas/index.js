@@ -8,8 +8,8 @@ import ordersSaga from '../admin/redux/OrdersSaga'
 //hack to make sagas work. https://github.com/redux-saga/redux-saga/issues/280
 import "regenerator-runtime/runtime";
 
-import api, {ShapeShopService, ShapeShopService_MOCK} from '../api/api';
-import api_mock from '../api/api_mock';
+import {ShapeShopService} from '../api/api';
+import {ShapeShopService_MOCK} from '../api/api_mock';
 import {MOCK_MODE} from "../constants";
 
 
@@ -31,6 +31,4 @@ export default function* root() {
 	yield fork(productSaga(apiInstance).getProductsWatcher);
 	yield fork(ordersSaga(apiInstance).getProductsWatcher);
 	yield fork(placeOrderSaga(apiInstance).placeOrderWatcher);
-	// yield fork(merchantSaga(apiInstance).merchantDetailsWatcher);
-
 }

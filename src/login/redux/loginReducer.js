@@ -1,6 +1,7 @@
 import {LoginActions} from './loginActions';
 import type {LoginState} from "../../AppState";
 import { browserHistory } from 'react-router'
+import {Notify} from "../../notify";
 
 export function reducer(state: LoginState = initialState, action) {
 
@@ -16,11 +17,14 @@ export function reducer(state: LoginState = initialState, action) {
 				logout: null,
 			};
 		case LoginActions.LOGIN_FAIL:
+
+			Notify.error(action.errorMessage)
+
 			return {
 				...state,
 				loginToken: null,
 				role: false,
-				loginError: "Error logging in",
+				loginError: "Error logging  do we NEEDTHIS?",
 				loggingIn: false,
 			};
 		case LoginActions.LOGOUT:
@@ -31,12 +35,6 @@ export function reducer(state: LoginState = initialState, action) {
 		case LoginActions.LOGOUT_SUCCESS:
 			return {
 				loginToken: {},
-			};
-
-		case LoginActions.GET_MERCHANT_DETAILS_SUCCESS:
-			return {
-				...state,
-				...action.data,
 			};
 		default :
 			return state;

@@ -15,19 +15,12 @@ export function createLoginSuccessAction(token) {
 	};
 }
 
-export function createLoginFailAction() {
+export function createLoginFailAction(eMsg) {
 	return {
 		type: LoginActions.LOGIN_FAIL,
+		errorMessage: eMsg
 	};
 }
-
-// export function getAdminDetails(Authorization, role) {
-// 	return {
-// 		type: LoginActions.GET_MERCHANT_DETAILS,
-// 		Authorization,
-// 		role
-// 	};
-// }
 
 export function createLogoutAction(token, history) {
 	return {
@@ -51,5 +44,4 @@ export const LoginActions = {
 	LOGOUT: 'LOGOUT',
 	LOGOUT_SUCCESS: 'LOGOUT_SUCCESS',
 	USER_DETAILS_RECEIVED: 'USER_DETAILS_RECEIVED',
-	// GET_MERCHANT_DETAILS:'GET_MERCHANT_DETAILS',
 };

@@ -15,7 +15,7 @@ export default api => {
 			console.info("action.Authorization.token " + action.Authorization.token);
 
 			if (!action.Authorization.token)
-				yield put(createFetchOrdersFailAction({}, "No authorisation token supplied"));
+				yield put(createFetchOrdersFailAction("No authorisation token supplied"));
 
 			// const response = yield call(api.fetchOrders, action.Authorization);
 
@@ -26,13 +26,13 @@ export default api => {
 				console.info("success : " + response.data)
 			} else if (response.status === 403) {
 				console.error(JSON.stringify(response))
-				yield put(createFetchOrdersFailAction(response.data, "403 Access Forbidden"));
+				yield put(createFetchOrdersFailAction("403 Access Forbidden"));
 			} else if (response.status === 500) {
 				console.error(JSON.stringify(response))
-				yield put(createFetchOrdersFailAction(response.data, "500 Internal Server Error "));
+				yield put(createFetchOrdersFailAction("500 Internal Server Error "));
 			} else {
 				console.error(JSON.stringify(response))
-				yield put(createFetchOrdersFailAction(response.data, "Unknown Error Y "+ JSON.stringify(response)));
+				yield put(createFetchOrdersFailAction("Unknown Error Y "+ JSON.stringify(response)));
 			}
 		} catch (e) {
 

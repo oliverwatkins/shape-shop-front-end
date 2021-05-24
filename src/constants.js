@@ -16,4 +16,14 @@ export const DeliveryType = {
 
 export const company = "alpenhof";
 
-export const MOCK_MODE = true;
+// export const MOCK_MODE = true;
+
+
+// switches -
+
+//persist in local storage
+export const CACHE = false;
+
+//mock mode
+export const MOCK_MODE = false;
+

@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from "react-redux";
 
+
+
+
 import saga from './sagas';
 
 import {createStore, applyMiddleware, compose} from 'redux';
@@ -19,6 +22,7 @@ import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 import LoadingView from "./misc/LoadingView";
 import { PersistGate } from 'redux-persist/lib/integration/react';
+import {CACHE} from "./constants";
 
 const sessionKey = 'wee3.0';
 export const persistConfig = {
@@ -27,8 +31,8 @@ export const persistConfig = {
 	whitelist: ['login'],
 };
 
-//persist
-let CACHE = false;
+
+
 
 let reducers = combineReducers({
 	login,
