@@ -18,8 +18,12 @@ function ItemBox(props: Props) {
 
 	// let imageFilename = "pizza.png"
 	let imgSrc;
+
+
 	try {
-		imgSrc = require(`./../assets/img/${props.product.imageFilename}`)
+		// http://localhost:8080/images/green_pasta.jpg
+
+		imgSrc = require(`./../assetsX/img/${props.product.imageFilename}`)
 	} catch (e) {
 		console.info("attemptying to load : " + props.product.imageFilename);
 		console.error(e);
@@ -39,7 +43,13 @@ function ItemBox(props: Props) {
 
 	return(
 		<div className={"item-box " + selected}>
-			<img className={"item-box-image"} src={imgSrc} alt="Pic of pizza"/>
+
+
+			<img className={"item-box-image"} src={"http://localhost:8080/images/" + props.product.imageFilename} alt="Pic of pizza"/>
+			{/*<img className={"item-box-image"} src={imgSrc} alt="Pic of pizza"/>*!/*/}
+			{/*// http://localhost:8080/images/green_pasta.jpg*/}
+
+
 			<div className={"item-box-desc " + selected} title={props.product.name} >
 				{props.product.name}
 			</div>
