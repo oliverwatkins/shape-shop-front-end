@@ -1,8 +1,4 @@
 
-// role
-export const CUSTOMER_ROLE = 'CUSTOMER';
-export const ADMIN_ROLE = 'MERCHANT'; //TODO backend returns 'merchant' (not 'BUSINESS')
-
 export const PaymentType = {
 	cash: "CASH",
 	card: "CARD"
@@ -12,18 +8,13 @@ export const DeliveryType = {
 	delivery: "DELIVERY"
 }
 
-
-
 export const company = "alpenhof";
-
-// export const MOCK_MODE = true;
-
 
 // switches -
 
-//persist in local storage
+// persist in local storage
 export const CACHE = false;
 
-//mock mode
+// mock mode
 export const MOCK_MODE = false;
 

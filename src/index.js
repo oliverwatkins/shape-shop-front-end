@@ -3,10 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {Provider} from "react-redux";
 
-
-
-
-import saga from './sagas';
+import sagas from './sagas';
 
 import {createStore, applyMiddleware, compose} from 'redux';
 import createSagaMiddleware from 'redux-saga';
@@ -24,15 +21,12 @@ import LoadingView from "./misc/LoadingView";
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import {CACHE} from "./constants";
 
-const sessionKey = 'wee3.0';
+const sessionKey = 'shapeshop1.0';
 export const persistConfig = {
 	key: sessionKey,
 	storage,
 	whitelist: ['login'],
 };
-
-
-
 
 let reducers = combineReducers({
 	login,
@@ -49,19 +43,19 @@ const sagaMiddleware = createSagaMiddleware();
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(pReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));
-// const store = createStore(cr, composeEnhancers(applyMiddleware(sagaMiddleware)));
+
 const persistor = persistStore(store);
 
-if (window.location.search.includes('purgeCache')) {
-	persistor.purge();
-	window.location.replace(`${window.location.protocol}//${window.location.host}${window.location.pathname}`);
-}
+// if (window.location.search.includes('purgeCache')) {
+// 	persistor.purge();
+// 	window.location.replace(`${window.location.protocol}//${window.location.host}${window.location.pathname}`);
+// }
 
 if (!CACHE) {
 	persistor.purge();
 }
 
-sagaMiddleware.run(saga);
+sagaMiddleware.run(sagas);
 
 ReactDOM.render(
 	<Provider store={store}>

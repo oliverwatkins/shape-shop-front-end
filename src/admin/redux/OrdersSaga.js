@@ -1,7 +1,7 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 
 import {Actions, createFetchOrdersFailAction, createFetchOrdersSuccessAction} from './adminActions';
-import {ShapeShopService} from "../../api/api";
+import {api} from "../../api/api";
 import {toast} from "react-toastify";
 
 export default api => {
@@ -16,8 +16,6 @@ export default api => {
 
 			if (!action.Authorization.token)
 				yield put(createFetchOrdersFailAction("No authorisation token supplied"));
-
-			// const response = yield call(api.fetchOrders, action.Authorization);
 
 			const response = yield call(api.fetchOrders, action.Authorization);
 

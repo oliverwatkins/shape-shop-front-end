@@ -6,18 +6,18 @@ import {mockOrders} from "../__mock__/mockOrders";
 import {ADMIN_TOKEN2} from "../__mock__/testTokens";
 import * as constants from "../constants";
 
+// TODO
 interface APIinteface {
-	// TODO
 	// loginUser(string): string;
 }
 
 const ADMIN_TOKEN = ADMIN_TOKEN2
 
-export const ShapeShopService_MOCK: APIinteface = {
+export const api_MOCK: APIinteface = {
 
 	loginUser : credentials => {
 
-		let response
+		let response;
 
 		if ((credentials.username == "admin") && (credentials.password == "admin")) {
 			response = {

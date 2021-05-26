@@ -1,11 +1,9 @@
 import * as constants from "../constants";
 
-
 let baseURL = 'http://localhost:8080/';
 // const ADMIN_TOKEN = ADMIN_TOKEN2;
 
-
-export const ShapeShopService = {
+export const api = {
 	fetchProducts: async () => {
 		let data = await fetch(baseURL + constants.company + '/products', {
 			method: "GET",
@@ -62,6 +60,10 @@ export const ShapeShopService = {
 			},
 		}).then(response => {
 			console.info("status : " + response.status)
+
+			if (response.status === 403)
+				throw new Error("Error Logging in. Name or Password are incorrect")
+
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}

@@ -15,7 +15,7 @@ export function reducer(state:ProductsState = initialState, action) {
 
 		case Actions.FETCH_PRODUCTS_ERROR:
 
-			Notify.error(action.errorMsg)
+			Notify.error(action.errorMessage)
 
 			return {
 				...state,
@@ -47,7 +47,6 @@ export function reducer(state:ProductsState = initialState, action) {
 					return item;
 				}),
 			};
-
 		default :
 			return state;
 	}
@@ -55,8 +54,4 @@ export function reducer(state:ProductsState = initialState, action) {
 
 const initialState = {
 	items: []
-
-	// products: {
-	// 	items: []
-	// }
 };

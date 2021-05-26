@@ -1,7 +1,6 @@
 import {call, put, take} from 'redux-saga/effects';
 import jwtDecode from 'jwt-decode';
-import {createLoginFailAction, createLoginSuccessAction, getAdminDetails, LoginActions} from './loginActions';
-import {ADMIN_ROLE} from "../../constants";
+import {createLoginFailAction, createLoginSuccessAction, LoginActions} from './loginActions';
 
 export default api => {
 
@@ -12,7 +11,6 @@ export default api => {
 		}
 	}
 
-	// attempts to login
 	function* loginWorker(identifier, password) {
 		if (identifier && password) {
 			identifier = identifier.trim().toLowerCase();

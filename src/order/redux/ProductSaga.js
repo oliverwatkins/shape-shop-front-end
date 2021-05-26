@@ -2,7 +2,7 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 
 import {Actions, createFetchProductsErrorAction, createFetchProductsSuccessAction} from './productActions';
 import {mockProds} from "../../__mock__/mockProducts";
-import {ShapeShopService} from "../../api/api";
+import {api} from "../../api/api";
 
 export default api => {
 	function* getProductsWatcher() {

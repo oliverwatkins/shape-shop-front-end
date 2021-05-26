@@ -8,7 +8,6 @@ import OrderPanel from "./OrderPanel";
 import {Tabs} from "../misc/TabbedPanel";
 import {selectClosedOrders, selectOpenOrders} from "../selectors";
 import {useEffect} from "react";
-import {TestEffect} from "./TestEffect";
 
 type Props = {
 	orders: Array<OrderState>,
@@ -28,7 +27,6 @@ function AdminScreen(props: Props) {
 	return (
 		<div className={"admin-screen"}>
 			<h1>Admin Screen</h1>
-			{/*{props.orderError && <span className={"error"}>{props.orderError}</span>}*/}
 			<Tabs>
 				<div label={"Orders"}>
 					{props.orders && <h4>Current Open Orders</h4>}
@@ -56,9 +54,6 @@ function AdminScreen(props: Props) {
 						/>
 					</div>
 				</div>
-				<div label={"Testing something"}>
-					<TestEffect/>
-				</div>
 			</Tabs>
 		</div>
 	);
@@ -68,7 +63,6 @@ const mapStateToProps = (state: AppState) => {
 	return {
 		orders: selectOpenOrders(state.admin.orders),
 		closedOrders: selectClosedOrders(state.admin.orders),
-		// orderError: state.admin.orderError,
 		Authorization: state.login.loginToken,
 	};
 };
