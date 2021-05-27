@@ -1,6 +1,9 @@
 
 .admin-screen{
 
+
+
+
   background: white;
   h1 {
     color: #3c4a72;
@@ -26,6 +29,16 @@
     color: #0c0606;
     padding-left: 40px;
     padding-top: 10px;
+  }
+
+  .product-list {
+    background: white;
+    overflow-y: scroll;
+    height:400px;
+    .item-box-image {
+      height: 200px;
+      width: 200px;
+    }
   }
 }
 

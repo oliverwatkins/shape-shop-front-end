@@ -1,13 +1,17 @@
+// @flow
+
 import * as React from 'react';
 import {connect} from "react-redux";
-import type {AppState, OrderState} from "../AppState";
+import type {AdminState, AppState, OrderState} from "../AppState";
 import {createFetchOrdersAction} from "./redux/adminActions";
 
 import "./admin.scss"
 import OrderPanel from "./OrderPanel";
 import {Tabs} from "../misc/TabbedPanel";
-import {selectClosedOrders, selectOpenOrders} from "../selectors";
+import {selectClosedOrders, selectOpenOrders, selectProducts, selectProductType} from "../selectors";
 import {useEffect} from "react";
+import {createFetchProductsAction} from "../order/redux/productActions";
+import ProductPanel from "./ProductPanel";
 
 type Props = {
 	orders: Array<OrderState>,
@@ -15,7 +19,6 @@ type Props = {
 	fetchOrders: ()=>void,
 	dispatch: Function,
 	Authorization: string
-	// orderError: string
 }
 
 function AdminScreen(props: Props) {
@@ -23,6 +26,10 @@ function AdminScreen(props: Props) {
 	useEffect(() => {
 		props.dispatch(createFetchOrdersAction(props.Authorization));
 	}, []);
+
+	// useEffect(() => {
+	// 	props.dispatch(createFetchProductsAction());
+	// }, []);
 
 	return (
 		<div className={"admin-screen"}>
@@ -37,6 +44,18 @@ function AdminScreen(props: Props) {
 					{props.closedOrders && <h4>Closed Orders</h4>}
 					<OrderPanel orders={props.closedOrders}/>
 					{!props.closedOrders && <div>no closed orders</div>}
+				</div>
+
+				<div label={"Products"}>
+					<Tabs>
+						<div label={"Products 1"}>
+							<ProductPanel products={props.products1} category={"main"}/>
+						</div>
+
+						<div label={"Products 2"}>
+							<ProductPanel products={props.products2} category={"drinks"}/>
+						</div>
+					</Tabs>
 				</div>
 				<div label={"Settings"}>
 					<h3 style={{padding: "25px"}}>
@@ -59,8 +78,10 @@ function AdminScreen(props: Props) {
 	);
 }
 
-const mapStateToProps = (state: AppState) => {
+const mapStateToProps = (state: AppState): AdminState => {
 	return {
+		products1: selectProductType(state, "main"),
+		products2: selectProductType(state, "drinks"),
 		orders: selectOpenOrders(state.admin.orders),
 		closedOrders: selectClosedOrders(state.admin.orders),
 		Authorization: state.login.loginToken,

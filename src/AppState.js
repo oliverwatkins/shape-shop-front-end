@@ -26,20 +26,20 @@ export type LoginState = {
 
 export type OrderState = {
 	paymentType: string,
-	deliveryType: string;
+	deliveryType: string,
 	addressEntity: {
 		name: string,
 		telephone: string,
 		street: string,
 		postcode: string,
 		username: string
-	}
+	},
 	creditCardEntity: {
 		number: string,
 		expDate: string,
 		name: string,
 		type: string,
-	}
+	},
 	submittingOrder:boolean,
 	orderError:string,
 }

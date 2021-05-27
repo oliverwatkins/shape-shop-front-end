@@ -20,12 +20,11 @@ export const selectUserEmail = (state) => {
 	return state.login.loginToken && state.login.loginToken.username;
 };
 
-export const selectProducts = (state) => state.products;
+export const selectProducts = (state: AppState) => state.products.items;
 
 export const selectOpenOrders = (orders) => orders.filter(o => o.state === "OPEN");
 
 export const selectClosedOrders = (orders) => orders.filter(o => o.state === "CLOSED");
-
 
 export const selectProductById = (state, id) => state.products.filter(product => product.id === id);
 
