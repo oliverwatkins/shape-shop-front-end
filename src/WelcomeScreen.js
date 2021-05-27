@@ -7,7 +7,7 @@ export class Overview extends React.PureComponent {
 	render() {
 		return (
 			<div>
-				<img className="wee-card__img" style={{width:"100%"}} src={welcome} alt="  " />
+				<imgs style={{width:"100%"}} src={welcome} alt="Welcome" />
 			</div>
 		);
 	}

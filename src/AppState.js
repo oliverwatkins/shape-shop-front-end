@@ -19,12 +19,17 @@ export type AdminState = {
 
 export type LoginState = {
 	loginError: string,
-	loginToken: string,
-	role: string,
+	loginToken: {
+		role: string,
+		token: string,
+		username: string
+	},
+	role: string, //??
 	loggingIn: boolean,
 }
 
 export type OrderState = {
+	state: string,
 	paymentType: string,
 	deliveryType: string,
 	addressEntity: {
