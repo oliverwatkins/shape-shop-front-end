@@ -1,6 +1,6 @@
 import * as constants from "../constants";
 
-let baseURL = 'http://localhost:8080/';
+export const baseURL = 'http://localhost:8080/';
 // const ADMIN_TOKEN = ADMIN_TOKEN2;
 
 export const api = {

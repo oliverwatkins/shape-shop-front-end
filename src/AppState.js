@@ -52,7 +52,7 @@ export type OrderState = {
 export type Product = {
 	id: string,
 	name: string,
-	quantity: number,
+	quantity: number, //selected quantity
 	price: string,
 	description: string,
 	type: string,

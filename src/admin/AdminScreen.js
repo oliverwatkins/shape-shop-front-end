@@ -8,7 +8,7 @@ import {createFetchOrdersAction} from "./redux/adminActions";
 import "./admin.scss"
 import OrderPanel from "./OrderPanel";
 import {Tabs} from "../misc/TabbedPanel";
-import {selectClosedOrders, selectOpenOrders, selectProducts, selectProductType} from "../selectors";
+import {selectClosedOrders, selectOpenOrders, selectAllProducts, selectProductsByType} from "../selectors";
 import {useEffect} from "react";
 import {createFetchProductsAction} from "../order/redux/productActions";
 import ProductPanel from "./ProductPanel";
@@ -80,8 +80,8 @@ function AdminScreen(props: Props) {
 
 const mapStateToProps = (state: AppState): AdminState => {
 	return {
-		products1: selectProductType(state, "main"),
-		products2: selectProductType(state, "drinks"),
+		products1: selectProductsByType(state, "main"),
+		products2: selectProductsByType(state, "drinks"),
 		orders: selectOpenOrders(state.admin.orders),
 		closedOrders: selectClosedOrders(state.admin.orders),
 		Authorization: state.login.loginToken,

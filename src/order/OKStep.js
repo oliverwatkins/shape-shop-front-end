@@ -5,8 +5,8 @@ import LoadingView from "../misc/LoadingView";
 import type {Address, AppState, Product} from "../AppState";
 import {
 	selectOrder,
-	selectProductType,
-	selectSelectedProductType
+	selectProductsByType,
+	selectSelectedProductByType
 } from "../selectors";
 import {connect} from "react-redux";
 import {createPlaceOrderAction} from "./redux/productActions";
@@ -58,12 +58,12 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = (state: AppState) => {
 	return {
-		products: selectProductType(state, "main"),
-		products2: selectProductType(state, "drinks"),
+		products: selectProductsByType(state, "main"),
+		products2: selectProductsByType(state, "drinks"),
 		order: selectOrder(state),
 		address: state.order && state.order.address,
-		selectedProducts: selectSelectedProductType(state, "main"),
-		selectedProducts2: selectSelectedProductType(state, "drinks"),
+		selectedProducts: selectSelectedProductByType(state, "main"),
+		selectedProducts2: selectSelectedProductByType(state, "drinks"),
 		deliveryType: state.order && state.order.deliveryType,
 		paymentType: state.order && state.order.paymentType,
 		submittingOrder: state.order && state.order.submittingOrder,

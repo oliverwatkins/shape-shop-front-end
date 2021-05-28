@@ -1,6 +1,7 @@
 import {Actions} from './productActions';
 import type {OrderState} from "../../AppState";
 import {DeliveryType, PaymentType} from "../../constants";
+import {Notify} from "../../notify";
 
 export function reducer(state: OrderState = initialState , action) {
 	switch (action.type) {
@@ -51,6 +52,9 @@ export function reducer(state: OrderState = initialState , action) {
 				submittingOrder: false,
 			}
 		case Actions.PLACE_ORDER_ERROR:
+
+			Notify.error("Errror placing order - " + action.errorMessage)
+
 			return {
 				...state,
 				submittingOrder: false,

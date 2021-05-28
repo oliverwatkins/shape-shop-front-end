@@ -2,8 +2,8 @@ import * as React from 'react';
 import ProductListStep from "./Product1Step";
 import {connect} from "react-redux";
 import {
-	selectProductType,
-	selectSelectedProductType
+	selectProductsByType,
+	selectSelectedProductByType
 } from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Address from "./AddressStep";
@@ -85,10 +85,10 @@ function OrderWizardContainer(props: Props) {
 
 const mapStateToProps = (state: AppState) => {
 	return {
-		products: selectProductType(state, "main"),
-		products2: selectProductType(state, "drinks"),
-		selectedProducts: selectSelectedProductType(state, "main"),
-		selectedProducts2: selectSelectedProductType(state, "drinks"),
+		products: selectProductsByType(state, "main"),
+		products2: selectProductsByType(state, "drinks"),
+		selectedProducts: selectSelectedProductByType(state, "main"),
+		selectedProducts2: selectSelectedProductByType(state, "drinks"),
 		productsError: state.products.productsError,
 		address: state.order && state.order.address,
 		deliveryType: state.order && state.order.deliveryType,

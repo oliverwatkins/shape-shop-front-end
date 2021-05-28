@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 
-// import Tab from './Tab';
-
 import "./tabs.scss"
-
 
 export class Tabs extends Component {
 

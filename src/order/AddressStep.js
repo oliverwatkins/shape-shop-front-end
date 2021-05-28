@@ -17,12 +17,12 @@ type Props = {
 	updateDeliveryType: (value)=>void
 }
 
-type State = {
-	redirect: boolean,
-	deliveryType: "DELIVERY" | "PICKUP",
-}
+// type State = {
+// 	redirect: boolean,
+// 	deliveryType: "DELIVERY" | "PICKUP",
+// }
 
-function Address(props) {
+function Address(props: Props) {
 
 	const [redirect, setRedirect]  = React.useState(false);
 	const [deliveryType, setDeliveryType]  = React.useState(DeliveryType.pickup);

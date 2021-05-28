@@ -71,7 +71,7 @@ class App extends React.PureComponent{
               </Route>
             </Switch>
           </div>
-        <Footer>xxxx</Footer>
+        <Footer/>
       </div>
   );
   }

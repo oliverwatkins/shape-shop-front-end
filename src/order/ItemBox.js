@@ -1,6 +1,7 @@
 import * as React from 'react';
 import type {Product} from "../AppState";
 import './itemBox.scss';
+import {baseURL} from "../api/api";
 
 type Props = {
 	product: Product
@@ -16,19 +17,6 @@ function ItemBox(props: Props) {
 		checked = true
 	}
 
-	// let imageFilename = "pizza.png"
-	let imgSrc;
-
-
-	try {
-		// http://localhost:8080/images/green_pasta.jpg
-
-		imgSrc = require(`./../assetsX/img/${props.product.imageFilename}`)
-	} catch (e) {
-		console.info("attemptying to load : " + props.product.imageFilename);
-		console.error(e);
-	}
-
 	function handleChangeCheckbox(e) {
 		if (e.currentTarget.checked) {
 			props.handleChangeSelection(1, props.product.id)
@@ -41,14 +29,13 @@ function ItemBox(props: Props) {
 		props.handleChangeSelection(e.currentTarget.value, props.product.id)
 	}
 
+	let baseurl = baseURL + "images/"
+
 	return(
 		<div className={"item-box " + selected}>
 
 
-			<img className={"item-box-image"} src={"http://localhost:8080/images/" + props.product.imageFilename} alt="Pic of pizza"/>
-			{/*<img className={"item-box-image"} src={imgSrc} alt="Pic of pizza"/>*!/*/}
-			{/*// http://localhost:8080/images/green_pasta.jpg*/}
-
+			<img className={"item-box-image"} src={baseurl + props.product.imageFilename} alt=""/>
 
 			<div className={"item-box-desc " + selected} title={props.product.name} >
 				{props.product.name}

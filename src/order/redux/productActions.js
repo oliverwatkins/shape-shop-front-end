@@ -18,7 +18,6 @@ export function createFetchProductsErrorAction(response)  {
 	};
 }
 
-
 export function createUpdateProductSelection(value, id) {
 	return {
 		type: Actions.UPDATE_PRODUCT_SELECTION,
@@ -26,8 +25,6 @@ export function createUpdateProductSelection(value, id) {
 		id: id
 	};
 }
-
-
 
 export function createUpdateCreditCard(value) {
 	return {
@@ -79,8 +76,6 @@ export function createPlaceOrderErrorAction(response, value) {
 		value: value
 	};
 }
-
-
 
 export const Actions = {
 	PLACE_ORDER: "PLACE_ORDER",

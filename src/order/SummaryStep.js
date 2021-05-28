@@ -44,9 +44,6 @@ function Summary(props: Props) {
 
 					{props.deliveryType === "delivery" && <AddressSummary address={props.address}/>}
 
-					{/*{this.props.deliveryType === "pickup" &&*/}
-					{/*<span>Pickup!</span>}*/}
-
 					<div>Payment type -
 						{props.paymentType === PaymentType.cash && <span>
 							<b> cash</b></span>}

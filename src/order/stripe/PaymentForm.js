@@ -14,7 +14,6 @@ import {useHistory} from "react-router-dom";
 // Test Card :
 // 4242424242424242	Visa	Any 3 digits	Any future date
 
-
 export const CheckoutForm = (props) => {
 	const history = useHistory();
 	const stripe = useStripe();

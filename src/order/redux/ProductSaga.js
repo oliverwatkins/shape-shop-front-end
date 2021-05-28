@@ -3,6 +3,7 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import {Actions, createFetchProductsErrorAction, createFetchProductsSuccessAction} from './productActions';
 import {mockProds} from "../../__mock__/mockProducts";
 import {api} from "../../api/api";
+import {Notify} from "../../notify";
 
 export default api => {
 	function* getProductsWatcher() {
@@ -22,6 +23,7 @@ export default api => {
 		} catch (e) {
 			console.error('Error fetching products!!');
 			console.error(e);
+			Notify.error(e.message)
 		}
 	}
 

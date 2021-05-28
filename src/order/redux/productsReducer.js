@@ -24,24 +24,13 @@ export function reducer(state:ProductsState = initialState, action) {
 			};
 
 		case Actions.UPDATE_PRODUCT_SELECTION:
-
-			let foundProd = state.items.filter(item => item.id === action.id);
-
-			let fp = foundProd[0];
-
-			fp.quantity = action.value;
-
 			return {
 				...state,
 				items: state.items.map((item) => {
 					if (item.id === action.id) {
-						//TODO should spread
-						return {"id": item.id,
-							"name": item.name,
-							"price": item.price,
-							"type": item.type,
-							"quantity": action.value,
-							"imageFilename": item.imageFilename,
+						return {
+							...item,
+							"quantity" : action.value
 						}
 					}
 					return item;

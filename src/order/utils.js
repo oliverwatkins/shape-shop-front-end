@@ -5,7 +5,6 @@ import type {Product} from "../AppState";
  * from order list
  */
 export function calculateTotal2(products) {
-
 	let t = products.reduce((acc, cur: Product) => {
 		return acc + (cur.amount * cur.product.price);
 	}, 0)
@@ -14,9 +13,8 @@ export function calculateTotal2(products) {
 	return t
 }
 
-
 /**
- * from prodct selection
+ * from product selection
  */
 export function calculateTotal(selectedProducts, selectedProducts2) {
 

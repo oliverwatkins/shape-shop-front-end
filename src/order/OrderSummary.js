@@ -10,7 +10,6 @@ type Props = {
 export function OrderSummary(props: Props) {
 	return (
 		<div className={"order-summary"}>
-			{/*<h4>Order : </h4>*/}
 			<table>
 				<tbody>
 				{props.selectedProducts2 && props.selectedProducts2.length > 0 && <tr>

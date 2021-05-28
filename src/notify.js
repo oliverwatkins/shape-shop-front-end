@@ -6,7 +6,6 @@ export const Notify = {
     warn: (msg) => {
     },
     error: (msg) => {
-
         toast.error("ERROR : " + msg, {
             position: "top-right",
             autoClose: 8000,
@@ -16,6 +15,5 @@ export const Notify = {
             draggable: true,
             progress: undefined,
         });
-
     }
 }
