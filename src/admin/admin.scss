@@ -1,9 +1,9 @@
 
 .admin-screen{
-
-
-
-
+  .admin-product-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
   background: white;
   h1 {
     color: #3c4a72;
@@ -39,6 +39,13 @@
       height: 200px;
       width: 200px;
     }
+  }
+
+  img {
+    min-width: 150px;
+    min-height: 150px;
+    max-width: 150px;
+    max-height: 150px;
   }
 }
 

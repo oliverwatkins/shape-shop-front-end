@@ -33,10 +33,7 @@ function ItemBox(props: Props) {
 
 	return(
 		<div className={"item-box " + selected}>
-
-
 			<img className={"item-box-image"} src={baseurl + props.product.imageFilename} alt=""/>
-
 			<div className={"item-box-desc " + selected} title={props.product.name} >
 				{props.product.name}
 			</div>

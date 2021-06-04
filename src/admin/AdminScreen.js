@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import {connect} from "react-redux";
-import type {AdminState, AppState, OrderState} from "../AppState";
+import type {AdminState, AppState, OrderState, Product, ProductsState} from "../AppState";
 import {createFetchOrdersAction} from "./redux/adminActions";
 
 import "./admin.scss"
@@ -18,7 +18,9 @@ type Props = {
 	closedOrders: Array<OrderState>,
 	fetchOrders: ()=>void,
 	dispatch: Function,
-	Authorization: string
+	Authorization: string,
+	products1: Array<Product>,
+	products2: Array<Product>
 }
 
 function AdminScreen(props: Props) {
