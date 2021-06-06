@@ -5,29 +5,23 @@ import {mockProds} from "../../__mock__/mockProducts";
 import {api} from "../../api/api";
 import {Notify} from "../../notify";
 
-export default api => {
-	function* getProductsWatcher() {
-		yield takeLatest(Actions.FETCH_PRODUCTS, getProducts);
-	}
+export function* getProductsWatcher() {
+	yield takeLatest(Actions.FETCH_PRODUCTS, getProducts);
+}
 
-	function* getProducts({ Authorization }) {
-		try {
-			const response = yield call(api.fetchProducts, { Authorization });
+function* getProducts({ Authorization }) {
+	try {
+		const response = yield call(api.fetchProducts, { Authorization });
 
-			if (response.status === 200) {
-				yield put(createFetchProductsSuccessAction(response.data));
-				console.info("success : " + response.data)
-			} else {
-				yield put(createFetchProductsErrorAction(response.data));
-			}
-		} catch (e) {
-			console.error('Error fetching products!!');
-			console.error(e);
-			Notify.error(e.message)
+		if (response.status === 200) {
+			yield put(createFetchProductsSuccessAction(response.data));
+			console.info("success : " + response.data)
+		} else {
+			yield put(createFetchProductsErrorAction(response.data));
 		}
+	} catch (e) {
+		console.error('Error fetching products!!');
+		console.error(e);
+		Notify.error(e.message)
 	}
-
-	return {
-		getProductsWatcher,
-	};
-};
+}

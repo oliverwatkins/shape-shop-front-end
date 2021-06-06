@@ -1,34 +1,23 @@
 import {fork} from 'redux-saga/effects';
-import login from './login/redux/LoginSaga'
-import logout from './login/redux/LogoutSaga'
+import {loginWatcher} from './login/redux/LoginSaga'
+import {logoutWatcher} from './login/redux/LogoutSaga'
 
-import placeOrderSaga from './order/redux/PlaceOrderSaga'
-import productSaga from './order/redux/ProductSaga'
-import ordersSaga from './admin/redux/OrdersSaga'
+import {placeOrderWatcher} from './order/redux/PlaceOrderSaga'
+import {getProductsWatcher} from './order/redux/ProductSaga'
+import {getOrdersWatcher} from './admin/redux/OrdersSaga'
 //hack to make sagas work. https://github.com/redux-saga/redux-saga/issues/280
 import "regenerator-runtime/runtime";
-
-import {api} from './api/api';
-import {api_MOCK} from './api/api_mock';
-import {MOCK_MODE} from "./constants";
-
-
-let apiInstance;
-
-if (MOCK_MODE) {
-	apiInstance = api_MOCK;
-} else {
-	apiInstance = api;
-}
+import {uploadImageWatcher} from "./admin/redux/ImageUploadSaga";
 
 
 /**
  * Single entry point to start all Sagas
  */
 export default function* root() {
-	yield fork(login(apiInstance).loginWatcher);
-	yield fork(logout(apiInstance).logoutWatcher);
-	yield fork(productSaga(apiInstance).getProductsWatcher);
-	yield fork(ordersSaga(apiInstance).getProductsWatcher);
-	yield fork(placeOrderSaga(apiInstance).placeOrderWatcher);
+	yield fork(loginWatcher);
+	yield fork(logoutWatcher);
+	yield fork(getProductsWatcher);
+	yield fork(getOrdersWatcher);
+	yield fork(placeOrderWatcher);
+	yield fork(uploadImageWatcher);
 }

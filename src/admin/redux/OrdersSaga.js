@@ -4,8 +4,8 @@ import {Actions, createFetchOrdersFailAction, createFetchOrdersSuccessAction} fr
 import {api} from "../../api/api";
 import {toast} from "react-toastify";
 
-export default api => {
-	function* getOrdersWatcher() {
+// export default api => {
+	export function* getOrdersWatcher() {
 		yield takeLatest(Actions.FETCH_ORDERS, getOrders);
 	}
 
@@ -39,7 +39,7 @@ export default api => {
 			yield put(createFetchOrdersFailAction("", "Unknown Error X " + e.message));
 		}
 	}
-	return {
-		getProductsWatcher: getOrdersWatcher,
-	};
-};
+	// return {
+	// 	getProductsWatcher: getOrdersWatcher,
+	// };
+// };

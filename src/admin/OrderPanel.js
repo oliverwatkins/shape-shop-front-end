@@ -12,6 +12,7 @@ export default function OrderPanel(props) {
 	return (
 		<table className={"orderTable"}>
 			<thead>
+			{/*<tbody>*/}
 			<tr>
 				<th>
 					id
@@ -83,19 +84,21 @@ function AddressPanel(props) {
 	return (
 		<div>
 			<table className={"contactTable"}>
-				<tr>
-					<td colSpan={2}>{props.address.name && <span>{props.address.name}</span>}</td>
-				</tr>
-				<tr>
-					<td>{props.address.street && <span>{props.address.street}</span>}</td>
-					<td>{props.address.postcode && <span>{props.address.postcode}</span>}</td>
-				</tr>
-				<tr>
-					<td colSpan={2}>Tel : {props.address.telephone && <span>{props.address.telephone}</span>}</td>
-				</tr>
-				<tr>
-					<td colSpan={2}>Email : {props.address.email && <span>{props.address.email}</span>}</td>
-				</tr>
+				<tbody>
+					<tr>
+						<td colSpan={2}>{props.address.name && <span>{props.address.name}</span>}</td>
+					</tr>
+					<tr>
+						<td>{props.address.street && <span>{props.address.street}</span>}</td>
+						<td>{props.address.postcode && <span>{props.address.postcode}</span>}</td>
+					</tr>
+					<tr>
+						<td colSpan={2}>Tel : {props.address.telephone && <span>{props.address.telephone}</span>}</td>
+					</tr>
+					<tr>
+						<td colSpan={2}>Email : {props.address.email && <span>{props.address.email}</span>}</td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	)
@@ -108,12 +111,14 @@ function CardPanel(props) {
 	return (
 		<div>
 			<table>
-				<tr>
-					<td>{props.creditCard.number && <span>{props.creditCard.number}</span>}</td>
-					<td>{props.creditCard.expDate && <span>{props.creditCard.expDate}</span>}</td>
-					<td>{props.creditCard.name && <span>{props.creditCard.name}</span>}</td>
-					<td>{props.creditCard.type && <span>{props.creditCard.type}</span>}</td>
-				</tr>
+				<tbody>
+					<tr>
+						<td>{props.creditCard.number && <span>{props.creditCard.number}</span>}</td>
+						<td>{props.creditCard.expDate && <span>{props.creditCard.expDate}</span>}</td>
+						<td>{props.creditCard.name && <span>{props.creditCard.name}</span>}</td>
+						<td>{props.creditCard.type && <span>{props.creditCard.type}</span>}</td>
+					</tr>
+				</tbody>
 			</table>
 		</div>
 	)
@@ -123,13 +128,12 @@ function ProductListPanel(props) {
 	return (
 		<table className={"productListTable"}>
 			<thead>
-			<tr>
-				<td>item</td>
-				<td>price</td>
-				<td>type</td>
-				<td>qty</td>
-			</tr>
-
+				<tr>
+					<td>item</td>
+					<td>price</td>
+					<td>type</td>
+					<td>qty</td>
+				</tr>
 			</thead>
 			<tbody>
 			{props.orderItems && props.orderItems.map(item =>

@@ -120,5 +120,38 @@ export const api = {
 			throw error;
 		});
 		return data;
+	},
+	uploadImage: async (formData, Authorization) => {
+
+
+		let data = await fetch(baseURL + constants.company + '/uploadfile', {
+			method: "POST",
+			body: JSON.stringify(formData),
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json',
+				'Authorization': {...Authorization}
+			},
+		}).then(response => {
+			console.info("status : " + response.status)
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json()
+		}).then(data => {
+			return {
+				status:200,
+				data: data
+			}
+		}).catch(error => {
+			console.error('There has been a problem with your fetch operation:', error);
+			throw error;
+		});
+		return data;
+
+
+		// axios.post("api/uploadfile", formData);
+
+
 	}
 };

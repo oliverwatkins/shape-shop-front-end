@@ -6,6 +6,7 @@ import DialogContent from "@material-ui/core/DialogContent";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContentText from "@material-ui/core/DialogContentText";
+import {FileUploader} from "./FileUploader";
 
 type Props = {
     products: Product[],
@@ -45,11 +46,8 @@ function ProductItem(props) {
     };
 
     const handleSubmit = (e) => {
-
         e.preventDefault();
-
-        // alert(JSON.stringify(e))
-
+        console.info("e.target.file " + e.target.file)
         handleClose()
     }
 
@@ -62,36 +60,7 @@ function ProductItem(props) {
                     <DialogContentText>
                         Select an image file to upload
                     </DialogContentText>
-
-                    <form onSubmit={handleSubmit} id="myform">
-                        <Button
-                            variant="contained"
-                            component="label"
-                        >
-                            Upload File
-                            <input
-                                type="file"
-                                hidden
-                            />
-                        </Button>
-                        <input
-                            accept="image/*"
-                            // className={classes.input}
-                            style={{ display: 'none' }}
-                            id="raisesd-button-file"
-                            multiple
-                            type="file"
-                        />
-                        <label htmlFor="raised-button-file">
-                            <Button variant="raised" component="span" >
-                                {/*// className={classes.button}>*/}
-                                Upload
-                            </Button>
-                        </label>
-                    </form>
-
-
-
+                    <FileUploader/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
