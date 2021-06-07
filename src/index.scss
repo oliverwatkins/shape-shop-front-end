@@ -48,8 +48,11 @@ a {
   animation: marquee 15s linear infinite;
 }
 
-//address form
 span.error {
+  color: $error-color
+}
+
+div.error {
   color: $error-color
 }
 

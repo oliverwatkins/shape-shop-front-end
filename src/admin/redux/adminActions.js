@@ -20,14 +20,11 @@ export function createFetchOrdersFailAction(errorMessage: string) {
 	};
 }
 
-
-
 export function createUploadImageSuccessAction() {
 	return {
 		type: Actions.UPLOAD_IMAGE_FAIL,
 	};
 }
-
 
 export function createUploadImageFailAction(errorMessage) {
 	return {
@@ -36,30 +33,36 @@ export function createUploadImageFailAction(errorMessage) {
 	};
 }
 
+export function createUpdateProduct(values) {
+	return {
+		type: Actions.UPDATE_PRODUCT,
+		values: values
+	};
+}
 
+export function createUpdateProductSuccessAction() {
+	return {
+		type: Actions.UPDATE_PRODUCT_SUCCESS,
+	};
+}
 
-
-
-// if (response.status === 200) {
-// 	yield put(createUploadImageSuccessAction(response.data));
-// 	console.info("success : " + response.data)
-// } else {
-// 	console.error(JSON.stringify(response))
-// 	yield put(createUploadImageFailAction("Unknown Error Y "+ JSON.stringify(response)));
-// }
-// } catch (e) {
-// 	console.error('Error fetching orders!!');
-// 	console.error(e);
-// 	yield put(createUploadImageFailAction("", "Unknown Error X " + e.message));
-
-
-
+export function createUpdateProductFailAction(errorMessage) {
+	return {
+		type: Actions.UPDATE_PRODUCT_FAIL,
+		errorMessage: errorMessage
+	};
+}
 
 export const Actions = {
 	FETCH_ORDERS: 'FETCH_ORDERS',
 	FETCH_ORDERS_SUCCESS: 'FETCH_ORDERS_SUCCESS',
 	FETCH_ORDERS_FAIL: 'FETCH_ORDERS_FAIL',
+
 	UPLOAD_IMAGE: 'UPLOAD_IMAGE',
 	UPLOAD_IMAGE_SUCCESS: 'UPLOAD_IMAGE_SUCCESS',
-	UPLOAD_IMAGE_FAIL: 'UPLOAD_IMAGE_FAIL'
+	UPLOAD_IMAGE_FAIL: 'UPLOAD_IMAGE_FAIL',
+
+	UPDATE_PRODUCT: 'UPDATE_PRODUCT',
+	UPDATE_PRODUCT_SUCCESS: 'UPDATE_PRODUCT_SUCCESS',
+	UPDATE_PRODUCT_FAIL: 'UPDATE_PRODUCT_FAIL'
 };

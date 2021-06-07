@@ -7,6 +7,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import {FileUploader} from "./FileUploader";
+import {ProductItem} from "./ProductItem";
 
 type Props = {
     products: Product[],
@@ -17,12 +18,8 @@ export default function ProductPanel(props: Props) {
     return (
         <div>
             <div>Category Name : {props.category}
-
                 <button className="btn btn-1 btn-sep icon-info">delete</button>
                 <button className="btn btn-2 btn-sep icon-cart">edit</button>
-
-            {/*<button className={"btn"}>delete</button>*/}
-            {/*<button className={"btn"}>edit</button>*/}
             </div>
             {props.products &&
                 <div className={"admin-product-list"}>
@@ -35,60 +32,4 @@ export default function ProductPanel(props: Props) {
     )
 }
 
-function ProductItem(props) {
 
-    let product = props.item;
-
-    const [showModal, setShowModal]  = React.useState(false);
-
-    const handleClose = () => {
-        setShowModal(false);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.info("e.target.file " + e.target.file)
-        handleClose()
-    }
-
-    return (
-        <div className={"item-box"} >
-            {showModal &&
-            <Dialog open={true} onClose={() => setShowModal(false)} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Select an image file to upload
-                    </DialogContentText>
-                    <FileUploader/>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button type="submit" form="myform" color="primary">
-                        Upload Image
-                    </Button>
-                </DialogActions>
-            </Dialog>
-            }
-            <img className={"item-box-image"} src={"http://localhost:8080/images/" + product.imageFilename}
-                 alt={product.imageFilename}/>
-
-            <button onClick={e => {
-                setShowModal(true);
-            }}>update image</button>
-            <div className={"item-box-desc "} title={product.name}>
-                {product.name}
-            </div>
-            <div className={"item-box-bottom"}>
-                <div className={"item-box-price"}>
-                    € {product.price}
-                </div>
-            </div>
-
-            <button>delete</button>
-            <button>edit</button>
-        </div>
-    )
-}

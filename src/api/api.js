@@ -149,9 +149,37 @@ export const api = {
 		});
 		return data;
 
-
 		// axios.post("api/uploadfile", formData);
+	},
 
+	updateProduct: async (values, Authorization) => {
+
+		alert("in here!! - > " + JSON.stringify(values))
+
+		let data = await fetch(baseURL + constants.company + '/product', {
+			method: "PUT",
+			body: JSON.stringify(values),
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json',
+				'Authorization': {...Authorization}
+			},
+		}).then(response => {
+			console.info("status : " + response.status)
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json()
+		}).then(data => {
+			return {
+				status:200,
+				data: data
+			}
+		}).catch(error => {
+			console.error('There has been a problem with your fetch operation:', error);
+			throw error;
+		});
+		return data;
 
 	}
 };

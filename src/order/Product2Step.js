@@ -15,7 +15,7 @@ type Props = {
 }
 
 //redundant
-function Product2Step(props) {
+function Product2Step(props: Props) {
 	return (
 		<div className="wizardPanel products2-step">
 			<h2 className={"wizardHeader"}>Maybe some drinks?</h2>
