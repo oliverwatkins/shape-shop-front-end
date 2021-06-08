@@ -156,7 +156,7 @@ export const api = {
 
 		alert("in here!! - > " + JSON.stringify(values))
 
-		let data = await fetch(baseURL + constants.company + '/product', {
+		let data = await fetch(baseURL + constants.company + '/products/' + values.id, {
 			method: "PUT",
 			body: JSON.stringify(values),
 			headers: {

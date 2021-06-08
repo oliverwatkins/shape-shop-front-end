@@ -17,9 +17,6 @@ export function ProductItemEdit(props) {
 
     const dispatch = useDispatch();
 
-    // alert(product.id)
-
-
     return (
         <div className={"item-edit-box"} >
 
