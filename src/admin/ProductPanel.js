@@ -24,7 +24,7 @@ export default function ProductPanel(props: Props) {
             {props.products &&
                 <div className={"admin-product-list"}>
                 {
-                    props.products && props.products.map(product => <ProductItem item={product}/>)
+                    props.products && props.products.map((product, i) => <ProductItem key={i} item={product}/>)
                 }
                 </div>
             }

@@ -23,8 +23,7 @@ function* updateProduct(action) {
 			yield put(createUpdateProductFailAction("Unknown Error Y "+ JSON.stringify(response)));
 		}
 	} catch (e) {
-		console.error('Error updating products!!');
-		console.error(e);
+		console.error('Error updating products!!', e);
 		yield put(createUpdateProductFailAction("", "Unknown Error X " + e.message));
 	}
 }

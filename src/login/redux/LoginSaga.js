@@ -24,6 +24,8 @@ export function* loginWatcher() {
 
 function* login(user, password) {
 
+	console.info("in LOGIN SAGA")
+
 	if (user && password) {
 		user = user.trim().toLowerCase();
 	}

@@ -33,10 +33,11 @@ export function createUploadImageFailAction(errorMessage) {
 	};
 }
 
-export function createUpdateProduct(values) {
+export function createUpdateProduct(values, Authorization) {
 	return {
 		type: Actions.UPDATE_PRODUCT,
-		values: values
+		values: values,
+		Authorization: Authorization
 	};
 }
 

@@ -7,8 +7,9 @@ import {FileUploader} from "./FileUploader";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import {Formik} from "formik";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createUpdateProduct} from "./redux/adminActions";
+import type {AppState} from "../AppState";
 
 
 export function ProductItemEdit(props) {
@@ -16,6 +17,9 @@ export function ProductItemEdit(props) {
     let product = props.product;
 
     const dispatch = useDispatch();
+    // const s = useSelector((s) => s.login.loginToken);
+    const Authorization: any = useSelector((state: AppState)=>state.login.loginToken)
+    // Authorization: state.login.loginToken,
 
     return (
         <div className={"item-edit-box"} >
@@ -25,7 +29,7 @@ export function ProductItemEdit(props) {
                 validate={validator}
                 onSubmit={(values, blah) => {
 
-                    dispatch(createUpdateProduct({...values, id: product.id}));
+                    dispatch(createUpdateProduct({...values, id: product.id}, Authorization));
 
 
                     // setTimeout(() => {
@@ -36,7 +40,7 @@ export function ProductItemEdit(props) {
                 }}>
 
                 {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
-                    <form onSubmit={handleSubmit} id="addressForm">
+                    <form onSubmit={handleSubmit} id="editProductForm">
                         <img className={"item-box-image"} src={"http://localhost:8080/images/" + product.imageFilename}
                              alt={product.imageFilename}/>
                         <div className={"item-box-desc "} title={product.name}>

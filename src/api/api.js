@@ -154,7 +154,13 @@ export const api = {
 
 	updateProduct: async (values, Authorization) => {
 
-		alert("in here!! - > " + JSON.stringify(values))
+		console.info("updateProduct : " + JSON.stringify(values))
+		console.info("Authorization : " + JSON.stringify(Authorization))
+
+		// alert("in here!! - > " + JSON.stringify(values))
+
+		// method: "GET",
+		// 	headers: [["Authorization", "Bearer " + Authorization.token]]
 
 		let data = await fetch(baseURL + constants.company + '/products/' + values.id, {
 			method: "PUT",
@@ -162,19 +168,19 @@ export const api = {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				'Authorization': {...Authorization}
+				'Authorization': "Bearer " + Authorization.token
 			},
 		}).then(response => {
 			console.info("status : " + response.status)
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
-			return response.json()
-		}).then(data => {
-			return {
-				status:200,
-				data: data
-			}
+			return response
+		// }).then(data => {
+		// 	return {
+		// 		status:200,
+		// 		data: data
+		// 	}
 		}).catch(error => {
 			console.error('There has been a problem with your fetch operation:', error);
 			throw error;
