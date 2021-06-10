@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
-import LoadingView from "../misc/LoadingView";
 import type {Address, AppState, Product} from "../AppState";
 import {
 	selectOrder,
@@ -11,6 +10,7 @@ import {
 import {connect} from "react-redux";
 import {createPlaceOrderAction} from "./redux/productActions";
 import {useEffect} from "react";
+import {LoadingView} from "../misc/LoadingView";
 
 
 type Props = {
@@ -32,7 +32,7 @@ function OKStep(props: Props) {
 	return (
 		<div className={"okPanel"}>
 			{props.orderError && <span className={"error"}>{props.orderError}</span>}
-			{props.submittingOrder && <LoadingView/>}
+			{props.submittingOrder && <LoadingView msg={"Placing Order"}/>}
 			{!props.submittingOrder && !props.orderError &&
 			<div>
 				<div>

@@ -9,6 +9,7 @@ export type AppState = {
 
 export type ProductsState = {
 	productsError: string,
+	updatingProduct: boolean,
 	items: Array<Product>,
 }
 

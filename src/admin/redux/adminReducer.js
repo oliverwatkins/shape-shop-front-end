@@ -4,6 +4,9 @@ import {toast} from "react-toastify";
 import {Notify} from "../../notify";
 
 export function reducer(state: OrderState = initialState , action) {
+
+	//TODO move to orderReducer
+
 	switch (action.type) {
 		case Actions.FETCH_ORDERS_SUCCESS:
 			return {

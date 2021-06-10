@@ -33,26 +33,7 @@ export function createUploadImageFailAction(errorMessage) {
 	};
 }
 
-export function createUpdateProduct(values, Authorization) {
-	return {
-		type: Actions.UPDATE_PRODUCT,
-		values: values,
-		Authorization: Authorization
-	};
-}
 
-export function createUpdateProductSuccessAction() {
-	return {
-		type: Actions.UPDATE_PRODUCT_SUCCESS,
-	};
-}
-
-export function createUpdateProductFailAction(errorMessage) {
-	return {
-		type: Actions.UPDATE_PRODUCT_FAIL,
-		errorMessage: errorMessage
-	};
-}
 
 export const Actions = {
 	FETCH_ORDERS: 'FETCH_ORDERS',
@@ -63,7 +44,5 @@ export const Actions = {
 	UPLOAD_IMAGE_SUCCESS: 'UPLOAD_IMAGE_SUCCESS',
 	UPLOAD_IMAGE_FAIL: 'UPLOAD_IMAGE_FAIL',
 
-	UPDATE_PRODUCT: 'UPDATE_PRODUCT',
-	UPDATE_PRODUCT_SUCCESS: 'UPDATE_PRODUCT_SUCCESS',
-	UPDATE_PRODUCT_FAIL: 'UPDATE_PRODUCT_FAIL'
+
 };

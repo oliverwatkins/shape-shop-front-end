@@ -2,13 +2,23 @@
 import * as React from 'react';
 import './loading.scss';
 
-const LoadingView = () => {
+export const LoadingView = (msg: String) => {
 	return (
 		<div className="loading">
 			<span className="loading__spinner" />
-			Placing Order
+			TODO
 		</div>
 	);
 };
 
-export default LoadingView;
+export const LoadingView2 = (props) => {
+	if (props.children && props.active)
+		return (
+			<div className="loading2">
+				<span className="loading__spinner2" />
+				{props.children}
+			</div>
+		);
+	else
+		return props.children
+};

@@ -77,6 +77,28 @@ export function createPlaceOrderErrorAction(response, value) {
 	};
 }
 
+
+export function createUpdateProduct(values, Authorization) {
+	return {
+		type: Actions.UPDATE_PRODUCT,
+		values: values,
+		Authorization: Authorization
+	};
+}
+
+export function createUpdateProductSuccessAction() {
+	return {
+		type: Actions.UPDATE_PRODUCT_SUCCESS,
+	};
+}
+
+export function createUpdateProductFailAction(errorMessage) {
+	return {
+		type: Actions.UPDATE_PRODUCT_FAIL,
+		errorMessage: errorMessage
+	};
+}
+
 export const Actions = {
 	PLACE_ORDER: "PLACE_ORDER",
 	PLACE_ORDER_SUCCESS: "PLACE_ORDER_SUCCESS",
@@ -91,5 +113,9 @@ export const Actions = {
 
 	FETCH_PRODUCTS: 'FETCH_PRODUCTS',
 	FETCH_PRODUCTS_SUCCESS: 'FETCH_PRODUCTS_SUCCESS',
-	FETCH_PRODUCTS_ERROR: 'FETCH_PRODUCTS_ERROR'
+	FETCH_PRODUCTS_ERROR: 'FETCH_PRODUCTS_ERROR',
+
+	UPDATE_PRODUCT: 'UPDATE_PRODUCT',
+	UPDATE_PRODUCT_SUCCESS: 'UPDATE_PRODUCT_SUCCESS',
+	UPDATE_PRODUCT_FAIL: 'UPDATE_PRODUCT_FAIL'
 };

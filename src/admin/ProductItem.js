@@ -54,7 +54,7 @@ export function ProductItem(props) {
             }
 
             {editMode &&
-                 <ProductItemEdit product={product}/>
+                 <ProductItemEdit product={product} setEditMode={setEditMode}/>
             }
 
             {!editMode &&
