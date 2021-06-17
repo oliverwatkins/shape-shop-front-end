@@ -8,9 +8,14 @@ export function* logoutWatcher() {
 }
 
 function* logoutWorker(action) {
+
+	// alert()
+
 	const Authorization = {
 		Authorization: action.token,
 	};
+
+	debugger;
 
 	yield call(api.logoutUser, Authorization);
 	yield put(createLogoutSuccessAction());

@@ -22,7 +22,8 @@ export const api = {
 				data: data
 			}
 		}).catch(error => {
-			console.error('There has been a problem with your fetch operation:', error);
+			throw error;
+			// console.error('There has been a problem with your fetch operation:', error);
 		});
 		return data;
 	},
@@ -43,7 +44,8 @@ export const api = {
 				data: data
 			}
 		}).catch(error => {
-			console.error('There has been a problem with your fetch operation:', error);
+			// console.error('There has been a problem with your fetch operation:', error);
+			throw error;
 		});
 		return data;
 	},
@@ -83,17 +85,19 @@ export const api = {
 
 	logoutUser: async (Authorization) => {
 		//TODO not working yet
-		let data = await fetch(baseURL + 'logout', {
+		await fetch(baseURL + 'logout', {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				'Authorization': null
+				'Authorization': Authorization
 			},
 		}).then(response => {
 			return response;
+		}).catch(error => {
+			console.error('Error logging out :', error);
 		});
-		return data;
+		// return data;
 	},
 
 	placeOrder: async (values, Authorization) => {

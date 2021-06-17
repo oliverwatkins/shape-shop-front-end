@@ -33,6 +33,8 @@ export function ProductItem(props) {
         <div>
             <ErrorBoundary>
 
+
+                {/*image uploader :*/}
             {showModal &&
             <Dialog open={true} onClose={() => setShowModal(false)} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>

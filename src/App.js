@@ -2,7 +2,7 @@ import React from 'react';
 
 import {connect} from 'react-redux';
 //TODO change to hashrouter
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 
@@ -50,9 +50,9 @@ class App extends React.PureComponent{
                 pauseOnHover
             />
             <Switch>
-              <Route path="/admin">
+              {/*<Route path="/admin">*/}
                 <AdminScreen/>
-              </Route>
+              {/*</Route>*/}
 
               {/*this component just redirects to logout2*/}
               <Route path="/logout" component={Logout}/>

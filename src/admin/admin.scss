@@ -1,9 +1,6 @@
 
 .admin-screen{
-  .admin-product-list {
-    display: flex;
-    flex-wrap: wrap;
-  }
+
   background: white;
   h1 {
     color: #3c4a72;
@@ -31,21 +28,17 @@
     padding-top: 10px;
   }
 
-  .product-list {
-    background: white;
-    overflow-y: scroll;
-    height:400px;
-    .item-box-image {
-      height: 200px;
-      width: 200px;
-    }
+  .admin-product-list {
+    display: flex;
+    flex-wrap: wrap;
   }
 
+
   img {
-    min-width: 150px;
-    min-height: 150px;
-    max-width: 150px;
-    max-height: 150px;
+    min-width: 280px;
+    min-height: 280px;
+    max-width: 280px;
+    max-height: 280px;
   }
 }
 

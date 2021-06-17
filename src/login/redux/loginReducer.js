@@ -34,6 +34,7 @@ export function reducer(state: LoginState = initialState, action) {
 			};
 		case LoginActions.LOGOUT_SUCCESS:
 			return {
+				...state,
 				loginToken: {},
 			};
 		default :

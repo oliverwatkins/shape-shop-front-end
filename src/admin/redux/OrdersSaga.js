@@ -33,8 +33,7 @@ function* getOrders(action) {
 		}
 	} catch (e) {
 
-		console.error('Error fetching orders!!');
-		console.error(e);
+		console.error('Error fetching orders!!', e);
 		yield put(createFetchOrdersFailAction("", "Unknown Error X " + e.message));
 	}
 }
