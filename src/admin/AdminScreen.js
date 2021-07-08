@@ -37,11 +37,7 @@ function AdminScreen(props: Props) {
 	return (
 		<div className={"admin-screen"}>
 			<h1>Admin Screen</h1>
-
 			<ul>
-				<li>
-					<Link to="/admin/">Home</Link>
-				</li>
 				<li>
 					<Link to="/admin/orders">Orders</Link>
 				</li>

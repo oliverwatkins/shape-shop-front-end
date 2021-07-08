@@ -50,9 +50,9 @@ class App extends React.PureComponent{
                 pauseOnHover
             />
             <Switch>
-              {/*<Route path="/admin">*/}
+              <Route path="/admin">
                 <AdminScreen/>
-              {/*</Route>*/}
+              </Route>
 
               {/*this component just redirects to logout2*/}
               <Route path="/logout" component={Logout}/>
