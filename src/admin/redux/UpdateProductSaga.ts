@@ -1,0 +1,34 @@
+import { put, call, takeLatest } from 'redux-saga/effects';
+
+import {api} from "../../api/api";
+import {toast} from "react-toastify";
+import {
+	Actions,
+	createUpdateProductFailAction,
+	createUpdateProductSuccessAction
+} from "../../order/redux/productActions";
+import {delay} from "@redux-saga/core/effects";
+
+export function* updateProductWatcher() {
+	yield takeLatest(Actions.UPDATE_PRODUCT, updateProduct);
+}
+
+function* updateProduct(action: { values: any; Authorization: any; }) {
+
+	try {
+		const response = yield call(api.updateProduct, action.values, action.Authorization);
+
+		yield delay(3000)
+
+		if (response.status === 200) {
+			yield put(createUpdateProductSuccessAction());
+			console.info("success : " + response.data)
+		} else {
+			console.error(JSON.stringify(response))
+			yield put(createUpdateProductFailAction("Unknown Response Error  "+ JSON.stringify(response)));
+		}
+	} catch (e) {
+		console.error('Error updating products!!', e);
+		yield put(createUpdateProductFailAction("Unknown Error " + e.message));
+	}
+}

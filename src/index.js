@@ -18,8 +18,8 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import {CACHE} from "./constants";
 import {LoadingView} from "./misc/LoadingView";
+import {CACHE} from "./constants";
 
 const sessionKey = 'shapeshop1.0';
 export const persistConfig = {
@@ -59,7 +59,7 @@ sagaMiddleware.run(sagas);
 
 ReactDOM.render(
 	<Provider store={store}>
-		<PersistGate loading={<LoadingView msg={"x"}/>} persistor={persistor}>
+		<PersistGate loading={<LoadingView />} persistor={persistor}>
 			<Router>
 				<App/>
 			</Router>
