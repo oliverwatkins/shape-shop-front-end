@@ -1,7 +1,10 @@
-import * as sagaEffects from 'redux-saga/effects'
+
 
 import { LoginActions, createLogoutSuccessAction } from './loginActions';
 import { api } from "../../api/api";
+
+
+import * as sagaEffects from 'redux-saga/effects'
 
 //bypassing typescript problems by doing this :
 const takeLatest: any = sagaEffects.takeLatest;

@@ -1,7 +1,7 @@
 import {Actions} from './productActions';
 import type {OrderState} from "../../AppState";
-import {DeliveryType, PaymentType} from "../../constants";
 import {Notify} from "../../notify";
+import {DeliveryType, OrderStateType, PaymentType} from "../../AppState";
 
 export function reducer(state: OrderState = initialState , action: any) {
 	switch (action.type) {
@@ -66,7 +66,7 @@ export function reducer(state: OrderState = initialState , action: any) {
 }
 
 const initialState = {
-	state: "",
+	state: OrderStateType.OPEN,
 	items: [],
 	paymentType: PaymentType.cash,
 	deliveryType: DeliveryType.pickup,

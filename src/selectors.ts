@@ -21,6 +21,7 @@ export const selectSelectedProductByType = (state: AppState, type: string) => st
 //total order
 export const selectOrder = (state: AppState) => {
 	return {
+		state: state.order.state,
 		addressEntity: state.order && state.order.addressEntity,
 		creditCardEntity: state.order && state.order.creditCardEntity,
 		selectedProducts: selectSelectedProductByType(state, "main"),

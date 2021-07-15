@@ -1,7 +1,4 @@
-import { put, call, takeLatest } from 'redux-saga/effects';
-
 import {api} from "../../api/api";
-import {toast} from "react-toastify";
 import {
 	Actions,
 	createUpdateProductFailAction,
@@ -9,6 +6,12 @@ import {
 } from "../../order/redux/productActions";
 import {delay} from "@redux-saga/core/effects";
 
+import * as sagaEffects from 'redux-saga/effects'
+
+//bypassing typescript problems by doing this :
+const takeLatest: any = sagaEffects.takeLatest;
+const call: any = sagaEffects.call;
+const put: any = sagaEffects.put;
 export function* updateProductWatcher() {
 	yield takeLatest(Actions.UPDATE_PRODUCT, updateProduct);
 }

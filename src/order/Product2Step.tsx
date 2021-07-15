@@ -9,9 +9,9 @@ import type {Product} from "../AppState";
 import {BackButton} from "./buttons/BackButton";
 
 type Props = {
-	products2: Array<Product>,
-	selectedProducts: Array<Product>,
-	selectedProducts2: Array<Product>,
+	products2?: Array<Product>,
+	selectedProducts?: Array<Product>,
+	selectedProducts2?: Array<Product>,
 }
 
 //redundant

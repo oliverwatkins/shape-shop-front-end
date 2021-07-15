@@ -3,8 +3,8 @@ import type {Product} from "../AppState";
 import {calculateTotal} from "./utils";
 
 type Props = {
-	selectedProducts: Array<Product>,
-	selectedProducts2: Array<Product>,
+	selectedProducts?: Array<Product>,
+	selectedProducts2?: Array<Product>,
 }
 
 export function OrderSummary(props: Props) {
@@ -20,7 +20,7 @@ export function OrderSummary(props: Props) {
 				</tr>
 				}
 				{
-					props.selectedProducts2.map((elem: Product) => {
+					props.selectedProducts2 && props.selectedProducts2.map((elem: Product) => {
 						return <tr key={elem.name}>
 							<td>{elem.name}</td>
 							<td>{elem.price}</td>
@@ -38,7 +38,7 @@ export function OrderSummary(props: Props) {
 				</tr>
 				}
 				{
-					props.selectedProducts.map((elem: Product) => {
+					props.selectedProducts && props.selectedProducts.map((elem: Product) => {
 						return <tr key={elem.name}>
 							<td>{elem.name}</td>
 							<td>{elem.price}</td>

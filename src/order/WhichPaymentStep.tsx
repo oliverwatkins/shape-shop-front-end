@@ -4,8 +4,8 @@ import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
 import {connect} from "react-redux";
-import {DeliveryType, PaymentType} from "../constants";
 import {createUpdatePaymentType} from "./redux/productActions";
+import {PaymentType} from "../AppState";
 
 type Props = {
 	updatePaymentType: (value: any)=>void
@@ -18,7 +18,7 @@ function WhichPayment(props: Props) {
 	const [redirect, setRedirect]  = React.useState(false);
 
 	function onRadioChanged(e: React.ChangeEvent<HTMLInputElement>){
-		setPaymentType(e.currentTarget.value)
+		setPaymentType(PaymentType[e.currentTarget.value])
 		props.updatePaymentType(e.currentTarget.value)
 	}
 

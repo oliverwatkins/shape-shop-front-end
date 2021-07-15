@@ -20,7 +20,7 @@ export function createFetchOrdersFailAction(errorMessage: string) {
 
 export function createUploadImageSuccessAction() {
 	return {
-		type: Actions.UPLOAD_IMAGE_FAIL,
+		type: Actions.UPLOAD_IMAGE_SUCCESS,
 	};
 }
 

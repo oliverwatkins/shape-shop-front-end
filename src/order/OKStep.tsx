@@ -16,11 +16,11 @@ import {LoadingView} from "../misc/LoadingView";
 type Props = {
 	selectedProducts: Array<Product>,
 	selectedProducts2: Array<Product>,
-	address: Address,
+	address?: Address,
 	deliveryType: string,
 	paymentType: string,
-	submittingOrder: boolean,
-	orderError: string,
+	submittingOrder?: boolean,
+	orderError?: string,
 	placeOrder: Function,
 	order: OrderState
 }

@@ -44,9 +44,20 @@ export enum PaymentType {
 	card = "CARD"
 }
 
+export enum DeliveryType {
+	pickup = "PICKUP",
+	delivery = "DELIVERY"
+}
+
+export enum OrderStateType {
+	OPEN = "OPEN",
+	CLOSED = "CLOSED"
+}
+
+
 export type OrderState = {
 	id?: string,
-	state: string, //todo convert to enum
+	state: OrderStateType,
 	paymentType: PaymentType,
 	deliveryType: string,
 	addressEntity?: Address,

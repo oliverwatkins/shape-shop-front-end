@@ -18,7 +18,7 @@ export const CheckoutForm = (props) => {
 	const history = useHistory();
 	const stripe = useStripe();
 	const elements = useElements();
-	const [error, setError] = useState(null);
+	const [error, setError] = useState();
 	const [cardComplete, setCardComplete] = useState(false);
 	const [processing, setProcessing] = useState(false);
 	const [paymentMethod, setPaymentMethod] = useState(null);
@@ -48,10 +48,12 @@ export const CheckoutForm = (props) => {
 			setProcessing(true);
 		}
 
+
 		const payload = await stripe.createPaymentMethod({
 			type: 'card',
+			// @ts-ignore
 			card: elements.getElement(CardElement),
-			billing_details: billingDetails,
+			billing_details: billingDetails
 		});
 
 		setProcessing(false);
@@ -59,15 +61,17 @@ export const CheckoutForm = (props) => {
 		if (payload.error) {
 
 			alert("errror : " + JSON.stringify(payload.error))
+			// @ts-ignore
 			setError(payload.error);
 		} else {
 			props.updateCC(payload)
-
+			// @ts-ignore
 			setPaymentMethod(payload.paymentMethod);
 		}
 	};
 
 	const reset = () => {
+		// @ts-ignore
 		setError(null);
 		setProcessing(false);
 		setPaymentMethod(null);
@@ -85,7 +89,11 @@ export const CheckoutForm = (props) => {
 			</div>
 			<div className="ResultMessage">
 				Thanks for trying Stripe Elements. No money was charged, but we
-				generated a PaymentMethod: {paymentMethod.id}
+				generated a PaymentMethod:
+				{
+					// @ts-ignore
+					paymentMethod.id
+				}
 			</div>
 			<ResetButton onClick={reset}/>
 		</div>
@@ -137,7 +145,11 @@ export const CheckoutForm = (props) => {
 					}}
 				/>
 			</fieldset>
-			{error && <ErrorMessage>{error.message}</ErrorMessage>}
+
+			{error && <ErrorMessage>{
+				// @ts-ignore
+				error.message
+			}</ErrorMessage>}
 			<SubmitButton processing={processing} error={error} disabled={!stripe}>
 				Pay {props.amount} €
 			</SubmitButton>

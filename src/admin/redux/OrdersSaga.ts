@@ -1,8 +1,12 @@
-import { put, call, takeLatest } from 'redux-saga/effects';
-
 import {Actions, createFetchOrdersFailAction, createFetchOrdersSuccessAction} from './adminActions';
 import {api} from "../../api/api";
-import {toast} from "react-toastify";
+
+import * as sagaEffects from 'redux-saga/effects'
+
+//bypassing typescript problems by doing this :
+const takeLatest: any = sagaEffects.takeLatest;
+const call: any = sagaEffects.call;
+const put: any = sagaEffects.put;
 
 export function* getOrdersWatcher() {
 	yield takeLatest(Actions.FETCH_ORDERS, getOrders);

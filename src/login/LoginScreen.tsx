@@ -7,8 +7,8 @@ import {LoggedIn} from "./LoggedIn";
 import {AppState} from "../AppState";
 
 type Props = {
-	isUserLoggedIn: boolean,
-	errorMessage: string,
+	isUserLoggedIn?: boolean,
+	errorMessage?: string,
 	onSubmit: Function
 }
 

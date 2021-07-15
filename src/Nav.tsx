@@ -8,8 +8,8 @@ import {MOCK_MODE} from "./constants";
 import {AppState} from "./AppState";
 
 type Props = {
-	isUserLoggedIn: boolean,
-	username: string
+	isUserLoggedIn?: boolean,
+	username?: string
 }
 
 class Nav extends React.PureComponent<Props> {

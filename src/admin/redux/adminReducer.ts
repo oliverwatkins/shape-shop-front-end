@@ -1,8 +1,7 @@
 import {Actions} from './adminActions';
 import type {OrderState} from "../../AppState";
 import {Notify} from "../../notify";
-import {PaymentType} from "../../AppState";
-// import {PaymentType} from "../../constants";
+import {DeliveryType, OrderStateType, PaymentType} from "../../AppState";
 
 export function reducer(state: OrderState = initialState,
 						action: { type: any; data: any; errorMessage: any; }) {
@@ -28,7 +27,7 @@ export function reducer(state: OrderState = initialState,
 
 const initialState = {
 	orders: [],
-	state: "asdf", //todo convert to enum
+	state: OrderStateType.OPEN, //todo convert to enum
 	paymentType: PaymentType.card,
-	deliveryType: "string",
+	deliveryType: DeliveryType.delivery,
 };

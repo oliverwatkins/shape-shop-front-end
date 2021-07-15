@@ -6,9 +6,9 @@ import {NextButton} from "./buttons/NextButton";
 import type {Product} from "../AppState";
 
 type Props = {
-	productItems: Array<Product>,
-	selectedProducts: Array<Product>,
-	selectedProducts2: Array<Product>,
+	productItems?: Array<Product>,
+	selectedProducts?: Array<Product>,
+	selectedProducts2?: Array<Product>,
 }
 
 function Product1Step(props: Props) {

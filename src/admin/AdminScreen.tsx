@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import type {AdminState, AppState, OrderState, Product, ProductsState} from "../AppState";
 import {createFetchOrdersAction} from "./redux/adminActions";
 
@@ -15,24 +15,21 @@ import {Link, Route, Switch} from "react-router-dom";
 import {useParams, useRouteMatch} from "react-router";
 
 type Props = {
-	orders: Array<OrderState>,
-	closedOrders: Array<OrderState>,
-	fetchOrders: ()=>void,
-	dispatch: Function,
-	Authorization: string,
-	products1: Array<Product>,
-	products2: Array<Product>
+	orders?: Array<OrderState>,
+	closedOrders?: Array<OrderState>,
+	fetchOrders?: ()=>void,
+	dispatch?: Function,
+	Authorization?: string,
+	products1?: Array<Product>,
+	products2?: Array<Product>
 }
 
 function AdminScreen(props: Props) {
 
 	useEffect(() => {
-		props.dispatch(createFetchOrdersAction(props.Authorization));
-	}, []);
-
-	// useEffect(() => {
-	// 	props.dispatch(createFetchProductsAction());
-	// }, []);
+		let dispatch = useDispatch();
+		dispatch(createFetchOrdersAction(props.Authorization));
+		}, []);
 
 	return (
 		<div className={"admin-screen"}>
@@ -51,7 +48,6 @@ function AdminScreen(props: Props) {
 					<Link to="/admin/products/topic">Topic</Link>
 				</li>
 			</ul>
-
 
 			<Switch>
 				<Route path="/admin/orders">

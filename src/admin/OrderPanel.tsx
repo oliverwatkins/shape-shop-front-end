@@ -1,5 +1,4 @@
 import * as React from "react";
-import {DeliveryType, PaymentType} from "../constants";
 
 import {faCreditCard, faHandHolding, faMoneyBill, faTruck} from "@fortawesome/free-solid-svg-icons";
 
@@ -7,7 +6,7 @@ import {faCreditCard, faHandHolding, faMoneyBill, faTruck} from "@fortawesome/fr
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import {calculateTotal2} from "../order/utils";
-import {OrderState} from "../AppState";
+import {DeliveryType, OrderState, PaymentType} from "../AppState";
 
 export default function OrderPanel(props: any) {
 	return (

@@ -24,8 +24,8 @@ const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 type Props = {
 	updateCC: Function,
 	creditCardEntity?: CreditCardEntity,
-	selectedProducts: Array<Product>,
-	selectedProducts2: Array<Product>
+	selectedProducts?: Array<Product>,
+	selectedProducts2?: Array<Product>
 }
 
 function PaymentStep(props: Props) {

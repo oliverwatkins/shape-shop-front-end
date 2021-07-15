@@ -4,8 +4,6 @@ import {NextButton} from "./buttons/NextButton";
 import {wizardPages as pages} from "./OrderWizardContainer";
 import AddressSummary from "./AddressSummary";
 
-import {DeliveryType, PaymentType} from "../constants";
-
 import {BackButton} from "./buttons/BackButton";
 
 import type {Address, Product} from "../AppState";
@@ -16,13 +14,14 @@ import {faMoneyBill} from "@fortawesome/free-solid-svg-icons";
 
 import {faCreditCard} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {DeliveryType, PaymentType} from "../AppState";
 
 type Props = {
-	selectedProducts: Array<Product>,
-	selectedProducts2: Array<Product>,
-	address: Address,
-	deliveryType: string,
-	paymentType: string,
+	selectedProducts?: Array<Product>,
+	selectedProducts2?: Array<Product>,
+	address?: Address,
+	deliveryType?: string,
+	paymentType?: string,
 }
 
 function Summary(props: Props) {

@@ -2,7 +2,7 @@ import * as React from 'react';
 import type {Address} from "../AppState";
 
 type Props = {
-	address: Address
+	address?: Address
 }
 
 export function AddressSummary(props: Props) {

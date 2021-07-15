@@ -3,7 +3,7 @@ import type {Product} from "../AppState";
 import {ProductItem} from "./ProductItem";
 
 type Props = {
-    products: Product[],
+    products?: Array<Product>,
     category: string
 }
 

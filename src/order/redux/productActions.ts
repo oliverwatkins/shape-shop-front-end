@@ -77,7 +77,7 @@ export function createPlaceOrderErrorAction(response: {}, value: string) {
 }
 
 
-export function createUpdateProduct(values: { id: string; name: string; price: string; }, Authorization: any) {
+export function createUpdateProduct(values: { id: string; name: string; price: number; }, Authorization: any) {
 	return {
 		type: Actions.UPDATE_PRODUCT,
 		values: values,

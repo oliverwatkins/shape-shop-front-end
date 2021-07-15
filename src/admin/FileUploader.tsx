@@ -32,9 +32,13 @@ export function FileUploader() {
         const formData = new FormData();
 
         // Update the formData object
+
+        // @ts-ignore
         formData.append(
             "myFile",
+            // @ts-ignore
             selectedFile.selectedFile,
+            // @ts-ignore
             selectedFile.selectedFile.name
         );
 

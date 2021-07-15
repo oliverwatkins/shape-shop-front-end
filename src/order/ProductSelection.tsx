@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 import type {Product} from "../AppState";
 
 type Props = {
-	productItems: Array<Product>,
+	productItems?: Array<Product>,
 	updateProductSelection: Function
 }
 

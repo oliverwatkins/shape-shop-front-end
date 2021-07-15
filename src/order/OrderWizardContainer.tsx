@@ -26,14 +26,14 @@ export const wizardPages = {
 }
 
 type Props = {
-	products: Array<Product>,
-	products2: Array<Product>,
-	selectedProducts: Array<Product>,
-	selectedProducts2: Array<Product>,
-	address: Address,
-	deliveryType: string,
-	paymentType: string,
-	productsError: string,
+	products?: Array<Product>,
+	products2?: Array<Product>,
+	selectedProducts?: Array<Product>,
+	selectedProducts2?: Array<Product>,
+	address?: Address,
+	deliveryType?: string,
+	paymentType?: string,
+	productsError?: string,
 }
 
 function OrderWizardContainer(props: Props) {

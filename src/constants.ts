@@ -3,10 +3,10 @@
 // 	cash: "CASH",
 // 	card: "CARD"
 // }
-export const DeliveryType = {
-	pickup: "PICKUP",
-	delivery: "DELIVERY"
-}
+// export const DeliveryType = {
+// 	pickup: "PICKUP",
+// 	delivery: "DELIVERY"
+// }
 
 export const company = "alpenhof";
 

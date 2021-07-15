@@ -1,4 +1,3 @@
-import {put, call, takeLatest} from 'redux-saga/effects';
 
 import {
 	Actions,
@@ -10,6 +9,13 @@ import {delay} from "@redux-saga/core/effects";
 import {createFetchOrdersFailAction} from "../../admin/redux/adminActions";
 import type {Product} from "../../AppState";
 import {api} from "../../api/api";
+
+import * as sagaEffects from 'redux-saga/effects'
+
+//bypassing typescript problems by doing this :
+const takeLatest: any = sagaEffects.takeLatest;
+const call: any = sagaEffects.call;
+const put: any = sagaEffects.put;
 
 export function* placeOrderWatcher() {
 	yield takeLatest(Actions.PLACE_ORDER, placeOrder);

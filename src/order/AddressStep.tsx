@@ -10,7 +10,7 @@ import {connect} from "react-redux";
 import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
-import {DeliveryType} from "../constants";
+import {DeliveryType} from "../AppState";
 
 type Props = {
 	updateAddress: (value: any)=>void,
