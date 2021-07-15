@@ -26,8 +26,10 @@ type Props = {
 
 function AdminScreen(props: Props) {
 
+	let dispatch = useDispatch();
+
 	useEffect(() => {
-		let dispatch = useDispatch();
+
 		dispatch(createFetchOrdersAction(props.Authorization));
 		}, []);
 

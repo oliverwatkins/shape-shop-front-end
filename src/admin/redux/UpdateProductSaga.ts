@@ -21,6 +21,7 @@ function* updateProduct(action: { values: any; Authorization: any; }) {
 	try {
 		const response = yield call(api.updateProduct, action.values, action.Authorization);
 
+		//fake some delay
 		yield delay(3000)
 
 		if (response.status === 200) {
