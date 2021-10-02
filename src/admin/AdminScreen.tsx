@@ -7,12 +7,12 @@ import {createFetchOrdersAction} from "./redux/adminActions";
 
 import "./admin.scss"
 import OrderPanel from "./OrderPanel";
-import {Tabs} from "../misc/TabbedPanel";
 import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "../selectors";
 import {useEffect} from "react";
 import ProductPanel from "./ProductPanel";
 import {Link, Route, Switch} from "react-router-dom";
 import {useParams, useRouteMatch} from "react-router";
+import {Box, makeStyles, Tab, Tabs, Typography} from "@material-ui/core";
 
 type Props = {
 	orders?: Array<OrderState>,
@@ -24,70 +24,137 @@ type Props = {
 	products2?: Array<Product>
 }
 
+function TabPanel(props) {
+	const { children, value, index, ...other } = props;
+
+	return (
+		<div
+			role="tabpanel"
+			hidden={value !== index}
+			id={`simple-tabpanel-${index}`}
+			aria-labelledby={`simple-tab-${index}`}
+			{...other}
+		>
+			{value === index && (
+				<Box sx={{ p: 3 }}>
+					<Typography>{children}</Typography>
+				</Box>
+			)}
+		</div>
+	);
+}
+
+function a11yProps(index) {
+	return {
+		id: `simple-tab-${index}`,
+		'aria-controls': `simple-tabpanel-${index}`,
+	};
+}
+
+// const secondaryTabColor = "#bad5ff"
+// const primaryTabColor = "#4287f5"
+const useStyles = makeStyles({
+	tab1: {
+		background: 'linear-gradient(45deg, #4287f5 30%, #FF8E53 90%)',
+		border: 0,
+	},
+	tab2: {
+		background: 'linear-gradient(45deg, #bad5ff 30%, red 90%)',
+	},
+});
+
 function AdminScreen(props: Props) {
+
+	const classes = useStyles();
+
+
+	const [topTabValue, setTopTabValue] = React.useState(0);
+	const handleTopTab = (event, newValue) => {
+		setTopTabValue(newValue);
+	};
+
+	const [productTabValue, setProductTabValue] = React.useState(0);
+	const handleProdTab = (event, newValue) => {
+		setProductTabValue(newValue);
+	};
+
+	const [orderTabValue, setOrderTabValue] = React.useState(0);
+	const handleOrderTab = (event, newValue) => {
+		setOrderTabValue(newValue);
+	};
 
 	let dispatch = useDispatch();
 
 	useEffect(() => {
-
 		dispatch(createFetchOrdersAction(props.Authorization));
 		}, []);
 
 	return (
 		<div className={"admin-screen"}>
 			<h1>Admin Screen</h1>
-			<ul>
-				<li>
-					<Link to="/admin/orders">Orders</Link>
-				</li>
-				<li>
-					<Link to="/admin/products">Products</Link>
-				</li>
-				<li>
-					<Link to="/admin/settings">Settings</Link>
-				</li>
-				<li>
-					<Link to="/admin/products/topic">Topic</Link>
-				</li>
-			</ul>
+			<Tabs
+				className={classes.tab1}
+				TabIndicatorProps={{style: {background:'red'}}}
+				onChange={handleTopTab}
+				  indicatorColor="secondary"
+				  textColor="primary"
+				  variant="standard"
+				  aria-label="full width tabs example"
+				  value={topTabValue}
+			>
+				<Tab label="Orders" component={Link} to={"/admin/orders"} {...a11yProps(0)}>
+						Orders
+				</Tab>
+				<Tab label="Products"  component={Link} to={"/admin/products"}  {...a11yProps(1)} >
+						Products
+				</Tab>
+				<Tab label="Settings" component={Link} to={"/admin/settings"} {...a11yProps(2)} >
+						Settings
+				</Tab>
+			</Tabs>
 
 			<Switch>
 				<Route path="/admin/orders">
-					<Tabs activeTab={"1"}>
-						<div title={"OrdersXX"}>
-							{props.orders && <h4>Current Open Orders</h4>}
-							<OrderPanel type={"open"} orders={props.orders}/>
-							{!props.orders && <div>we have no orders</div>}
-						</div>
-						<div title={"Closed OrdersXX"}>
-							{props.closedOrders && <h4>Closed Orders</h4>}
-							<OrderPanel orders={props.closedOrders}/>
-							{!props.closedOrders && <div>no closed orders</div>}
-						</div>
+					<Box sx={{ width: '100%' }}>
+						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+					<Tabs value={orderTabValue} onChange={handleOrderTab}
+						  className={classes.tab2}
+					>
+						<Tab label="Open Orders" {...a11yProps(0)} />
+						<Tab label="Closed Orders" {...a11yProps(1)} />
 					</Tabs>
+						</Box>
+						<TabPanel value={orderTabValue} index={0}>
+							<OrderPanel type={"open"} orders={props.orders}/>
+						</TabPanel>
+						<TabPanel value={orderTabValue} index={1}>
+							<OrderPanel orders={props.closedOrders}/>
+						</TabPanel>
+					</Box>
 				</Route>
 				<Route exact path="/admin/products">
 
-					//TODO changed label to title in div component. need to update the Tabs component.
-
+					{/*// TODO changed label to title in div component. need to update the Tabs component.*/}
 					<div title={"Products"} >
-						<Tabs activeTab={"asfd"}>
-							<div title={"Products 1"}>
+						<Box sx={{ width: '100%' }}>
+							<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+								<Tabs
+									className={classes.tab2}
+									// style={{background: secondaryTabColor}}
+									value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
+									<Tab label="Products 1" {...a11yProps(0)} />
+									<Tab label="Products 2" {...a11yProps(1)} />
+								</Tabs>
+							</Box>
+							<TabPanel value={productTabValue} index={0}>
 								<ProductPanel products={props.products1} category={"main"}/>
-							</div>
-
-							<div title={"Products 2"}>
+							</TabPanel>
+							<TabPanel value={productTabValue} index={1}>
 								<ProductPanel products={props.products2} category={"drinks"}/>
-							</div>
-						</Tabs>
+							</TabPanel>
+						</Box>
 					</div>
 				</Route>
-				<Route path="/admin/products/topic/:topicId">
-					This is the chosen topic
-					<Topic />
-				</Route>
-
-
 				<Route path="/admin/settings">
 						<div title={"Settings"}>
 							<h3 style={{padding: "25px"}}>
@@ -106,50 +173,10 @@ function AdminScreen(props: Props) {
 							</div>
 						</div>
 				</Route>
-				{/*<Route path="/topics">*/}
-				{/*	<Topics />*/}
-				{/*</Route>*/}
 			</Switch>
 		</div>
 	);
 }
-
-
-function Topics() {
-	// The `path` lets us build <Route> paths that are
-	// relative to the parent route, while the `url` lets
-	// us build relative links.
-	let { path, url } = useRouteMatch();
-
-	return (
-		<div>
-			<h2>Products</h2>
-
-			<Switch>
-				<Route exact path={path}>
-					<h3>Please select a product.</h3>
-				</Route>
-				<Route path={`${path}/:topicId`}>
-					<Topic />
-				</Route>
-			</Switch>
-		</div>
-	);
-}
-
-function Topic() {
-	// The <Route> that rendered this component has a
-	// path of `/topics/:topicId`. The `:topicId` portion
-	// of the URL indicates a placeholder that we can
-	// get from `useParams()`.
-	let { topicId } = useParams<{ topicId: string }>();
-	return (
-		<div>
-			<h3>{topicId}</h3>
-		</div>
-	);
-}
-
 
 const mapStateToProps = (state: AppState): AdminState => {
 	return {

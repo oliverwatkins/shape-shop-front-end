@@ -1,14 +1,7 @@
 
-// export const PaymentType = {
-// 	cash: "CASH",
-// 	card: "CARD"
-// }
-// export const DeliveryType = {
-// 	pickup: "PICKUP",
-// 	delivery: "DELIVERY"
-// }
 
 export const company = "alpenhof";
+
 
 // switches -
 

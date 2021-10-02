@@ -22,6 +22,7 @@ export const api = {
 				data: data
 			}
 		}).catch(error => {
+			console.error(error)
 			throw error;
 			// console.error('There has been a problem with your fetch operation:', error);
 		});
