@@ -53,6 +53,20 @@ export function FileUploader() {
 
     return (
         <div>
+
+            <form method="POST" encType="multipart/form-data" action="/">
+                <table>
+                    <tr>
+                        <td>File to upload2 :</td>
+                        <td><input type="file" name="file"/></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td><input type="submit" value="Upload"/></td>
+                    </tr>
+                </table>
+            </form>
+
             <div>
                 <input type="file" onChange={onFileChange} />
                 <button onClick={onFileUpload}>

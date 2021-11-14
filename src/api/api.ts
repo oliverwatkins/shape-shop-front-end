@@ -127,10 +127,11 @@ export const api = {
 		});
 		return data;
 	},
-	uploadImage: async (formData: any, Authorization: any) => {
+	uploadImage: async (Authorization: any, formData: any) => {
 
+		console.info("formData " + JSON.stringify(formData));
 
-		let data = await fetch(baseURL + constants.company + '/uploadfile', {
+		let data = await fetch(baseURL + constants.company + '/uploadfile/' + '12333', {
 			method: "POST",
 			body: JSON.stringify(formData),
 			headers: {

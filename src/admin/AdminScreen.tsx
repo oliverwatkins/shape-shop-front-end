@@ -11,7 +11,6 @@ import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "../sel
 import {useEffect} from "react";
 import ProductPanel from "./ProductPanel";
 import {Link, Route, Switch} from "react-router-dom";
-import {useParams, useRouteMatch} from "react-router";
 import {Box, makeStyles, Tab, Tabs, Typography} from "@material-ui/core";
 
 type Props = {

@@ -15,12 +15,17 @@ export function* uploadImageWatcher() {
 function* uploadImage(action) {
 	try {
 		console.info("action.Authorization.token " + action.Authorization.token);
+		console.info("File " + JSON.stringify(action.formData));
 
+		console.info("File " + action.formData.name);
+
+
+		alert()
 		if (!action.Authorization.token)
 			yield put(createUploadImageFailAction("No authorisation token supplied "));
 
 		// @ts-ignore
-		const response = yield call(api.uploadImage, action.Authorization);
+		const response = yield call(api.uploadImage, action.Authorization, action.formData.name);
 
 		if (response.status === 200) {
 			yield put(createUploadImageSuccessAction());

@@ -4,7 +4,7 @@
 
 ### Run mock mode in Docker Container with NGINX (app server)
 
-make sure mock_mode is true in contants.js
+make sure mock_mode is "true" in constants.js
 export const MOCK_MODE = true;
 
 
