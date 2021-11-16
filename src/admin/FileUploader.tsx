@@ -4,6 +4,9 @@ import React, {SyntheticEvent} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Actions} from "./redux/adminActions";
 import type {AppState, OrderState, Product} from "../AppState";
+import {Button} from "@material-ui/core";
+import {api} from "../api/api";
+import {Notify} from "../notify";
 
 
 export function FileUploader() {
@@ -31,6 +34,9 @@ export function FileUploader() {
         // Create an object of formData
         const formData = new FormData();
 
+
+
+
         // Update the formData object
 
         // @ts-ignore
@@ -42,10 +48,18 @@ export function FileUploader() {
             selectedFile.selectedFile.name
         );
 
+        try {
+            api.uploadImage(Authorization, selectedFile.selectedFile).catch(e => {
+                console.error(e)
+                Notify.error("Error uploading image")
+            });
+        }catch(e){
+            console.error(e)
+        }
         // Details of the uploaded file
         console.log(selectedFile.selectedFile);
 
-        dispatch({ type: Actions.UPLOAD_IMAGE, formData: formData, Authorization: Authorization })
+        // dispatch({ type: Actions.UPLOAD_IMAGE, formData: formData, Authorization: Authorization })
         // Request made to the backend api
         // Send formData object
         // axios.post("api/uploadfile", formData);
@@ -53,19 +67,43 @@ export function FileUploader() {
 
     return (
         <div>
+            {/*<p/>*/}
 
-            <form method="POST" encType="multipart/form-data" action="/">
-                <table>
-                    <tr>
-                        <td>File to upload2 :</td>
-                        <td><input type="file" name="file"/></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td><input type="submit" value="Upload"/></td>
-                    </tr>
-                </table>
-            </form>
+            {/*SIMPLE :*/}
+
+            {/*<p/>*/}
+            {/*<form method="POST" encType="multipart/form-data" action="/">*/}
+            {/*    <table>*/}
+            {/*        <tr>*/}
+            {/*            <td>File to upload2 :</td>*/}
+            {/*            <td><input type="file" name="file"/></td>*/}
+            {/*        </tr>*/}
+            {/*        <tr>*/}
+            {/*            <td><input type="submit" value="Upload"/></td>*/}
+            {/*        </tr>*/}
+            {/*    </table>*/}
+            {/*</form>*/}
+            {/*<p/>*/}
+
+            {/*MUI :*/}
+            {/*<p/>*/}
+
+            {/*<form method="POST" encType="multipart/form-data" action="/">*/}
+            {/*<Button*/}
+            {/*    variant="contained"*/}
+            {/*    component="label"*/}
+            {/*>*/}
+            {/*    Upload File*/}
+            {/*    <input*/}
+            {/*        type="file"*/}
+            {/*        hidden*/}
+            {/*    />*/}
+            {/*</Button>*/}
+            {/*</form>*/}
+            <p/>
+
+            CALLBACK :
+            <p/>
 
             <div>
                 <input type="file" onChange={onFileChange} />

@@ -127,15 +127,21 @@ export const api = {
 		});
 		return data;
 	},
-	uploadImage: async (Authorization: any, formData: any) => {
+	uploadImage: async (Authorization: any, file: any) => {
 
-		console.info("formData " + JSON.stringify(formData));
+		console.info("FilEXXX " + JSON.stringify(file));
+
+		const formData = new FormData();
+		formData.append('file', file);
+
+		console.info("FormData " + JSON.stringify(formData));
+
 
 		let data = await fetch(baseURL + constants.company + '/uploadfile/' + '12333', {
 			method: "POST",
-			body: JSON.stringify(formData),
+			body: formData,
 			headers: {
-				'Content-Type': 'application/json',
+				// 'Content-Type': 'application/json',
 				'Accept': 'application/json',
 				'Authorization': {...Authorization}
 			},
@@ -151,7 +157,7 @@ export const api = {
 				data: data
 			}
 		}).catch(error => {
-			console.error('There has been a problem with your fetch operation:', error);
+			console.error('There was a problem with your fetch operation:', error);
 			throw error;
 		});
 		return data;
