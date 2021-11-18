@@ -9,8 +9,7 @@ import Button from "@material-ui/core/Button";
 import {ProductItemEdit} from "./ProductItemEdit";
 import {ErrorBoundary} from "../misc/ErrorBoundary";
 import {Product} from "../AppState";
-
-
+import * as Constants from "../constants";
 
 type Props = {item: Product};
 
@@ -25,8 +24,6 @@ export function ProductItem(props: Props) {
         setShowModal(false);
     };
 
-
-
     const handleSubmit = (e: Event) => {
         e.preventDefault();
         // console.info("e.target.file " + e.target.file)
@@ -36,9 +33,6 @@ export function ProductItem(props: Props) {
     return (
         <div>
             <ErrorBoundary>
-
-
-                {/*image uploader :*/}
             {showModal &&
             <Dialog open={true} onClose={() => setShowModal(false)} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
@@ -46,7 +40,7 @@ export function ProductItem(props: Props) {
                     <DialogContentText>
                         Select an image file to upload
                     </DialogContentText>
-                    <FileUploader/>
+                    <FileUploader item={product}/>
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} color="primary">
@@ -58,14 +52,13 @@ export function ProductItem(props: Props) {
                 </DialogActions>
             </Dialog>
             }
-
             {editMode &&
                  <ProductItemEdit product={product} setEditMode={setEditMode}/>
             }
-
             {!editMode &&
              <div className={"item-box"} >
-                <img className={"item-box-image"} src={"http://localhost:8080/images/" + product.imageFilename}
+                <img className={"item-box-image"}
+                     src={Constants.baseURL + Constants.company + "/images/" + product.imageFilename}
                      alt={product.imageFilename}/>
 
                 <button onClick={e => {

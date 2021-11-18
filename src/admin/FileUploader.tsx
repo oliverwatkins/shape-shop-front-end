@@ -8,8 +8,11 @@ import {Button} from "@material-ui/core";
 import {api} from "../api/api";
 import {Notify} from "../notify";
 
+type Props = {
+    item: Product
+}
 
-export function FileUploader() {
+export function FileUploader(props: Props) {
 
 
     const Authorization: any = useSelector((state: AppState)=>state.login.loginToken)
@@ -49,7 +52,7 @@ export function FileUploader() {
         );
 
         try {
-            api.uploadImage(Authorization, selectedFile.selectedFile).catch(e => {
+            api.uploadImage(Authorization, selectedFile.selectedFile, props.item.id).catch(e => {
                 console.error(e)
                 Notify.error("Error uploading image")
             });

@@ -5,7 +5,6 @@ import {connect, useDispatch} from "react-redux";
 import type {AdminState, AppState, OrderState, Product, ProductsState} from "../AppState";
 import {createFetchOrdersAction} from "./redux/adminActions";
 
-import "./admin.scss"
 import OrderPanel from "./OrderPanel";
 import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "../selectors";
 import {useEffect} from "react";

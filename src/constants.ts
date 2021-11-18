@@ -2,6 +2,8 @@
 
 export const company = "alpenhof";
 
+export const baseURL = "http://localhost:8080/";
+
 
 // switches -
 

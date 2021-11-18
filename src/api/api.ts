@@ -127,7 +127,7 @@ export const api = {
 		});
 		return data;
 	},
-	uploadImage: async (Authorization: any, file: any) => {
+	uploadImage: async (Authorization: any, file: any, productId: string) => {
 
 		console.info("FilEXXX " + JSON.stringify(file));
 
@@ -137,7 +137,7 @@ export const api = {
 		console.info("FormData " + JSON.stringify(formData));
 
 
-		let data = await fetch(baseURL + constants.company + '/uploadfile/' + '12333', {
+		let data = await fetch(baseURL + constants.company + '/uploadfile/' + productId, {
 			method: "POST",
 			body: formData,
 			headers: {
