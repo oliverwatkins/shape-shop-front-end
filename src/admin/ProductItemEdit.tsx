@@ -63,7 +63,7 @@ export function ProductItemEdit(props: Props) {
                                 </div>
                             </div>
                             <button type="submit" disabled={isSubmitting}>
-                                save
+                                Save
                             </button>
                             <button type="button" onClick={()=>props.setEditMode(false)}>cancel</button>
                         </form>

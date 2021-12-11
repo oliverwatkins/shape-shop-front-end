@@ -10,8 +10,29 @@ import {ProductItemEdit} from "./ProductItemEdit";
 import {ErrorBoundary} from "../misc/ErrorBoundary";
 import {Product} from "../AppState";
 import * as Constants from "../constants";
+import {Box} from "@material-ui/core";
+
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 type Props = {item: Product};
+
+
+
+const classes = {
+    paper: {
+        backgroundColor: "#eee",
+        marginLeft: "30%",
+        marginRight: "30%"
+    },
+    textField: {
+        backgroundColor: "#fff"
+    },
+    button: {
+        backgroundColor: "green",
+        marginLeft: 20
+    }
+};
 
 export function ProductItem(props: Props) {
 
@@ -24,14 +45,8 @@ export function ProductItem(props: Props) {
         setShowModal(false);
     };
 
-    const handleSubmit = (e: Event) => {
-        e.preventDefault();
-        // console.info("e.target.file " + e.target.file)
-        handleClose();
-    }
-
     return (
-        <div>
+        <Box className="product-item">
             <ErrorBoundary>
             {showModal &&
             <Dialog open={true} onClose={() => setShowModal(false)} aria-labelledby="form-dialog-title">
@@ -56,29 +71,32 @@ export function ProductItem(props: Props) {
                  <ProductItemEdit product={product} setEditMode={setEditMode}/>
             }
             {!editMode &&
-             <div className={"item-box"} >
-                <img className={"item-box-image"}
-                     src={Constants.baseURL + Constants.company + "/images/" + product.imageFilename}
-                     alt={product.imageFilename}/>
+                <>
+                    <Box sx={{border: "2px dashed red", width:"200px", height:"200px"}}>
+                        <img className={"item-box-image"}
+                             style={{maxWidth:"100%", maxHeight: "100%"}}
+                             src={Constants.baseURL + Constants.company + "/images/" + product.imageFilename}
+                             alt={product.imageFilename}/>
+                    </Box>
 
-                <button onClick={e => {
-                    setShowModal(true);
-                }}>update image</button>
-                <div className={"item-box-desc "} title={product.name}>
-                {product.name}
-                </div>
-                <div className={"item-box-bottom"}>
-                    <div className={"item-box-price"}>
-                    € {product.price}
+                    <div className={"item-box-desc "} title={product.name}>
+                    {product.name}
                     </div>
-                </div>
-                <button>delete</button>
-                <button onClick={e => {
-                    setEditMode(true);
-                }}>edit</button>
-             </div>
+                    <div className={"item-box-bottom"}>
+                        <div className={"item-box-price"}>
+                        € {product.price}
+                        </div>
+                    </div>
+                    <Button onClick={e => {
+                        setShowModal(true);
+                    }}>update image</Button>
+                    <Button onClick={e => alert("TODO")}><DeleteIcon/></Button>
+                    <Button onClick={e => {
+                        setEditMode(true);
+                    }}><EditIcon/></Button>
+                </>
             }
             </ErrorBoundary>
-        </div>
+        </Box>
     )
 }
