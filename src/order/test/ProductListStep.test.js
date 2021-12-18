@@ -5,7 +5,7 @@ import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {renderToStaticMarkup} from "react-dom/server";
 import {MemoryRouter} from "react-router-dom";
-import {selectSelectedProductType} from "../../selectors";
+import {selectSelectedProductByType} from "../../selectors";
 
 Enzyme.configure({adapter: new Adapter()});
 
@@ -21,8 +21,8 @@ describe('Payment Step test', () => {
 				<MemoryRouter>
 					<ProductListStep
 						productItems={data.products}
-						selectedDrinks={selectSelectedProductType(data, "main")}
-						selectedProducts={selectSelectedProductType(data, "drinks")}/>
+						selectedDrinks={selectSelectedProductByType(data, "main")}
+						selectedProducts={selectSelectedProductByType(data, "drinks")}/>
 				</MemoryRouter>
 			</Provider>
 		);
