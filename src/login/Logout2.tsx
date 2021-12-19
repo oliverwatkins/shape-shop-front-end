@@ -1,5 +1,5 @@
 import * as React from 'react';
-import "./login.css"
+import "./login.scss"
 
 export class Logout2 extends React.PureComponent {
 	render() {

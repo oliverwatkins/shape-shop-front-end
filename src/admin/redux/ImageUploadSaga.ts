@@ -12,7 +12,6 @@ export function* uploadImageWatcher() {
 	yield takeLatest(Actions.UPLOAD_IMAGE, uploadImage);
 }
 
-
 function* uploadImage(action: any) {
 	try {
 		console.info("action.Authorization.token " + action.Authorization.token);

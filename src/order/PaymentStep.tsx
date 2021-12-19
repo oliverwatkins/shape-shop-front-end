@@ -8,7 +8,7 @@ import {calculateTotal} from "./utils";
 import {wizardPages as pages} from "./OrderWizardContainer";
 import {BackButton} from "./buttons/BackButton";
 
-import "./order.css"
+import "./order.scss"
 import {createUpdateAddress, createUpdateCreditCard, createUpdateDeliveryType} from "./redux/productActions";
 import {connect} from "react-redux";
 // import {Address} from "./AddressStep";

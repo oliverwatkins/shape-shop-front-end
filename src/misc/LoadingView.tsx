@@ -1,6 +1,6 @@
 //@flow
 import * as React from 'react';
-import './loading.css';
+import './loading.scss';
 
 export const LoadingView = (props: any) => {
 	return (

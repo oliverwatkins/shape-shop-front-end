@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {createLoginAction} from './redux/loginActions';
 import {isUserLoggedIn} from '../selectors';
-import "./login.css"
+import "./login.scss"
 import {LoggedIn} from "./LoggedIn";
 import {AppState} from "../AppState";
 

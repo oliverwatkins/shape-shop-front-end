@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useState} from 'react';
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement, Elements, useElements, useStripe} from "@stripe/react-stripe-js";
-import './PaymentForm.css';
+import './PaymentForm.scss';
 
 import {useHistory} from "react-router-dom";
 
