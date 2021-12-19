@@ -1,5 +1,5 @@
 import * as React from 'react';
-import "./login.scss"
+import "./login.css"
 import {Redirect} from "react-router";
 
 

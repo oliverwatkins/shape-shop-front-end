@@ -22,7 +22,7 @@ type Props = {
 	products2?: Array<Product>
 }
 
-function TabPanel(props) {
+function TabPanel(props: any) {
 	const { children, value, index, ...other } = props;
 
 	return (

@@ -1,0 +1,58 @@
+
+/*@import "./../index.css";*/
+
+/*.item-box.selected {*/
+/*  background-color: $itembox-color-selected;*/
+/*}*/
+
+/*.item-box {*/
+/*  background-color: $itembox-color-unselected;*/
+/*  font-size: medium;*/
+/*  margin: 10px;*/
+/*  width: 250px;*/
+
+/*  .item-box-image {*/
+/*    width: 246px;*/
+/*    margin: 2px;*/
+/*  }*/
+
+/*  .item-box-desc {*/
+/*    padding: 2px;*/
+/*    height: 70px;*/
+/*    overflow: hidden;*/
+/*    font-size: 14px;*/
+/*    background: #f3f8f7;*/
+/*    margin: 6px;*/
+/*    font-style: italic;*/
+/*  }*/
+
+/*  .item-box-desc {*/
+/*    background: lighten($itembox-color-unselected, 5%);*/
+/*  }*/
+
+/*  .item-box-desc.selected {*/
+/*    background: lighten($itembox-color-selected, 10%);*/
+/*  }*/
+
+/*  .item-box-bottom {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    margin: 4px;*/
+
+/*    .item-box-price {*/
+/*      flex-grow: 4;*/
+/*      font-weight: bold;*/
+/*      text-align: left;*/
+/*    }*/
+
+/*    .item-box-checkbox {*/
+/*      height: 30px;*/
+/*      flex-grow: 1;*/
+/*    }*/
+
+/*    .item-box-options {*/
+/*      height: 30px;*/
+/*      flex-grow: 1;*/
+/*    }*/
+/*  }*/
+/*}*/

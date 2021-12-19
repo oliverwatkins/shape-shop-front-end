@@ -3,7 +3,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {isUserLoggedIn, selectUserEmail} from "./selectors";
 import {connect} from "react-redux";
-import "./nav.scss"
+import "./nav.css"
 import {MOCK_MODE} from "./constants";
 import {AppState} from "./AppState";
 

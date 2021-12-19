@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import "./tabs.scss"
+import "./tabs.css"
 import {DeliveryType} from "../AppState";
 import { Button } from '@material-ui/core';
 

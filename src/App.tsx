@@ -14,7 +14,7 @@ import Nav from "./Nav";
 
 // import "./main.scss"
 
-import "./alpenhofCss.scss"
+import "./alpenhofCss.css"
 
 import OrderWizard from "./order/OrderWizardContainer";
 import Footer from "./Footer";

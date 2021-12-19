@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowCircleLeft} from "@fortawesome/free-solid-svg-icons";
 
-import "./Buttons.scss"
+import "./Buttons.css"
 
 type Props = {
 	page: string

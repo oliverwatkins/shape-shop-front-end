@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTruck} from "@fortawesome/free-solid-svg-icons";
 import {Formik} from "formik";
 
-import "./order.scss"
+import "./order.css"
 import {Redirect} from "react-router";
 import {createUpdateAddress, createUpdateDeliveryType} from "./redux/productActions";
 import {connect} from "react-redux";
