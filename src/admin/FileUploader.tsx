@@ -52,7 +52,9 @@ export function FileUploader(props: Props) {
         );
 
         try {
-            api.uploadImage(Authorization, selectedFile.selectedFile, props.item.id).catch(e => {
+
+
+            api.uploadImage(Authorization, selectedFile.selectedFile, props.item.id).catch((e: any) => {
                 console.error(e)
                 Notify.error("Error uploading image")
             });

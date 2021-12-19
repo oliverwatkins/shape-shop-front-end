@@ -1,10 +1,18 @@
 import * as constants from "../constants";
+import {api_MOCK} from "./api_mock";
 
 export const baseURL = 'http://localhost:8080/';
 // const ADMIN_TOKEN = ADMIN_TOKEN2;
 
-export const api = {
+export let api: any = {}
+
+
+const apiReal = {
 	fetchProducts: async () => {
+
+		alert("fetchProducts LIVE ")
+
+
 		let data = await fetch(baseURL + constants.company + '/products', {
 			method: "GET",
 			headers: {
@@ -192,3 +200,11 @@ export const api = {
 
 	}
 };
+
+
+if (constants.MOCK_MODE) {
+	api = api_MOCK;
+	// alert()
+}else {
+	api = apiReal;
+}

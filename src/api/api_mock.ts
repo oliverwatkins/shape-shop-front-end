@@ -51,6 +51,7 @@ export const api_MOCK: APIinteface = {
 
 	fetchProducts: () => {
 
+		alert("fetchProducts MOCK ")
 		console.info("fetchProducts MOCK ")
 
 		return {
