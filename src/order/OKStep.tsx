@@ -50,9 +50,9 @@ function OKStep(props: Props) {
 	);
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch: any) => {
 	return {
-		placeOrder: (data) => {
+		placeOrder: (data: any) => {
 			dispatch(createPlaceOrderAction(data));
 		},
 	};

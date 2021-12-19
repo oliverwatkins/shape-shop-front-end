@@ -53,7 +53,7 @@ export function Tabs(props: Props) {
 type Props3 = {
 	activeTab: string,
 	title: string,
-	onClick: (string) => any
+	onClick: (string: any) => any
 }
 
 function Tab(props: Props3)  {

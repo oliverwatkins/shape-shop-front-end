@@ -20,6 +20,7 @@ function* getOrders(action: { Authorization: { token: string; }; }) {
 		if (!action.Authorization.token)
 			yield put(createFetchOrdersFailAction("No authorisation token supplied"));
 
+		// @ts-ignore
 		const response = yield call(api.fetchOrders, action.Authorization);
 
 		if (response.status === 200) {
@@ -38,6 +39,7 @@ function* getOrders(action: { Authorization: { token: string; }; }) {
 	} catch (e) {
 
 		console.error('Error fetching orders!!', e);
+		// @ts-ignore
 		yield put(createFetchOrdersFailAction("Unknown Error X " + e.message));
 	}
 }

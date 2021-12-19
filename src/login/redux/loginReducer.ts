@@ -2,7 +2,7 @@ import {LoginActions} from './loginActions';
 import type {LoginState} from "../../AppState";
 import {Notify} from "../../notify";
 
-export function reducer(state: LoginState = initialState, action) {
+export function reducer(state: LoginState = initialState, action: any) {
 
 	console.info("in reducer with action " + action.type)
 

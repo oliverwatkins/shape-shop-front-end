@@ -11,5 +11,5 @@ export const baseURL = "http://localhost:8080/";
 export const CACHE = false;
 
 // mock mode
-export const MOCK_MODE = false;
+export const MOCK_MODE = true;
 

@@ -14,7 +14,7 @@ import {useHistory} from "react-router-dom";
 // Test Card :
 // 4242424242424242	Visa	Any 3 digits	Any future date
 
-export const CheckoutForm = (props) => {
+export const CheckoutForm = (props: any) => {
 	const history = useHistory();
 	const stripe = useStripe();
 	const elements = useElements();
@@ -108,7 +108,7 @@ export const CheckoutForm = (props) => {
 					required
 					autoComplete="name"
 					value={billingDetails.name}
-					onChange={(e) => {
+					onChange={(e: any) => {
 						setBillingDetails({...billingDetails, name: e.target.value});
 					}}
 				/>

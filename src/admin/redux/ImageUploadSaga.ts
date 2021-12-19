@@ -12,6 +12,7 @@ export function* uploadImageWatcher() {
 	yield takeLatest(Actions.UPLOAD_IMAGE, uploadImage);
 }
 
+
 function* uploadImage(action: any) {
 	try {
 		console.info("action.Authorization.token " + action.Authorization.token);
@@ -34,9 +35,10 @@ function* uploadImage(action: any) {
 			console.error(JSON.stringify(response))
 			yield put(createUploadImageFailAction("Unknown Error Y "+ JSON.stringify(response)));
 		}
-	} catch (e: any) {
+	} catch (e) {
 		console.error('Error fetching orders!!');
 		console.error(e);
+		// @ts-ignore
 		yield put(createUploadImageFailAction( "Unknown Error X " + e.message));
 	}
 }

@@ -19,6 +19,7 @@ export function* updateProductWatcher() {
 function* updateProduct(action: { values: any; Authorization: any; }) {
 
 	try {
+		// @ts-ignore
 		const response = yield call(api.updateProduct, action.values, action.Authorization);
 
 		//fake some delay
@@ -33,6 +34,7 @@ function* updateProduct(action: { values: any; Authorization: any; }) {
 		}
 	} catch (e) {
 		console.error('Error updating products!!', e);
+		// @ts-ignore
 		yield put(createUpdateProductFailAction("Unknown Error " + e.message));
 	}
 }

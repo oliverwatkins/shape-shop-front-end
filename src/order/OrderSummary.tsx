@@ -59,7 +59,7 @@ export function OrderSummary(props: Props) {
 	);
 }
 
-function priceTimesQty(p, qty): string {
+function priceTimesQty(p: any, qty: any): string {
 	let t: any = p * qty
 	t = t.toFixed(2);
 	return t

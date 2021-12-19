@@ -18,6 +18,7 @@ function WhichPayment(props: Props) {
 	const [redirect, setRedirect]  = React.useState(false);
 
 	function onRadioChanged(e: React.ChangeEvent<HTMLInputElement>){
+		// @ts-ignore
 		setPaymentType(PaymentType[e.currentTarget.value])
 		props.updatePaymentType(e.currentTarget.value)
 	}

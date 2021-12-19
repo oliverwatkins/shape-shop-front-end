@@ -4,8 +4,8 @@ import type {Product} from "../AppState";
 /**
  * from order list
  */
-export function calculateTotal2(products) {
-	let t = products.reduce((acc, cur: Product) => {
+export function calculateTotal2(products: any) {
+	let t = products.reduce((acc: any, cur: Product) => {
 		return acc + (cur.quantity * cur.price);
 	}, 0)
 

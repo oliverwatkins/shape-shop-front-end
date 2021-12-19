@@ -16,19 +16,19 @@ export function* getProductsWatcher() {
 }
 
 function* getProducts({ Authorization }: any) {
-	try {
-		// @ts-ignore
-		const response = yield call(api.fetchProducts, { Authorization });
-
-		if (response.status === 200) {
-			yield put(createFetchProductsSuccessAction(response.data));
-			console.info("success : " + response.data)
-		} else {
-			yield put(createFetchProductsErrorAction(response.data));
-		}
-	} catch (e: any) {
-		console.error('Error fetching products!!');
-		console.error(e);
-		Notify.error(e.message)
-	}
+	// try {
+	// 	// @ts-ignore
+	// 	const response = yield call(api.fetchProducts, { Authorization });
+	//
+	// 	if (response.status === 200) {
+	// 		yield put(createFetchProductsSuccessAction(response.data));
+	// 		console.info("success : " + response.data)
+	// 	} else {
+	// 		yield put(createFetchProductsErrorAction(response.data));
+	// 	}
+	// } catch (e: any) {
+	// 	console.error('Error fetching products!!');
+	// 	console.error(e);
+	// 	Notify.error(e.message)
+	// }
 }

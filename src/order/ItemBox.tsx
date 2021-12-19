@@ -18,7 +18,7 @@ function ItemBox(props: Props) {
 		checked = true
 	}
 
-	function handleChangeCheckbox(e) {
+	function handleChangeCheckbox(e: any) {
 		if (e.currentTarget.checked) {
 			props.handleChangeSelection(1, props.product.id)
 		} else {
@@ -26,7 +26,7 @@ function ItemBox(props: Props) {
 		}
 	}
 
-	function handleChangeQuantity(e) {
+	function handleChangeQuantity(e: any) {
 		props.handleChangeSelection(e.currentTarget.value, props.product.id)
 	}
 
