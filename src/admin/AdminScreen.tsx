@@ -42,7 +42,7 @@ function TabPanel(props: any) {
 	);
 }
 
-function a11yProps(index) {
+function a11yProps(index: any) {
 	return {
 		id: `simple-tab-${index}`,
 		'aria-controls': `simple-tabpanel-${index}`,
@@ -67,17 +67,17 @@ function AdminScreen(props: Props) {
 
 
 	const [topTabValue, setTopTabValue] = React.useState(0);
-	const handleTopTab = (event, newValue) => {
+	const handleTopTab = (event: any, newValue: any) => {
 		setTopTabValue(newValue);
 	};
 
 	const [productTabValue, setProductTabValue] = React.useState(0);
-	const handleProdTab = (event, newValue) => {
+	const handleProdTab = (event: any, newValue: any) => {
 		setProductTabValue(newValue);
 	};
 
 	const [orderTabValue, setOrderTabValue] = React.useState(0);
-	const handleOrderTab = (event, newValue) => {
+	const handleOrderTab = (event: any, newValue: any) => {
 		setOrderTabValue(newValue);
 	};
 

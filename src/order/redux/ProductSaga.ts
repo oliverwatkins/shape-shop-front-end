@@ -15,8 +15,9 @@ export function* getProductsWatcher() {
 	yield takeLatest(Actions.FETCH_PRODUCTS, getProducts);
 }
 
-function* getProducts({ Authorization }) {
+function* getProducts({ Authorization }: any) {
 	try {
+		// @ts-ignore
 		const response = yield call(api.fetchProducts, { Authorization });
 
 		if (response.status === 200) {
@@ -25,7 +26,7 @@ function* getProducts({ Authorization }) {
 		} else {
 			yield put(createFetchProductsErrorAction(response.data));
 		}
-	} catch (e) {
+	} catch (e: any) {
 		console.error('Error fetching products!!');
 		console.error(e);
 		Notify.error(e.message)

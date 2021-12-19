@@ -121,7 +121,7 @@ export function FileUploader(props: Props) {
 
 // File content to be displayed after
 // file upload is complete
-let fileData = (selectedFile) => {
+let fileData = (selectedFile: any) => {
 
     if (selectedFile) {
 

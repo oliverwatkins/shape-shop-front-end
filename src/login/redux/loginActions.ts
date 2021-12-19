@@ -1,6 +1,6 @@
 
 
-export function createLoginAction(name, password) {
+export function createLoginAction(name: any, password: any) {
 	return {
 		type: LoginActions.LOGIN,
 		user: name,
@@ -8,7 +8,7 @@ export function createLoginAction(name, password) {
 	};
 }
 
-export function createLoginSuccessAction(token) {
+export function createLoginSuccessAction(token: any) {
 	return {
 		type: LoginActions.LOGIN_SUCCESS,
 		token: token,
@@ -22,7 +22,7 @@ export function createLoginFailAction(eMsg: string) {
 	};
 }
 
-export function createLogoutAction(token: string, history) {
+export function createLogoutAction(token: string, history: any) {
 	return {
 		type: LoginActions.LOGOUT,
 		token,

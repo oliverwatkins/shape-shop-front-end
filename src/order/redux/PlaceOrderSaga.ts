@@ -21,7 +21,7 @@ export function* placeOrderWatcher() {
 	yield takeLatest(Actions.PLACE_ORDER, placeOrder);
 }
 
-function* placeOrder(orderData) {
+function* placeOrder(orderData: any) {
 	try {
 		console.info("orderData before : " + JSON.stringify(orderData))
 		let prods = [
@@ -53,6 +53,7 @@ function* placeOrder(orderData) {
 
 		console.info("orderData after : " + JSON.stringify(nOrderData))
 
+		// @ts-ignore
 		const response = yield call(api.placeOrder, nOrderData);
 
 		console.info("response: " + JSON.stringify(response))

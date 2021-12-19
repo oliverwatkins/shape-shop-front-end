@@ -120,7 +120,7 @@ export const CheckoutForm = (props) => {
 					required
 					autoComplete="email"
 					value={billingDetails.email}
-					onChange={(e) => {
+					onChange={(e: any) => {
 						setBillingDetails({...billingDetails, email: e.target.value});
 					}}
 				/>
@@ -132,14 +132,14 @@ export const CheckoutForm = (props) => {
 					required
 					autoComplete="tel"
 					value={billingDetails.phone}
-					onChange={(e) => {
+					onChange={(e: any) => {
 						setBillingDetails({...billingDetails, phone: e.target.value});
 					}}
 				/>
 			</fieldset>
 			<fieldset className="FormGroup">
 				<CardField
-					onChange={(e) => {
+					onChange={(e: any) => {
 						setError(e.error);
 						setCardComplete(e.complete);
 					}}
@@ -159,13 +159,13 @@ export const CheckoutForm = (props) => {
 
 
 const CARD_OPTIONS = {};
-const CardField = ({onChange}) => (
+const CardField = ({onChange}: any) => (
 	<div className="FormRow">
 		<CardElement options={CARD_OPTIONS} onChange={onChange}/>
 	</div>
 );
 
-const Field = ({label, id, type, placeholder, required, autoComplete, value, onChange}) => (
+const Field = ({label, id, type, placeholder, required, autoComplete, value, onChange}: any) => (
 	<div className="FormRow">
 		<label htmlFor={id} className="FormRowLabel">
 			{label}
@@ -183,7 +183,7 @@ const Field = ({label, id, type, placeholder, required, autoComplete, value, onC
 	</div>
 );
 
-const SubmitButton = ({processing, error, children, disabled}) => (
+const SubmitButton = ({processing, error, children, disabled}: any) => (
 	<button
 		className={`SubmitButton ${error ? 'SubmitButton--error' : ''}`}
 		type="submit"
@@ -193,7 +193,7 @@ const SubmitButton = ({processing, error, children, disabled}) => (
 	</button>
 );
 
-const ErrorMessage = ({children}) => (
+const ErrorMessage = ({children}: any) => (
 	<div className="ErrorMessage" role="alert">
 		<svg width="16" height="16" viewBox="0 0 17 17">
 			<path
@@ -209,7 +209,7 @@ const ErrorMessage = ({children}) => (
 	</div>
 );
 
-const ResetButton = ({onClick}) => (
+const ResetButton = ({onClick}: any) => (
 	<button type="button" className="ResetButton" onClick={onClick}>
 		<svg width="32px" height="32px" viewBox="0 0 32 32">
 			<path

@@ -16,13 +16,13 @@ export function calculateTotal2(products) {
 /**
  * from product selection
  */
-export function calculateTotal(selectedProducts, selectedProducts2) {
+export function calculateTotal(selectedProducts: any, selectedProducts2: any) {
 
-	let t = selectedProducts.reduce((acc, cur: Product) => {
+	let t = selectedProducts.reduce((acc: any, cur: Product) => {
 		return acc + (cur.quantity * cur.price);
 	}, 0)
 
-	let d = selectedProducts2.reduce((acc, cur: Product) => {
+	let d = selectedProducts2.reduce((acc: any, cur: Product) => {
 		return acc + (cur.quantity * cur.price);
 	}, 0)
 	t = (t + d).toFixed(2);
