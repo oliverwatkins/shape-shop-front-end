@@ -1,12 +1,13 @@
 // import axios from 'axios';
 
-import React, {SyntheticEvent} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {Actions} from "./redux/adminActions";
-import type {AppState, OrderState, Product} from "../AppState";
+import React from 'react';
+import {useSelector} from "react-redux";
+import type {AppState, Product} from "../../AppState";
 import {Button} from "@material-ui/core";
-import {api} from "../api/api";
-import {Notify} from "../notify";
+import {api} from "../../api/api";
+import {Notify} from "../../notify";
+import "./fileUpload.scss"
+
 
 type Props = {
     item: Product
@@ -17,18 +18,12 @@ export function FileUploader(props: Props) {
 
     const Authorization: any = useSelector((state: AppState)=>state.login.loginToken)
 
-    const dispatch = useDispatch();
     const [selectedFile, setSelectedFile]  = React.useState({selectedFile: null});
 
     // On file select (from the pop up)
     let onFileChange = (event: any) => {
-
         // Update the state
-
         setSelectedFile({ selectedFile: event.target.files[0] })
-
-        // this.setState({ selectedFile: event.target.files[0] });
-
     };
 
     // On file upload (click the upload button)
@@ -37,11 +32,7 @@ export function FileUploader(props: Props) {
         // Create an object of formData
         const formData = new FormData();
 
-
-
-
         // Update the formData object
-
         // @ts-ignore
         formData.append(
             "myFile",
@@ -52,8 +43,6 @@ export function FileUploader(props: Props) {
         );
 
         try {
-
-
             api.uploadImage(Authorization, selectedFile.selectedFile, props.item.id).catch((e: any) => {
                 console.error(e)
                 Notify.error("Error uploading image")
@@ -63,58 +52,25 @@ export function FileUploader(props: Props) {
         }
         // Details of the uploaded file
         console.log(selectedFile.selectedFile);
-
-        // dispatch({ type: Actions.UPLOAD_IMAGE, formData: formData, Authorization: Authorization })
-        // Request made to the backend api
-        // Send formData object
-        // axios.post("api/uploadfile", formData);
     };
 
     return (
-        <div>
-            {/*<p/>*/}
-
-            {/*SIMPLE :*/}
-
-            {/*<p/>*/}
-            {/*<form method="POST" encType="multipart/form-data" action="/">*/}
-            {/*    <table>*/}
-            {/*        <tr>*/}
-            {/*            <td>File to upload2 :</td>*/}
-            {/*            <td><input type="file" name="file"/></td>*/}
-            {/*        </tr>*/}
-            {/*        <tr>*/}
-            {/*            <td><input type="submit" value="Upload"/></td>*/}
-            {/*        </tr>*/}
-            {/*    </table>*/}
-            {/*</form>*/}
-            {/*<p/>*/}
-
-            {/*MUI :*/}
-            {/*<p/>*/}
-
-            {/*<form method="POST" encType="multipart/form-data" action="/">*/}
-            {/*<Button*/}
-            {/*    variant="contained"*/}
-            {/*    component="label"*/}
-            {/*>*/}
-            {/*    Upload File*/}
-            {/*    <input*/}
-            {/*        type="file"*/}
-            {/*        hidden*/}
-            {/*    />*/}
-            {/*</Button>*/}
-            {/*</form>*/}
-            <p/>
-
-            CALLBACK :
-            <p/>
-
+        <div className={"file-upload-content"} >
             <div>
-                <input type="file" onChange={onFileChange} />
-                <button onClick={onFileUpload}>
+                <Button
+                    variant="contained"
+                    component="label"
+                >
+                    Select File
+                    <input
+                        type="file"
+                        hidden
+                        onChange={onFileChange}
+                    />
+                </Button>
+                <Button onClick={onFileUpload} color="primary">
                     Upload!
-                </button>
+                </Button>
             </div>
             {fileData(selectedFile.selectedFile)}
         </div>
@@ -141,8 +97,7 @@ let fileData = (selectedFile: any) => {
     } else {
         return (
             <div>
-                <br />
-                <h4>Choose before Pressing the Upload button</h4>
+                {/*Choose before Pressing the Upload button*/}
             </div>
         );
     }

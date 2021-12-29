@@ -133,7 +133,7 @@ const apiReal = {
 	},
 	uploadImage: async (Authorization: any, file: any, productId: string) => {
 
-		console.info("FilEXXX " + JSON.stringify(file));
+		console.info("file " + JSON.stringify(file));
 
 		const formData = new FormData();
 		formData.append('file', file);
@@ -154,10 +154,11 @@ const apiReal = {
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
-			return response.json()
+			return response
+			// return response.json()
 		}).then(data => {
 			return {
-				status:200,
+				status: 200,
 				data: data
 			}
 		}).catch(error => {

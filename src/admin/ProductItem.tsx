@@ -3,7 +3,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import {FileUploader} from "./FileUploader";
+import {FileUploader} from "./FileUpload/FileUploader";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import {ProductItemEdit} from "./ProductItemEdit";
@@ -14,6 +14,7 @@ import {Box} from "@material-ui/core";
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import {FileUploadModal} from "./FileUpload/FileUploadModal";
 
 type Props = {item: Product};
 
@@ -34,6 +35,28 @@ const classes = {
     }
 };
 
+// class NewComponent extends React.Component<{ onClose: () => void, item: Product, onClick: () => void }> {
+//     render() {
+//         return <Dialog open={true} onClose={this.props.onClose} aria-labelledby="form-dialog-title">
+//             <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
+//             <DialogContent>
+//                 <DialogContentText>
+//                     Select an image file to upload
+//                 </DialogContentText>
+//                 <FileUploader item={this.props.item}/>
+//             </DialogContent>
+//             <DialogActions>
+//                 <Button onClick={this.props.onClick} color="primary">
+//                     Cancel
+//                 </Button>
+//                 {/*<Button type="submit" form="myform" color="primary">*/}
+//                 {/*    Upload Image*/}
+//                 {/*</Button>*/}
+//             </DialogActions>
+//         </Dialog>;
+//     }
+// }
+
 export function ProductItem(props: Props) {
 
     let product = props.item;
@@ -49,23 +72,7 @@ export function ProductItem(props: Props) {
         <Box className="product-item">
             <ErrorBoundary>
             {showModal &&
-            <Dialog open={true} onClose={() => setShowModal(false)} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        Select an image file to upload
-                    </DialogContentText>
-                    <FileUploader item={product}/>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button type="submit" form="myform" color="primary">
-                        Upload Image
-                    </Button>
-                </DialogActions>
-            </Dialog>
+            <FileUploadModal onClose={() => setShowModal(false)} item={product} onClick={handleClose}/>
             }
             {editMode &&
                  <ProductItemEdit product={product} setEditMode={setEditMode}/>
