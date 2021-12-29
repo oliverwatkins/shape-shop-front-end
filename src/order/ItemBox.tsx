@@ -30,7 +30,7 @@ function ItemBox(props: Props) {
 		props.handleChangeSelection(e.currentTarget.value, props.product.id)
 	}
 
-	let baseurl = baseURL + "images/"
+	let baseurl = baseURL + "images/alpenhof/"
 
 	return(
 		<div className={"item-box " + selected}>

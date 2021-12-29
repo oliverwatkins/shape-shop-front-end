@@ -9,10 +9,6 @@ export let api: any = {}
 
 const apiReal = {
 	fetchProducts: async () => {
-
-		alert("fetchProducts LIVE ")
-
-
 		let data = await fetch(baseURL + constants.company + '/products', {
 			method: "GET",
 			headers: {
@@ -197,14 +193,11 @@ const apiReal = {
 			throw error;
 		});
 		return data;
-
 	}
 };
 
-
 if (constants.MOCK_MODE) {
 	api = api_MOCK;
-	// alert()
 }else {
 	api = apiReal;
 }

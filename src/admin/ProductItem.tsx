@@ -75,7 +75,7 @@ export function ProductItem(props: Props) {
                     <Box sx={{border: "2px dashed red", width:"200px", height:"200px"}}>
                         <img className={"item-box-image"}
                              style={{maxWidth:"100%", maxHeight: "100%"}}
-                             src={Constants.baseURL + Constants.company + "/images/" + product.imageFilename}
+                             src={Constants.baseURL + "images/" + Constants.company + "/" + product.imageFilename}
                              alt={product.imageFilename}/>
                     </Box>
 

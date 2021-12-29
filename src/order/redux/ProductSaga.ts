@@ -17,7 +17,6 @@ export function* getProductsWatcher() {
 
 function* getProducts({ Authorization }: any) {
 	try {
-		alert("in product saga")
 		// @ts-ignore
 		const response = yield call(api.fetchProducts, { Authorization });
 
