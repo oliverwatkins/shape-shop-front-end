@@ -1,16 +1,16 @@
-// @flow
-
 import * as React from 'react';
 import {connect, useDispatch} from "react-redux";
-import type {AdminState, AppState, OrderState, Product, ProductsState} from "../AppState";
+import type {AdminState, AppState, OrderState, Product} from "../AppState";
 import {createFetchOrdersAction} from "./redux/adminActions";
 
 import OrderPanel from "./OrderPanel";
 import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "../selectors";
 import {useEffect} from "react";
-import ProductPanel from "./ProductPanel";
+import ProductPanel from "./products/ProductPanel";
 import {Link, Route, Switch} from "react-router-dom";
 import {Box, makeStyles, Tab, Tabs, Typography} from "@material-ui/core";
+import "./admin.scss";
+
 
 type Props = {
 	orders?: Array<OrderState>,
@@ -89,7 +89,8 @@ function AdminScreen(props: Props) {
 
 	return (
 		<div className={"admin-screen"}>
-			<h1>Admin Screen</h1>
+			<h2>Admin</h2>
+
 			<Tabs
 				className={classes.tab1}
 				TabIndicatorProps={{style: {background:'red'}}}

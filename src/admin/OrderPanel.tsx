@@ -8,6 +8,8 @@ import moment from "moment";
 import {calculateTotal2} from "../order/utils";
 import {DeliveryType, OrderState, PaymentType} from "../AppState";
 
+import "./orderPanel.scss";
+
 export default function OrderPanel(props: any) {
 	return (
 		<table className={"orderTable"}>

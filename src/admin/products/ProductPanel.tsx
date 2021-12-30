@@ -1,7 +1,9 @@
 import * as React from "react";
-import type {Product} from "../AppState";
+import type {Product} from "../../AppState";
 import {ProductItem} from "./ProductItem";
 import {Button, Grid} from "@material-ui/core";
+
+import "./product.scss";
 
 type Props = {
     products?: Array<Product>,

@@ -4,7 +4,7 @@ import "./tabs.css"
 import {DeliveryType} from "../AppState";
 import { Button } from '@material-ui/core';
 
-
+// deprecated
 
 type Props = {
 	children: Array<any>,
@@ -57,20 +57,6 @@ type Props3 = {
 }
 
 function Tab(props: Props3)  {
-
-	// let onClickX = () => {
-	// 	// const { title, onClick } = props;
-	// 	onClick(props.title);
-	// }
-
-	// const {
-	// 	onClickX,
-	// 	props: {
-	// 		activeTab,
-	// 		title,
-	// 	},
-	// } = this;
-
 	let className = 'tab-list-item';
 
 	if (props.activeTab === props.title) {

@@ -9,7 +9,10 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 
 export function FileUploadModal(props: { onClose: () => void, item: Product, onClick: () => void }) {
-    return <Dialog className={"file-upload-modal"} open={true} onClose={props.onClose} aria-labelledby="form-dialog-title">
+    return <Dialog className={"file-upload-modal"}
+                   open={true}
+                   onClose={props.onClose}
+                   aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Upload Image</DialogTitle>
         <DialogContent>
             <DialogContentText>

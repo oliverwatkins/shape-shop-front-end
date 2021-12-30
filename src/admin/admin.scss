@@ -1,20 +1,42 @@
+
+
+
+$base-background-color: #c6b753;
+$base-foreground-color: rgba($base-background-color, 0.88);
+
+$base-text-color: #507ed0;
+
+$itembox-color-unselected: #fcf4f6;
+$itembox-color-selected: #f30e43;
+
+$error-color: red;
+
+$base-header-color: rgba(0, 0, 0, 0.63);
+$h1-color: darken($base-header-color, 8%);
+$h2-color:darken($base-header-color, 5%);
+$h3-color:darken($base-header-color, 2%);
+$h4-color: darken($base-header-color, 1%);
+
+
 .admin-screen {
   background: white;
 }
 .admin-screen h1 {
-  color: #3c4a72;
+  color: $base-header-color;
 }
 .admin-screen h2 {
-  font-family: "Times New Roman", Times, serif;
-  font-style: italic;
-  font-size: 50px;
-  font-weight: bold;
-  color: gray;
+  //font-family: "Arial", Arial, serif;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 5px;
+  //font-style: italic;
+  //font-size: 50px;
+  font-weight: normal;
+  color: $base-header-color;
 }
 .admin-screen h3 {
   font-family: "Times New Roman", Times, serif;
   font-style: italic;
-  color: gray;
+  color: darken($base-header-color, 5%);
 }
 .admin-screen h4 {
   font-family: "Arial", Times, serif;
@@ -27,10 +49,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-.admin-screen .product-item .item-box-image {
-  width: 50px;
-  height: 50px;
-}
+
 .admin-screen ul {
   list-style-type: none;
   margin: 0;
@@ -57,74 +76,3 @@
   max-width: 280px;
   max-height: 280px;
 }
-table.orderTable {
-  border: 1px solid #1c6ea4;
-  background-color: #eee;
-  width: 100%;
-  text-align: left;
-  border-collapse: collapse;
-  margin: 20px;
-}
-table.orderTable thead {
-  background: #1c6ea4;
-  background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1c6ea4 100%);
-  background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1c6ea4 100%);
-  background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1c6ea4 100%);
-  border-bottom: 2px solid #444;
-}
-table.orderTable thead th {
-  font-size: 18px;
-  font-weight: bold;
-  color: #fff;
-  border-left: 2px solid #d0e4f5;
-}
-table.orderTable thead th:first-child {
-  border-left: none;
-}
-table.orderTable td {
-  vertical-align: top;
-  border: 1px solid #aaa;
-  padding: 3px 2px;
-}
-table.orderTable .addressBox {
-  padding: 5px;
-  margin: 5px;
-  background: #b88989;
-}
-table.orderTable .productListTable {
-  width: 100%;
-}
-table.orderTable .productListTable thead {
-  color: white;
-  background: #0ea6b7;
-}
-table.orderTable .contactTable {
-  width: 100%;
-}
-table.orderTable tfoot .links {
-  text-align: right;
-}
-table.orderTable tfoot .links a {
-  display: inline-block;
-  background: #1c6ea4;
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: 5px;
-}
-table.orderTable tfoot .links td {
-  font-size: 14px;
-}
-table.orderTable tbody td {
-  font-size: 13px;
-}
-table.orderTable tfoot {
-  font-size: 14px;
-  font-weight: bold;
-  color: #fff;
-  background: #d0e4f5;
-  background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #d0e4f5 100%);
-  background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #d0e4f5 100%);
-  background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #d0e4f5 100%);
-  border-top: 2px solid #444;
-}
- 

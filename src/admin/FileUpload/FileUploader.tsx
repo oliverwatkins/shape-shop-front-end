@@ -55,7 +55,7 @@ export function FileUploader(props: Props) {
     };
 
     return (
-        <div className={"file-upload-content"} >
+        <div className={"file-upload-content"} style={{border: "2px blue dashed"}}>
             <div>
                 <Button
                     variant="contained"
@@ -85,7 +85,7 @@ let fileData = (selectedFile: any) => {
 
         return (
             <div>
-                <h2>File Details:</h2>
+                <h2>File Detailsss:</h2>
                 <p>File Name: {selectedFile.name}</p>
                 <p>File Type: {selectedFile.type}</p>
                 <p>
