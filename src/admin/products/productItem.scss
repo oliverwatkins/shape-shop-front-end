@@ -4,27 +4,27 @@
   background-color: $itembox-color-unselected;
   font-size: medium;
   margin: 10px;
-  width: 250px;
+  width: 300px;
 
   .admin-item-box-selected {
     background-color: $itembox-color-selected;
   }
 
-
-
   .admin-item-box-image-box {
-    border: 2px dashed #0033ff;
-    width: 200px;
-    height: 200px;
+    //border: 2px dashed #bf11fa;
+    width: 300px;
+    height: 300px;
 
     //admin-item-box-image
-    .admin-item-box-image {
+    img.admin-item-box-image {
       //width: auto;
+      //border: 2px dashed #b7c653;
       //height: auto;
       //margin: 2px;
 
       //max-width: 20px;
       //max-height:100%;
+      max-width:100%;
       //
       //object-fit: contain;
     }
@@ -36,38 +36,22 @@
     height: 70px;
     overflow: hidden;
     font-size: 14px;
-    background: #f3f8f7;
+    background: #ffffff;
     margin: 6px;
-    font-style: italic;
-  }
-
-  .admin-item-box-desc {
-    background: lighten($itembox-color-unselected, 5%);
+    font-style: normal;
   }
 
   .admin-item-box-desc.selected {
     background: lighten($itembox-color-selected, 10%);
   }
 
-  .admin-item-box-bottom {
+  .admin-item-edit-buttons {
     display: flex;
-    justify-content: space-between;
-    margin: 4px;
+  }
 
-    .admin-item-box-price {
-      flex-grow: 4;
-      font-weight: bold;
-      text-align: left;
-    }
-
-    .admin-item-box-checkbox {
-      height: 30px;
-      flex-grow: 1;
-    }
-
-    .admin-item-box-options {
-      height: 30px;
-      flex-grow: 1;
-    }
+  .admin-item-box-price {
+    //flex-grow: 4;
+    font-weight: normal;
+    text-align: left;
   }
 }

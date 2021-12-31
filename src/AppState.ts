@@ -82,7 +82,8 @@ export type Product = {
 	price: number,
 	description: string,
 	type: string,
-	imageFilename: string,
+	imageFilename?: string,
+	image?: any,
 }
 
 export type Address = {

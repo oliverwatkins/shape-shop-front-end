@@ -3,7 +3,7 @@ import type {Product} from "../../AppState";
 import {ProductItem} from "./ProductItem";
 import {Button, Grid} from "@material-ui/core";
 
-import "./product.scss";
+// import "./productItem.scss";
 
 type Props = {
     products?: Array<Product>,
