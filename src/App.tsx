@@ -12,9 +12,7 @@ import LoginScreen from "./login/LoginScreen";
 import {createFetchProductsAction} from "./order/redux/productActions";
 import Nav from "./Nav";
 
-// import "./main.scss"
-
-import "./alpenhofCss.css"
+// import "./alpenhofCss_.css"
 
 import OrderWizard from "./order/OrderWizardContainer";
 import Footer from "./Footer";

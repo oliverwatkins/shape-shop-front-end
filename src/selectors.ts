@@ -16,7 +16,10 @@ export const selectClosedOrders = (orders: Array<OrderState>) => orders.filter(o
 
 export const selectProductsByType = (state: AppState, type: string) => state.products.items.filter(product => product.type === type);
 
-export const selectSelectedProductByType = (state: AppState, type: string) => state.products.items.filter(product => product.quantity > 0  && product.type === type);
+export const selectSelectedProductByType = (state: AppState, type: string) => state.products.items.filter(product => product.quantity && product.quantity > 0  && product.type === type);
+
+
+
 
 //total order
 export const selectOrder = (state: AppState) => {

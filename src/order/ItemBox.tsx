@@ -13,7 +13,7 @@ function ItemBox(props: Props) {
 
 	let selected = ""
 	let checked = false
-	if (props.product.quantity > 0) {
+	if (props.product.quantity && props.product.quantity > 0) {
 		selected = "selected"
 		checked = true
 	}

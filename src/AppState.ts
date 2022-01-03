@@ -15,9 +15,6 @@ export type ProductsState = {
 	items: Array<Product>,
 }
 
-
-
-
 export type AdminState = {
 	orders: Array<OrderState>,
 	orderError?: string,
@@ -78,7 +75,7 @@ export type CreditCardEntity = {
 export type Product = {
 	id: string,
 	name: string,
-	quantity: number, //selected quantity
+	quantity?: number, //selected quantity
 	price: number,
 	description: string,
 	type: string,

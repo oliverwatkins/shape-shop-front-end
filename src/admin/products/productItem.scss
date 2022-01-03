@@ -2,18 +2,56 @@
 
 .admin-item-box {
   background-color: $itembox-color-unselected;
-  font-size: medium;
+  //font-size: medium;
   margin: 10px;
   width: 300px;
+  //color: $base-text-color;
 
-  .admin-item-box-selected {
-    background-color: $itembox-color-selected;
+  //.admin-item-box-selected {
+  //  background-color: $itembox-color-selected;
+  //}
+
+  .admin-item-edit-buttons {
+    display: flex;
+    padding: 8px;
+    align-items: flex-end;
+    justify-content: flex-end;
+    > Button {
+      color: $base-foreground-color;
+    }
   }
+
+  .admin-item-update-image-button-box {
+    position: absolute;
+    color: white;
+    bottom:8px;
+    right:8px;
+  }
+
+  .admin-item-update-image-button {
+    color: white;
+    opacity: 0.6;
+    font-weight: bold;
+    font-size: 16px;
+
+    &:hover {
+      color: white;
+      opacity: 1;
+    }
+  }
+
+  //.admin-item-update-image-button::selection {
+  //  color: blue;
+  //  font-weight: bold;
+  //}
 
   .admin-item-box-image-box {
     //border: 2px dashed #bf11fa;
-    width: 300px;
-    height: 300px;
+    width: 284px;
+    height: 284px;
+    padding: 8px;
+
+    position: relative;
 
     //admin-item-box-image
     img.admin-item-box-image {
@@ -24,34 +62,13 @@
 
       //max-width: 20px;
       //max-height:100%;
-      max-width:100%;
+      max-width: 100%;
       //
       //object-fit: contain;
     }
   }
 
-
-  .admin-item-box-desc {
-    padding: 2px;
-    height: 70px;
-    overflow: hidden;
-    font-size: 14px;
-    background: #ffffff;
-    margin: 6px;
-    font-style: normal;
-  }
-
-  .admin-item-box-desc.selected {
-    background: lighten($itembox-color-selected, 10%);
-  }
-
-  .admin-item-edit-buttons {
-    display: flex;
-  }
-
-  .admin-item-box-price {
-    //flex-grow: 4;
-    font-weight: normal;
-    text-align: left;
+  > Textfield {
+    color: $base-foreground-color
   }
 }

@@ -24,7 +24,7 @@ export function OrderSummary(props: Props) {
 						return <tr key={elem.name}>
 							<td>{elem.name}</td>
 							<td>{elem.price}</td>
-							<td>{elem.quantity > 1 ? elem.quantity : " "}</td>
+							<td>{elem.quantity && (elem.quantity > 1) ? elem.quantity : " "}</td>
 							<td>{priceTimesQty(elem.price, elem.quantity)}</td>
 						</tr>
 					})
@@ -42,7 +42,7 @@ export function OrderSummary(props: Props) {
 						return <tr key={elem.name}>
 							<td>{elem.name}</td>
 							<td>{elem.price}</td>
-							<td>{elem.quantity > 1 ? elem.quantity : " "}</td>
+							<td>{elem.quantity && (elem.quantity > 1)  ? elem.quantity : " "}</td>
 							<td>{priceTimesQty(elem.price, elem.quantity)}</td>
 						</tr>
 					})

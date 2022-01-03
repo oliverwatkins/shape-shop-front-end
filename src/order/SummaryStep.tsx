@@ -7,13 +7,6 @@ import AddressSummary from "./AddressSummary";
 import {BackButton} from "./buttons/BackButton";
 
 import type {Address, Product} from "../AppState";
-
-import {faTruck} from "@fortawesome/free-solid-svg-icons";
-import {faHandHolding} from "@fortawesome/free-solid-svg-icons";
-import {faMoneyBill} from "@fortawesome/free-solid-svg-icons";
-
-import {faCreditCard} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {DeliveryType, PaymentType} from "../AppState";
 
 type Props = {

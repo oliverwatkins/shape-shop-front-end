@@ -9,12 +9,12 @@ import {wizardPages as pages} from "./OrderWizardContainer";
 import {BackButton} from "./buttons/BackButton";
 
 import "./order.scss"
-import {createUpdateAddress, createUpdateCreditCard, createUpdateDeliveryType} from "./redux/productActions";
+import {createUpdateCreditCard} from "./redux/productActions";
 import {connect} from "react-redux";
 // import {Address} from "./AddressStep";
 import type {AppState, Product} from "../AppState";
-import {Redirect, useHistory} from "react-router";
 import {CreditCardEntity} from "../AppState";
+import {Redirect} from "react-router";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.

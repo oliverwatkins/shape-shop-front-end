@@ -4,7 +4,7 @@ import {ProductItemEdit} from "./ProductItemEdit";
 import {ErrorBoundary} from "../../misc/ErrorBoundary";
 import {Product} from "../../AppState";
 import * as Constants from "../../constants";
-import {Box} from "@material-ui/core";
+import {Box, Grid, TextField} from "@material-ui/core";
 
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -13,6 +13,8 @@ import {FileUploadModal} from "../FileUpload/FileUploadModal";
 import "./productItem.scss";
 
 type Props = { item: Product };
+
+
 
 export function ProductItem(props: Props) {
 
@@ -37,36 +39,77 @@ export function ProductItem(props: Props) {
                 {!editMode &&
                     <>
                         <Box className={"admin-item-edit-buttons"}>
-                            <Button onClick={e => {
-                                setShowModal(true);
-                            }}>update image</Button>
+
                             <Button onClick={e => alert("TODO")}><DeleteIcon/></Button>
                             <Button onClick={e => {
                                 setEditMode(true);
                             }}><EditIcon/></Button>
                         </Box>
-                        <div className={"admin-item-box-image-box"}>
+                        <Box className={"admin-item-box-image-box"}>
+
+                            <Box className={"admin-item-update-image-button-box"}>
+                                <Button
+                                    className={"admin-item-update-image-button"}
+                                    onClick={e => {
+                                        setShowModal(true);
+                                    }}>update image</Button>
+                            </Box>
+
                             {product.image &&
                                 // for storybook :
                                 <img className={"admin-item-box-image"}
-                                   src={product.image}
-                                   alt={product.imageFilename}/>
+                                     src={product.image}
+                                     alt={product.imageFilename}/>
                             }
                             {product.imageFilename &&
                                 <img className={"admin-item-box-image"}
-                                    src={Constants.baseURL + "images/" + Constants.company + "/" + product.imageFilename}
-                                    alt={product.imageFilename}/>
+                                     src={Constants.baseURL + "images/" + Constants.company + "/" + product.imageFilename}
+                                     alt={product.imageFilename}/>
                             }
-                        </div>
-                        <div className={"admin-item-box-desc "} title={product.name}>
-                            {product.name}
-                        </div>
-                        <div className={"admin-item-box-price"}>
-                            € {product.price}
-                        </div>
+                        </Box>
+
+                        {getProductFields(product)}
                     </>
                 }
             </ErrorBoundary>
         </Box>
     )
+}
+
+function getProductFields(product: Product) {
+    return <Box m={1}>
+        <Grid container spacing={2}>
+            <Grid item xs={12}>
+                <TextField
+                    // size=medium
+                    // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
+                    // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
+                    label={"name"}
+                    variant="outlined"
+                    fullWidth={true}
+                    value={product.name}/>
+            </Grid>
+
+            <Grid item xs={12}>
+                <TextField multiline variant="outlined" fullWidth={true}
+
+                           // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
+                           // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
+
+                           maxRows={4} minRows={4}
+                           label={"description"} value={product.description}/>
+
+            </Grid>
+            <Grid item xs={12}>
+                <TextField variant="outlined"
+                           fullWidth={true}
+
+                           // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
+                           // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
+
+                           label={"price"}
+                           value={"€ " + product.price}/>
+            </Grid>
+        </Grid>
+    </Box>;
 }
