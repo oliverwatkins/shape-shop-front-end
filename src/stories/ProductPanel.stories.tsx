@@ -1,0 +1,99 @@
+import React from 'react';
+import {ComponentMeta} from '@storybook/react';
+
+import {ProductItem} from "../admin/products/ProductItem";
+import imageFile from './assets/pizza.png';
+import imageFileWide from './assets/pizza_wide.png';
+import imageFileTall from './assets/pizza_high.png';
+import ProductPanel from "../admin/products/ProductPanel";
+
+export default {
+    title: 'Product Item',
+    component: ProductItem,
+} as ComponentMeta<typeof ProductItem>;
+
+export const Product_Panel = () => (
+    <>
+        <ProductPanel category={"main"} products={getProds()}/>
+    </>
+);
+
+
+function getProds() {
+
+
+    return [
+        {
+            id: "1",
+            name: "Pizza",
+            price: 1.2,
+            description: "This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh ",
+            type: "main",
+            image: imageFile
+        },
+        {
+            id: "2",
+            name: "Pizza",
+            description: "This is the simple product description. blah. This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh ",
+            type: "main",
+            price: 1.2,
+            image: imageFile
+        }, {
+            id: "3",
+            name: "Pizza No desc",
+            description: "",
+            price: 1.2,
+            type: "main",
+            image: imageFile
+        },
+        {
+            id: "4",
+            name: "Pizza Wide",
+            description: "",
+            price: 1.2,
+            type: "main",
+            image: imageFileWide
+        },
+        {
+            id: "5",
+            name: "Pizza Tall",
+            description: "",
+            price: 1.2,
+            type: "main",
+            image: imageFileTall
+        },
+        {
+            id: "6",
+            name: "Pizza Tall",
+            description: "",
+            price: 1.2,
+            type: "main",
+            image: imageFileTall
+        },
+        {
+            id: "7",
+            name: "Pizza Tall",
+            description: "",
+            price: 1.2,
+            type: "main",
+            image: imageFileTall
+        },
+        {
+            id: "8",
+            name: "Pizza Tall",
+            description: "",
+            price: 1.2,
+            type: "main",
+            image: imageFileTall
+        },
+        {
+            id: "9",
+            name: "Pizza Tall",
+            description: "",
+            price: 1.2,
+            type: "main",
+            image: imageFileTall
+        }
+
+    ]
+}
