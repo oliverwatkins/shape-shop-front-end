@@ -1,193 +1,234 @@
 import * as React from 'react';
+import {useEffect} from 'react';
 import {connect, useDispatch} from "react-redux";
 import type {AdminState, AppState, OrderState, Product} from "../AppState";
 import {createFetchOrdersAction} from "./redux/adminActions";
 
 import OrderPanel from "./OrderPanel";
 import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "../selectors";
-import {useEffect} from "react";
 import ProductPanel from "./products/ProductPanel";
 import {Link, Route, Switch} from "react-router-dom";
-import {Box, makeStyles, Tab, Tabs, Typography} from "@material-ui/core";
+// import {Box, makeStyles, Tab, Tabs, Typography} from "@material-ui/core";
 import "./admin.scss";
-
+import {AppBar, Box, Button, Tab, Tabs, ToggleButton, ToggleButtonGroup, Toolbar, Typography} from "@mui/material";
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 
 type Props = {
-	orders?: Array<OrderState>,
-	closedOrders?: Array<OrderState>,
-	fetchOrders?: ()=>void,
-	dispatch?: Function,
-	Authorization?: string,
-	products1?: Array<Product>,
-	products2?: Array<Product>
+    orders?: Array<OrderState>,
+    closedOrders?: Array<OrderState>,
+    fetchOrders?: () => void,
+    dispatch?: Function,
+    Authorization?: string,
+    products1?: Array<Product>,
+    products2?: Array<Product>
 }
 
 function TabPanel(props: any) {
-	const { children, value, index, ...other } = props;
+    const {children, value, index, ...other} = props;
 
-	return (
-		<div
-			role="tabpanel"
-			hidden={value !== index}
-			id={`simple-tabpanel-${index}`}
-			aria-labelledby={`simple-tab-${index}`}
-			{...other}
-		>
-			{value === index && (
-				<Box sx={{ p: 3 }}>
-					<Typography>{children}</Typography>
-				</Box>
-			)}
-		</div>
-	);
+    return (
+        <div
+            role="tabpanel"
+            hidden={value !== index}
+            id={`simple-tabpanel-${index}`}
+            aria-labelledby={`simple-tab-${index}`}
+            {...other}
+        >
+            {value === index && (
+                <Box sx={{p: 3}}>
+                    <Typography>{children}</Typography>
+                </Box>
+            )}
+        </div>
+    );
 }
 
 function a11yProps(index: any) {
-	return {
-		id: `simple-tab-${index}`,
-		'aria-controls': `simple-tabpanel-${index}`,
-	};
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
 }
 
 // const secondaryTabColor = "#bad5ff"
 // const primaryTabColor = "#4287f5"
-const useStyles = makeStyles({
-	tab1: {
-		background: 'linear-gradient(45deg, #4287f5 30%, #FF8E53 90%)',
-		border: 0,
-	},
-	tab2: {
-		background: 'linear-gradient(45deg, #bad5ff 30%, red 90%)',
-	},
-});
+
 
 function AdminScreen(props: Props) {
 
-	const classes = useStyles();
+    const [topTabValue, setTopTabValue] = React.useState(0);
+    const handleTopTab = (event: any, newValue: any) => {
+        setTopTabValue(newValue);
+    };
+
+    const [productTabValue, setProductTabValue] = React.useState(0);
+    const handleProdTab = (event: any, newValue: any) => {
+        setProductTabValue(newValue);
+    };
+
+    const [orderTabValue, setOrderTabValue] = React.useState(0);
+    const handleOrderTab = (event: any, newValue: any) => {
+        setOrderTabValue(newValue);
+    };
+
+    let dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(createFetchOrdersAction(props.Authorization));
+    }, []);
 
 
-	const [topTabValue, setTopTabValue] = React.useState(0);
-	const handleTopTab = (event: any, newValue: any) => {
-		setTopTabValue(newValue);
-	};
+    const [alignment, setAlignment] = React.useState('web');
 
-	const [productTabValue, setProductTabValue] = React.useState(0);
-	const handleProdTab = (event: any, newValue: any) => {
-		setProductTabValue(newValue);
-	};
+    const handleChange = (
+        event: React.MouseEvent<HTMLElement>,
+        newAlignment: string,
+    ) => {
+        setAlignment(newAlignment);
+    };
 
-	const [orderTabValue, setOrderTabValue] = React.useState(0);
-	const handleOrderTab = (event: any, newValue: any) => {
-		setOrderTabValue(newValue);
-	};
 
-	let dispatch = useDispatch();
+    return (
+        <div className={"admin-screen"}>
+            <h2>Admin</h2>
 
-	useEffect(() => {
-		dispatch(createFetchOrdersAction(props.Authorization));
-		}, []);
+            <Tabs
+                // className={classes.tab1}
+                TabIndicatorProps={{style: {background: 'red'}}}
+                onChange={handleTopTab}
+                indicatorColor="secondary"
+                textColor="primary"
+                variant="standard"
+                aria-label="full width tabs example"
+                value={topTabValue}
+            >
+                <Tab label="Orders" component={Link} to={"/admin/orders"} {...a11yProps(0)}/>
+                <Tab label="Products" component={Link} to={"/admin/products"}  {...a11yProps(1)} />
+                <Tab label="Settings" component={Link} to={"/admin/settings"} {...a11yProps(2)} />
+            </Tabs>
 
-	return (
-		<div className={"admin-screen"}>
-			<h2>Admin</h2>
+            <Switch>
+                <Route path="/admin/orders">
+                    <Box sx={{width: '100%'}}>
+                        <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+                            <Tabs value={orderTabValue} onChange={handleOrderTab}
+                                // className={classes.tab2}
+                            >
+                                <Tab label="Open Orders" {...a11yProps(0)} />
+                                <Tab label="Closed Orders" {...a11yProps(1)} />
+                            </Tabs>
+                        </Box>
+                        <TabPanel value={orderTabValue} index={0}>
+                            <OrderPanel type={"open"} orders={props.orders}/>
+                        </TabPanel>
+                        <TabPanel value={orderTabValue} index={1}>
+                            <OrderPanel orders={props.closedOrders}/>
+                        </TabPanel>
+                    </Box>
+                </Route>
+                <Route exact path="/admin/products">
 
-			<Tabs
-				className={classes.tab1}
-				TabIndicatorProps={{style: {background:'red'}}}
-				onChange={handleTopTab}
-				  indicatorColor="secondary"
-				  textColor="primary"
-				  variant="standard"
-				  aria-label="full width tabs example"
-				  value={topTabValue}
-			>
-				<Tab label="Orders" component={Link} to={"/admin/orders"} {...a11yProps(0)}>
-						Orders
-				</Tab>
-				<Tab label="Products"  component={Link} to={"/admin/products"}  {...a11yProps(1)} >
-						Products
-				</Tab>
-				<Tab label="Settings" component={Link} to={"/admin/settings"} {...a11yProps(2)} >
-						Settings
-				</Tab>
-			</Tabs>
+                    {/*// TODO changed label to title in div component. need to update the Tabs component.*/}
+                    <div title={"Products"}>
+                        <Box sx={{width: '100%'}}>
 
-			<Switch>
-				<Route path="/admin/orders">
-					<Box sx={{ width: '100%' }}>
-						<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-					<Tabs value={orderTabValue} onChange={handleOrderTab}
-						  className={classes.tab2}
-					>
-						<Tab label="Open Orders" {...a11yProps(0)} />
-						<Tab label="Closed Orders" {...a11yProps(1)} />
-					</Tabs>
-						</Box>
-						<TabPanel value={orderTabValue} index={0}>
-							<OrderPanel type={"open"} orders={props.orders}/>
-						</TabPanel>
-						<TabPanel value={orderTabValue} index={1}>
-							<OrderPanel orders={props.closedOrders}/>
-						</TabPanel>
-					</Box>
-				</Route>
-				<Route exact path="/admin/products">
+                            <Box sx={{flexGrow: 1}}>
+                                <AppBar position="static">
+                                    {/*<ToggleButtonGroup*/}
+                                    {/*    color="primary"*/}
+                                    {/*    value={alignment}*/}
+                                    {/*    exclusive*/}
+                                    {/*    onChange={handleChange}*/}
+                                    {/*>*/}
+                                    {/*    <ToggleButton value="web">Web</ToggleButton>*/}
+                                    {/*    <ToggleButton value="android">Android</ToggleButton>*/}
+                                    {/*    <ToggleButton value="ios">iOS</ToggleButton>*/}
+                                    {/*</ToggleButtonGroup>*/}
+                                    {/*<Tabs*/}
+                                    {/*	value={productTabValue} onChange={handleProdTab} aria-label="asdfe">*/}
+                                    {/*	<Tab label="Products 1" {...a11yProps(0)} />*/}
+                                    {/*	<Tab label="Products 2" {...a11yProps(1)} />*/}
+                                    {/*</Tabs>*/}
 
-					{/*// TODO changed label to title in div component. need to update the Tabs component.*/}
-					<div title={"Products"} >
-						<Box sx={{ width: '100%' }}>
-							<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-								<Tabs
-									className={classes.tab2}
-									// style={{background: secondaryTabColor}}
-									value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
-									<Tab label="Products 1" {...a11yProps(0)} />
-									<Tab label="Products 2" {...a11yProps(1)} />
-								</Tabs>
-							</Box>
-							<TabPanel value={productTabValue} index={0}>
-								<ProductPanel products={props.products1} category={"main"}/>
-							</TabPanel>
-							<TabPanel value={productTabValue} index={1}>
-								<ProductPanel products={props.products2} category={"drinks"}/>
-							</TabPanel>
-						</Box>
-					</div>
-				</Route>
-				<Route path="/admin/settings">
-						<div title={"Settings"}>
-							<h3 style={{padding: "25px"}}>
-								Marquee on/off :
-							</h3>
-							<div style={{padding: "25px"}}>
-								<input
-									style={{padding: "5px"}}
-									type="checkbox" />
-								<input style={{margin: "5px", width: "700px"}}
-									   id="street"
-									   type="text"
-									   name="street"
-									   value={"-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- "}
-								/>
-							</div>
-						</div>
-				</Route>
-			</Switch>
-		</div>
-	);
+
+                                    <Toolbar>
+                                        <IconButton
+                                            size="large"
+                                            edge="start"
+                                            color="inherit"
+                                            aria-label="menu"
+                                            sx={{ mr: 2 }}
+                                        >
+                                            <MenuIcon />
+                                        </IconButton>
+                                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                            Products
+                                        </Typography>
+                                        <Button color="inherit" startIcon={<AddCircleOutlineIcon />} onClick={()=>alert("TODO")}>
+                                            Create Product Series</Button>
+                                    </Toolbar>
+                                </AppBar>
+                            </Box>
+
+
+                            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+
+                                <Tabs
+                                    value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
+                                    <Tab label="Products 1" {...a11yProps(0)} />
+                                    <Tab label="Products 2" {...a11yProps(1)} />
+                                </Tabs>
+
+                            </Box>
+
+
+                            <TabPanel value={productTabValue} index={0}>
+                                <ProductPanel products={props.products1} category={"main"}/>
+                            </TabPanel>
+                            <TabPanel value={productTabValue} index={1}>
+                                <ProductPanel products={props.products2} category={"drinks"}/>
+                            </TabPanel>
+
+
+                        </Box>
+                    </div>
+                </Route>
+                <Route path="/admin/settings">
+                    <div title={"Settings"}>
+                        <h3 style={{padding: "25px"}}>
+                            Marquee on/off :
+                        </h3>
+                        <div style={{padding: "25px"}}>
+                            <input
+                                style={{padding: "5px"}}
+                                type="checkbox"/>
+                            <input style={{margin: "5px", width: "700px"}}
+                                   id="street"
+                                   type="text"
+                                   name="street"
+                                   value={"-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- "}
+                            />
+                        </div>
+                    </div>
+                </Route>
+            </Switch>
+        </div>
+    );
 }
 
 const mapStateToProps = (state: AppState): AdminState => {
-	return {
-		products1: selectProductsByType(state, "main"),
-		products2: selectProductsByType(state, "drinks"),
-		orders: selectOpenOrders(state.admin.orders),
-		closedOrders: selectClosedOrders(state.admin.orders),
-		Authorization: state.login.loginToken,
-	};
+    return {
+        products1: selectProductsByType(state, "main"),
+        products2: selectProductsByType(state, "drinks"),
+        orders: selectOpenOrders(state.admin.orders),
+        closedOrders: selectClosedOrders(state.admin.orders),
+        Authorization: state.login.loginToken,
+    };
 };
 
 export default connect(
-	mapStateToProps,
-	null,
+    mapStateToProps,
+    null,
 )(AdminScreen);

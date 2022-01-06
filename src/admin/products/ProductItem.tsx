@@ -28,6 +28,9 @@ import {IconButtonProps} from "@mui/material/IconButton";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PhotoIcon from '@mui/icons-material/Photo';
+
+import * as Constants from "./../../constants";
+
 type Props = { item: Product };
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -44,6 +47,13 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
         duration: theme.transitions.duration.shortest,
     }),
 }));
+
+// const StyledCardHeader = styled(({ ...other }) => <CardHeader {...other} />)`
+//   & .MuiCardHeader-content {
+//     flex: 1 1 auto;
+//     width: 100%;
+//   }
+// `;
 
 export function ProductItem(props: Props) {
 
@@ -76,7 +86,21 @@ export function ProductItem(props: Props) {
     const heigt = 25;
     return (
         <Card className="admin-item-box">
+
+            {/*<StyledCardHeader*/}
+            {/*    title="very long title werwerwerwerwerwerwerwerwerwerwerwerwerwer"*/}
+            {/*    titleTypographyProps={{*/}
+            {/*        noWrap: true*/}
+            {/*    }}*/}
+            {/*/>*/}
+
+
             <CardHeader
+
+                // titleTypographyProps={{
+                //     noWrap: true
+                // }}
+
                 action={
                     <>
                         <IconButton aria-label="settings" onClick={handleClick}>
@@ -122,17 +146,21 @@ export function ProductItem(props: Props) {
                 title= {
                     product.name
                 }
-                subheader={
-                    <Typography noWrap gutterBottom >
-                        {product.description}
-                    </Typography>
-                }
+                // subheader={
+                //     <Typography noWrap gutterBottom >
+                //         {product.description}
+                //     </Typography>
+                // }
             />
+
+
+
+
             <CardMedia
                 component="img"
                 height="194"
-                image={product.image}
-                alt={product.name}
+                image={Constants.baseURL + "images/" + Constants.company + "/" + product.imageFilename}
+                alt={product.imageFilename}
             />
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>

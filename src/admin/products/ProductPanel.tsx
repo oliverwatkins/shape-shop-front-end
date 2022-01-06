@@ -8,7 +8,9 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import {Grid} from "@mui/material";
+import {Box, Grid} from "@mui/material";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
 // import "./productItem.scss";
 
 type Props = {
@@ -19,27 +21,9 @@ type Props = {
 export default function ProductPanel(props: Props) {
     return (
         <div>
-            <Card sx={{ minWidth: 275 }}>
-                <CardContent>
-                    <Typography sx={{ fontSize: 14 }} color="primary" gutterBottom>
-                        Word of the Day
-                    </Typography>
-                    <Typography variant="h5" component="div">
-                        benel=volent
-                    </Typography>
-                    <Typography sx={{ mb: 1.5 }} color="">
-                        adjective
-                    </Typography>
-                    <Typography variant="body2">
-                        well meaning and kindly.
-                        <br />
-                        {'"a benevolent smile"'}
-                    </Typography>
-                </CardContent>
-                <CardActions>
-                    <Button size="small">Learn More</Button>
-                </CardActions>
-            </Card>
+
+
+
             {/*<Card>*/}
             {/*    <Box>*/}
             {/*        Category Name : {props.category}*/}
@@ -49,7 +33,34 @@ export default function ProductPanel(props: Props) {
             {/*    <Button className="btn btn-2 btn-sep icon-cart">edit</Button>*/}
             {/*</Card>*/}
 
+            <Box
+                sx={{
+                    // width: 300,
+                    // height: 300,
+                    backgroundColor: 'primary.white',
 
+                    display: 'flex'
+
+                    // color: 'primary.blue',
+                    // '&:hover': {
+                    //     backgroundColor: 'primary.main',
+                    //     // opacity: [0.9, 0.8, 0.7],
+                    // },
+                }}
+            >
+
+                <Typography variant="h6" color='primary' sx={{ flexGrow: 1 }}>
+                    Category : {props.category}
+                </Typography>
+                {/*sx={{ flexGrow: 1 }}*/}
+                <Button onClick={e => alert("TODO")} ><DeleteIcon/> Delete Category</Button>
+                <Button onClick={e => {
+                    // setEditMode(true);
+                }}><EditIcon/> Edit Category
+                </Button>
+
+
+            </Box>
 
 
 

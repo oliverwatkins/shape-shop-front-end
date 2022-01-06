@@ -1,5 +1,11 @@
 @import "./../../index.scss";
 
+
+.MuiCardHeader-content {
+  flex: 1 1 auto;
+  width: 100%;
+}
+
 .admin-item-box {
   background-color: $itembox-color-unselected;
   //font-size: medium;
