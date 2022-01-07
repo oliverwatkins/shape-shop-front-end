@@ -48,13 +48,6 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
-// const StyledCardHeader = styled(({ ...other }) => <CardHeader {...other} />)`
-//   & .MuiCardHeader-content {
-//     flex: 1 1 auto;
-//     width: 100%;
-//   }
-// `;
-
 export function ProductItem(props: Props) {
 
     const [expanded, setExpanded] = React.useState(false);
@@ -86,21 +79,7 @@ export function ProductItem(props: Props) {
     const heigt = 25;
     return (
         <Card className="admin-item-box">
-
-            {/*<StyledCardHeader*/}
-            {/*    title="very long title werwerwerwerwerwerwerwerwerwerwerwerwerwer"*/}
-            {/*    titleTypographyProps={{*/}
-            {/*        noWrap: true*/}
-            {/*    }}*/}
-            {/*/>*/}
-
-
             <CardHeader
-
-                // titleTypographyProps={{
-                //     noWrap: true
-                // }}
-
                 action={
                     <>
                         <IconButton aria-label="settings" onClick={handleClick}>
@@ -146,16 +125,7 @@ export function ProductItem(props: Props) {
                 title= {
                     product.name
                 }
-                // subheader={
-                //     <Typography noWrap gutterBottom >
-                //         {product.description}
-                //     </Typography>
-                // }
             />
-
-
-
-
             <CardMedia
                 component="img"
                 height="194"
@@ -180,29 +150,6 @@ export function ProductItem(props: Props) {
                                         setEditMode(true);
                                     }}><EditIcon/></Button>
                                 </Box>
-                                {/*<Box className={"admin-item-box-image-box"}>*/}
-
-                                {/*    <Box className={"admin-item-update-image-button-box"}>*/}
-                                {/*        <Button*/}
-                                {/*            className={"admin-item-update-image-button"}*/}
-                                {/*            onClick={e => {*/}
-                                {/*                setShowModal(true);*/}
-                                {/*            }}>update image</Button>*/}
-                                {/*    </Box>*/}
-
-                                {/*{product.image &&*/}
-                                {/*    // for storybook :*/}
-                                {/*    <img className={"admin-item-box-image"}*/}
-                                {/*         src={product.image}*/}
-                                {/*         alt={product.imageFilename}/>*/}
-                                {/*}*/}
-                                {/*{product.imageFilename &&*/}
-                                {/*    <img className={"admin-item-box-image"}*/}
-                                {/*         src={Constants.baseURL + "images/" + Constants.company + "/" + product.imageFilename}*/}
-                                {/*         alt={product.imageFilename}/>*/}
-                                {/*}*/}
-                                {/*</Box>*/}
-
                                 {getProductFields(product)}
                             </>
                         }
@@ -210,12 +157,6 @@ export function ProductItem(props: Props) {
                 </CardContent>
             </Collapse>
             <CardActions>
-                {/*<IconButton aria-label="add to favorites">*/}
-                {/*    <FavoriteIcon/>*/}
-                {/*</IconButton>*/}
-                {/*<IconButton aria-label="share">*/}
-                {/*    <ShareIcon/>*/}
-                {/*</IconButton>*/}
                 <ExpandMore
                     expand={expanded}
                     onClick={handleExpandClick}
@@ -242,14 +183,11 @@ function getProductFields(product: Product) {
                     fullWidth={true}
                     value={product.name}/>
             </Grid>
-
             <Grid item xs={12}>
                 <TextField multiline variant="outlined"
                            fullWidth={true}
-
-                    // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
-                    // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
-
+                            // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
+                            // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
                            maxRows={4} minRows={4}
                            label={"description"} value={product.description}/>
 
@@ -257,10 +195,8 @@ function getProductFields(product: Product) {
             <Grid item xs={12}>
                 <TextField variant="outlined"
                            fullWidth={true}
-
-                    // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
-                    // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
-
+                            // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
+                            // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
                            label={"price"}
                            value={"€ " + product.price}/>
             </Grid>

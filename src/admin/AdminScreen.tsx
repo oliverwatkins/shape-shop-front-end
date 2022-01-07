@@ -14,6 +14,8 @@ import {AppBar, Box, Button, Tab, Tabs, ToggleButton, ToggleButtonGroup, Toolbar
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import CreateCategoryModal from "./products/CreateCategoryModal";
+import ShapeShopModal from "./common/ShapeShopModal";
 
 type Props = {
     orders?: Array<OrderState>,
@@ -136,59 +138,56 @@ function AdminScreen(props: Props) {
 
                             <Box sx={{flexGrow: 1}}>
                                 <AppBar position="static">
-                                    {/*<ToggleButtonGroup*/}
-                                    {/*    color="primary"*/}
-                                    {/*    value={alignment}*/}
-                                    {/*    exclusive*/}
-                                    {/*    onChange={handleChange}*/}
-                                    {/*>*/}
-                                    {/*    <ToggleButton value="web">Web</ToggleButton>*/}
-                                    {/*    <ToggleButton value="android">Android</ToggleButton>*/}
-                                    {/*    <ToggleButton value="ios">iOS</ToggleButton>*/}
-                                    {/*</ToggleButtonGroup>*/}
-                                    {/*<Tabs*/}
-                                    {/*	value={productTabValue} onChange={handleProdTab} aria-label="asdfe">*/}
-                                    {/*	<Tab label="Products 1" {...a11yProps(0)} />*/}
-                                    {/*	<Tab label="Products 2" {...a11yProps(1)} />*/}
-                                    {/*</Tabs>*/}
-
-
                                     <Toolbar>
                                         <IconButton
                                             size="large"
                                             edge="start"
                                             color="inherit"
                                             aria-label="menu"
-                                            sx={{ mr: 2 }}
+                                            sx={{mr: 2}}
                                         >
-                                            <MenuIcon />
+                                            <MenuIcon/>
                                         </IconButton>
-                                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                                        <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                                             Products
                                         </Typography>
-                                        <Button color="inherit" startIcon={<AddCircleOutlineIcon />} onClick={()=>alert("TODO")}>
-                                            Create Product Series</Button>
+
+                                        <ShapeShopModal title={"Create Category!"}
+                                                        description={"Do you want to add a category?"}
+                                                        buttonIcon={AddCircleOutlineIcon}
+                                                        buttonText={"Create Category"}
+                                                        actions={[
+                                                            {
+                                                                onClick: () => alert("clicked"),
+                                                                icon: AddCircleOutlineIcon,
+                                                                text: "button"
+                                                            }
+                                                        ]}
+                                        >
+                                            <Box sx={{display: "flex", alignItems: "center", border: "2px dashed bold"}}>
+                                                <Button>OK</Button>
+                                                <Button>Cancel</Button>
+                                            </Box>
+                                        </ShapeShopModal>
+                                        {/*<CreateCategoryModal/>*/}
+
+                                        {/*<Button color="inherit" startIcon={<AddCircleOutlineIcon />} onClick={()=>alert("TODO")}>*/}
+                                        {/*    Create Category</Button>*/}
                                     </Toolbar>
                                 </AppBar>
                             </Box>
-
-
                             <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-
                                 <Tabs
                                     value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
                                     <Tab label="Products 1" {...a11yProps(0)} />
                                     <Tab label="Products 2" {...a11yProps(1)} />
                                 </Tabs>
-
                             </Box>
-
-
                             <TabPanel value={productTabValue} index={0}>
-                                <ProductPanel products={props.products1} category={"main"}/>
+                                <ProductPanel key={1} products={props.products1} category={"main"}/>
                             </TabPanel>
                             <TabPanel value={productTabValue} index={1}>
-                                <ProductPanel products={props.products2} category={"drinks"}/>
+                                <ProductPanel key={2} products={props.products2} category={"drinks"}/>
                             </TabPanel>
 
 
