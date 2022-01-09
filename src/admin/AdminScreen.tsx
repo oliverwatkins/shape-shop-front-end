@@ -14,8 +14,7 @@ import {AppBar, Box, Button, Tab, Tabs, ToggleButton, ToggleButtonGroup, Toolbar
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import CreateCategoryModal from "./products/CreateCategoryModal";
-import ShapeShopModal from "./common/ShapeShopModal";
+import CategoryModal from "./products/CategoryModal";
 
 type Props = {
     orders?: Array<OrderState>,
@@ -152,23 +151,33 @@ function AdminScreen(props: Props) {
                                             Products
                                         </Typography>
 
-                                        <ShapeShopModal title={"Create Category!"}
-                                                        description={"Do you want to add a category?"}
-                                                        buttonIcon={AddCircleOutlineIcon}
-                                                        buttonText={"Create Category"}
-                                                        actions={[
-                                                            {
-                                                                onClick: () => alert("clicked"),
-                                                                icon: AddCircleOutlineIcon,
-                                                                text: "button"
-                                                            }
-                                                        ]}
-                                        >
-                                            <Box sx={{display: "flex", alignItems: "center", border: "2px dashed bold"}}>
-                                                <Button>OK</Button>
-                                                <Button>Cancel</Button>
-                                            </Box>
-                                        </ShapeShopModal>
+
+                                        <CategoryModal type={"Create"} callBack={()=>alert()}/>
+
+
+
+
+                                        {/*<AddCategoryModal title={"Create Category!"}*/}
+                                        {/*                  description={"Do you want to add a category?"}*/}
+                                        {/*                  buttonIcon={AddCircleOutlineIcon}*/}
+                                        {/*                  buttonText={"Create Category"}*/}
+                                        {/*                  actions={[*/}
+                                        {/*                    {*/}
+                                        {/*                        onClick: () => alert("clicked"),*/}
+                                        {/*                        icon: AddCircleOutlineIcon,*/}
+                                        {/*                        text: "button"*/}
+                                        {/*                    }*/}
+                                        {/*                ]}*/}
+                                        {/*>*/}
+                                        {/*    <Box sx={{display: "flex", alignItems: "center", border: "2px dashed bold"}}>*/}
+                                        {/*        <Button>OK</Button>*/}
+                                        {/*        <Button>Cancel</Button>*/}
+                                        {/*    </Box>*/}
+                                        {/*</AddCategoryModal>*/}
+
+
+
+
                                         {/*<CreateCategoryModal/>*/}
 
                                         {/*<Button color="inherit" startIcon={<AddCircleOutlineIcon />} onClick={()=>alert("TODO")}>*/}

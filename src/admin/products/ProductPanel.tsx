@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import {Box, Grid} from "@mui/material";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import DeleteCategoryModal from "./DeleteCategoryModal";
-import EditCategoryModal from "./EditCategoryModal";
+import OKCancelDialog from "./OKCancelDialog";
+import CategoryModal from "./CategoryModal";
 
 type Props = {
     products?: Array<Product>,
@@ -15,6 +15,11 @@ type Props = {
 }
 
 export default function ProductPanel(props: Props) {
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
     return (
         <Box>
             <Box
@@ -26,12 +31,22 @@ export default function ProductPanel(props: Props) {
                 <Typography variant="h6" color='primary' sx={{ flexGrow: 1 }}>
                     Category : {props.category}
                 </Typography>
-                <DeleteCategoryModal/>
+
+                <Button onClick={handleOpen}> Delete Category</Button>
+                {open && <OKCancelDialog open={true} title={"Delete Thing!"}
+                                         content={"Are you sure you want to delete thing?"}
+                                         handleOK={() => {
+                                             handleClose();
+                                             alert("yeah")
+                                         }}
+                                         handleCancel={() => {
+                                             handleClose();
+                                             alert("cancel")
+                                         }}/>}
+
                 {/*<Button onClick={e => alert("TODO")} ><DeleteIcon/> Delete Category</Button>*/}
 
-                <EditCategoryModal/>
-
-
+                <CategoryModal type={"Edit"} callBack={(val: string)=>alert("value = " + val)}/>
             </Box>
 
             {props.products &&
