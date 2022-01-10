@@ -2,9 +2,11 @@ import React from 'react';
 import {ComponentMeta} from '@storybook/react';
 
 import {ProductItem} from "../admin/products/ProductItem";
-import CreateCategoryModal from "../admin/products/CategoryModal";
-import OKCancelDialog from "../admin/products/OKCancelDialog";
+import CreateCategoryModal from "../admin/products/CategoryDialog";
+import OKCancelDialog from "../admin/common/OKCancelDialog";
 import {Button} from "@mui/material";
+import ProductDialog from "../admin/products/ProductDialog";
+import imageFile from "./assets/pizza.png";
 
 export default {
     title: 'Product Item',
@@ -22,8 +24,40 @@ export const Modal_Story = () => (
         }} type={"Edit"} value={"my value to change"}/>
 
         <Test/>
+        <Test2/>
     </>
 );
+
+function Test2() {
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+
+    return (
+        <>
+            <Button onClick={handleOpen}> Edit Product </Button>
+            {open && <ProductDialog open={true}
+                        product={{
+                            id: "1",
+                            name: "Pizza",
+                            price: 1.2,
+                            description: "This is the simple description ",
+                            type: "main",
+                            image: imageFile
+                        }}
+                         handleSubmit={(data) => {
+                             alert("yeah " + data)
+                             handleClose();
+
+                         }}
+                         handleCancel={() => {
+                             handleClose();
+                             // alert("nah")
+                         }}
+                        type={"Edit"}/>}
+        </>
+    )
+}
 
 function Test() {
     const [open, setOpen] = React.useState(false);

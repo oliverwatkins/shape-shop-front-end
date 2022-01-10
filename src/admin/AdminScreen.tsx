@@ -14,7 +14,7 @@ import {AppBar, Box, Button, Tab, Tabs, ToggleButton, ToggleButtonGroup, Toolbar
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import CategoryModal from "./products/CategoryModal";
+import CategoryDialog from "./products/CategoryDialog";
 
 type Props = {
     orders?: Array<OrderState>,
@@ -152,7 +152,7 @@ function AdminScreen(props: Props) {
                                         </Typography>
 
 
-                                        <CategoryModal type={"Create"} callBack={()=>alert()}/>
+                                        <CategoryDialog type={"Create"} callBack={()=>alert()}/>
 
 
 

@@ -27,16 +27,15 @@ type Props = {
     callBack: Function
 }
 
-export default function CategoryModal(props: Props) {
+//create/update
+
+export default function CategoryDialog(props: Props) {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const [category, setCategory] = useState(props.value);
-
     const handleInput = (e: any) => setCategory(e.target.value);
-
-
     return (
         <div>
             <Button color="inherit" startIcon={<AddCircleOutlineIcon/>} onClick={handleOpen}>

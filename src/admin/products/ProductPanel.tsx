@@ -6,8 +6,8 @@ import Typography from '@mui/material/Typography';
 import {Box, Grid} from "@mui/material";
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
-import OKCancelDialog from "./OKCancelDialog";
-import CategoryModal from "./CategoryModal";
+import OKCancelDialog from "../common/OKCancelDialog";
+import CategoryDialog from "./CategoryDialog";
 
 type Props = {
     products?: Array<Product>,
@@ -46,7 +46,7 @@ export default function ProductPanel(props: Props) {
 
                 {/*<Button onClick={e => alert("TODO")} ><DeleteIcon/> Delete Category</Button>*/}
 
-                <CategoryModal type={"Edit"} callBack={(val: string)=>alert("value = " + val)}/>
+                <CategoryDialog type={"Edit"} callBack={(val: string)=>alert("value = " + val)}/>
             </Box>
 
             {props.products &&
