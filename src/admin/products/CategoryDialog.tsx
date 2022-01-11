@@ -7,6 +7,9 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {TextField} from "@mui/material";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+
+import EditIcon from '@mui/icons-material/Edit';
+
 import {SyntheticEvent, useState} from "react";
 
 const style = {
@@ -22,66 +25,60 @@ const style = {
 };
 
 type Props = {
+    open: boolean
     type: "Create" | "Edit"
     value?: string
-    callBack: Function
+    handleCancel: () => any
+    handleSubmit: (data:any) => any
 }
 
 //create/update
 
 export default function CategoryDialog(props: Props) {
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
 
     const [category, setCategory] = useState(props.value);
     const handleInput = (e: any) => setCategory(e.target.value);
     return (
-        <div>
-            <Button color="inherit" startIcon={<AddCircleOutlineIcon/>} onClick={handleOpen}>
-                {props.type} Category</Button>
-            <Dialog
-                open={open}
-                onClose={handleClose}
-                aria-labelledby="alert-dialog-title"
-                aria-describedby="alert-dialog-description"
-            >
-                <DialogTitle id="alert-dialog-title">
-                    {(props.type === "Create") ? "Create Category!" : "Update Category!"}
-                </DialogTitle>
-                <DialogContent>
-                    <DialogContentText id="alert-dialog-description">
-                        {(props.type === "Create") ? "Do you want to add a category?" : "Do you want to update a category?"}
-                    </DialogContentText>
-                    <form id="myform" onSubmit={(e: any) => //FormEvent<HTMLFormElement>) => //TODO what should this type be??
-                    {
-                        e.preventDefault();
-                        console.log(e.target && e.target.length ? e.target[0].value : "nuttin here..")
-                        props.callBack((val: string) => alert(val));
-                        handleClose();
-                    }}>
-                        <TextField
-                            autoFocus
-                            margin="dense"
-                            id="categoryName"
-                            name="categoryName"
-                            label="Category Name"
-                            type="category"
-                            value={category}
-                            onChange={(e) => handleInput(e)}
-                            fullWidth
-                            variant="standard"
-                        />
-                    </form>
-                </DialogContent>
-                <DialogActions>
-                    <Button type="submit" form="myform" startIcon={<AddCircleOutlineIcon/>}
-                    >
-                        {(props.type === "Create") ? "Submit" : "Update"}
-                    </Button>
-                    <Button onClick={handleClose}>Cancel</Button>
-                </DialogActions>
-            </Dialog>
-        </div>
+        <Dialog
+            open={props.open}
+            onClose={props.handleCancel}
+            aria-labelledby="alert-dialog-title"
+            aria-describedby="alert-dialog-description"
+        >
+            <DialogTitle id="alert-dialog-title">
+                {(props.type === "Create") ? "Create Category!" : "Update Category!"}
+            </DialogTitle>
+            <DialogContent>
+                <DialogContentText id="alert-dialog-description">
+                    {(props.type === "Create") ? "Do you want to add a category?" : "Do you want to update a category?"}
+                </DialogContentText>
+                <form id="myform" onSubmit={(e: any) => //FormEvent<HTMLFormElement>) => //TODO what should this type be??
+                {
+                    e.preventDefault();
+                    console.log(e.target && e.target.length ? e.target[0].value : "nuttin here..")
+                    props.handleSubmit((val: string) => alert(val));
+                    props.handleCancel();
+                }}>
+                    <TextField
+                        autoFocus
+                        margin="dense"
+                        id="categoryName"
+                        name="categoryName"
+                        label="Category Name"
+                        type="category"
+                        value={category}
+                        onChange={(e) => handleInput(e)}
+                        fullWidth
+                        variant="standard"
+                    />
+                </form>
+            </DialogContent>
+            <DialogActions>
+                <Button type="submit" form="myform" variant={"contained"}>
+                    {(props.type === "Create") ? "Submit" : "Update"}
+                </Button>
+                <Button onClick={props.handleCancel} variant={"outlined"}>Cancel</Button>
+            </DialogActions>
+        </Dialog>
     );
 }

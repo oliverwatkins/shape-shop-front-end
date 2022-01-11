@@ -8,12 +8,10 @@ import OrderPanel from "./OrderPanel";
 import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "../selectors";
 import ProductPanel from "./products/ProductPanel";
 import {Link, Route, Switch} from "react-router-dom";
-// import {Box, makeStyles, Tab, Tabs, Typography} from "@material-ui/core";
 import "./admin.scss";
-import {AppBar, Box, Button, Tab, Tabs, ToggleButton, ToggleButtonGroup, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Tab, Tabs, Toolbar, Typography} from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import CategoryDialog from "./products/CategoryDialog";
 
 type Props = {
@@ -30,7 +28,7 @@ function TabPanel(props: any) {
     const {children, value, index, ...other} = props;
 
     return (
-        <div
+        <Box
             role="tabpanel"
             hidden={value !== index}
             id={`simple-tabpanel-${index}`}
@@ -39,10 +37,10 @@ function TabPanel(props: any) {
         >
             {value === index && (
                 <Box sx={{p: 3}}>
-                    <Typography>{children}</Typography>
+                    {children}
                 </Box>
             )}
-        </div>
+        </Box>
     );
 }
 
@@ -52,10 +50,6 @@ function a11yProps(index: any) {
         'aria-controls': `simple-tabpanel-${index}`,
     };
 }
-
-// const secondaryTabColor = "#bad5ff"
-// const primaryTabColor = "#4287f5"
-
 
 function AdminScreen(props: Props) {
 
@@ -93,7 +87,7 @@ function AdminScreen(props: Props) {
 
     return (
         <div className={"admin-screen"}>
-            <h2>Admin</h2>
+            <h2>Administration Console</h2>
 
             <Tabs
                 // className={classes.tab1}
@@ -132,9 +126,8 @@ function AdminScreen(props: Props) {
                 <Route exact path="/admin/products">
 
                     {/*// TODO changed label to title in div component. need to update the Tabs component.*/}
-                    <div title={"Products"}>
+                    <Box title={"Products"}>
                         <Box sx={{width: '100%'}}>
-
                             <Box sx={{flexGrow: 1}}>
                                 <AppBar position="static">
                                     <Toolbar>
@@ -151,37 +144,9 @@ function AdminScreen(props: Props) {
                                             Products
                                         </Typography>
 
-
-                                        <CategoryDialog type={"Create"} callBack={()=>alert()}/>
-
+                                        {/*<CategoryDialog type={"Create"} callBack={()=>alert()}/>*/}
 
 
-
-                                        {/*<AddCategoryModal title={"Create Category!"}*/}
-                                        {/*                  description={"Do you want to add a category?"}*/}
-                                        {/*                  buttonIcon={AddCircleOutlineIcon}*/}
-                                        {/*                  buttonText={"Create Category"}*/}
-                                        {/*                  actions={[*/}
-                                        {/*                    {*/}
-                                        {/*                        onClick: () => alert("clicked"),*/}
-                                        {/*                        icon: AddCircleOutlineIcon,*/}
-                                        {/*                        text: "button"*/}
-                                        {/*                    }*/}
-                                        {/*                ]}*/}
-                                        {/*>*/}
-                                        {/*    <Box sx={{display: "flex", alignItems: "center", border: "2px dashed bold"}}>*/}
-                                        {/*        <Button>OK</Button>*/}
-                                        {/*        <Button>Cancel</Button>*/}
-                                        {/*    </Box>*/}
-                                        {/*</AddCategoryModal>*/}
-
-
-
-
-                                        {/*<CreateCategoryModal/>*/}
-
-                                        {/*<Button color="inherit" startIcon={<AddCircleOutlineIcon />} onClick={()=>alert("TODO")}>*/}
-                                        {/*    Create Category</Button>*/}
                                     </Toolbar>
                                 </AppBar>
                             </Box>
@@ -198,10 +163,8 @@ function AdminScreen(props: Props) {
                             <TabPanel value={productTabValue} index={1}>
                                 <ProductPanel key={2} products={props.products2} category={"drinks"}/>
                             </TabPanel>
-
-
                         </Box>
-                    </div>
+                    </Box>
                 </Route>
                 <Route path="/admin/settings">
                     <div title={"Settings"}>

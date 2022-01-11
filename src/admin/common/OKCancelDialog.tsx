@@ -5,8 +5,6 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import {Dialog} from "@mui/material";
 import DialogActions from "@mui/material/DialogActions";
-import CancelIcon from '@mui/icons-material/Cancel';
-
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -31,6 +29,9 @@ type Props = {
 export default function OKCancelDialog(props: Props) {
     return (
         <Dialog
+            // sx={
+            //     style
+            // }
             open={props.open}
             onClose={props.handleCancel}
             aria-labelledby="alert-dialog-title"
@@ -45,10 +46,10 @@ export default function OKCancelDialog(props: Props) {
                 </DialogContentText>
             </DialogContent>
             <DialogActions>
-                <Button onClick={props.handleOK}>
+                <Button onClick={props.handleOK} variant={"contained"} >
                     OK
                 </Button>
-                <Button startIcon={<CancelIcon/>} onClick={props.handleCancel}>Cancel</Button>
+                <Button variant={"outlined"} onClick={props.handleCancel}>Cancel</Button>
             </DialogActions>
         </Dialog>
     );

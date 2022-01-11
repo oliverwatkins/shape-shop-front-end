@@ -26,7 +26,7 @@ type Props = {
     type: "Create" | "Edit"
     handleCancel: () => any
     handleSubmit: (data:any) => any
-    product: Product
+    product?: Product
 }
 
 //create/update

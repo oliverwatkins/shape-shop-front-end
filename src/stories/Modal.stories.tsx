@@ -15,13 +15,13 @@ export default {
 
 export const Modal_Story = () => (
     <>
-        <CreateCategoryModal callBack={(val: string) => {
-            alert("value = " + val)
-        }} type={"Create"}/>
+        {/*<CreateCategoryModal callBack={(val: string) => {*/}
+        {/*    alert("value = " + val)*/}
+        {/*}} type={"Create"}/>*/}
 
-        <CreateCategoryModal callBack={(val: string) => {
-            alert("value = " + val)
-        }} type={"Edit"} value={"my value to change"}/>
+        {/*<CreateCategoryModal callBack={(val: string) => {*/}
+        {/*    alert("value = " + val)*/}
+        {/*}} type={"Edit"} value={"my value to change"}/>*/}
 
         <Test/>
         <Test2/>
