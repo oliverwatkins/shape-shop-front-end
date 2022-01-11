@@ -2,7 +2,6 @@ import React from 'react';
 import {ComponentMeta} from '@storybook/react';
 
 import {ProductItem} from "../admin/products/ProductItem";
-import CreateCategoryModal from "../admin/products/CategoryDialog";
 import OKCancelDialog from "../admin/common/OKCancelDialog";
 import {Button} from "@mui/material";
 import ProductDialog from "../admin/products/ProductDialog";

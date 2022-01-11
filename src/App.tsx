@@ -22,77 +22,101 @@ import AdminScreen from "./admin/AdminScreen";
 import {ToastContainer} from "react-toastify";
 
 type Props = {
-  fetchProducts: Function
+    fetchProducts: Function
 }
 
-class App extends React.PureComponent<Props>{
-  componentDidMount() {
-    this.props.fetchProducts();
-  }
 
-  render() {
-    return (
+class App extends React.PureComponent<Props> {
+    componentDidMount() {
+        this.props.fetchProducts();
+    }
 
-      <div className="App">
-          <div>
-            <Nav/>
-            <div className={"marquee"} >
-              <p>-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- </p>
+    render() {
+        return (
+
+            <div className="App">
+                {/*<Route path="/admin">*/}
+                {/*  <AdminScreen/>*/}
+                {/*</Route>*/}
+                <div>
+                    {/*<Nav/>*/}
+                    {/*{getMarq()}*/}
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={2000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                    />
+                    <Switch>
+                        <Route path="/admin">
+                            <AdminScreen/>
+                        </Route>
+
+                        {/*this component just redirects to logout2*/}
+                        <Route path="/logout">
+                            <Nav/>
+                            {getMarq()}
+                            <Logout/>
+                            <Footer/>
+                        </Route>
+                        <Route path="/logout2">
+                            <Nav/>
+                            {getMarq()}
+                            <Logout2/>
+                            <Footer/>
+                        </Route>
+                        <Route path="/order">
+                            <Nav/>
+                            {getMarq()}
+                            <OrderWizard/>
+                            <Footer/>
+                        </Route>
+                        <Route path="/login">
+                            <Nav/>
+                            {getMarq()}
+                            <LoginScreen/>
+                            <Footer/>
+                        </Route>
+                        <Route path="/">
+                            <Nav/>
+                            {getMarq()}
+                            <Welcome/>
+                            <Footer/>
+                        </Route>
+                    </Switch>
+                </div>
+
             </div>
-            <ToastContainer
-                position="top-right"
-                autoClose={2000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-            />
-            <Switch>
-              <Route path="/admin">
-                <AdminScreen/>
-              </Route>
+        );
+    }
+}
 
-              {/*this component just redirects to logout2*/}
-              <Route path="/logout" component={Logout}/>
-
-              <Route path="/logout2">
-                <Logout2/>
-              </Route>
-              <Route path="/order">
-                <OrderWizard/>
-              </Route>
-              <Route path="/login">
-                <LoginScreen/>
-              </Route>
-              <Route path="/">
-                <Welcome/>
-              </Route>
-            </Switch>
-          </div>
-        <Footer/>
-      </div>
-  );
-  }
+function getMarq() {
+    return <div className={"marquee"}>
+        <p>-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- </p>
+    </div>;
 }
 
 const mapStateToProps = (state: any) => {
-  return {
-    login: state.login,
-  };
+    return {
+        login: state.login,
+    };
 };
 
 const mapDispatchToProps = (dispatch: any) => {
-  return {
-    fetchProducts: () => {
-      dispatch(createFetchProductsAction());
-    },
-  };
+    return {
+        fetchProducts: () => {
+            dispatch(createFetchProductsAction());
+        },
+    };
 };
 
 export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
+    mapStateToProps,
+    mapDispatchToProps,
 )(App);

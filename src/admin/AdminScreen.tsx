@@ -13,6 +13,9 @@ import {AppBar, Box, Tab, Tabs, Toolbar, Typography} from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import CategoryDialog from "./products/CategoryDialog";
+import Button from "@mui/material/Button";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 
 type Props = {
     orders?: Array<OrderState>,
@@ -87,7 +90,23 @@ function AdminScreen(props: Props) {
 
     return (
         <div className={"admin-screen"}>
-            <h2>Administration Console</h2>
+            <Box sx={{display:"flex"
+            }}>
+                <Box>
+                    <Typography variant="h4" color='primary'>Administration Console</Typography>
+                    <Box>
+                    <Typography sx={{ml:"2.5em"}}variant="body1" color='primary'>Manage orders, products, categories, and settings</Typography>
+                    </Box>
+                </Box>
+                <Box sx={{marginLeft: "auto"}}>
+                    <Button component={Link}  to="/" endIcon={<DoubleArrowIcon/>} variant={"contained"}>To website </Button>
+                </Box>
+                <Box sx={{marginLeft: "2em"}}>
+                    <Button component={Link} variant={"text"} to="/logout" color="primary">
+                        Logout
+                    </Button>
+                </Box>
+            </Box>
 
             <Tabs
                 // className={classes.tab1}
@@ -143,14 +162,10 @@ function AdminScreen(props: Props) {
                                         <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                                             Products
                                         </Typography>
-
-                                        {/*<CategoryDialog type={"Create"} callBack={()=>alert()}/>*/}
-
-
                                     </Toolbar>
                                 </AppBar>
                             </Box>
-                            <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
+                            <Box>
                                 <Tabs
                                     value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
                                     <Tab label="Products 1" {...a11yProps(0)} />

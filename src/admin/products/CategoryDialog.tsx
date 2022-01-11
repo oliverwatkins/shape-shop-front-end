@@ -33,7 +33,6 @@ type Props = {
 }
 
 //create/update
-
 export default function CategoryDialog(props: Props) {
 
     const [category, setCategory] = useState(props.value);
