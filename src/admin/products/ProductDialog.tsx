@@ -38,6 +38,8 @@ export default function ProductDialog(props: Props) {
     }
     console.log("Errors " + errors);
 
+    alert(props.product)
+
     return (
         <Dialog
             open={props.open}
@@ -59,6 +61,7 @@ export default function ProductDialog(props: Props) {
                             <Grid item xs={12}>
                                 <TextField
                                     label={"name"}
+                                    defaultValue={props.product?.name}
                                     variant="outlined"
                                     fullWidth={true}
                                     // value={props.product.name}
@@ -69,6 +72,7 @@ export default function ProductDialog(props: Props) {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField multiline variant="outlined"
+                                           defaultValue={props.product?.description}
                                            fullWidth={true}
                                            maxRows={4} minRows={4}
                                            label={"description"}
@@ -79,6 +83,7 @@ export default function ProductDialog(props: Props) {
                             </Grid>
                             <Grid item xs={12}>
                                 <TextField variant="outlined"
+                                           defaultValue={props.product?.price}
                                            fullWidth={true}
                                            label={"price"}
                                            {...register("price", {required: true, maxLength: 5})}

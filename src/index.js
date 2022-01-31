@@ -13,7 +13,7 @@ import {reducer as login} from './login/redux/loginReducer';
 import {reducer as products} from './order/redux/productsReducer';
 import {reducer as order} from './order/redux/orderReducer';
 import {reducer as admin} from './admin/redux/adminReducer';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router} from "react-router-dom";
 
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';

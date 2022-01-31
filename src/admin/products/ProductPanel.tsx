@@ -17,17 +17,20 @@ type Props = {
 
 export default function ProductPanel(props: Props) {
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    let callback = (item: Product) => {
+        setSelectedProduct(item)
+        setOpenEditPProduct(true)
+    }
+    const [selectedProduct, setSelectedProduct] = React.useState<Product>();
 
-    const [openP, setOpenP] = React.useState(false);
-    const handleOpenP = () => setOpenP(true);
-    const handleCloseP = () => setOpenP(false);
+    const [openEditPProduct, setOpenEditPProduct] = React.useState(false);
 
-    const [openC, setOpenC] = React.useState(false);
-    const handleOpenC = () => setOpenC(true);
-    const handleCloseC = () => setOpenC(false);
+    const [openCreateProduct, setOpenCreateProduct] = React.useState(false);
+
+    const [openCategoryDialog, setOpenCategoryDialog] = React.useState(false);
+
+    const [deleteCatDialogOpen, setDeleteCatDialogOpen] = React.useState(false);
+
 
     const style = {
         marginLeft: "0.5em",
@@ -47,38 +50,46 @@ export default function ProductPanel(props: Props) {
                 </Typography>
 
                 {/*add product*/}
-                <Button startIcon={<AddCircleOutlineIcon/>} sx={style} onClick={handleOpenP} variant={"contained"}> Add Product</Button>
-                {openP && <ProductDialog open={openP} type={"Create"} handleCancel={() => handleCloseP()} handleSubmit={data =>{
+                <Button startIcon={<AddCircleOutlineIcon/>} sx={style} onClick={() => setOpenCreateProduct(true)} variant={"contained"}> Add Product</Button>
+
+                {/*openEditProduct*/}
+
+                {openCreateProduct && <ProductDialog open={openCreateProduct} type={"Create"} handleCancel={() => setOpenCreateProduct(false)} handleSubmit={data =>{
                     alert("save")
-                    handleClose();
+                    setOpenCreateProduct(false);
+                } }/>}
+
+                {openEditPProduct && <ProductDialog product={selectedProduct} open={openEditPProduct} type={"Edit"} handleCancel={() => setOpenEditPProduct(false)} handleSubmit={data =>{
+                    alert("save")
+                    setOpenEditPProduct(false);
                 } }/>}
 
                 {/*edit category*/}
-                <Button startIcon={<EditIcon/>} variant={"contained"} sx={style} onClick={handleOpenC}>
+                <Button startIcon={<EditIcon/>} variant={"contained"} sx={style} onClick={() => setOpenCategoryDialog(true)}>
                     Edit Category</Button>
-                {openC && <CategoryDialog type={"Edit"}
-                              handleCancel={() => {
-                                  handleCloseC();
-                              }}
-                              handleSubmit={() => {
-                                  handleCloseC();
-                                  alert("yeah C");
-                              }}
-                              open={openC}/>
+                {openCategoryDialog && <CategoryDialog type={"Edit"}
+                      handleCancel={() => {
+                          setOpenCategoryDialog(false)
+                      }}
+                      handleSubmit={() => {
+                          setOpenCategoryDialog(false)
+                          alert("yeah C");
+                      }}
+                      open={openCategoryDialog}/>
 
                 }
 
                 {/*delete category*/}
-                <Button onClick={handleOpen} variant={"outlined"} sx={style}>Delete Category</Button>
-                {open && <OKCancelDialog open={true} title={"Delete Thing!"}
-                             content={"Are you sure you want to delete thing?"}
-                             handleOK={() => {
-                                 handleClose();
-                                 alert("yeah")
-                             }}
-                             handleCancel={() => {
-                                 handleClose();
-                             }}/>
+                <Button onClick={()=>setDeleteCatDialogOpen(true)} variant={"outlined"} sx={style}>Delete Category</Button>
+                {deleteCatDialogOpen && <OKCancelDialog open={true} title={"Delete Thing!"}
+                     content={"Are you sure you want to delete thing?"}
+                     handleOK={() => {
+                         alert("yeah! delete")
+                         setDeleteCatDialogOpen(false);
+                     }}
+                     handleCancel={() => {
+                         setDeleteCatDialogOpen(false);
+                     }}/>
                 }
 
                 {/*<ProductDialog type={"Edit"} callBack={(val: string)=>alert("value = " + val)}/>*/}
@@ -89,7 +100,7 @@ export default function ProductPanel(props: Props) {
                 {
                     props.products && props.products.map((product, i) =>
                         <Grid key={i} item xs={4} lg={2}>
-                            <ProductItem key={i} item={product}/>
+                            <ProductItem key={i} item={product} callback={callback}/>
                         </Grid>
                         )
                 }

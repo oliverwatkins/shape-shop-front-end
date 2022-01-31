@@ -31,7 +31,10 @@ import PhotoIcon from '@mui/icons-material/Photo';
 
 import * as Constants from "./../../constants";
 
-type Props = { item: Product };
+type Props = {
+    item: Product;
+    callback: any
+};
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;
@@ -98,7 +101,7 @@ export function ProductItem(props: Props) {
                                 },
                             }}
                         >
-                            <MenuItem key={"1"} selected={false} onClick={handleCloseMenu}
+                            <MenuItem key={"1"} selected={false} onClick={() => props.callback(product)}
                             >
                                 <ListItemIcon>
                                     <EditIcon/>
@@ -122,7 +125,7 @@ export function ProductItem(props: Props) {
                         </Menu>
                     </>
                 }
-                title= {
+                title={
                     product.name
                 }
             />
@@ -186,8 +189,8 @@ function getProductFields(product: Product) {
             <Grid item xs={12}>
                 <TextField multiline variant="outlined"
                            fullWidth={true}
-                            // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
-                            // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
+                    // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
+                    // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
                            maxRows={4} minRows={4}
                            label={"description"} value={product.description}/>
 
@@ -195,8 +198,8 @@ function getProductFields(product: Product) {
             <Grid item xs={12}>
                 <TextField variant="outlined"
                            fullWidth={true}
-                            // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
-                            // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
+                    // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
+                    // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
                            label={"price"}
                            value={"€ " + product.price}/>
             </Grid>
