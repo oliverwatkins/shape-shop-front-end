@@ -6,7 +6,7 @@ import {Notify} from "../../notify";
 
 export function reducer(state: ProductsState = initialState, action: any) {
 	switch (action.type) {
-		case Actions.UPDATE_PRODUCT:
+		case Actions.CREATE_UPDATE_PRODUCT:
 			return {
 				...state,
 				updatingProduct: true

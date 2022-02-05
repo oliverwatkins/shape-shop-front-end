@@ -7,20 +7,34 @@ import {
 import {delay} from "@redux-saga/core/effects";
 
 import * as sagaEffects from 'redux-saga/effects'
+import {Product} from "../../AppState";
 
 //bypassing typescript problems by doing this :
 const takeLatest: any = sagaEffects.takeLatest;
 const call: any = sagaEffects.call;
 const put: any = sagaEffects.put;
-export function* updateProductWatcher() {
-	yield takeLatest(Actions.UPDATE_PRODUCT, updateProduct);
+
+
+export function* updateCreateProductWatcher() {
+	yield takeLatest(Actions.CREATE_UPDATE_PRODUCT, updateCreateProduct);
 }
 
-function* updateProduct(action: { values: any; Authorization: any; }) {
+function* updateCreateProduct(action: { values: Product; Authorization: any; }) {
 
 	try {
-		// @ts-ignore
-		const response = yield call(api.updateProduct, action.values, action.Authorization);
+
+		let response;
+
+		debugger;
+		if (action.values.id === "-1") {
+
+			// @ts-ignore
+			response = yield call(api.createProduct, action.values, action.Authorization);
+			alert("-1")
+		}else {
+			// @ts-ignore
+			response = yield call(api.updateProduct, action.values, action.Authorization);
+		}
 
 		//fake some delay
 		yield delay(3000)

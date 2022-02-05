@@ -1,5 +1,6 @@
 import * as constants from "../constants";
 import {api_MOCK} from "./api_mock";
+import {Product} from "../AppState";
 
 export const baseURL = 'http://localhost:8080/';
 // const ADMIN_TOKEN = ADMIN_TOKEN2;
@@ -166,8 +167,41 @@ const apiReal = {
 			throw error;
 		});
 		return data;
+	},
 
-		// axios.post("api/uploadfile", formData);
+	createProduct: async (values: Product, Authorization: { token: string; })=> {
+		let data = await fetch(baseURL + constants.company + '/products', {
+			method: "POST",
+			body:
+				// JSON.stringify(values)
+
+				JSON.stringify({
+					"name": values.name,
+					"price": values.price,
+					"description": values.description,
+					"type": values.type,
+				}),
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json',
+				'Authorization': "Bearer " + Authorization.token
+			},
+		}).then(response => {
+			console.info("status : " + response.status)
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json()
+		}).then(data => {
+			return {
+				status:200,
+				data: data
+			}
+		}).catch(error => {
+			console.error('There has been a problem with your fetch operation:', error);
+			throw error;
+		});
+		return data;
 	},
 
 	updateProduct: async (values: { id: string; }, Authorization: { token: string; }) => {

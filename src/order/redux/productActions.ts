@@ -1,3 +1,5 @@
+import {Product} from "../../AppState";
+
 export function createFetchProductsAction() {
 	return {
 		type: Actions.FETCH_PRODUCTS,
@@ -77,9 +79,9 @@ export function createPlaceOrderErrorAction(response: {}, value: string) {
 }
 
 
-export function createUpdateProduct(values: { id: string; name: string; price: number; }, Authorization: any) {
+export function createUpdateProduct(values: Product, Authorization: any) {
 	return {
-		type: Actions.UPDATE_PRODUCT,
+		type: Actions.CREATE_UPDATE_PRODUCT,
 		values: values,
 		Authorization: Authorization
 	};
@@ -114,7 +116,7 @@ export const Actions = {
 	FETCH_PRODUCTS_SUCCESS: 'FETCH_PRODUCTS_SUCCESS',
 	FETCH_PRODUCTS_ERROR: 'FETCH_PRODUCTS_ERROR',
 
-	UPDATE_PRODUCT: 'UPDATE_PRODUCT',
+	CREATE_UPDATE_PRODUCT: 'CREATE_UPDATE_PRODUCT',
 	UPDATE_PRODUCT_SUCCESS: 'UPDATE_PRODUCT_SUCCESS',
 	UPDATE_PRODUCT_FAIL: 'UPDATE_PRODUCT_FAIL'
 };

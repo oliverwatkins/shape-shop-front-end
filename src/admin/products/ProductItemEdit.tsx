@@ -26,11 +26,15 @@ export function ProductItemEdit(props: Props) {
     return (
         <LoadingView2 active={updatingProduct}>
             <div className={"item-edit-box"} >
+
+                {/*///*/}
+
+
                 <Formik
                     initialValues={{name: product.name, price: product.price}}
                     validate={validator}
                     onSubmit={(values, blah) => {
-                        dispatch(createUpdateProduct({...values, id: product.id}, Authorization));
+                        // dispatch(createUpdateProduct({...values, id: product.id}, Authorization));
                     }}>
 
                     {({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
