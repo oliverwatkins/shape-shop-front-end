@@ -2,6 +2,7 @@ import {Actions, createFetchOrdersFailAction, createFetchOrdersSuccessAction} fr
 import {api} from "../../api/api";
 
 import * as sagaEffects from 'redux-saga/effects'
+import {Authorization} from "../../AppState";
 
 //bypassing typescript problems by doing this :
 const takeLatest: any = sagaEffects.takeLatest;
@@ -12,7 +13,9 @@ export function* getOrdersWatcher() {
 	yield takeLatest(Actions.FETCH_ORDERS, getOrders);
 }
 
-function* getOrders(action: { Authorization: { token: string; }; }) {
+
+function* getOrders(action: { Authorization: Authorization; }) {
+
 	try {
 
 		console.info("action.Authorization.token " + action.Authorization.token);

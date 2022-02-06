@@ -12,17 +12,16 @@ import "./admin.scss";
 import {AppBar, Box, Tab, Tabs, Toolbar, Typography} from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import CategoryDialog from "./products/CategoryDialog";
 import Button from "@mui/material/Button";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import {Authorization} from "../AppState";
 
 type Props = {
     orders?: Array<OrderState>,
     closedOrders?: Array<OrderState>,
     fetchOrders?: () => void,
     dispatch?: Function,
-    Authorization?: string,
+    Authorization?: Authorization,
     products1?: Array<Product>,
     products2?: Array<Product>
 }
@@ -56,6 +55,12 @@ function a11yProps(index: any) {
 
 function AdminScreen(props: Props) {
 
+
+    if (props.Authorization) {
+        alert("undauthorized!!")
+    }
+
+
     const [topTabValue, setTopTabValue] = React.useState(0);
     const handleTopTab = (event: any, newValue: any) => {
         setTopTabValue(newValue);
@@ -73,6 +78,10 @@ function AdminScreen(props: Props) {
 
     let dispatch = useDispatch();
 
+
+    console.info("props.Authorization " + props.Authorization)
+
+
     useEffect(() => {
         dispatch(createFetchOrdersAction(props.Authorization));
     }, []);
@@ -80,26 +89,27 @@ function AdminScreen(props: Props) {
 
     const [alignment, setAlignment] = React.useState('web');
 
-    const handleChange = (
-        event: React.MouseEvent<HTMLElement>,
-        newAlignment: string,
-    ) => {
+    const handleChange = (event: React.MouseEvent<HTMLElement>,
+                          newAlignment: string) => {
         setAlignment(newAlignment);
     };
 
 
     return (
         <div className={"admin-screen"}>
-            <Box sx={{display:"flex"
+            <Box sx={{
+                display: "flex"
             }}>
                 <Box>
                     <Typography variant="h4" color='primary'>Administration Console</Typography>
                     <Box>
-                    <Typography sx={{ml:"2.5em"}}variant="body1" color='primary'>Manage orders, products, categories, and settings</Typography>
+                        <Typography sx={{ml: "2.5em"}} variant="body1" color='primary'>Manage orders, products,
+                            categories, and settings</Typography>
                     </Box>
                 </Box>
                 <Box sx={{marginLeft: "auto"}}>
-                    <Button component={Link}  to="/" endIcon={<DoubleArrowIcon/>} variant={"contained"}>To website </Button>
+                    <Button component={Link} to="/" endIcon={<DoubleArrowIcon/>} variant={"contained"}>To
+                        website </Button>
                 </Box>
                 <Box sx={{marginLeft: "2em"}}>
                     <Button component={Link} variant={"text"} to="/logout" color="primary">

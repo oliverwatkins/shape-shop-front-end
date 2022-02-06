@@ -2,6 +2,12 @@
 
 import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "./selectors";
 
+export type Authorization = {
+	username: string,
+	token: string,
+	role: string
+};
+
 export type AppState = {
 	products: ProductsState,
 	order: OrderState,

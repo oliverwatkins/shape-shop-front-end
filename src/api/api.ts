@@ -1,6 +1,6 @@
 import * as constants from "../constants";
 import {api_MOCK} from "./api_mock";
-import {Product} from "../AppState";
+import {Authorization, Product} from "../AppState";
 
 export const baseURL = 'http://localhost:8080/';
 // const ADMIN_TOKEN = ADMIN_TOKEN2;
@@ -34,10 +34,10 @@ const apiReal = {
 		return data;
 	},
 
-	fetchOrders: async (Authorization: any) => {
+	fetchOrders: async (auth: Authorization) => {
 		let data = await fetch(baseURL + constants.company + '/orders', {
 			method: "GET",
-			headers: [["Authorization", "Bearer " + Authorization.token]]
+			headers: [["Authorization", "Bearer " + auth.token]]
 		}).then(response => {
 			console.info("status : " + response.status)
 			if (!response.ok) {
@@ -89,6 +89,7 @@ const apiReal = {
 		return data;
 	},
 
+	// ???
 	logoutUser: async (Authorization: any) => {
 		//TODO not working yet
 		await fetch(baseURL + 'logout', {
@@ -106,14 +107,13 @@ const apiReal = {
 		// return data;
 	},
 
-	placeOrder: async (values: any, Authorization: any) => {
+	placeOrder: async (values: any) => {
 		let data = await fetch(baseURL + constants.company + '/orders', {
 			method: "POST",
 			body: JSON.stringify(values),
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				'Authorization': {...Authorization}
 			},
 		}).then(response => {
 			console.info("status : " + response.status)
@@ -132,7 +132,7 @@ const apiReal = {
 		});
 		return data;
 	},
-	uploadImage: async (Authorization: any, file: any, productId: string) => {
+	uploadImage: async (auth: Authorization, file: any, productId: string) => {
 
 		console.info("file " + JSON.stringify(file));
 
@@ -141,14 +141,14 @@ const apiReal = {
 
 		console.info("FormData " + JSON.stringify(formData));
 
-
 		let data = await fetch(baseURL + constants.company + '/uploadfile/' + productId, {
 			method: "POST",
 			body: formData,
 			headers: {
 				// 'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				'Authorization': {...Authorization}
+				// 'Authorization': {...Authorization}
+				'Authorization': "Bearer " + auth.token
 			},
 		}).then(response => {
 			console.info("status : " + response.status)
@@ -169,12 +169,10 @@ const apiReal = {
 		return data;
 	},
 
-	createProduct: async (values: Product, Authorization: { token: string; })=> {
+	createProduct: async (values: Product, auth: Authorization)=> {
 		let data = await fetch(baseURL + constants.company + '/products', {
 			method: "POST",
 			body:
-				// JSON.stringify(values)
-
 				JSON.stringify({
 					"name": values.name,
 					"price": values.price,
@@ -184,7 +182,7 @@ const apiReal = {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				'Authorization': "Bearer " + Authorization.token
+				'Authorization': "Bearer " + auth.token
 			},
 		}).then(response => {
 			console.info("status : " + response.status)
@@ -201,13 +199,15 @@ const apiReal = {
 			console.error('There has been a problem with your fetch operation:', error);
 			throw error;
 		});
+
+		alert("created product" )
 		return data;
 	},
 
-	updateProduct: async (values: { id: string; }, Authorization: { token: string; }) => {
+	updateProduct: async (values: { id: string; }, auth: Authorization) => {
 
 		console.info("updateProduct : " + JSON.stringify(values))
-		console.info("Authorization : " + JSON.stringify(Authorization))
+		console.info("Authorization : " + JSON.stringify(auth))
 
 		let data = await fetch(baseURL + constants.company + '/products/' + values.id, {
 			method: "PUT",
@@ -215,7 +215,7 @@ const apiReal = {
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				'Authorization': "Bearer " + Authorization.token
+				'Authorization': "Bearer " + auth.token
 			},
 		}).then(response => {
 			console.info("status : " + response.status)

@@ -30,7 +30,10 @@ function* updateCreateProduct(action: { values: Product; Authorization: any; }) 
 
 			// @ts-ignore
 			response = yield call(api.createProduct, action.values, action.Authorization);
-			alert("-1")
+
+			//add new response obnect to redux stack
+
+			alert("-1 " + JSON.stringify(response))
 		}else {
 			// @ts-ignore
 			response = yield call(api.updateProduct, action.values, action.Authorization);

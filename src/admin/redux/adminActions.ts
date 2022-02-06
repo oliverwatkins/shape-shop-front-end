@@ -1,4 +1,6 @@
-export function createFetchOrdersAction(auth: any) {
+import {Authorization} from "../../AppState";
+
+export function createFetchOrdersAction(auth?: Authorization) {
 	return {
 		type: Actions.FETCH_ORDERS,
 		Authorization: auth,
