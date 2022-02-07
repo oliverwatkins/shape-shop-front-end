@@ -9,6 +9,44 @@ export let api: any = {}
 
 
 const apiReal = {
+
+	deleteProduct: async (values: Product, auth: Authorization)=> {
+		let data = await fetch(baseURL + constants.company + '/products/'  + values.id, {
+			method: "DELETE",
+			body: //TODO not needed
+				JSON.stringify({
+					"name": values.name,
+					"price": values.price,
+					"description": values.description,
+					"type": values.type,
+				}),
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json',
+				'Authorization': "Bearer " + auth.token
+			},
+		}).then(response => {
+			console.info("status : " + response.status)
+			if (!response.ok) {
+				throw new Error('Network response was not ok');
+			}
+			return response.json()
+		}).then(data => {
+			return {
+				status: 200,
+				data: data
+			}
+		}).catch(error => {
+			console.error('There has been a problem with your fetch operation:', error);
+			throw error;
+		});
+
+		alert("created product")
+		return data;
+	},
+
+
+
 	fetchProducts: async () => {
 		let data = await fetch(baseURL + constants.company + '/products', {
 			method: "GET",

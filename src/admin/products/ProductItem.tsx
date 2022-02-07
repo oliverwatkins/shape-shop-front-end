@@ -33,7 +33,8 @@ import * as Constants from "./../../constants";
 
 type Props = {
     item: Product;
-    callback: any
+    editProductCallback: any;
+    deleteProductCallback: any;
 };
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -101,7 +102,7 @@ export function ProductItem(props: Props) {
                                 },
                             }}
                         >
-                            <MenuItem key={"1"} selected={false} onClick={() => props.callback(product)}
+                            <MenuItem key={"1"} selected={false} onClick={() => props.editProductCallback(product)}
                             >
                                 <ListItemIcon>
                                     <EditIcon/>
@@ -115,7 +116,7 @@ export function ProductItem(props: Props) {
                                 </ListItemIcon>
                                 <ListItemText primary="Update Image"/>
                             </MenuItem>
-                            <MenuItem key={"3"} selected={false} onClick={handleCloseMenu}
+                            <MenuItem key={"3"} selected={false} onClick={() => props.deleteProductCallback(product)}
                             >
                                 <ListItemIcon>
                                     <DeleteIcon/>

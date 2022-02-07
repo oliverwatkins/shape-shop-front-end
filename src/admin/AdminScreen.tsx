@@ -56,8 +56,8 @@ function a11yProps(index: any) {
 function AdminScreen(props: Props) {
 
 
-    if (props.Authorization) {
-        alert("undauthorized!!")
+    if (!props.Authorization?.token) {
+        // alert("undauthorized!!")
     }
 
 

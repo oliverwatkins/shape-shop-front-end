@@ -26,10 +26,9 @@ function* getProducts({ Authorization }: any) {
 		} else {
 			yield put(createFetchProductsErrorAction(response.data));
 		}
-	} catch (e) {
+	} catch (e: any) {
 		console.error('Error fetching products!!');
 		console.error(e);
-		// @ts-ignore
 		Notify.error(e.message)
 	}
 }

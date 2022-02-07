@@ -6,6 +6,21 @@ import {Notify} from "../../notify";
 
 export function reducer(state: ProductsState = initialState, action: any) {
 	switch (action.type) {
+		case Actions.ADD_PRODUCT:
+			let newItems = state.items;
+			newItems.push(action.product);
+			return {
+				...state,
+				items: newItems
+				// updatingProduct: true
+			};
+		case Actions.DELETE_PRODUCT:
+			return {
+				...state,
+				items: state.items.filter((elem)=>{
+					return elem.id !== action.id
+				})
+			};
 		case Actions.CREATE_UPDATE_PRODUCT:
 			return {
 				...state,

@@ -1,4 +1,4 @@
-import {Product} from "../../AppState";
+import {Authorization, Product} from "../../AppState";
 
 export function createFetchProductsAction() {
 	return {
@@ -79,11 +79,11 @@ export function createPlaceOrderErrorAction(response: {}, value: string) {
 }
 
 
-export function createUpdateProduct(values: Product, Authorization: any) {
+export function createUpdateProduct(values: Product, auth: Authorization) {
 	return {
 		type: Actions.CREATE_UPDATE_PRODUCT,
 		values: values,
-		Authorization: Authorization
+		Authorization: auth
 	};
 }
 
@@ -100,6 +100,28 @@ export function createUpdateProductFailAction(errorMessage: string) {
 	};
 }
 
+export function createDeleteProductServiceAction(product: Product, auth: Authorization) {
+	return {
+		type: Actions.DELETE_PRODUCT_SERVICE,
+		product: product,
+		Authorization: auth
+	};
+}
+
+export function createDeleteProductAction(product: Product) {
+	return {
+		type: Actions.DELETE_PRODUCT,
+		product: product
+	};
+}
+
+export function createAddProductAction(product: Product) {
+	return {
+		type: Actions.ADD_PRODUCT,
+		product: product
+	};
+}
+
 export const Actions = {
 	PLACE_ORDER: "PLACE_ORDER",
 	PLACE_ORDER_SUCCESS: "PLACE_ORDER_SUCCESS",
@@ -111,6 +133,10 @@ export const Actions = {
 	UPDATE_DELIVERY_TYPE: 'UPDATE_DELIVERY_TYPE',
 
 	UPDATE_CREDIT_CARD: 'UPDATE_CREDIT_CARD',
+
+	ADD_PRODUCT: 'ADD_PRODUCT',
+	DELETE_PRODUCT: 'DELETE_PRODUCT',
+	DELETE_PRODUCT_SERVICE: 'DELETE_PRODUCT_SERVICE',
 
 	FETCH_PRODUCTS: 'FETCH_PRODUCTS',
 	FETCH_PRODUCTS_SUCCESS: 'FETCH_PRODUCTS_SUCCESS',
