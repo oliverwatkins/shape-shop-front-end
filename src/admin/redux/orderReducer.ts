@@ -4,6 +4,9 @@ import {Notify} from "../../notify";
 import {DeliveryType, OrderStateType, PaymentType} from "../../AppState";
 
 export function reducer(state: OrderState = initialState , action: any) {
+
+	console.info("in order reducer with action " + action.type)
+
 	switch (action.type) {
 		case Actions.UPDATE_ADDRESS:
 			return {

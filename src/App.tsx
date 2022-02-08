@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
-import {createFetchProductsAction} from "./order/redux/productActions";
+import {createFetchProductsAction} from "./admin/redux/productActions";
 import Nav from "./Nav";
 
 // import "./alpenhofCss_.css"

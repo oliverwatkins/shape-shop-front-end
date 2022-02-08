@@ -5,6 +5,9 @@ import {Notify} from "../../notify";
 
 
 export function reducer(state: ProductsState = initialState, action: any) {
+
+	console.info("in product reducer with action " + action.type)
+
 	switch (action.type) {
 		case Actions.ADD_PRODUCT:
 			let newItems = state.items;

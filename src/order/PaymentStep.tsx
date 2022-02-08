@@ -9,7 +9,7 @@ import {wizardPages as pages} from "./OrderWizardContainer";
 import {BackButton} from "./buttons/BackButton";
 
 import "./order.scss"
-import {createUpdateCreditCard} from "./redux/productActions";
+import {createUpdateCreditCard} from "../admin/redux/productActions";
 import {connect} from "react-redux";
 // import {Address} from "./AddressStep";
 import type {AppState, Product} from "../AppState";

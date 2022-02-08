@@ -15,7 +15,7 @@ import {
     createDeleteProductAction,
     createDeleteProductServiceAction,
     createUpdateProduct
-} from "../../order/redux/productActions";
+} from "../redux/productActions";
 import {useDispatch, useSelector} from "react-redux";
 import {AppState} from "../../AppState";
 

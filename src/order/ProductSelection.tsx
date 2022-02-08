@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import ItemBox from "./ItemBox";
-import {createUpdateProductSelection} from "./redux/productActions";
+import {createUpdateProductSelection} from "../admin/redux/productActions";
 import {connect} from "react-redux";
 import type {Product} from "../AppState";
 

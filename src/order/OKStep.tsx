@@ -8,7 +8,7 @@ import {
 	selectSelectedProductByType
 } from "../selectors";
 import {connect} from "react-redux";
-import {createPlaceOrderAction} from "./redux/productActions";
+import {createPlaceOrderAction} from "../admin/redux/productActions";
 import {useEffect} from "react";
 import {LoadingView} from "../misc/LoadingView";
 

@@ -1,8 +1,8 @@
-import {Actions, createFetchOrdersFailAction, createFetchOrdersSuccessAction} from './adminActions';
-import {api} from "../../api/api";
+import {Actions, createFetchOrdersFailAction, createFetchOrdersSuccessAction} from '../adminActions';
+import {api} from "../../../api/api";
 
 import * as sagaEffects from 'redux-saga/effects'
-import {Authorization} from "../../AppState";
+import {Authorization} from "../../../AppState";
 
 //bypassing typescript problems by doing this :
 const takeLatest: any = sagaEffects.takeLatest;
@@ -27,6 +27,8 @@ function* getOrders(action: { Authorization: Authorization; }) {
 		const response = yield call(api.fetchOrders, action.Authorization);
 
 		if (response.status === 200) {
+			console.info("response.data " + response.data);
+
 			yield put(createFetchOrdersSuccessAction(response.data));
 			console.info("success : " + response.data)
 		} else if (response.status === 403) {

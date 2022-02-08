@@ -1,13 +1,13 @@
-import {api} from "../../api/api";
+import {api} from "../../../api/api";
 import {
 	Actions, createAddProductAction, createUpdateProduct,
 	createUpdateProductFailAction,
 	createUpdateProductSuccessAction
-} from "../../order/redux/productActions";
+} from "../productActions";
 import {delay} from "@redux-saga/core/effects";
 
 import * as sagaEffects from 'redux-saga/effects'
-import {Authorization, Product} from "../../AppState";
+import {Authorization, Product} from "../../../AppState";
 
 //bypassing typescript problems by doing this :
 const takeLatest: any = sagaEffects.takeLatest;

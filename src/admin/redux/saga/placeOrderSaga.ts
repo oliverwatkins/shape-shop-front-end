@@ -4,11 +4,11 @@ import {
 	createFetchProductsSuccessAction,
 	createPlaceOrderErrorAction,
 	createPlaceOrderSuccessAction
-} from './productActions';
+} from '../productActions';
 import {delay} from "@redux-saga/core/effects";
-import {createFetchOrdersFailAction} from "../../admin/redux/adminActions";
-import type {Product} from "../../AppState";
-import {api} from "../../api/api";
+import {createFetchOrdersFailAction} from "../adminActions";
+import type {Product} from "../../../AppState";
+import {api} from "../../../api/api";
 
 import * as sagaEffects from 'redux-saga/effects'
 

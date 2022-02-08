@@ -2,14 +2,14 @@ import {fork} from 'redux-saga/effects';
 import {loginWatcher} from './login/redux/LoginSaga'
 import {logoutWatcher} from './login/redux/LogoutSaga'
 
-import {placeOrderWatcher} from './order/redux/placeOrderSaga'
-import {getProductsWatcher} from './order/redux/getProductsSaga'
-import {getOrdersWatcher} from './admin/redux/OrdersSaga'
+import {placeOrderWatcher} from './admin/redux/saga/placeOrderSaga'
+import {getProductsWatcher} from './admin/redux/saga/getProductsSaga'
+import {getOrdersWatcher} from './admin/redux/saga/getOrdersSaga'
 //hack to make sagas work. https://github.com/redux-saga/redux-saga/issues/280
 import "regenerator-runtime/runtime";
-import {uploadImageWatcher} from "./admin/redux/uploadImageSaga";
-import {updateCreateProductWatcher} from "./admin/redux/updateProductSaga";
-import {deleteProductWatcher} from "./admin/redux/deleteProductSaga";
+import {uploadImageWatcher} from "./admin/redux/saga/uploadImageSaga";
+import {updateCreateProductWatcher} from "./admin/redux/saga/updateProductSaga";
+import {deleteProductWatcher} from "./admin/redux/saga/deleteProductSaga";
 
 
 /**

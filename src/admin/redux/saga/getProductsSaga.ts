@@ -1,7 +1,7 @@
-import {Actions, createFetchProductsErrorAction, createFetchProductsSuccessAction} from './productActions';
-import {mockProds} from "../../__mock__/mockProducts";
-import {api} from "../../api/api";
-import {Notify} from "../../notify";
+import {Actions, createFetchProductsErrorAction, createFetchProductsSuccessAction} from '../productActions';
+import {mockProds} from "../../../__mock__/mockProducts";
+import {api} from "../../../api/api";
+import {Notify} from "../../../notify";
 
 import * as sagaEffects from 'redux-saga/effects'
 

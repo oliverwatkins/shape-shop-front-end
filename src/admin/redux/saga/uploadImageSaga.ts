@@ -3,8 +3,8 @@ import { put, call, takeLatest } from 'redux-saga/effects';
 import {
 	Actions,
 	createUploadImageFailAction, createUploadImageSuccessAction
-} from './adminActions';
-import {api} from "../../api/api";
+} from '../adminActions';
+import {api} from "../../../api/api";
 import {toast} from "react-toastify";
 import React from "react";
 

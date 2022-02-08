@@ -215,6 +215,9 @@ function AdminScreen(props: Props) {
 }
 
 const mapStateToProps = (state: AppState): AdminState => {
+
+    // console.info("state -> " + JSON.stringify(state))
+
     return {
         products1: selectProductsByType(state, "main"),
         products2: selectProductsByType(state, "drinks"),

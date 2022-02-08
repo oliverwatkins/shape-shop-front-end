@@ -13,13 +13,13 @@ const apiReal = {
 	deleteProduct: async (values: Product, auth: Authorization)=> {
 		let data = await fetch(baseURL + constants.company + '/products/'  + values.id, {
 			method: "DELETE",
-			body: //TODO not needed
-				JSON.stringify({
-					"name": values.name,
-					"price": values.price,
-					"description": values.description,
-					"type": values.type,
-				}),
+			// body: //TODO not needed
+			// 	JSON.stringify({
+			// 		"name": values.name,
+			// 		"price": values.price,
+			// 		"description": values.description,
+			// 		"type": values.type,
+			// 	}),
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',
@@ -30,7 +30,7 @@ const apiReal = {
 			if (!response.ok) {
 				throw new Error('Network response was not ok');
 			}
-			return response.json()
+			// return response.json()
 		}).then(data => {
 			return {
 				status: 200,
@@ -41,7 +41,7 @@ const apiReal = {
 			throw error;
 		});
 
-		alert("created product")
+		alert("deleeeted product")
 		return data;
 	},
 
@@ -91,6 +91,7 @@ const apiReal = {
 			// console.error('There has been a problem with your fetch operation:', error);
 			throw error;
 		});
+		console.info(" the data returned : " + data)
 		return data;
 	},
 
@@ -194,7 +195,6 @@ const apiReal = {
 				throw new Error('Network response was not ok');
 			}
 			return response
-			// return response.json()
 		}).then(data => {
 			return {
 				status: 200,

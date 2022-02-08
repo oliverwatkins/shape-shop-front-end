@@ -2,7 +2,7 @@ import * as React from "react";
 import {Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import type {AppState} from "../../AppState";
-import {createUpdateProduct} from "../../order/redux/productActions";
+import {createUpdateProduct} from "../redux/productActions";
 import {LoadingView2} from "../../misc/LoadingView";
 import {Product} from "../../AppState";
 

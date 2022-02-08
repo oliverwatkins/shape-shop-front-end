@@ -1,13 +1,13 @@
-import {api} from "../../api/api";
+import {api} from "../../../api/api";
 import {
 	Actions, createAddProductAction, createDeleteProductAction, createUpdateProduct,
 	createUpdateProductFailAction,
 	createUpdateProductSuccessAction
-} from "../../order/redux/productActions";
+} from "../productActions";
 import {delay} from "@redux-saga/core/effects";
 
 import * as sagaEffects from 'redux-saga/effects'
-import {Authorization, Product} from "../../AppState";
+import {Authorization, Product} from "../../../AppState";
 
 //bypassing typescript problems by doing this :
 const takeLatest: any = sagaEffects.takeLatest;
@@ -31,6 +31,7 @@ function* deleteProduct(action: { product: Product; Authorization: Authorization
 		yield delay(3000)
 
 		if (response.status === 200) {
+			alert("deleted product")
 			yield put(createDeleteProductAction(action.product));
 		} else {
 			console.error(JSON.stringify(response))

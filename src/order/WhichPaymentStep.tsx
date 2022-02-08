@@ -4,7 +4,7 @@ import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
 import {connect} from "react-redux";
-import {createUpdatePaymentType} from "./redux/productActions";
+import {createUpdatePaymentType} from "../admin/redux/productActions";
 import {PaymentType} from "../AppState";
 
 type Props = {
