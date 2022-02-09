@@ -10,14 +10,16 @@ import ProductDialog from "./ProductDialog";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import * as constants from "../../constants";
-import {baseURL} from "../../api/api";
+import {api, baseURL} from "../../api/api";
 import {
     createDeleteProductAction,
-    createDeleteProductServiceAction,
+    createDeleteProductServiceAction, createFetchProductsSuccessAction,
     createUpdateProduct
 } from "../redux/productActions";
 import {useDispatch, useSelector} from "react-redux";
-import {AppState} from "../../AppState";
+import {AppState, OrderState} from "../../AppState";
+import {useAsync} from "react-async-hook";
+import {useEffect} from "react";
 
 type Props = {
     products?: Array<Product>,
@@ -34,12 +36,35 @@ export default function ProductPanel(props: Props) {
     }
 
 
-    let deleteProductCallback = (item: Product) => {
-        dispatch(createDeleteProductServiceAction(item, Authorization))
+    // let deleteProductCallback = (item: Product) => {
+    //     dispatch(createDeleteProductServiceAction(item, Authorization))
+    // }
+    const deleteProductCallback = async (item: Product) => {
+        try {
+            await api.deleteProduct(item, Authorization)
+            dispatch(createDeleteProductAction(item))
+        }catch(e) {
+            alert(e)
+
+        }
     }
 
 
+    // useEffect(() => {
+    //     props.fetchProducts();
+    // }, []);
 
+    // const {
+    //     loading: productLoading,
+    //     error: productError,
+    //     result: products = null,
+    // } = useAsync<OrderState[]>(api.deleteProduct, []);
+
+    // useEffect(() => {
+    //     if (products) {
+    //         dispatch(createFetchProductsSuccessAction(products));
+    //     }
+    // }, [products]);
 
     const [selectedProduct, setSelectedProduct] = React.useState<Product>();
 

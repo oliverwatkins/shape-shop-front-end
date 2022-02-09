@@ -20,24 +20,24 @@ export function* deleteProductWatcher() {
 
 function* deleteProduct(action: { product: Product; Authorization: Authorization; }) {
 
-	try {
-		// @ts-ignore
-		let response = yield call(api.deleteProduct, action.product, action.Authorization);
-
-		//fake some delay
-		yield delay(3000)
-
-		if (response.status === 200) {
-			alert("deleted product")
-			yield put(createDeleteProductAction(action.product));
-		} else {
-			console.error(JSON.stringify(response))
-			alert("TODO")
-			// yield put(createDeleteProductFailAction("Unknown Response Error  "+ JSON.stringify(response)));
-		}
-	} catch (e) {
-		console.error('Error updating products!!', e);
-		// @ts-ignore
-		yield put(createDeleteProductFailAction("Unknown Error " + e.message));
-	}
+	// try {
+	// 	// @ts-ignore
+	// 	let response = yield call(api.deleteProduct, action.product, action.Authorization);
+	//
+	// 	//fake some delay
+	// 	yield delay(3000)
+	//
+	// 	if (response.status === 200) {
+	// 		alert("deleted product")
+	// 		yield put(createDeleteProductAction(action.product));
+	// 	} else {
+	// 		console.error(JSON.stringify(response))
+	// 		alert("TODO")
+	// 		// yield put(createDeleteProductFailAction("Unknown Response Error  "+ JSON.stringify(response)));
+	// 	}
+	// } catch (e) {
+	// 	console.error('Error updating products!!', e);
+	// 	// @ts-ignore
+	// 	yield put(createDeleteProductFailAction("Unknown Error " + e.message));
+	// }
 }

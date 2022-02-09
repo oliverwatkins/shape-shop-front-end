@@ -30,6 +30,8 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PhotoIcon from '@mui/icons-material/Photo';
 
 import * as Constants from "./../../constants";
+import {api} from "../../api/api";
+import {createDeleteProductAction} from "../redux/productActions";
 
 type Props = {
     item: Product;
@@ -79,6 +81,10 @@ export function ProductItem(props: Props) {
     const handleClose = () => {
         setShowModal(false);
     };
+
+
+
+
 
     const heigt = 25;
     return (
