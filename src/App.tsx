@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-import {connect} from 'react-redux';
+import {connect, useDispatch} from 'react-redux';
 //TODO change to hashrouter
 import {Route, Switch} from "react-router-dom";
 
@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
-import {createFetchProductsAction} from "./admin/redux/productActions";
+import {createFetchProductsAction, createFetchProductsSuccessAction} from "./admin/redux/productActions";
 import Nav from "./Nav";
 
 // import "./alpenhofCss_.css"
@@ -20,80 +20,94 @@ import Logout from "./login/Logout";
 import {Logout2} from "./login/Logout2";
 import AdminScreen from "./admin/AdminScreen";
 import {ToastContainer} from "react-toastify";
+import {createFetchOrdersSuccessAction} from "./admin/redux/adminActions";
+import {useAsync} from "react-async-hook";
+import {OrderState} from "./AppState";
+import {api} from "./api/api";
 
 type Props = {
     fetchProducts: Function
 }
 
 
-class App extends React.PureComponent<Props> {
-    componentDidMount() {
-        this.props.fetchProducts();
-    }
+function App(props: Props) {
+    // componentDidMount() {
+    //
+    // }
+    let dispatch = useDispatch();
+    // useEffect(() => {
+    //     props.fetchProducts();
+    // }, []);
 
-    render() {
-        return (
+    const {
+        loading: productLoading,
+        error: productError,
+        result: products = null,
+    } = useAsync<OrderState[]>(api.fetchProducts, []);
 
-            <div className="App">
-                {/*<Route path="/admin">*/}
-                {/*  <AdminScreen/>*/}
-                {/*</Route>*/}
-                <div>
-                    {/*<Nav/>*/}
-                    {/*{getMarq()}*/}
-                    <ToastContainer
-                        position="top-right"
-                        autoClose={2000}
-                        hideProgressBar={false}
-                        newestOnTop={false}
-                        closeOnClick
-                        rtl={false}
-                        pauseOnFocusLoss
-                        draggable
-                        pauseOnHover
-                    />
-                    <Switch>
-                        <Route path="/admin">
-                            <AdminScreen/>
-                        </Route>
+    useEffect(() => {
+        if (products) {
+            dispatch(createFetchProductsSuccessAction(products));
+        }
+    }, [products]);
 
-                        {/*this component just redirects to logout2*/}
-                        <Route path="/logout">
-                            <Nav/>
-                            {getMarq()}
-                            <Logout/>
-                            <Footer/>
-                        </Route>
-                        <Route path="/logout2">
-                            <Nav/>
-                            {getMarq()}
-                            <Logout2/>
-                            <Footer/>
-                        </Route>
-                        <Route path="/order">
-                            <Nav/>
-                            {getMarq()}
-                            <OrderWizard/>
-                            <Footer/>
-                        </Route>
-                        <Route path="/login">
-                            <Nav/>
-                            {getMarq()}
-                            <LoginScreen/>
-                            <Footer/>
-                        </Route>
-                        <Route path="/">
-                            <Nav/>
-                            {getMarq()}
-                            <Welcome/>
-                            <Footer/>
-                        </Route>
-                    </Switch>
-                </div>
 
+
+    return (
+        <div className="App">
+            <div>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                />
+                <Switch>
+                    <Route path="/admin">
+                        <AdminScreen/>
+                    </Route>
+
+                    {/*this component just redirects to logout2*/}
+                    <Route path="/logout">
+                        <Nav/>
+                        {getMarq()}
+                        <Logout/>
+                        <Footer/>
+                    </Route>
+                    <Route path="/logout2">
+                        <Nav/>
+                        {getMarq()}
+                        <Logout2/>
+                        <Footer/>
+                    </Route>
+                    <Route path="/order">
+                        <Nav/>
+                        {getMarq()}
+                        <OrderWizard/>
+                        <Footer/>
+                    </Route>
+                    <Route path="/login">
+                        <Nav/>
+                        {getMarq()}
+                        <LoginScreen/>
+                        <Footer/>
+                    </Route>
+                    <Route path="/">
+                        <Nav/>
+                        {getMarq()}
+                        <Welcome/>
+                        <Footer/>
+                    </Route>
+                </Switch>
             </div>
-        );
-    }
+
+        </div>
+    );
 }
 
 function getMarq() {

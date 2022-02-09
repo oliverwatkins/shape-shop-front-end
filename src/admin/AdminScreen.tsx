@@ -2,19 +2,21 @@ import * as React from 'react';
 import {useEffect} from 'react';
 import {connect, useDispatch} from "react-redux";
 import type {AdminState, AppState, OrderState, Product} from "../AppState";
-import {createFetchOrdersAction} from "./redux/adminActions";
+import {createFetchOrdersAction, createFetchOrdersSuccessAction} from "./redux/adminActions";
 
 import OrderPanel from "./OrderPanel";
 import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "../selectors";
 import ProductPanel from "./products/ProductPanel";
 import {Link, Route, Switch} from "react-router-dom";
 import "./admin.scss";
-import {AppBar, Box, Tab, Tabs, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, CircularProgress, Tab, Tabs, Toolbar, Typography} from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from "@mui/material/Button";
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import {Authorization} from "../AppState";
+import {Authorization, OrderStateType} from "../AppState";
+import {api} from "../api/api";
+import {useAsync} from "react-async-hook";
 
 type Props = {
     orders?: Array<OrderState>,
@@ -55,12 +57,13 @@ function a11yProps(index: any) {
 
 function AdminScreen(props: Props) {
 
-
     if (!props.Authorization?.token) {
         // alert("undauthorized!!")
     }
 
+    let dispatch = useDispatch();
 
+    //tab state :
     const [topTabValue, setTopTabValue] = React.useState(0);
     const handleTopTab = (event: any, newValue: any) => {
         setTopTabValue(newValue);
@@ -76,27 +79,22 @@ function AdminScreen(props: Props) {
         setOrderTabValue(newValue);
     };
 
-    let dispatch = useDispatch();
-
-
-    console.info("props.Authorization " + props.Authorization)
-
+    const {
+        loading: orderLoading,
+        error: orderError,
+        result: orders = null,
+    } = useAsync<OrderState[]>(api.fetchOrders, [props.Authorization]);
 
     useEffect(() => {
-        dispatch(createFetchOrdersAction(props.Authorization));
-    }, []);
-
-
-    const [alignment, setAlignment] = React.useState('web');
-
-    const handleChange = (event: React.MouseEvent<HTMLElement>,
-                          newAlignment: string) => {
-        setAlignment(newAlignment);
-    };
+        if (orders) {
+            dispatch(createFetchOrdersSuccessAction(orders));
+        }
+    }, [orders]);
 
 
     return (
         <div className={"admin-screen"}>
+
             <Box sx={{
                 display: "flex"
             }}>
@@ -135,6 +133,10 @@ function AdminScreen(props: Props) {
 
             <Switch>
                 <Route path="/admin/orders">
+
+                    {orderLoading &&  <CircularProgress color="secondary" />}
+                    {orderError && <span>ERROR { orderError } </span>}
+
                     <Box sx={{width: '100%'}}>
                         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                             <Tabs value={orderTabValue} onChange={handleOrderTab}
@@ -215,9 +217,6 @@ function AdminScreen(props: Props) {
 }
 
 const mapStateToProps = (state: AppState): AdminState => {
-
-    // console.info("state -> " + JSON.stringify(state))
-
     return {
         products1: selectProductsByType(state, "main"),
         products2: selectProductsByType(state, "drinks"),

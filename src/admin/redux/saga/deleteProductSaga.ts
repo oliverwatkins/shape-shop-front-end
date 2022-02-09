@@ -21,9 +21,6 @@ export function* deleteProductWatcher() {
 function* deleteProduct(action: { product: Product; Authorization: Authorization; }) {
 
 	try {
-
-		debugger;
-
 		// @ts-ignore
 		let response = yield call(api.deleteProduct, action.product, action.Authorization);
 

@@ -28,6 +28,7 @@
     "jwt-decode": "^2.2.0",
     "moment": "^2.27.0",
     "react": "^16.13.1",
+    "react-async-hook": "^4.0.0",
     "react-dom": "^16.13.1",
     "react-hook-form": "^7.22.5",
     "react-redux": "^7.2.0",
@@ -51,7 +52,6 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
-
   "eslintConfig": {
     "extends": "react-app",
     "overrides": [

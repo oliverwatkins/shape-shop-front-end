@@ -1,6 +1,7 @@
 import * as constants from "../constants";
 import {api_MOCK} from "./api_mock";
 import {Authorization, Product} from "../AppState";
+import {delay} from "@redux-saga/core/effects";
 
 export const baseURL = 'http://localhost:8080/';
 // const ADMIN_TOKEN = ADMIN_TOKEN2;
@@ -69,10 +70,13 @@ const apiReal = {
 			throw error;
 			// console.error('There has been a problem with your fetch operation:', error);
 		});
-		return data;
+		return data.data;
 	},
 
 	fetchOrders: async (auth: Authorization) => {
+
+		await sleep(1000);
+
 		let data = await fetch(baseURL + constants.company + '/orders', {
 			method: "GET",
 			headers: [["Authorization", "Bearer " + auth.token]]
@@ -92,7 +96,8 @@ const apiReal = {
 			throw error;
 		});
 		console.info(" the data returned : " + data)
-		return data;
+
+		return data.data;
 	},
 
 	loginUser: async (credentials: any) => {
@@ -269,8 +274,15 @@ const apiReal = {
 	}
 };
 
+function sleep(ms: number) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+
 if (constants.MOCK_MODE) {
 	api = api_MOCK;
 }else {
 	api = apiReal;
 }
+
+
