@@ -2,7 +2,7 @@ import * as React from "react";
 import {Formik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import type {AppState} from "../../AppState";
-import {createUpdateProduct} from "../redux/productActions";
+// import {createUpdateProduct} from "../redux/productActions";
 import {LoadingView2} from "../../misc/LoadingView";
 import {Product} from "../../AppState";
 
@@ -28,8 +28,6 @@ export function ProductItemEdit(props: Props) {
             <div className={"item-edit-box"} >
 
                 {/*///*/}
-
-
                 <Formik
                     initialValues={{name: product.name, price: product.price}}
                     validate={validator}

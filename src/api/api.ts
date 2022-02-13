@@ -39,10 +39,11 @@ const apiReal = {
 			}
 		}).catch(error => {
 			console.error('There has been a problem with your fetch operation:', error);
+			// Noti
 			throw error;
 		});
 
-		alert("deleeeted product")
+		// alert("deleeeted product")
 		return data;
 	},
 
@@ -243,7 +244,7 @@ const apiReal = {
 			throw error;
 		});
 
-		alert("created product" )
+		// alert("created product" )
 		return data;
 	},
 

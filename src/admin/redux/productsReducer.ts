@@ -21,36 +21,23 @@ export function reducer(state: ProductsState = initialState, action: any) {
 			return {
 				...state,
 				items: state.items.filter((elem)=>{
-					return elem.id !== action.id
+					return elem.id !== action.product.id
 				})
 			};
-		case Actions.CREATE_UPDATE_PRODUCT:
+		case Actions.UPDATE_PRODUCT:
+			const i = state.items.map((elem)=> {
+				if (elem.id === action.product.id)
+					return action.product;
+				return elem;
+			});
 			return {
 				...state,
-				updatingProduct: true
+				items: i
 			};
-		case Actions.UPDATE_PRODUCT_FAIL:
-			Notify.error(action.errorMessage)
-			return {
-				...state,
-				updatingProduct: false
-			};
-		case Actions.UPDATE_PRODUCT_SUCCESS:
-			return {
-				...state,
-				updatingProduct: false
-			};
-		case Actions.FETCH_PRODUCTS_SUCCESS:
+		case Actions.FETCH_PRODUCTS:
 			return {
 				...state,
 				items: action.data,
-			};
-		case Actions.FETCH_PRODUCTS_ERROR:
-			Notify.error(action.errorMessage)
-			return {
-				...state,
-				items: [],
-				productsError: "Error Getting Products"
 			};
 		case Actions.UPDATE_PRODUCT_SELECTION:
 			return {

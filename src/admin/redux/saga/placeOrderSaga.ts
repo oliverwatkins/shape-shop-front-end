@@ -1,7 +1,7 @@
 
 import {
 	Actions,
-	createFetchProductsSuccessAction,
+	// createFetchProductsSuccessAction,
 	createPlaceOrderErrorAction,
 	createPlaceOrderSuccessAction
 } from '../productActions';

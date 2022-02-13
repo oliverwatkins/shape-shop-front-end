@@ -7,7 +7,6 @@ import {placeOrderWatcher} from './admin/redux/saga/placeOrderSaga'
 import "regenerator-runtime/runtime";
 import {uploadImageWatcher} from "./admin/redux/saga/uploadImageSaga";
 import {updateCreateProductWatcher} from "./admin/redux/saga/updateProductSaga";
-import {deleteProductWatcher} from "./admin/redux/saga/deleteProductSaga";
 
 
 /**
@@ -21,5 +20,5 @@ export default function* root() {
 	yield fork(placeOrderWatcher);
 	yield fork(uploadImageWatcher);
 	yield fork(updateCreateProductWatcher);
-	yield fork(deleteProductWatcher);
+	// yield fork(deleteProductWatcher);
 }

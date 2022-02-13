@@ -9,7 +9,10 @@ import "react-toastify/dist/ReactToastify.css";
 
 import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
-import {createFetchProductsAction, createFetchProductsSuccessAction} from "./admin/redux/productActions";
+import {
+    // createFetchProductsAction,
+    createFetchProductsSuccessAction
+} from "./admin/redux/productActions";
 import Nav from "./Nav";
 
 // import "./alpenhofCss_.css"
@@ -124,9 +127,9 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
     return {
-        fetchProducts: () => {
-            dispatch(createFetchProductsAction());
-        },
+        // fetchProducts: () => {
+        //     dispatch(createFetchProductsSuccessAction());
+        // },
     };
 };
 

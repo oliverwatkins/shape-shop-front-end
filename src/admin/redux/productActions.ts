@@ -1,22 +1,9 @@
 import {Authorization, Product} from "../../AppState";
 
-export function createFetchProductsAction() {
-	return {
-		type: Actions.FETCH_PRODUCTS,
-	};
-}
-
 export function createFetchProductsSuccessAction(data: any) {
 	return {
-		type: Actions.FETCH_PRODUCTS_SUCCESS,
+		type: Actions.FETCH_PRODUCTS,
 		data,
-	};
-}
-
-export function createFetchProductsErrorAction(response: any)  {
-	return {
-		type: Actions.FETCH_PRODUCTS_ERROR,
-		value: response
 	};
 }
 
@@ -78,35 +65,13 @@ export function createPlaceOrderErrorAction(response: {}, value: string) {
 	};
 }
 
-
-export function createUpdateProduct(values: Product, auth: Authorization) {
+export function createUpdateProductSuccessAction(product: Product) {
 	return {
-		type: Actions.CREATE_UPDATE_PRODUCT,
-		values: values,
-		Authorization: auth
-	};
-}
-
-export function createUpdateProductSuccessAction() {
-	return {
-		type: Actions.UPDATE_PRODUCT_SUCCESS,
-	};
-}
-
-export function createUpdateProductFailAction(errorMessage: string) {
-	return {
-		type: Actions.UPDATE_PRODUCT_FAIL,
-		errorMessage: errorMessage
-	};
-}
-
-export function createDeleteProductServiceAction(product: Product, auth: Authorization) {
-	return {
-		type: Actions.DELETE_PRODUCT_SERVICE,
 		product: product,
-		Authorization: auth
+		type: Actions.UPDATE_PRODUCT,
 	};
 }
+
 
 export function createDeleteProductAction(product: Product) {
 	return {
@@ -134,15 +99,12 @@ export const Actions = {
 
 	UPDATE_CREDIT_CARD: 'UPDATE_CREDIT_CARD',
 
+
+
+
+	FETCH_PRODUCTS: 'FETCH_PRODUCTS_SUCCESS',
 	ADD_PRODUCT: 'ADD_PRODUCT',
+	UPDATE_PRODUCT: 'UPDATE_PRODUCT_SUCCESS',
 	DELETE_PRODUCT: 'DELETE_PRODUCT',
-	DELETE_PRODUCT_SERVICE: 'DELETE_PRODUCT_SERVICE',
 
-	FETCH_PRODUCTS: 'FETCH_PRODUCTS',
-	FETCH_PRODUCTS_SUCCESS: 'FETCH_PRODUCTS_SUCCESS',
-	FETCH_PRODUCTS_ERROR: 'FETCH_PRODUCTS_ERROR',
-
-	CREATE_UPDATE_PRODUCT: 'CREATE_UPDATE_PRODUCT',
-	UPDATE_PRODUCT_SUCCESS: 'UPDATE_PRODUCT_SUCCESS',
-	UPDATE_PRODUCT_FAIL: 'UPDATE_PRODUCT_FAIL'
 };

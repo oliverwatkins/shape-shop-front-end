@@ -79,12 +79,12 @@ export type CreditCardEntity = {
 }
 
 export type Product = {
-	id: string,
+	id?: string,
 	name: string,
 	quantity?: number, //selected quantity
 	price: number,
 	description: string,
-	type: string,
+	type?: string,
 	imageFilename?: string,
 	image?: any,
 }

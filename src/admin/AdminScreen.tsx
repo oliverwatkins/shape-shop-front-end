@@ -17,6 +17,7 @@ import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import {Authorization, OrderStateType} from "../AppState";
 import {api} from "../api/api";
 import {useAsync} from "react-async-hook";
+import {Redirect} from "react-router";
 
 type Props = {
     orders?: Array<OrderState>,
@@ -135,7 +136,11 @@ function AdminScreen(props: Props) {
                 <Route path="/admin/orders">
 
                     {orderLoading &&  <CircularProgress color="secondary" />}
-                    {orderError && <span>ERROR { orderError } </span>}
+                    {orderError &&
+                        // <Redirect to="/login/" />
+                        // TODO
+                        <span>ERROR order error </span>
+                    }
 
                     <Box sx={{width: '100%'}}>
                         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>

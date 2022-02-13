@@ -25,7 +25,7 @@ type Props = {
     open: boolean
     type: "Create" | "Edit"
     handleCancel: () => any
-    handleSubmit: (data:any) => any
+    handleSubmit: (data: any) => any
     product?: Product
 }
 
@@ -33,8 +33,10 @@ type Props = {
 export default function ProductDialog(props: Props) {
 
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const onSubmit = (data:any) => {
-        props.handleSubmit(data)
+    const onSubmit = (productData: Product) => {
+        props.handleSubmit(
+            {...props.product, ...productData}
+        )
     }
     console.log("Errors " + errors);
 
@@ -53,7 +55,7 @@ export default function ProductDialog(props: Props) {
                     {(props.type === "Create") ? "Create Product" : "Edit Product"}
                 </DialogContentText>
 
-                <form onSubmit={handleSubmit(onSubmit)}  id="myform2">
+                <form onSubmit={handleSubmit(onSubmit)} id="myform2">
                     <Box m={1}>
                         <Grid container spacing={2}>
                             <Grid item xs={12}>
@@ -88,6 +90,15 @@ export default function ProductDialog(props: Props) {
                                            helperText={errors.price?.type}
                                 />
                             </Grid>
+                            <input type="hidden" {...register("type")} defaultValue={"main"}/>
+                            {/*<TextField variant="outlined"*/}
+                            {/*           defaultValue={props.product?.price}*/}
+                            {/*           fullWidth={true}*/}
+                            {/*           label={"price"}*/}
+                            {/*           {...register("price", {required: true, maxLength: 5})}*/}
+                            {/*           error={errors.price}*/}
+                            {/*           helperText={errors.price?.type}*/}
+                            {/*/>*/}
                         </Grid>
                     </Box>
                 </form>
