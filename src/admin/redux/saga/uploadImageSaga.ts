@@ -16,13 +16,12 @@ function* uploadImage(action: any) {
 	try {
 		console.info("action.Authorization.token " + action.Authorization.token);
 		console.info("File " + JSON.stringify(action.formData));
-
 		console.info("File " + action.formData.name);
 
 
-		alert()
-		if (!action.Authorization.token)
-			yield put(createUploadImageFailAction("No authorisation token supplied "));
+		// alert()
+		// if (!action.Authorization.token)
+		// 	yield put(createUploadImageFailAction("No authorisation token supplied "));
 
 		// @ts-ignore
 		const response = yield call(api.uploadImage, action.Authorization, action.formData.name);

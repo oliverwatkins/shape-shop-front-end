@@ -38,7 +38,7 @@ export default function ProductDialog(props: Props) {
             {...props.product, ...productData}
         )
     }
-    console.log("Errors " + errors);
+    console.log("Err ors " + errors);
 
     return (
         <Dialog

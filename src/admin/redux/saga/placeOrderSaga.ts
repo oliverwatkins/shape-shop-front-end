@@ -61,17 +61,13 @@ function* placeOrder(orderData: any) {
 		if (response.status === 200) {
 			yield delay(1000);
 			yield put(createPlaceOrderSuccessAction(response.data));
-		} else if (response.status === 403) {
-			yield put(createPlaceOrderErrorAction(response.data, "403 Access Forbidden "));
-		} else if (response.status === 500) {
-			yield put(createPlaceOrderErrorAction(response.data, "500 Internal Server Error "));
 		} else {
-			alert("unknown error : " + response)
+			yield put(createPlaceOrderErrorAction(response.data, "Server error  "));
 		}
 	} catch (e) {
-		yield put(createPlaceOrderErrorAction({}, "Unkown Error "));
-		console.error('Error fetching shops!!');
-
+		console.error('Error placing order !!');
 		console.error(e);
+		yield put(createPlaceOrderErrorAction({}, "Unkown Error.. "));
+
 	}
 }

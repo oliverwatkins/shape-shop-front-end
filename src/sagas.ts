@@ -6,7 +6,6 @@ import {placeOrderWatcher} from './admin/redux/saga/placeOrderSaga'
 //hack to make sagas work. https://github.com/redux-saga/redux-saga/issues/280
 import "regenerator-runtime/runtime";
 import {uploadImageWatcher} from "./admin/redux/saga/uploadImageSaga";
-import {updateCreateProductWatcher} from "./admin/redux/saga/updateProductSaga";
 
 
 /**
@@ -15,10 +14,6 @@ import {updateCreateProductWatcher} from "./admin/redux/saga/updateProductSaga";
 export default function* root() {
 	yield fork(loginWatcher);
 	yield fork(logoutWatcher);
-	// yield fork(getProductsWatcher);
-	// yield fork(getOrdersWatcher);
 	yield fork(placeOrderWatcher);
 	yield fork(uploadImageWatcher);
-	yield fork(updateCreateProductWatcher);
-	// yield fork(deleteProductWatcher);
 }

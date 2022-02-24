@@ -20,7 +20,7 @@ export const Simple_Product_Items = () => (
             description: "This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh ",
             type: "main",
             image: imageFile
-        }} editProductCallback={() => 1} deleteProductCallback={() => 1}/>
+        }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
         <ProductItem item={{
             id: "2",
             name: "Pizza",
@@ -28,7 +28,7 @@ export const Simple_Product_Items = () => (
             type: "main",
             price: 1.2,
             image: imageFile
-        }} editProductCallback={() => 1} deleteProductCallback={() => 1}/>
+        }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
         <ProductItem item={{
             id: "3",
             name: "Pizza No desc",
@@ -36,7 +36,7 @@ export const Simple_Product_Items = () => (
             price: 1.2,
             type: "main",
             image: imageFile
-        }} editProductCallback={() => 1} deleteProductCallback={() => 1}/>
+        }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
 
         <ProductItem item={{
             id: "4",
@@ -45,7 +45,7 @@ export const Simple_Product_Items = () => (
             price: 1.2,
             type: "main",
             image: imageFileWide
-        }} editProductCallback={() => 1} deleteProductCallback={() => 1}/>
+        }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
 
         <ProductItem item={{
             id: "5",
@@ -54,6 +54,6 @@ export const Simple_Product_Items = () => (
             price: 1.2,
             type: "main",
             image: imageFileTall
-        }} editProductCallback={() => 1} deleteProductCallback={() => 1}/>
+        }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
     </>
 );

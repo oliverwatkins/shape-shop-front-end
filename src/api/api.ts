@@ -196,8 +196,9 @@ const apiReal = {
 				'Authorization': "Bearer " + auth.token
 			},
 		}).then(response => {
-			console.info("status : " + response.status)
+			// console.info("status : " + response.status)
 			if (!response.ok) {
+				console.error('Network response was not ok. status : ' + response.status);
 				throw new Error('Network response was not ok');
 			}
 			return response

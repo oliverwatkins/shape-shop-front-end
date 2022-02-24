@@ -23,6 +23,8 @@ import {AppState, OrderState} from "../../AppState";
 import {useAsync} from "react-async-hook";
 import {useEffect} from "react";
 import {Notify} from "../../notify";
+import {call} from "redux-saga/effects";
+import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 
 type Props = {
     products?: Array<Product>,
@@ -31,29 +33,23 @@ type Props = {
 
 export default function ProductPanel(props: Props) {
     const dispatch = useDispatch();
-    const Authorization: any = useSelector((state: AppState)=>state.login.loginToken)
+    const Authorization: any = useSelector((state: AppState) => state.login.loginToken)
 
     const [selectedProduct, setSelectedProduct] = React.useState<Product>();
 
+
     const [openEditPProduct, setOpenEditPProduct] = React.useState(false);
+    const [openUpdateImage, setOpenUpdateImage] = React.useState(false);
     const [openCreateProduct, setOpenCreateProduct] = React.useState(false);
-
     const [openCategoryDialog, setOpenCategoryDialog] = React.useState(false);
-
     const [deleteCatDialogOpen, setDeleteCatDialogOpen] = React.useState(false);
-
-
-    let openEditProductDialog = (item: Product) => {
-        setSelectedProduct(item)
-        setOpenEditPProduct(true)
-    }
 
     const deleteProductCallback = async (item: Product) => {
         try {
             await api.deleteProduct(item, Authorization)
             dispatch(createDeleteProductAction(item))
             Notify.success("Deleted Product " + item.name);
-        }catch(e) {
+        } catch (e) {
             console.error(e)
             Notify.error("Error deleting product")
         }
@@ -64,8 +60,8 @@ export default function ProductPanel(props: Props) {
             dispatch(createUpdateProductSuccessAction(item))
 
             setOpenEditPProduct(false);
-            Notify.success("Edited Product "  + item.name);
-        }catch(e) {
+            Notify.success("Edited Product " + item.name);
+        } catch (e) {
             console.error(e)
             setOpenEditPProduct(false);
             Notify.error("Error editing product");
@@ -78,12 +74,26 @@ export default function ProductPanel(props: Props) {
             dispatch(createAddProductAction(item));
 
             setOpenCreateProduct(false);
-            Notify.success("Created Product "  + item.name);
+            Notify.success("Created Product " + item.name);
 
-        } catch(e) {
+        } catch (e) {
             Notify.error("Error creating product");
         }
     }
+    const updateImageCallback = async (item: Product) => {
+        try {
+            await api.createProduct(item, Authorization)
+            dispatch(createAddProductAction(item));
+
+            const response = api.uploadImage(Authorization, "action.formData.name", item.id);
+            setOpenCreateProduct(false);
+            Notify.success("Created Product " + item.name);
+
+        } catch (e) {
+            Notify.error("Error creating product");
+        }
+    }
+
 
     const style = {
         marginLeft: "0.5em",
@@ -98,62 +108,94 @@ export default function ProductPanel(props: Props) {
                     display: 'flex'
                 }}
             >
-                <Typography variant="h6" color='primary' sx={{ flexGrow: 1 }}>
+                <Typography variant="h6" color='primary' sx={{flexGrow: 1}}>
                     Category : {props.category}
                 </Typography>
 
                 {/*add product*/}
-                <Button startIcon={<AddCircleOutlineIcon/>} sx={style} onClick={() => setOpenCreateProduct(true)} variant={"contained"}>
+                <Button startIcon={<AddCircleOutlineIcon/>} sx={style} onClick={() => setOpenCreateProduct(true)}
+                        variant={"contained"}>
                     Add Product</Button>
                 {/*openEditProduct*/}
 
-                {openEditPProduct && <ProductDialog open={openEditPProduct} type={"Edit"}
-                                                    handleCancel={() => setOpenEditPProduct(false)} product={selectedProduct} handleSubmit={
-                    editProductCallback
-                }/>}
+                {openUpdateImage && selectedProduct && <FileUploadDialog open={openUpdateImage}
+                                                                        product={selectedProduct}
+                                                                        handleSubmit={()=>alert("hi")}
+                                                                        handleCancel={() => setOpenUpdateImage(false)} />}
 
+                {openEditPProduct && <ProductDialog open={openEditPProduct} type={"Edit"}
+                                                    product={selectedProduct}
+                                                    handleSubmit={editProductCallback}
+                                                    handleCancel={() => setOpenEditPProduct(false)}/>}
 
                 {openCreateProduct && <ProductDialog open={openCreateProduct} type={"Create"}
-                                 handleCancel={() => setOpenCreateProduct(false)} handleSubmit={
+                                                     handleCancel={() => setOpenCreateProduct(false)} handleSubmit={
                     createProductCallback
                 }/>}
+
                 {/*edit category*/}
-                <Button startIcon={<EditIcon/>} variant={"contained"} sx={style} onClick={() => setOpenCategoryDialog(true)}>
+                <Button startIcon={<EditIcon/>} variant={"contained"} sx={style}
+                        onClick={() => setOpenCategoryDialog(true)}>
                     Edit Category</Button>
                 {openCategoryDialog && <CategoryDialog type={"Edit"}
-                      handleCancel={() => {
-                          setOpenCategoryDialog(false)
-                      }}
-                      handleSubmit={() => {
-                          setOpenCategoryDialog(false)
-                          alert("yeah C");
-                      }}
-                      open={openCategoryDialog}/>
+                                                       handleCancel={() => {
+                                                           setOpenCategoryDialog(false)
+                                                       }}
+                                                       handleSubmit={() => {
+                                                           setOpenCategoryDialog(false)
+                                                           alert("yeah C");
+                                                       }}
+                                                       open={openCategoryDialog}/>
 
                 }
                 {/*delete category*/}
-                <Button onClick={()=>setDeleteCatDialogOpen(true)} variant={"outlined"} sx={style}>Delete Category</Button>
+                <Button onClick={() => setDeleteCatDialogOpen(true)} variant={"outlined"} sx={style}>Delete
+                    Category</Button>
                 {deleteCatDialogOpen && <OKCancelDialog open={true} title={"Delete Thing!"}
-                     content={"Are you sure you want to delete thing?"}
-                     handleOK={() => {
-                         alert("yeah! delete")
-                         setDeleteCatDialogOpen(false);
-                     }}
-                     handleCancel={() => {
-                         setDeleteCatDialogOpen(false);
-                     }}/>
+                                                        content={"Are you sure you want to delete thing?"}
+                                                        handleOK={() => {
+                                                            alert("yeah! delete")
+                                                            setDeleteCatDialogOpen(false);
+                                                        }}
+                                                        handleCancel={() => {
+                                                            setDeleteCatDialogOpen(false);
+                                                        }}/>
                 }
             </Box>
             {props.products &&
-            <Grid container spacing={2}>
-                {
-                    props.products && props.products.map((product, i) =>
-                        <Grid key={i} item xs={4} lg={2}>
-                            <ProductItem key={i} item={product} editProductCallback={openEditProductDialog} deleteProductCallback={deleteProductCallback}/>
-                        </Grid>
+                <Grid container spacing={2}>
+                    {
+                        props.products && props.products.map((product, i) =>
+                            <Grid key={i} item xs={4} lg={2}>
+                                <ProductItem key={i} item={product}
+                                             editProductCallback={
+                                                 // openEditProductDialog
+                                                 (item: Product) => {
+                                                     setSelectedProduct(item)
+                                                     setOpenEditPProduct(true)
+                                                 }
+                                             }
+
+                                             updateImageCallback={
+
+                                                 (item: Product) => {
+                                                     setSelectedProduct(item)
+                                                     setOpenUpdateImage(true)
+                                                 }
+
+                                             }
+
+
+                                             deleteProductCallback={
+
+                                                 deleteProductCallback
+                                             }
+
+                                />
+                            </Grid>
                         )
-                }
-            </Grid>
+                    }
+                </Grid>
             }
         </Box>
     )

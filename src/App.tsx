@@ -10,12 +10,10 @@ import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
 import {
-    // createFetchProductsAction,
     createFetchProductsSuccessAction
 } from "./admin/redux/productActions";
 import Nav from "./Nav";
 
-// import "./alpenhofCss_.css"
 
 import OrderWizard from "./order/OrderWizardContainer";
 import Footer from "./Footer";
@@ -23,7 +21,6 @@ import Logout from "./login/Logout";
 import {Logout2} from "./login/Logout2";
 import AdminScreen from "./admin/AdminScreen";
 import {ToastContainer} from "react-toastify";
-import {createFetchOrdersSuccessAction} from "./admin/redux/adminActions";
 import {useAsync} from "react-async-hook";
 import {OrderState} from "./AppState";
 import {api} from "./api/api";
@@ -34,13 +31,7 @@ type Props = {
 
 
 function App(props: Props) {
-    // componentDidMount() {
-    //
-    // }
     let dispatch = useDispatch();
-    // useEffect(() => {
-    //     props.fetchProducts();
-    // }, []);
 
     const {
         loading: productLoading,

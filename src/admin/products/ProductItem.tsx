@@ -5,7 +5,7 @@ import {ErrorBoundary} from "../../misc/ErrorBoundary";
 import {Product} from "../../AppState";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import {FileUploadModal} from "../FileUpload/FileUploadModal";
+import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 import "./productItem.scss";
 import {
     Box,
@@ -30,13 +30,12 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PhotoIcon from '@mui/icons-material/Photo';
 
 import * as Constants from "./../../constants";
-import {api} from "../../api/api";
-import {createDeleteProductAction} from "../redux/productActions";
 
 type Props = {
     item: Product;
     editProductCallback: any;
     deleteProductCallback: any;
+    updateImageCallback: any;
 };
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -76,15 +75,11 @@ export function ProductItem(props: Props) {
     let product = props.item;
 
     const [editMode, setEditMode] = React.useState(false);
-    const [showModal, setShowModal] = React.useState(false);
+    const [showFileUploadModal, setShowFileUploadModal] = React.useState(false);
 
-    const handleClose = () => {
-        setShowModal(false);
+    const handleCloseFileUpload = () => {
+        setShowFileUploadModal(false);
     };
-
-
-
-
 
     const heigt = 25;
     return (
@@ -115,7 +110,7 @@ export function ProductItem(props: Props) {
                                 </ListItemIcon>
                                 <ListItemText primary="Edit"/>
                             </MenuItem>
-                            <MenuItem key={"2"} selected={false} onClick={handleCloseMenu}
+                            <MenuItem key={"2"} selected={false} onClick={() => props.updateImageCallback(product)}
                             >
                                 <ListItemIcon>
                                     <PhotoIcon/>
@@ -145,9 +140,13 @@ export function ProductItem(props: Props) {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <ErrorBoundary>
-                        {showModal &&
-                            <FileUploadModal onClose={() => setShowModal(false)} item={product} onClick={handleClose}/>
-                        }
+
+
+                        {/*{showFileUploadModal &&*/}
+                        {/*    <FileUploadDialog onClose={() => setShowFileUploadModal(false)} item={product} onClick={handleCloseFileUpload}/>*/}
+                        {/*}*/}
+
+
                         {editMode &&
                             <ProductItemEdit product={product} setEditMode={setEditMode}/>
                         }
