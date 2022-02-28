@@ -4,7 +4,7 @@ import {Notify} from "../../notify";
 
 export function reducer(state: LoginState = initialState, action: any) {
 
-	console.info("in reducer with action " + action.type)
+	console.info("in login reducer with action " + action.type)
 
 	switch (action.type) {
 		case LoginActions.LOGIN_SUCCESS:

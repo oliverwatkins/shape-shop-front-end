@@ -99,7 +99,6 @@ function App(props: Props) {
                     </Route>
                 </Switch>
             </div>
-
         </div>
     );
 }

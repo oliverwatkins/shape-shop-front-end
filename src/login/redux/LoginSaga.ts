@@ -6,22 +6,16 @@ import {api} from "../../api/api";
 
 
 export function* loginWatcher() {
+
+	console.info("starting LOGIN SAGA")
+
 	while (true) {
+
+		console.info(".................")
+
 		const { user, password } = yield take(LoginActions.LOGIN);
 		yield call(login, user, password);
 	}
-}
-
-function* loginWorker(user: any, password: any) {
-	if (user && password) {
-		user = user.trim().toLowerCase();
-	}
-	const credentials = {
-		username: user,
-		password: password,
-	};
-	// @ts-ignore
-	yield call(login, credentials, false);
 }
 
 function* login(user: string, password?: string) {
