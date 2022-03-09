@@ -120,7 +120,6 @@ export default function ProductPanel(props: Props) {
 
                 {openUpdateImage && selectedProduct && <FileUploadDialog open={openUpdateImage}
                                                                         product={selectedProduct}
-                                                                        handleSubmit={()=>alert("hi")}
                                                                         handleCancel={() => setOpenUpdateImage(false)} />}
 
                 {openEditPProduct && <ProductDialog open={openEditPProduct} type={"Edit"}

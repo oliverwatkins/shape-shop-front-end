@@ -14,13 +14,7 @@ type Props = {
     isUserLoggedIn?: boolean,
     errorMessage?: string,
     onSubmit: (data:any)=>void,
-    // handleSubmit: Function
 }
-
-// type State = {
-// 	username?: string,
-// 	password?: string
-// }
 
 export function BasicLoginForm(props: Props) {
 
@@ -34,10 +28,11 @@ export function BasicLoginForm(props: Props) {
     }
 
     return (
-        <Box p={3}>
+        <Box sx={{display: "flex"}} justifyContent="center">
             <form onSubmit={handleSubmit(props.onSubmit)} id="loginForm">
-                <Typography>Login</Typography>
-                <Box m={1}>
+                <Typography variant={"h4"}>Administration Console</Typography>
+                <Box sx={{ margin: "auto"}}>
+                    <Typography>Login</Typography>
                     <Grid container spacing={2}>
                         <Grid item xs={12}>
                             <TextField

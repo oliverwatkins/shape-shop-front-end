@@ -6,9 +6,6 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {TextField} from "@mui/material";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-
-import EditIcon from '@mui/icons-material/Edit';
 
 import {SyntheticEvent, useState} from "react";
 

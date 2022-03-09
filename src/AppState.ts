@@ -5,7 +5,7 @@ import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "./sele
 export type Authorization = {
 	username: string,
 	token: string,
-	role: string
+	role?: string
 };
 
 export type AppState = {
@@ -33,11 +33,11 @@ export type AdminState = {
 export type LoginState = {
 	// loginError: string,
 	loginToken?: {
-		role?: string,
-		token?: string,
-		username?: string
+		token: string,
+		username: string,
+		role?: string
 	},
-	role?: string, //??
+	// role?: string, //??
 	loggingIn: boolean,
 }
 

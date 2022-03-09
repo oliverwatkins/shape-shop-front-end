@@ -12,7 +12,7 @@ export function reducer(state: LoginState = initialState, action: any) {
 				...state,
 				loginToken: action.token,
 				loggingIn: false,
-				role: action.role,
+				// role: action.role,
 				logout: null,
 			};
 		case LoginActions.LOGIN_FAIL:
@@ -22,7 +22,7 @@ export function reducer(state: LoginState = initialState, action: any) {
 			return {
 				...state,
 				loginToken: null,
-				role: false,
+				// role: false,
 				// loginError: "Error logging  do we NEEDTHIS?",
 				loggingIn: false,
 			};
@@ -42,7 +42,5 @@ export function reducer(state: LoginState = initialState, action: any) {
 }
 
 const initialState = {
-	role: "", //???
 	loggingIn: false,
-	loginToken: {},
 };

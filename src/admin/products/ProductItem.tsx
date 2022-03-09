@@ -1,6 +1,5 @@
 import * as React from "react";
 import Button from "@material-ui/core/Button";
-import {ProductItemEdit} from "./ProductItemEdit";
 import {ErrorBoundary} from "../../misc/ErrorBoundary";
 import {Product} from "../../AppState";
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -140,28 +139,15 @@ export function ProductItem(props: Props) {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <ErrorBoundary>
-
-
-                        {/*{showFileUploadModal &&*/}
-                        {/*    <FileUploadDialog onClose={() => setShowFileUploadModal(false)} item={product} onClick={handleCloseFileUpload}/>*/}
-                        {/*}*/}
-
-
-                        {editMode &&
-                            <ProductItemEdit product={product} setEditMode={setEditMode}/>
-                        }
-                        {!editMode &&
-                            <>
-                                <Box className={"admin-item-edit-buttons"}>
-
-                                    <Button onClick={e => alert("TODO")}><DeleteIcon/></Button>
-                                    <Button onClick={e => {
-                                        setEditMode(true);
-                                    }}><EditIcon/></Button>
-                                </Box>
-                                {getProductFields(product)}
-                            </>
-                        }
+                        <Box className={"admin-item-edit-buttons"}>
+                            <Button onClick={() => props.deleteProductCallback(product)}>
+                                <DeleteIcon/>
+                            </Button>
+                            <Button  onClick={() => props.editProductCallback(product)}>
+                                <EditIcon/>
+                            </Button>
+                        </Box>
+                        {getProductFields(product)}
                     </ErrorBoundary>
                 </CardContent>
             </Collapse>

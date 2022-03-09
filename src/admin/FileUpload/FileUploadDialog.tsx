@@ -1,29 +1,33 @@
 import * as React from "react";
-import {AppState, Product} from "../../AppState";
+import {AppState, Authorization, Product} from "../../AppState";
 import Dialog from "@material-ui/core/Dialog";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
-import {FileUploader} from "./FileUploader";
 import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import {api} from "../../api/api";
 import {Notify} from "../../notify";
 import {useSelector} from "react-redux";
+import {Box} from "@material-ui/core";
+import {Typography} from "@mui/material";
 
 type Props = {
     open: boolean
-    // type: "Create" | "Edit" ???
     handleCancel: () => any
-    handleSubmit: (data: any) => any
     product: Product
 }
 
-
 export function FileUploadDialog(props: Props) {
 
-    const Authorization: any = useSelector((state: AppState)=>state.login.loginToken)
-    const [selectedFile, setSelectedFile]  = React.useState({selectedFile: null});
+    const auth: Authorization | undefined = useSelector((state: AppState)=>state.login.loginToken);
+    const [selectedFile, setSelectedFile]  = React.useState<any>({selectedFile: null});
+
+    // On file select (from the pop up)
+    let onFileChange = (event: any) => {
+        // Update the state
+        setSelectedFile({ selectedFile: event.target.files[0] })
+    };
     // On file upload (click the upload button)
     let onFileUpload = () => {
 
@@ -41,7 +45,7 @@ export function FileUploadDialog(props: Props) {
         );
 
         try {
-            api.uploadImage(Authorization, selectedFile.selectedFile, props.product.id).catch((e: any) => {
+            api.uploadImage(auth, selectedFile.selectedFile, props.product.id).catch((e: any) => {
                 console.error(e)
                 Notify.error("Error uploading image")
             });
@@ -52,13 +56,6 @@ export function FileUploadDialog(props: Props) {
         console.log(selectedFile.selectedFile);
     };
 
-
-
-
-
-
-
-
     return <Dialog className={"file-upload-modal"}
                    open={props.open}
                    onClose={props.handleCancel}
@@ -68,21 +65,35 @@ export function FileUploadDialog(props: Props) {
             <DialogContentText>
                 Select an image file to upload
             </DialogContentText>
-            <FileUploader item={props.product} setSelectedFile={setSelectedFile} selectedFile={selectedFile}/>
+            <Box className={"file-upload-content"} style={{border: "2px blue dashed"}}>
+                <Button
+                    variant="contained"
+                    component="label"
+                >
+                    Select File
+                    <input
+                        type="file"
+                        hidden
+                        onChange={onFileChange}
+                    />
+                </Button>
+
+                {selectedFile.selectedFile ? <Box>
+                    <Typography variant={"h5"}>File Details:</Typography>
+                    <Typography>File Name: {selectedFile.selectedFile.name}</Typography>
+                    <Typography>File Type: {selectedFile.selectedFile.type}</Typography>
+                    <Typography>
+                        Last Modified:{" "}
+                        {selectedFile.selectedFile.lastModifiedDate.toDateString()}
+                    </Typography>
+                </Box> : <Box>
+                    {/*Choose before Pressing the Upload button*/}
+                </Box>}
+            </Box>
         </DialogContent>
         <DialogActions>
-            {/*<Button onClick={props.onClick} color="primary">*/}
-            {/*    Cancel*/}
-            {/*</Button>*/}
-
             <Button onClick={props.handleCancel}>Cancel</Button>
-            <Button onClick={props.handleSubmit}>Upload</Button>
-            <Button onClick={onFileUpload} color="primary">
-                Upload!
-            </Button>
-            {/*<Button type="submit" form="myform" color="primary">*/}
-            {/*    Upload Image*/}
-            {/*</Button>*/}
+            <Button onClick={onFileUpload} color="primary">Upload!</Button>
         </DialogActions>
     </Dialog>;
 }

@@ -30,10 +30,7 @@ export default function LoginScreen(props: Props) {
 	}
 
 	if (isLoggedIn) {
-
-		console.info("about to redirect")
 		return <Redirect to="/admin/orders/" />
-		// return <LoggedIn name={""}/>;
 	}
 
 	if (props.errorMessage) {
