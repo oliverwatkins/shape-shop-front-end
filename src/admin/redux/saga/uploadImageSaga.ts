@@ -17,7 +17,8 @@ function* uploadImage(action: any) {
 		console.info("File " + action.formData.name);
 
 
-		// alert()
+
+		//  alert()
 		// if (!action.Authorization.token)
 		// 	yield put(createUploadImageFailAction("No authorisation token supplied "));
 
