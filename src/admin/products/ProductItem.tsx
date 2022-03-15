@@ -4,7 +4,6 @@ import {ErrorBoundary} from "../../misc/ErrorBoundary";
 import {Product} from "../../AppState";
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 import "./productItem.scss";
 import {
     Box,
@@ -21,7 +20,7 @@ import {
     Menu,
     MenuItem,
     styled,
-    TextField, Typography
+    TextField
 } from "@mui/material";
 import {IconButtonProps} from "@mui/material/IconButton";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -72,13 +71,6 @@ export function ProductItem(props: Props) {
     };
 
     let product = props.item;
-
-    const [editMode, setEditMode] = React.useState(false);
-    const [showFileUploadModal, setShowFileUploadModal] = React.useState(false);
-
-    const handleCloseFileUpload = () => {
-        setShowFileUploadModal(false);
-    };
 
     const heigt = 25;
     return (

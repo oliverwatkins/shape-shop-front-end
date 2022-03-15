@@ -7,19 +7,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {TextField} from "@mui/material";
 
-import {SyntheticEvent, useState} from "react";
-
-const style = {
-    position: 'absolute' as 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-};
+import {FormEvent, useState} from "react";
 
 type Props = {
     open: boolean
@@ -48,10 +36,10 @@ export default function CategoryDialog(props: Props) {
                 <DialogContentText id="alert-dialog-description">
                     {(props.type === "Create") ? "Do you want to add a category?" : "Do you want to update a category?"}
                 </DialogContentText>
-                <form id="myform" onSubmit={(e: any) => //FormEvent<HTMLFormElement>) => //TODO what should this type be??
+                <form id="myform" onSubmit={(e: FormEvent<HTMLFormElement>) =>
                 {
                     e.preventDefault();
-                    console.log(e.target && e.target.length ? e.target[0].value : "nuttin here..")
+                    // console.log(e.target && e.target.length ? e.target[0].value : "nuttin here..")
                     props.handleSubmit((val: string) => alert(val));
                     props.handleCancel();
                 }}>

@@ -1,12 +1,5 @@
 //@flow
 
-import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "./selectors";
-
-export type Authorization = {
-	username: string,
-	token: string,
-	role?: string
-};
 
 export type AppState = {
 	products: ProductsState,
@@ -27,20 +20,19 @@ export type AdminState = {
 	closedOrders: Array<OrderState>,
 	products1: Array<Product>,
 	products2: Array<Product>,
-	Authorization: any, //??
+	Authorization?: Authorization, //??
 }
 
 export type LoginState = {
-	// loginError: string,
-	loginToken?: {
-		token: string,
-		username: string,
-		role?: string
-	},
-	// role?: string, //??
+	loginToken?: Authorization,
 	loggingIn: boolean,
 }
 
+export type Authorization = {
+	username: string,
+	token: string,
+	role?: string
+};
 
 export enum PaymentType {
 	cash = "CASH",

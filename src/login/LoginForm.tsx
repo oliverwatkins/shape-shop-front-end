@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
-import {createLoginAction} from './redux/loginActions';
-import {isUserLoggedIn} from '../selectors';
 import "./login.scss"
 import {LoggedIn} from "./LoggedIn";
-import {AppState, Product} from "../AppState";
 import {Box, Grid, TextField, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import {useForm} from "react-hook-form";

@@ -1,17 +1,14 @@
 import * as React from 'react';
-import {connect, useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {createLoginAction} from './redux/loginActions';
 import {isUserLoggedIn} from '../selectors';
 import "./login.scss"
-import {LoggedIn} from "./LoggedIn";
-import {AppState} from "../AppState";
 import {BasicLoginForm} from "./LoginForm";
 import {Redirect} from "react-router";
 
 type Props = {
 	isUserLoggedIn?: boolean,
 	errorMessage?: string,
-	// onSubmit: (data:any)=>void,
 }
 
 type State = {

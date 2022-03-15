@@ -2,7 +2,7 @@ import * as React from 'react';
 import {useEffect} from 'react';
 import {connect, useDispatch} from "react-redux";
 import type {AdminState, AppState, OrderState, Product} from "../AppState";
-import {createFetchOrdersAction, createFetchOrdersSuccessAction} from "./redux/adminActions";
+import {createFetchOrdersSuccessAction} from "./redux/adminActions";
 
 import OrderPanel from "./OrderPanel";
 import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "../selectors";

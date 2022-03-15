@@ -15,7 +15,7 @@ type Props = {
 function WhichPayment(props: Props) {
 
 	const [paymentType, setPaymentType]  = React.useState(PaymentType.cash);
-	const [redirect, setRedirect]  = React.useState(false);
+	// const [redirect, setRedirect]  = React.useState(false);
 
 	function onRadioChanged(e: React.ChangeEvent<HTMLInputElement>){
 		// @ts-ignore

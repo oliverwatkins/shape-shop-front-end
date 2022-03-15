@@ -9,21 +9,15 @@ import CategoryDialog from "./CategoryDialog";
 import ProductDialog from "./ProductDialog";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
-import * as constants from "../../constants";
-import {api, baseURL} from "../../api/api";
+import {api} from "../../api/api";
 import {
     createAddProductAction,
     createDeleteProductAction,
-    // createDeleteProductServiceAction, createFetchProductsSuccessAction,
-    // createUpdateProduct,
     createUpdateProductSuccessAction
 } from "../redux/productActions";
 import {useDispatch, useSelector} from "react-redux";
-import {AppState, OrderState} from "../../AppState";
-import {useAsync} from "react-async-hook";
-import {useEffect} from "react";
+import {AppState} from "../../AppState";
 import {Notify} from "../../notify";
-import {call} from "redux-saga/effects";
 import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 
 type Props = {
@@ -80,6 +74,7 @@ export default function ProductPanel(props: Props) {
             Notify.error("Error creating product");
         }
     }
+    // ??
     const updateImageCallback = async (item: Product) => {
         try {
             await api.createProduct(item, Authorization)
@@ -122,7 +117,8 @@ export default function ProductPanel(props: Props) {
                                                                         product={selectedProduct}
                                                                         handleCancel={() => setOpenUpdateImage(false)} />}
 
-                {openEditPProduct && <ProductDialog open={openEditPProduct} type={"Edit"}
+                {openEditPProduct && <ProductDialog open={openEditPProduct}
+                                                    type={"Edit"}
                                                     product={selectedProduct}
                                                     handleSubmit={editProductCallback}
                                                     handleCancel={() => setOpenEditPProduct(false)}/>}
@@ -167,29 +163,24 @@ export default function ProductPanel(props: Props) {
                         props.products && props.products.map((product, i) =>
                             <Grid key={i} item xs={4} lg={2}>
                                 <ProductItem key={i} item={product}
-                                             editProductCallback={
-                                                 // openEditProductDialog
-                                                 (item: Product) => {
-                                                     setSelectedProduct(item)
-                                                     setOpenEditPProduct(true)
-                                                 }
-                                             }
+                                     editProductCallback={
+                                         // openEditProductDialog
+                                         (item: Product) => {
+                                             setSelectedProduct(item)
+                                             setOpenEditPProduct(true)
+                                         }
+                                     }
 
-                                             updateImageCallback={
+                                     updateImageCallback={
+                                         (item: Product) => {
+                                             setSelectedProduct(item)
+                                             setOpenUpdateImage(true)
+                                         }
+                                     }
 
-                                                 (item: Product) => {
-                                                     setSelectedProduct(item)
-                                                     setOpenUpdateImage(true)
-                                                 }
-
-                                             }
-
-
-                                             deleteProductCallback={
-
-                                                 deleteProductCallback
-                                             }
-
+                                     deleteProductCallback={
+                                         deleteProductCallback
+                                     }
                                 />
                             </Grid>
                         )
