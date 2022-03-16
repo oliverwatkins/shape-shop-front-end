@@ -81,6 +81,12 @@ export type Product = {
 	image?: any,
 }
 
+
+export type Category = {
+	name:string
+}
+
+
 export type Address = {
 	name: string,
 	telephone: string,

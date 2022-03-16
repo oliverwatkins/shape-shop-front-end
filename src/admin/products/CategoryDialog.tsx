@@ -7,9 +7,12 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {TextField} from "@mui/material";
 
-import {FormEvent, useState} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
+import {useForm} from "react-hook-form";
+import {Category, Product} from "../../AppState";
 
 type Props = {
+    category: Category
     open: boolean
     type: "Create" | "Edit"
     value?: string
@@ -20,8 +23,14 @@ type Props = {
 //create/update
 export default function CategoryDialog(props: Props) {
 
-    const [category, setCategory] = useState(props.value);
-    const handleInput = (e: any) => setCategory(e.target.value);
+    const onSubmit = (categoryData: Category) => {
+        props.handleSubmit(
+            {...props.category, ...categoryData}
+        )
+    }
+
+    const {register, handleSubmit, formState: {errors}} = useForm();
+
     return (
         <Dialog
             open={props.open}
@@ -36,29 +45,20 @@ export default function CategoryDialog(props: Props) {
                 <DialogContentText id="alert-dialog-description">
                     {(props.type === "Create") ? "Do you want to add a category?" : "Do you want to update a category?"}
                 </DialogContentText>
-                <form id="myform" onSubmit={(e: FormEvent<HTMLFormElement>) =>
-                {
-                    e.preventDefault();
-                    // console.log(e.target && e.target.length ? e.target[0].value : "nuttin here..")
-                    props.handleSubmit((val: string) => alert(val));
-                    props.handleCancel();
-                }}>
+                <form onSubmit={handleSubmit(onSubmit)} id="categoryForm">
                     <TextField
-                        autoFocus
-                        margin="dense"
-                        id="categoryName"
-                        name="categoryName"
-                        label="Category Name"
-                        type="category"
-                        value={category}
-                        onChange={(e) => handleInput(e)}
-                        fullWidth
-                        variant="standard"
+                        label={"name"}
+                        defaultValue={props.category?.name}
+                        variant="outlined"
+                        fullWidth={true}
+                        {...register("name", {required: true, minLength: 5, maxLength: 35})}
+                        error={errors.name}
+                        helperText={errors.name?.type}
                     />
                 </form>
             </DialogContent>
             <DialogActions>
-                <Button type="submit" form="myform" variant={"contained"}>
+                <Button type="submit" form="categoryForm" variant={"contained"}>
                     {(props.type === "Create") ? "Submit" : "Update"}
                 </Button>
                 <Button onClick={props.handleCancel} variant={"outlined"}>Cancel</Button>

@@ -26,8 +26,6 @@ export default function ProductDialog(props: Props) {
             {...props.product, ...productData}
         )
     }
-    console.log("Err ors " + errors);
-
     return (
         <Dialog
             open={props.open}
@@ -79,14 +77,6 @@ export default function ProductDialog(props: Props) {
                                 />
                             </Grid>
                             <input type="hidden" {...register("type")} defaultValue={"main"}/>
-                            {/*<TextField variant="outlined"*/}
-                            {/*           defaultValue={props.product?.price}*/}
-                            {/*           fullWidth={true}*/}
-                            {/*           label={"price"}*/}
-                            {/*           {...register("price", {required: true, maxLength: 5})}*/}
-                            {/*           error={errors.price}*/}
-                            {/*           helperText={errors.price?.type}*/}
-                            {/*/>*/}
                         </Grid>
                     </Box>
                 </form>

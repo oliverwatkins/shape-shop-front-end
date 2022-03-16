@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {Product} from "../../AppState";
+import type {Category, Product} from "../../AppState";
 import {ProductItem} from "./ProductItem";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -22,7 +22,7 @@ import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 
 type Props = {
     products?: Array<Product>,
-    category: string
+    category: Category
 }
 
 export default function ProductPanel(props: Props) {
@@ -62,6 +62,18 @@ export default function ProductPanel(props: Props) {
         }
     }
 
+    let editCategoryCallback = async (item: Category) => {
+        try {
+            alert("editCategoryCallback TODO")
+            setOpenCategoryDialog(false);
+            Notify.success("Edited Product " + item.name);
+        } catch (e) {
+            console.error(e)
+            setOpenCategoryDialog(false);
+            Notify.error("Error editing category");
+        }
+    }
+
     const createProductCallback = async (item: Product) => {
         try {
             await api.createProduct(item, Authorization)
@@ -69,7 +81,6 @@ export default function ProductPanel(props: Props) {
 
             setOpenCreateProduct(false);
             Notify.success("Created Product " + item.name);
-
         } catch (e) {
             Notify.error("Error creating product");
         }
@@ -89,7 +100,6 @@ export default function ProductPanel(props: Props) {
         }
     }
 
-
     const style = {
         marginLeft: "0.5em",
         marginRight: "0.5em"
@@ -104,7 +114,7 @@ export default function ProductPanel(props: Props) {
                 }}
             >
                 <Typography variant="h6" color='primary' sx={{flexGrow: 1}}>
-                    Category : {props.category}
+                    Category : {props.category?.name}
                 </Typography>
 
                 {/*add product*/}
@@ -136,12 +146,8 @@ export default function ProductPanel(props: Props) {
                                                        handleCancel={() => {
                                                            setOpenCategoryDialog(false)
                                                        }}
-                                                       handleSubmit={() => {
-                                                           setOpenCategoryDialog(false)
-                                                           alert("yeah C");
-                                                       }}
-                                                       open={openCategoryDialog}/>
-
+                                                       handleSubmit={editCategoryCallback}
+                                                       open={openCategoryDialog} category={props.category}/>
                 }
                 {/*delete category*/}
                 <Button onClick={() => setDeleteCatDialogOpen(true)} variant={"outlined"} sx={style}>Delete

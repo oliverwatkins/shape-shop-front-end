@@ -14,10 +14,9 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from "@mui/material/Button";
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import {Authorization, OrderStateType} from "../AppState";
+import {Authorization} from "../AppState";
 import {api} from "../api/api";
 import {useAsync} from "react-async-hook";
-import {Redirect} from "react-router";
 
 type Props = {
     orders?: Array<OrderState>,
@@ -58,13 +57,9 @@ function a11yProps(index: any) {
 
 function AdminScreen(props: Props) {
 
-    if (!props.Authorization?.token) {
-        // alert("undauthorized!!")
-    }
-
     let dispatch = useDispatch();
 
-    //tab state :
+    //tab state : (move into hook?)
     const [topTabValue, setTopTabValue] = React.useState(0);
     const handleTopTab = (event: any, newValue: any) => {
         setTopTabValue(newValue);
@@ -190,10 +185,10 @@ function AdminScreen(props: Props) {
                                 </Tabs>
                             </Box>
                             <TabPanel value={productTabValue} index={0}>
-                                <ProductPanel key={1} products={props.products1} category={"main"}/>
+                                <ProductPanel key={1} products={props.products1} category={{name:"main"}}/>
                             </TabPanel>
                             <TabPanel value={productTabValue} index={1}>
-                                <ProductPanel key={2} products={props.products2} category={"drinks"}/>
+                                <ProductPanel key={2} products={props.products2} category={{name:"drinks"}}/>
                             </TabPanel>
                         </Box>
                     </Box>

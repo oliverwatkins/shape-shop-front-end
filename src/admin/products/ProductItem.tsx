@@ -124,7 +124,8 @@ export function ProductItem(props: Props) {
             />
             <CardMedia
                 component="img"
-                height="194"
+                height="250px"
+                width="300px"
                 image={Constants.baseURL + "images/" + Constants.company + "/" + product.imageFilename}
                 alt={product.imageFilename}
             />
