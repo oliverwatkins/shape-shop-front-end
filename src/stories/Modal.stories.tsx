@@ -42,7 +42,8 @@ function Test2() {
                             price: 1.2,
                             description: "This is the simple description ",
                             type: "main",
-                            image: imageFile
+                            image: imageFile,
+                            quantity: 1
                         }}
                          handleSubmit={(data) => {
                              alert("yeah " + data)

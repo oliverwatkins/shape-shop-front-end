@@ -6,7 +6,6 @@ export function createFetchOrdersAction(auth?: Authorization) {
 		Authorization: auth,
 	};
 }
-
 export function createFetchOrdersSuccessAction(data: any) {
 	return {
 		type: Actions.FETCH_ORDERS_SUCCESS,
@@ -19,9 +18,6 @@ export function createFetchOrdersFailAction(errorMessage: string) {
 		errorMessage: errorMessage
 	};
 }
-
-
-
 export function createUploadImageSuccessAction() {
 	return {
 		type: Actions.UPLOAD_IMAGE_SUCCESS,

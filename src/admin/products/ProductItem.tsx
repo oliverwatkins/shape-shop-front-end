@@ -31,9 +31,9 @@ import * as Constants from "./../../constants";
 
 type Props = {
     item: Product;
-    editProductCallback: any;
-    deleteProductCallback: any;
-    updateImageCallback: any;
+    editProductCallback: Function;
+    deleteProductCallback: Function;
+    updateImageCallback: Function;
 };
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -163,9 +163,6 @@ function getProductFields(product: Product) {
         <Grid container spacing={2}>
             <Grid item xs={12}>
                 <TextField
-                    // size=medium
-                    // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
-                    // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
                     label={"name"}
                     variant="outlined"
                     fullWidth={true}
@@ -174,8 +171,6 @@ function getProductFields(product: Product) {
             <Grid item xs={12}>
                 <TextField multiline variant="outlined"
                            fullWidth={true}
-                    // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
-                    // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
                            maxRows={4} minRows={4}
                            label={"description"} value={product.description}/>
 

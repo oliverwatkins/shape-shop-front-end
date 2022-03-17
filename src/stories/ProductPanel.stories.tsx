@@ -29,7 +29,8 @@ function getProds() {
             price: 1.2,
             description: "This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh ",
             type: "main",
-            image: imageFile
+            image: imageFile,
+            quantity: 1
         },
         {
             id: "2",
@@ -37,14 +38,18 @@ function getProds() {
             description: "This is the simple product description. blah. This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh ",
             type: "main",
             price: 1.2,
-            image: imageFile
+            image: imageFile,
+            quantity: 1
+
         }, {
             id: "3",
             name: "Pizza No desc",
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFile
+            image: imageFile,
+            quantity: 1
+
         },
         {
             id: "4",
@@ -52,7 +57,9 @@ function getProds() {
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFileWide
+            image: imageFile,
+            quantity: 1
+
         },
         {
             id: "5",
@@ -60,7 +67,9 @@ function getProds() {
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFileTall
+            image: imageFile,
+            quantity: 1
+
         },
         {
             id: "6",
@@ -68,7 +77,9 @@ function getProds() {
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFileTall
+            image: imageFile,
+            quantity: 1
+
         },
         {
             id: "7",
@@ -76,7 +87,9 @@ function getProds() {
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFileTall
+            image: imageFile,
+            quantity: 1
+
         },
         {
             id: "8",
@@ -84,7 +97,9 @@ function getProds() {
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFileTall
+            image: imageFile,
+            quantity: 1
+
         },
         {
             id: "9",
@@ -92,7 +107,9 @@ function getProds() {
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFileTall
+            image: imageFile,
+            quantity: 1
+
         }
 
     ]

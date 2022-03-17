@@ -12,8 +12,8 @@ import {useForm} from "react-hook-form";
 type Props = {
     open: boolean
     type: "Create" | "Edit"
-    handleCancel: () => any
-    handleSubmit: (data: any) => any
+    handleCancel: () => void
+    handleSubmit: (data: any) => void
     product?: Product
 }
 

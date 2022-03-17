@@ -28,50 +28,23 @@ type Props = {
     products2?: Array<Product>
 }
 
-function TabPanel(props: any) {
-    const {children, value, index, ...other} = props;
-
-    return (
-        <Box
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{p: 3}}>
-                    {children}
-                </Box>
-            )}
-        </Box>
-    );
-}
-
-function a11yProps(index: any) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    };
-}
-
 function AdminScreen(props: Props) {
 
     let dispatch = useDispatch();
 
     //tab state : (move into hook?)
-    const [topTabValue, setTopTabValue] = React.useState(0);
-    const handleTopTab = (event: any, newValue: any) => {
+    const [topTabValue, setTopTabValue] = React.useState<number>(0);
+    const handleTopTab = (event: any, newValue: number) => {
         setTopTabValue(newValue);
     };
 
-    const [productTabValue, setProductTabValue] = React.useState(0);
-    const handleProdTab = (event: any, newValue: any) => {
+    const [productTabValue, setProductTabValue] = React.useState<number>(0);
+    const handleProdTab = (event: any, newValue: number) => {
         setProductTabValue(newValue);
     };
 
-    const [orderTabValue, setOrderTabValue] = React.useState(0);
-    const handleOrderTab = (event: any, newValue: any) => {
+    const [orderTabValue, setOrderTabValue] = React.useState<number>(0);
+    const handleOrderTab = (event: any, newValue: number) => {
         setOrderTabValue(newValue);
     };
 
@@ -88,9 +61,15 @@ function AdminScreen(props: Props) {
     }, [orders]);
 
 
+    function a11yProps(index: number) {
+        return {
+            id: `simple-tab-${index}`,
+            'aria-controls': `simple-tabpanel-${index}`,
+        };
+    }
+
     return (
         <div className={"admin-screen"}>
-
             <Box sx={{
                 display: "flex"
             }}>
@@ -139,19 +118,32 @@ function AdminScreen(props: Props) {
 
                     <Box sx={{width: '100%'}}>
                         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-                            <Tabs value={orderTabValue} onChange={handleOrderTab}
-                                // className={classes.tab2}
-                            >
+                            <Tabs value={orderTabValue} onChange={handleOrderTab} >
                                 <Tab label="Open Orders" {...a11yProps(0)} />
                                 <Tab label="Closed Orders" {...a11yProps(1)} />
                             </Tabs>
                         </Box>
-                        <TabPanel value={orderTabValue} index={0}>
-                            <OrderPanel type={"open"} orders={props.orders}/>
-                        </TabPanel>
-                        <TabPanel value={orderTabValue} index={1}>
-                            <OrderPanel orders={props.closedOrders}/>
-                        </TabPanel>
+
+                        <Box
+                            sx={{p: 3}}
+                            role="tabpanel"
+                            hidden={orderTabValue !== 0}
+                            id={`simple-tabpanel-${0}`}
+                            aria-labelledby={`simple-tab-${0}`}
+
+                        >
+                            {orderTabValue === 0 && <OrderPanel type={"open"} orders={props.orders}/>}
+                        </Box>
+                        <Box
+                            sx={{p: 3}}
+                            role="tabpanel"
+                            hidden={orderTabValue !== 1}
+                            id={`simple-tabpanel-${1}`}
+                            aria-labelledby={`simple-tab-${1}`}
+
+                        >
+                            {orderTabValue === 1 && <OrderPanel orders={props.closedOrders}/>}
+                        </Box>
                     </Box>
                 </Route>
                 <Route exact path="/admin/products">
@@ -178,18 +170,13 @@ function AdminScreen(props: Props) {
                                 </AppBar>
                             </Box>
                             <Box>
-                                <Tabs
-                                    value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
+                                <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
                                     <Tab label="Products 1" {...a11yProps(0)} />
                                     <Tab label="Products 2" {...a11yProps(1)} />
                                 </Tabs>
                             </Box>
-                            <TabPanel value={productTabValue} index={0}>
-                                <ProductPanel key={1} products={props.products1} category={{name:"main"}}/>
-                            </TabPanel>
-                            <TabPanel value={productTabValue} index={1}>
-                                <ProductPanel key={2} products={props.products2} category={{name:"drinks"}}/>
-                            </TabPanel>
+                                {productTabValue === 0 && <ProductPanel key={1} products={props.products1} category={{name:"main"}}/>}
+                                {productTabValue === 1 && <ProductPanel key={2} products={props.products2} category={{name:"drinks"}}/>}
                         </Box>
                     </Box>
                 </Route>

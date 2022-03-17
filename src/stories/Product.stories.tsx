@@ -19,7 +19,8 @@ export const Simple_Product_Items = () => (
             price: 1.2,
             description: "This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh ",
             type: "main",
-            image: imageFile
+            image: imageFile,
+            quantity: 1
         }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
         <ProductItem item={{
             id: "2",
@@ -27,7 +28,8 @@ export const Simple_Product_Items = () => (
             description: "This is the simple product description. blah. This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh ",
             type: "main",
             price: 1.2,
-            image: imageFile
+            image: imageFile,
+            quantity: 1
         }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
         <ProductItem item={{
             id: "3",
@@ -35,7 +37,8 @@ export const Simple_Product_Items = () => (
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFile
+            image: imageFile,
+            quantity: 1
         }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
 
         <ProductItem item={{
@@ -44,7 +47,8 @@ export const Simple_Product_Items = () => (
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFileWide
+            image: imageFile,
+            quantity: 1
         }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
 
         <ProductItem item={{
@@ -53,7 +57,8 @@ export const Simple_Product_Items = () => (
             description: "",
             price: 1.2,
             type: "main",
-            image: imageFileTall
+            image: imageFile,
+            quantity: 1
         }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
     </>
 );

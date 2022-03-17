@@ -100,17 +100,18 @@ export default function ProductPanel(props: Props) {
         }
     }
 
-    const style = {
+    const buttonStyle = {
         marginLeft: "0.5em",
         marginRight: "0.5em"
     }
 
     return (
-        <Box>
+        <>
             <Box
                 sx={{
                     backgroundColor: 'primary.white',
-                    display: 'flex'
+                    display: 'flex',
+                    p: 3
                 }}
             >
                 <Typography variant="h6" color='primary' sx={{flexGrow: 1}}>
@@ -118,7 +119,7 @@ export default function ProductPanel(props: Props) {
                 </Typography>
 
                 {/*add product*/}
-                <Button startIcon={<AddCircleOutlineIcon/>} sx={style} onClick={() => setOpenCreateProduct(true)}
+                <Button startIcon={<AddCircleOutlineIcon/>} sx={buttonStyle} onClick={() => setOpenCreateProduct(true)}
                         variant={"contained"}>
                     Add Product</Button>
                 {/*openEditProduct*/}
@@ -139,7 +140,7 @@ export default function ProductPanel(props: Props) {
                 }/>}
 
                 {/*edit category*/}
-                <Button startIcon={<EditIcon/>} variant={"contained"} sx={style}
+                <Button startIcon={<EditIcon/>} variant={"contained"} sx={buttonStyle}
                         onClick={() => setOpenCategoryDialog(true)}>
                     Edit Category</Button>
                 {openCategoryDialog && <CategoryDialog type={"Edit"}
@@ -150,7 +151,7 @@ export default function ProductPanel(props: Props) {
                                                        open={openCategoryDialog} category={props.category}/>
                 }
                 {/*delete category*/}
-                <Button onClick={() => setDeleteCatDialogOpen(true)} variant={"outlined"} sx={style}>Delete
+                <Button onClick={() => setDeleteCatDialogOpen(true)} variant={"outlined"} sx={buttonStyle}>Delete
                     Category</Button>
                 {deleteCatDialogOpen && <OKCancelDialog open={true} title={"Delete Thing!"}
                                                         content={"Are you sure you want to delete thing?"}
@@ -193,7 +194,7 @@ export default function ProductPanel(props: Props) {
                     }
                 </Grid>
             }
-        </Box>
+        </>
     )
 }
 

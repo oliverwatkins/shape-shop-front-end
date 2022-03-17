@@ -7,17 +7,16 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import {TextField} from "@mui/material";
 
-import {ChangeEvent, FormEvent, useState} from "react";
 import {useForm} from "react-hook-form";
-import {Category, Product} from "../../AppState";
+import {Category} from "../../AppState";
 
 type Props = {
     category: Category
     open: boolean
     type: "Create" | "Edit"
     value?: string
-    handleCancel: () => any
-    handleSubmit: (data:any) => any
+    handleCancel: () => void
+    handleSubmit: (data:any) => void
 }
 
 //create/update
