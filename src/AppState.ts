@@ -15,12 +15,12 @@ export type ProductsState = {
 }
 
 export type AdminState = {
-	orders: Array<OrderState>,
-	orderError?: string,
-	closedOrders: Array<OrderState>,
 	products1: Array<Product>,
 	products2: Array<Product>,
+	orders: Array<OrderState>,
+	closedOrders: Array<OrderState>,
 	Authorization?: Authorization, //??
+	orderError?: string,
 }
 
 export type LoginState = {

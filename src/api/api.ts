@@ -1,6 +1,6 @@
 import * as constants from "../constants";
 import {api_MOCK} from "./api_mock";
-import {Authorization, Product} from "../AppState";
+import {Authorization, Category, Product} from "../AppState";
 import {delay} from "@redux-saga/core/effects";
 
 export const baseURL = 'http://localhost:8080/';
@@ -42,14 +42,10 @@ const apiReal = {
 			// Noti
 			throw error;
 		});
-
-		// alert("deleeeted product")
 		return data;
 	},
 
-
-
-	fetchProducts: async () => {
+	fetchProducts: async (cat: Category) => {
 		let data = await fetch(baseURL + constants.company + '/products', {
 			method: "GET",
 			headers: {
@@ -62,9 +58,10 @@ const apiReal = {
 			}
 			return response.json()
 		}).then(data => {
+			let	d = data.filter((el: Product)=>el.type === cat.name);
 			return {
 				status:200,
-				data: data
+				data: d
 			}
 		}).catch(error => {
 			console.error(error)

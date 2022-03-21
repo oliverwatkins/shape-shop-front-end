@@ -3,7 +3,7 @@ import type {Category, Product} from "../../AppState";
 import {ProductItem} from "./ProductItem";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import {Box, Grid} from "@mui/material";
+import {Box, CircularProgress, Grid} from "@mui/material";
 import OKCancelDialog from "../common/OKCancelDialog";
 import CategoryDialog from "./CategoryDialog";
 import ProductDialog from "./ProductDialog";
@@ -12,16 +12,18 @@ import EditIcon from "@mui/icons-material/Edit";
 import {api} from "../../api/api";
 import {
     createAddProductAction,
-    createDeleteProductAction,
+    createDeleteProductAction, createFetchProductsSuccessAction,
     createUpdateProductSuccessAction
 } from "../redux/productActions";
 import {useDispatch, useSelector} from "react-redux";
-import {AppState} from "../../AppState";
+import {AppState, OrderState} from "../../AppState";
 import {Notify} from "../../notify";
 import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
+import {useAsync} from "react-async-hook";
+import {useEffect} from "react";
 
 type Props = {
-    products?: Array<Product>,
+    // products?: Array<Product>,
     category: Category
 }
 
@@ -31,12 +33,37 @@ export default function ProductPanel(props: Props) {
 
     const [selectedProduct, setSelectedProduct] = React.useState<Product>();
 
-
     const [openEditPProduct, setOpenEditPProduct] = React.useState(false);
     const [openUpdateImage, setOpenUpdateImage] = React.useState(false);
     const [openCreateProduct, setOpenCreateProduct] = React.useState(false);
     const [openCategoryDialog, setOpenCategoryDialog] = React.useState(false);
     const [deleteCatDialogOpen, setDeleteCatDialogOpen] = React.useState(false);
+
+    const {
+        loading: productLoading,
+        error: productError,
+        result: products = null,
+    } = useAsync<Product[]>(api.fetchProducts, [props.category]);
+
+    useEffect(() => {
+        if (products) {
+            // console.info("products " + JSON.stringify(products))
+            dispatch(createFetchProductsSuccessAction(products));
+        }
+    }, []);
+
+
+    // const fetchProducts = async (item: Product) => {
+    //     try {
+    //         await api.deleteProduct(item, Authorization)
+    //         dispatch(createDeleteProductAction(item))
+    //         Notify.success("Deleted Product " + item.name);
+    //     } catch (e) {
+    //         console.error(e)
+    //         Notify.error("Error deleting product")
+    //     }
+    // }
+
 
     const deleteProductCallback = async (item: Product) => {
         try {
@@ -164,10 +191,16 @@ export default function ProductPanel(props: Props) {
                                                         }}/>
                 }
             </Box>
-            {props.products &&
+             {productLoading && <CircularProgress color="secondary" />}
+            {productError &&
+                <span>Fetch Product Error </span>
+            }
+
+
+            {products &&
                 <Grid container spacing={2}>
                     {
-                        props.products && props.products.map((product, i) =>
+                        products && products.map((product, i) =>
                             <Grid key={i} item xs={4} lg={2}>
                                 <ProductItem key={i} item={product}
                                      editProductCallback={

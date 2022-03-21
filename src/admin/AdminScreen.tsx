@@ -109,7 +109,7 @@ function AdminScreen(props: Props) {
             <Switch>
                 <Route path="/admin/orders">
 
-                    {orderLoading &&  <CircularProgress color="secondary" />}
+                    {orderLoading &&  <CircularProgress color="primary"/>}
                     {orderError &&
                         // <Redirect to="/login/" />
                         // TODO
@@ -175,8 +175,10 @@ function AdminScreen(props: Props) {
                                     <Tab label="Products 2" {...a11yProps(1)} />
                                 </Tabs>
                             </Box>
-                                {productTabValue === 0 && <ProductPanel key={1} products={props.products1} category={{name:"main"}}/>}
-                                {productTabValue === 1 && <ProductPanel key={2} products={props.products2} category={{name:"drinks"}}/>}
+                                {productTabValue === 0 && <ProductPanel key={1}
+                                                                        category={{name:"main"}}/>}
+                                {productTabValue === 1 && <ProductPanel key={2}
+                                                                        category={{name:"drinks"}}/>}
                         </Box>
                     </Box>
                 </Route>

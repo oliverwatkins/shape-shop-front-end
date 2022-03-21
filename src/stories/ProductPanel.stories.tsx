@@ -14,7 +14,7 @@ export default {
 
 export const Product_Panel = () => (
     <>
-        <ProductPanel category={{name:"main"}} products={getProds()}/>
+        <ProductPanel category={{name:"main"}}/>
     </>
 );
 
