@@ -23,7 +23,6 @@ import {useAsync} from "react-async-hook";
 import {useEffect} from "react";
 
 type Props = {
-    // products?: Array<Product>,
     category: Category
 }
 
@@ -51,19 +50,6 @@ export default function ProductPanel(props: Props) {
             dispatch(createFetchProductsSuccessAction(products));
         }
     }, []);
-
-
-    // const fetchProducts = async (item: Product) => {
-    //     try {
-    //         await api.deleteProduct(item, Authorization)
-    //         dispatch(createDeleteProductAction(item))
-    //         Notify.success("Deleted Product " + item.name);
-    //     } catch (e) {
-    //         console.error(e)
-    //         Notify.error("Error deleting product")
-    //     }
-    // }
-
 
     const deleteProductCallback = async (item: Product) => {
         try {
@@ -191,7 +177,13 @@ export default function ProductPanel(props: Props) {
                                                         }}/>
                 }
             </Box>
-             {productLoading && <CircularProgress color="secondary" />}
+             {productLoading &&
+                 <div style={{display: 'flex', justifyContent: 'center'}}>
+                     <CircularProgress
+                         size={100}
+                     color="secondary" />
+                 </div>
+             }
             {productError &&
                 <span>Fetch Product Error </span>
             }

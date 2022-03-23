@@ -15,10 +15,6 @@ export type ProductsState = {
 }
 
 export type AdminState = {
-	products1: Array<Product>,
-	products2: Array<Product>,
-	orders: Array<OrderState>,
-	closedOrders: Array<OrderState>,
 	Authorization?: Authorization, //??
 	orderError?: string,
 }

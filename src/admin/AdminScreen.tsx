@@ -1,22 +1,17 @@
 import * as React from 'react';
-import {useEffect} from 'react';
-import {connect, useDispatch} from "react-redux";
+import {connect} from "react-redux";
 import type {AdminState, AppState, OrderState, Product} from "../AppState";
-import {createFetchOrdersSuccessAction} from "./redux/adminActions";
+import {Authorization, OrderStateType} from "../AppState";
 
 import OrderPanel from "./OrderPanel";
-import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "../selectors";
 import ProductPanel from "./products/ProductPanel";
 import {Link, Route, Switch} from "react-router-dom";
 import "./admin.scss";
-import {AppBar, Box, CircularProgress, Tab, Tabs, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Tab, Tabs, Toolbar, Typography} from "@mui/material";
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from "@mui/material/Button";
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import {Authorization} from "../AppState";
-import {api} from "../api/api";
-import {useAsync} from "react-async-hook";
 
 type Props = {
     orders?: Array<OrderState>,
@@ -29,8 +24,6 @@ type Props = {
 }
 
 function AdminScreen(props: Props) {
-
-    let dispatch = useDispatch();
 
     //tab state : (move into hook?)
     const [topTabValue, setTopTabValue] = React.useState<number>(0);
@@ -47,19 +40,6 @@ function AdminScreen(props: Props) {
     const handleOrderTab = (event: any, newValue: number) => {
         setOrderTabValue(newValue);
     };
-
-    const {
-        loading: orderLoading,
-        error: orderError,
-        result: orders = null,
-    } = useAsync<OrderState[]>(api.fetchOrders, [props.Authorization]);
-
-    useEffect(() => {
-        if (orders) {
-            dispatch(createFetchOrdersSuccessAction(orders));
-        }
-    }, [orders]);
-
 
     function a11yProps(index: number) {
         return {
@@ -108,14 +88,6 @@ function AdminScreen(props: Props) {
 
             <Switch>
                 <Route path="/admin/orders">
-
-                    {orderLoading &&  <CircularProgress color="primary"/>}
-                    {orderError &&
-                        // <Redirect to="/login/" />
-                        // TODO
-                        <span>ERROR order error </span>
-                    }
-
                     <Box sx={{width: '100%'}}>
                         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
                             <Tabs value={orderTabValue} onChange={handleOrderTab} >
@@ -130,9 +102,8 @@ function AdminScreen(props: Props) {
                             hidden={orderTabValue !== 0}
                             id={`simple-tabpanel-${0}`}
                             aria-labelledby={`simple-tab-${0}`}
-
                         >
-                            {orderTabValue === 0 && <OrderPanel type={"open"} orders={props.orders}/>}
+                            {orderTabValue === 0 && <OrderPanel type={OrderStateType.OPEN} Authorization={props.Authorization}/>}
                         </Box>
                         <Box
                             sx={{p: 3}}
@@ -140,9 +111,8 @@ function AdminScreen(props: Props) {
                             hidden={orderTabValue !== 1}
                             id={`simple-tabpanel-${1}`}
                             aria-labelledby={`simple-tab-${1}`}
-
                         >
-                            {orderTabValue === 1 && <OrderPanel orders={props.closedOrders}/>}
+                            {orderTabValue === 1 && <OrderPanel type={OrderStateType.CLOSED} Authorization={props.Authorization}/>}
                         </Box>
                     </Box>
                 </Route>
@@ -207,10 +177,6 @@ function AdminScreen(props: Props) {
 
 const mapStateToProps = (state: AppState): AdminState => {
     return {
-        products1: selectProductsByType(state, "main"),
-        products2: selectProductsByType(state, "drinks"),
-        orders: selectOpenOrders(state.admin.orders),
-        closedOrders: selectClosedOrders(state.admin.orders),
         Authorization: state.login.loginToken,
     };
 };

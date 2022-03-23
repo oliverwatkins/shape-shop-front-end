@@ -1,7 +1,8 @@
 import * as constants from "../constants";
 import {api_MOCK} from "./api_mock";
-import {Authorization, Category, Product} from "../AppState";
+import {Authorization, Category, OrderState, OrderStateType, Product} from "../AppState";
 import {delay} from "@redux-saga/core/effects";
+import {selectOpenOrders} from "../selectors";
 
 export const baseURL = 'http://localhost:8080/';
 // const ADMIN_TOKEN = ADMIN_TOKEN2;
@@ -71,7 +72,7 @@ const apiReal = {
 		return data.data;
 	},
 
-	fetchOrders: async (auth: Authorization) => {
+	fetchOrders: async (auth: Authorization, orderState: OrderStateType) => {
 
 		await sleep(1000);
 
@@ -85,6 +86,9 @@ const apiReal = {
 			}
 			return response.json()
 		}).then(data => {
+
+			data = data.filter((o: OrderState) => o.state === orderState);
+
 			return {
 				status:200,
 				data: data
