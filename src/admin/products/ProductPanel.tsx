@@ -15,8 +15,8 @@ import {
     createDeleteProductAction, createFetchProductsSuccessAction,
     createUpdateProductSuccessAction
 } from "../redux/productActions";
-import {useDispatch, useSelector} from "react-redux";
-import {AppState, OrderState} from "../../AppState";
+import {useSelector} from "react-redux";
+import {AppState} from "../../AppState";
 import {Notify} from "../../notify";
 import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 import {useAsync} from "react-async-hook";
@@ -105,20 +105,6 @@ export default function ProductPanel(props: Props) {
     }
 
 
-    // ??
-    // const updateImageCallback = async (item: Product) => {
-    //     try {
-    //         await api.createProduct(item, Authorization)
-    //         dispatch(createAddProductAction(item));
-    //
-    //         const response = api.uploadImage(Authorization, "action.formData.name", item.id);
-    //         setOpenCreateProduct(false);
-    //         Notify.success("Created Product " + item.name);
-    //
-    //     } catch (e) {
-    //         Notify.error("Error creating product");
-    //     }
-    // }
 
     const buttonStyle = {
         marginLeft: "0.5em",
@@ -209,18 +195,16 @@ export default function ProductPanel(props: Props) {
                                              setOpenEditPProduct(true)
                                          }
                                      }
-
-                                         updateImageCallback={
-                                             (item: Product) => {
-                                                 setSelectedProduct(item)
-                                                 setOpenUpdateImage(true)
-                                             }
+                                     updateImageCallback={
+                                         (item: Product) => {
+                                             setSelectedProduct(item)
+                                             setOpenUpdateImage(true)
                                          }
-
-                                         deleteProductCallback={
-                                             deleteProductCallback
-                                         }
-                            />
+                                     }
+                                     deleteProductCallback={
+                                         deleteProductCallback
+                                     }
+                                />
                         </Grid>
                     )
                 }
@@ -229,5 +213,3 @@ export default function ProductPanel(props: Props) {
         </>
     )
 }
-
-

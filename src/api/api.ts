@@ -191,9 +191,7 @@ const apiReal = {
 			method: "POST",
 			body: formData,
 			headers: {
-				// 'Content-Type': 'application/json',
 				'Accept': 'application/json',
-				// 'Authorization': {...Authorization}
 				'Authorization': "Bearer " + auth.token
 			},
 		}).then(response => {

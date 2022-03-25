@@ -8,10 +8,11 @@ import DialogActions from "@material-ui/core/DialogActions";
 import Button from "@material-ui/core/Button";
 import {api} from "../../api/api";
 import {Notify} from "../../notify";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Box} from "@material-ui/core";
 import {Typography} from "@mui/material";
-
+import {createUpdateProductSuccessAction} from "../redux/productActions";
+// import {useDispatch, useSelector} from "react-redux";
 type Props = {
     open: boolean
     handleCancel: () => any
@@ -19,6 +20,8 @@ type Props = {
 }
 
 export function FileUploadDialog(props: Props) {
+
+    const dispatch = useDispatch();
 
     const auth: Authorization | undefined = useSelector((state: AppState) => state.login.loginToken);
     const [selectedFile, setSelectedFile]  = React.useState<any>({selectedFile: null});
@@ -49,7 +52,18 @@ export function FileUploadDialog(props: Props) {
                 console.error(e)
                 Notify.error("Error uploading image")
             });
+
+            let pp = props.product;
+
+            pp.imageFilename = selectedFile.selectedFile.name
+
+            dispatch(createUpdateProductSuccessAction(pp))
+
+            Notify.success("Saved Image ");
+
         }catch(e){
+
+            Notify.error("Error uploading image " + e);
             console.error(e)
         }finally {
             props.handleCancel();
