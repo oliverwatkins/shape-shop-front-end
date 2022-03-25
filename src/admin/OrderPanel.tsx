@@ -41,9 +41,8 @@ export default function OrderPanel(props: Props) {
         <>
             {orderLoading && <CircularProgress color="primary"/>}
             {orderError &&
-                <span>ERROR order error </span>
+                <span>ERROR order error: {orderError.message}</span>
             }
-
 
             <table className={"orderTable"}>
                 <thead>

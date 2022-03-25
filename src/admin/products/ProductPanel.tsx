@@ -20,14 +20,17 @@ import {AppState, OrderState} from "../../AppState";
 import {Notify} from "../../notify";
 import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 import {useAsync} from "react-async-hook";
-import {useEffect} from "react";
+import {useEffect, useReducer} from "react";
+import {reducer} from "../redux/productsReducer";
 
 type Props = {
     category: Category
 }
 
 export default function ProductPanel(props: Props) {
-    const dispatch = useDispatch();
+
+    const [state, dispatch] = useReducer(reducer, {updatingProduct:false, items:[], productsError:""});
+
     const Authorization: any = useSelector((state: AppState) => state.login.loginToken)
 
     const [selectedProduct, setSelectedProduct] = React.useState<Product>();
@@ -46,10 +49,9 @@ export default function ProductPanel(props: Props) {
 
     useEffect(() => {
         if (products) {
-            // console.info("products " + JSON.stringify(products))
             dispatch(createFetchProductsSuccessAction(products));
         }
-    }, []);
+    }, [products]);
 
     const deleteProductCallback = async (item: Product) => {
         try {
@@ -64,9 +66,12 @@ export default function ProductPanel(props: Props) {
     let editProductCallback = async (item: Product) => {
         try {
             await api.updateProduct(item, Authorization)
+
+            //after update in backend, update the state from this component
             dispatch(createUpdateProductSuccessAction(item))
 
             setOpenEditPProduct(false);
+
             Notify.success("Edited Product " + item.name);
         } catch (e) {
             console.error(e)
@@ -98,20 +103,22 @@ export default function ProductPanel(props: Props) {
             Notify.error("Error creating product");
         }
     }
+
+
     // ??
-    const updateImageCallback = async (item: Product) => {
-        try {
-            await api.createProduct(item, Authorization)
-            dispatch(createAddProductAction(item));
-
-            const response = api.uploadImage(Authorization, "action.formData.name", item.id);
-            setOpenCreateProduct(false);
-            Notify.success("Created Product " + item.name);
-
-        } catch (e) {
-            Notify.error("Error creating product");
-        }
-    }
+    // const updateImageCallback = async (item: Product) => {
+    //     try {
+    //         await api.createProduct(item, Authorization)
+    //         dispatch(createAddProductAction(item));
+    //
+    //         const response = api.uploadImage(Authorization, "action.formData.name", item.id);
+    //         setOpenCreateProduct(false);
+    //         Notify.success("Created Product " + item.name);
+    //
+    //     } catch (e) {
+    //         Notify.error("Error creating product");
+    //     }
+    // }
 
     const buttonStyle = {
         marginLeft: "0.5em",
@@ -138,8 +145,8 @@ export default function ProductPanel(props: Props) {
                 {/*openEditProduct*/}
 
                 {openUpdateImage && selectedProduct && <FileUploadDialog open={openUpdateImage}
-                                                                        product={selectedProduct}
-                                                                        handleCancel={() => setOpenUpdateImage(false)} />}
+                                                                         product={selectedProduct}
+                                                                         handleCancel={() => setOpenUpdateImage(false)}/>}
 
                 {openEditPProduct && <ProductDialog open={openEditPProduct}
                                                     type={"Edit"}
@@ -177,22 +184,22 @@ export default function ProductPanel(props: Props) {
                                                         }}/>
                 }
             </Box>
-             {productLoading &&
-                 <div style={{display: 'flex', justifyContent: 'center'}}>
-                     <CircularProgress
-                         size={100}
-                     color="secondary" />
-                 </div>
-             }
+            {productLoading &&
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                    <CircularProgress
+                        size={100}
+                        color="secondary"/>
+                </div>
+            }
             {productError &&
                 <span>Fetch Product Error </span>
             }
 
 
-            {products &&
+            {state.items &&
                 <Grid container spacing={2}>
                     {
-                        products && products.map((product, i) =>
+                        state.items && state.items.map((product: Product, i:number) =>
                             <Grid key={i} item xs={4} lg={2}>
                                 <ProductItem key={i} item={product}
                                      editProductCallback={
@@ -203,20 +210,20 @@ export default function ProductPanel(props: Props) {
                                          }
                                      }
 
-                                     updateImageCallback={
-                                         (item: Product) => {
-                                             setSelectedProduct(item)
-                                             setOpenUpdateImage(true)
+                                         updateImageCallback={
+                                             (item: Product) => {
+                                                 setSelectedProduct(item)
+                                                 setOpenUpdateImage(true)
+                                             }
                                          }
-                                     }
 
-                                     deleteProductCallback={
-                                         deleteProductCallback
-                                     }
-                                />
-                            </Grid>
-                        )
-                    }
+                                         deleteProductCallback={
+                                             deleteProductCallback
+                                         }
+                            />
+                        </Grid>
+                    )
+                }
                 </Grid>
             }
         </>

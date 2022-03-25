@@ -250,7 +250,7 @@ const apiReal = {
 		return data;
 	},
 
-	updateProduct: async (values: { id: string; }, auth: Authorization) => {
+	updateProduct: async (values: Product, auth: Authorization) => {
 
 		console.info("updateProduct : " + JSON.stringify(values))
 		console.info("Authorization : " + JSON.stringify(auth))

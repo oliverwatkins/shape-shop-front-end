@@ -20,7 +20,7 @@ type Props = {
 
 export function FileUploadDialog(props: Props) {
 
-    const auth: Authorization | undefined = useSelector((state: AppState)=>state.login.loginToken);
+    const auth: Authorization | undefined = useSelector((state: AppState) => state.login.loginToken);
     const [selectedFile, setSelectedFile]  = React.useState<any>({selectedFile: null});
 
     // On file select (from the pop up)
@@ -51,6 +51,8 @@ export function FileUploadDialog(props: Props) {
             });
         }catch(e){
             console.error(e)
+        }finally {
+            props.handleCancel();
         }
         // Details of the uploaded file
         console.log(selectedFile.selectedFile);
@@ -65,7 +67,7 @@ export function FileUploadDialog(props: Props) {
             <DialogContentText>
                 Select an image file to upload
             </DialogContentText>
-            <Box className={"file-upload-content"} style={{border: "2px blue dashed"}}>
+            <Box className={"file-upload-content"} style={{border: "0px blue dashed"}}>
                 <Button
                     variant="contained"
                     component="label"

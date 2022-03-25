@@ -15,5 +15,5 @@ export default function* root() {
 	yield fork(loginWatcher);
 	yield fork(logoutWatcher);
 	yield fork(placeOrderWatcher);
-	yield fork(uploadImageWatcher);
+	// yield fork(uploadImageWatcher);
 }

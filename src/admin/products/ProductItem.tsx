@@ -31,7 +31,7 @@ import * as Constants from "./../../constants";
 
 type Props = {
     item: Product;
-    editProductCallback: Function;
+    editProductCallback: (arg0: Product) => void;
     deleteProductCallback: Function;
     updateImageCallback: Function;
 };
@@ -55,6 +55,8 @@ export function ProductItem(props: Props) {
 
     const [expanded, setExpanded] = React.useState(false);
 
+    let product = props.item;
+
     const handleExpandClick = () => {
         setExpanded(!expanded);
     };
@@ -69,8 +71,6 @@ export function ProductItem(props: Props) {
     const handleCloseMenu = () => {
         setAnchorEl(null);
     };
-
-    let product = props.item;
 
     const heigt = 25;
     return (
@@ -136,7 +136,7 @@ export function ProductItem(props: Props) {
                             <Button onClick={() => props.deleteProductCallback(product)}>
                                 <DeleteIcon/>
                             </Button>
-                            <Button  onClick={() => props.editProductCallback(product)}>
+                            <Button onClick={() => props.editProductCallback(product)}>
                                 <EditIcon/>
                             </Button>
                         </Box>
