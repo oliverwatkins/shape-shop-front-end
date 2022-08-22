@@ -51,7 +51,39 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     }),
 }));
 
+
+async function fetchApi<WhateverthefyouwantittoBe = Record<string, User>>(path: string): Promise<WhateverthefyouwantittoBe> {
+    const response = await fetch(`https://example.com/api${path}`);
+    return response.json();
+}
+
+type User = {
+    name: string;
+}
+
+async function blah() {
+
+
+    // const data = await fetchApi<User[]>('/users')
+    const data2 = await fetchApi('/users')
+
+    let l = data2.name
+    // data.
+
+}
+
+
 export function ProductItem(props: Props) {
+
+
+
+    // let c = fetchApi<Props>("asdfasdf")
+    // c.then(x =>
+    // // x.
+    //
+    // )
+
+
 
     const [expanded, setExpanded] = React.useState(false);
 
