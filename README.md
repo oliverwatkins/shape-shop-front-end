@@ -1,5 +1,11 @@
 
+### Run in IDE
 
+build
+start
+
+TODO!!! bug with CRA and TS https://github.com/facebook/create-react-app/issues/9868
+comment out tsconfig.json before running start.
 
 
 ### Run mock mode in Docker Container with NGINX (app server)
