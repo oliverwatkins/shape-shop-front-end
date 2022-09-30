@@ -73,7 +73,7 @@ const mapDispatchToProps = (dispatch: any) => {
 
 const mapStateToProps = (state: AppState) => {
 	return {
-		creditCardEntity: state.order.creditCardEntity,
+		creditCardEntity: state.order.creditCard,
 	};
 };
 

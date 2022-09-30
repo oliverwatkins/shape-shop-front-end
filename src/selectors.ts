@@ -10,9 +10,9 @@ export const selectUserEmail = (state: AppState) => {
 
 export const selectAllProducts = (state: AppState) => state.products.items;
 
-export const selectOpenOrders = (orders: Array<OrderState>) => orders.filter(o => o.state === "OPEN");
+export const selectOpenOrders = (orders: Array<OrderState>) => orders.filter(o => o.orderState === "OPEN");
 
-export const selectClosedOrders = (orders: Array<OrderState>) => orders.filter(o => o.state === "CLOSED");
+export const selectClosedOrders = (orders: Array<OrderState>) => orders.filter(o => o.orderState === "CLOSED");
 
 export const selectProductsByType = (state: AppState, type: string) => state.products.items.filter(product => product.type === type);
 
@@ -24,9 +24,9 @@ export const selectSelectedProductByType = (state: AppState, type: string) => st
 //total order
 export const selectOrder = (state: AppState) => {
 	return {
-		state: state.order.state,
-		addressEntity: state.order && state.order.addressEntity,
-		creditCardEntity: state.order && state.order.creditCardEntity,
+		state: state.order.orderState,
+		addressEntity: state.order && state.order.address,
+		creditCardEntity: state.order && state.order.creditCard,
 		selectedProducts: selectSelectedProductByType(state, "main"),
 		selectedProducts2: selectSelectedProductByType(state, "drinks"),
 		deliveryType: state.order && state.order.deliveryType,

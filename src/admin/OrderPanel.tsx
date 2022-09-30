@@ -36,7 +36,6 @@ export default function OrderPanel(props: Props) {
         }
     }, [orders]);
 
-
     return (
         <>
             {orderLoading && <CircularProgress color="primary"/>}
@@ -73,7 +72,7 @@ export default function OrderPanel(props: Props) {
                 {orders && orders.map((order: OrderState) =>
                     <tr className={"orderBox"} key={order.id}>
                         <td> {order.id} </td>
-                        <td><b>{order.addressEntity && order.addressEntity.name} </b></td>
+                        <td><b>{order.address && order.address.name} </b></td>
                         <td>
                             {moment(order.date).format('HH:mm DD/MM/YYYY')}
                         </td>
@@ -96,7 +95,7 @@ export default function OrderPanel(props: Props) {
                                     margin: "1px"
                                 }}/> {order.deliveryType}
                             </div>}
-                            <AddressPanel address={order.addressEntity}/>
+                            <AddressPanel address={order.address}/>
                         </td>
                         <td className={"paymentType"}>
                             {order.paymentType === PaymentType.cash && <div className="icon-container">
@@ -112,7 +111,7 @@ export default function OrderPanel(props: Props) {
                                     color: "black",
                                     margin: "1px"
                                 }}/> {order.paymentType}
-                                <CardPanel creditCard={order.creditCardEntity}/>
+                                <CardPanel creditCard={order.creditCard}/>
                             </div>}
                         </td>
                         {props.type === OrderStateType.OPEN && <td>

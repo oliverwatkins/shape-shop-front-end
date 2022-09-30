@@ -1,10 +1,14 @@
 import {Actions} from './productActions';
 
 import type {ProductsState} from "../../AppState";
-import {Notify} from "../../notify";
 
+function getCats(data: any): Array<string> {
 
-export function reducer(state: ProductsState = initialState, action: any) {
+	return ["blah", " blah2"]
+	// extract cats
+}
+
+export function productsReducer(state: ProductsState = initialState, action: any) {
 
 	console.info("in product reducer with action " + action.type)
 
@@ -35,9 +39,14 @@ export function reducer(state: ProductsState = initialState, action: any) {
 				items: i
 			};
 		case Actions.FETCH_PRODUCTS:
+
+
+			let c = getCats(action.data)
+
 			return {
 				...state,
 				items: action.data,
+				categories: c
 			};
 		case Actions.UPDATE_PRODUCT_SELECTION:
 			return {

@@ -46,7 +46,13 @@ const apiReal = {
 		return data;
 	},
 
-	fetchProducts: async (cat: Category) => {
+
+	/**
+	 * Fetch products for company. If category exists, filter results by category.
+	 *
+	 * @param category
+	 */
+	fetchProducts: async (category: Category) => {
 		let data = await fetch(baseURL + constants.company + '/products', {
 			method: "GET",
 			headers: {
@@ -59,10 +65,13 @@ const apiReal = {
 			}
 			return response.json()
 		}).then(data => {
-			let	d = data.filter((el: Product)=>el.type === cat.name);
+			let	filtered = data;
+			if (category) {
+				filtered = data.filter((el: Product)=>el.type === category.name);
+			}
 			return {
 				status:200,
-				data: d
+				data: filtered
 			}
 		}).catch(error => {
 			console.error(error)
@@ -87,7 +96,7 @@ const apiReal = {
 			return response.json()
 		}).then(data => {
 
-			data = data.filter((o: OrderState) => o.state === orderState);
+			data = data.filter((o: OrderState) => o.orderState === orderState);
 
 			return {
 				status:200,

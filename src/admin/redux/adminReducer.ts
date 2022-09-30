@@ -25,9 +25,8 @@ export function reducer(state: OrderState = initialState,
 	}
 }
 
-const initialState = {
-	orders: [],
-	state: OrderStateType.OPEN, //todo convert to enum
+const initialState: OrderState = {
+	orderState: OrderStateType.OPEN, //todo convert to enum
 	paymentType: PaymentType.card,
 	deliveryType: DeliveryType.delivery,
 };

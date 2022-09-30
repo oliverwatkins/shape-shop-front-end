@@ -89,7 +89,7 @@ const mapStateToProps = (state: AppState) => {
 		selectedProducts: selectSelectedProductByType(state, "main"),
 		selectedProducts2: selectSelectedProductByType(state, "drinks"),
 		productsError: state.products.productsError,
-		address: state.order && state.order.addressEntity,
+		address: state.order && state.order.address,
 		deliveryType: state.order && state.order.deliveryType,
 		paymentType: state.order && state.order.paymentType,
 	};

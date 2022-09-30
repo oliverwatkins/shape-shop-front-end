@@ -19,17 +19,17 @@ import {useSelector} from "react-redux";
 import {AppState} from "../../AppState";
 import {Notify} from "../../notify";
 import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
-import {useAsync} from "react-async-hook";
-import {useEffect, useReducer} from "react";
-import {reducer} from "../redux/productsReducer";
+import {useReducer} from "react";
+import {productsReducer} from "../redux/productsReducer";
 
 type Props = {
-    category: Category
+    category: Category,
+    products: Array<Product> | null
 }
 
 export default function ProductPanel(props: Props) {
 
-    const [state, dispatch] = useReducer(reducer, {updatingProduct:false, items:[], productsError:""});
+    const [state, dispatch] = useReducer(productsReducer, {updatingProduct:false, items:[], productsError:""});
 
     const Authorization: any = useSelector((state: AppState) => state.login.loginToken)
 
@@ -41,17 +41,20 @@ export default function ProductPanel(props: Props) {
     const [openCategoryDialog, setOpenCategoryDialog] = React.useState(false);
     const [deleteCatDialogOpen, setDeleteCatDialogOpen] = React.useState(false);
 
-    const {
-        loading: productLoading,
-        error: productError,
-        result: products = null,
-    } = useAsync<Product[]>(api.fetchProducts, [props.category]);
+    // const {
+    //     loading: productLoading,
+    //     error: productError,
+    //     result: products = null,
+    // } = useAsync<Product[]>(api.fetchProducts, [props.category]);
+    //
 
-    useEffect(() => {
-        if (products) {
-            dispatch(createFetchProductsSuccessAction(products));
-        }
-    }, [products]);
+
+
+    // useEffect(() => {
+    //     if (products) {
+    //         dispatch(createFetchProductsSuccessAction(products));
+    //     }
+    // }, [products]);
 
     const deleteProductCallback = async (item: Product) => {
         try {
@@ -103,8 +106,6 @@ export default function ProductPanel(props: Props) {
             Notify.error("Error creating product");
         }
     }
-
-
 
     const buttonStyle = {
         marginLeft: "0.5em",
@@ -170,22 +171,22 @@ export default function ProductPanel(props: Props) {
                                                         }}/>
                 }
             </Box>
-            {productLoading &&
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                    <CircularProgress
-                        size={100}
-                        color="secondary"/>
-                </div>
-            }
-            {productError &&
-                <span>Fetch Product Error </span>
-            }
+            {/*TODO*/}
+            {/*{productLoading &&*/}
+            {/*    <div style={{display: 'flex', justifyContent: 'center'}}>*/}
+            {/*        <CircularProgress*/}
+            {/*            size={100}*/}
+            {/*            color="secondary"/>*/}
+            {/*    </div>*/}
+            {/*}*/}
+            {/*{productError &&*/}
+            {/*    <span>Fetch Product Error </span>*/}
+            {/*}*/}
 
-
-            {state.items &&
+            {props.products &&
                 <Grid container spacing={2}>
                     {
-                        state.items && state.items.map((product: Product, i:number) =>
+                        props.products && props.products.map((product: Product, i:number) =>
                             <Grid key={i} item xs={4} lg={2}>
                                 <ProductItem key={i} item={product}
                                      editProductCallback={

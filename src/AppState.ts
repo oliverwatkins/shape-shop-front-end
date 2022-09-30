@@ -12,6 +12,7 @@ export type ProductsState = {
 	productsError: string,
 	updatingProduct: boolean,
 	items: Array<Product>,
+	categories: Array<string>
 }
 
 export type AdminState = {
@@ -48,13 +49,13 @@ export enum OrderStateType {
 
 export type OrderState = {
 	id?: string,
-	state: OrderStateType,
+	orderState: OrderStateType,
 	paymentType: PaymentType,
 	deliveryType: string,
-	addressEntity?: Address,
+	address?: Address,
 	date?: Date,
 	orderItems?: Array<ProductsState>
-	creditCardEntity?: CreditCardEntity,
+	creditCard?: CreditCardEntity,
 	submittingOrder?:boolean,
 	orderError?:string,
 }

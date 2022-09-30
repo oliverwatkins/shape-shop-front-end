@@ -12,6 +12,12 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from "@mui/material/Button";
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
+import {useAsync} from "react-async-hook";
+import {api} from "../api/api";
+import {useEffect, useReducer} from "react";
+import {createFetchProductsSuccessAction} from "./redux/productActions";
+import {productsReducer} from "./redux/productsReducer";
+import ProductsPanel from "./products/ProductsPanel";
 
 type Props = {
     orders?: Array<OrderState>,
@@ -25,16 +31,14 @@ type Props = {
 
 function AdminScreen(props: Props) {
 
+
     //tab state : (move into hook?)
     const [topTabValue, setTopTabValue] = React.useState<number>(0);
     const handleTopTab = (event: any, newValue: number) => {
         setTopTabValue(newValue);
     };
 
-    const [productTabValue, setProductTabValue] = React.useState<number>(0);
-    const handleProdTab = (event: any, newValue: number) => {
-        setProductTabValue(newValue);
-    };
+
 
     const [orderTabValue, setOrderTabValue] = React.useState<number>(0);
     const handleOrderTab = (event: any, newValue: number) => {
@@ -118,39 +122,43 @@ function AdminScreen(props: Props) {
                 </Route>
                 <Route exact path="/admin/products">
 
+
+                    <ProductsPanel/>
+
+
                     {/*// TODO changed label to title in div component. need to update the Tabs component.*/}
-                    <Box title={"Products"}>
-                        <Box sx={{width: '100%'}}>
-                            <Box sx={{flexGrow: 1}}>
-                                <AppBar position="static">
-                                    <Toolbar>
-                                        <IconButton
-                                            size="large"
-                                            edge="start"
-                                            color="inherit"
-                                            aria-label="menu"
-                                            sx={{mr: 2}}
-                                        >
-                                            <MenuIcon/>
-                                        </IconButton>
-                                        <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                                            Products
-                                        </Typography>
-                                    </Toolbar>
-                                </AppBar>
-                            </Box>
-                            <Box>
-                                <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
-                                    <Tab label="Products 1" {...a11yProps(0)} />
-                                    <Tab label="Products 2" {...a11yProps(1)} />
-                                </Tabs>
-                            </Box>
-                                {productTabValue === 0 && <ProductPanel key={1}
-                                                                        category={{name:"main"}}/>}
-                                {productTabValue === 1 && <ProductPanel key={2}
-                                                                        category={{name:"drinks"}}/>}
-                        </Box>
-                    </Box>
+                    {/*<Box title={"Products"}>*/}
+                    {/*    <Box sx={{width: '100%'}}>*/}
+                    {/*        <Box sx={{flexGrow: 1}}>*/}
+                    {/*            <AppBar position="static">*/}
+                    {/*                <Toolbar>*/}
+                    {/*                    <IconButton*/}
+                    {/*                        size="large"*/}
+                    {/*                        edge="start"*/}
+                    {/*                        color="inherit"*/}
+                    {/*                        aria-label="menu"*/}
+                    {/*                        sx={{mr: 2}}*/}
+                    {/*                    >*/}
+                    {/*                        <MenuIcon/>*/}
+                    {/*                    </IconButton>*/}
+                    {/*                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>*/}
+                    {/*                        Products*/}
+                    {/*                    </Typography>*/}
+                    {/*                </Toolbar>*/}
+                    {/*            </AppBar>*/}
+                    {/*        </Box>*/}
+                    {/*        <Box>*/}
+                    {/*            <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">*/}
+                    {/*                <Tab label="Products 1" {...a11yProps(0)} />*/}
+                    {/*                <Tab label="Products 2" {...a11yProps(1)} />*/}
+                    {/*            </Tabs>*/}
+                    {/*        </Box>*/}
+                    {/*            {productTabValue === 0 && <ProductPanel key={1}*/}
+                    {/*                                                    category={{name:"main"}}/>}*/}
+                    {/*            {productTabValue === 1 && <ProductPanel key={2}*/}
+                    {/*                                                    category={{name:"drinks"}}/>}*/}
+                    {/*    </Box>*/}
+                    {/*</Box>*/}
                 </Route>
                 <Route path="/admin/settings">
                     <div title={"Settings"}>

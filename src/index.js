@@ -10,7 +10,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import {combineReducers} from 'redux';
 import {reducer as login} from './login/redux/loginReducer';
-import {reducer as products} from './admin/redux/productsReducer';
+import {productsReducer as products} from './admin/redux/productsReducer';
 import {reducer as order} from './admin/redux/orderReducer';
 import {reducer as admin} from './admin/redux/adminReducer';
 import {BrowserRouter as Router} from "react-router-dom";
