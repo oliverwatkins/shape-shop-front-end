@@ -15,6 +15,21 @@ export type ProductsState = {
 	categories: Array<string>
 }
 
+export type Product = {
+	id?: string,
+	name: string,
+	price: number,
+	description: string,
+	// type?: string,
+	imageFilename?: string,
+	image?: any,
+	quantity?: number, //selected quantity
+	categories: Array<Category>
+}
+
+export type ByCategory = { [cat: string]: Array<Product> };
+
+
 export type AdminState = {
 	Authorization?: Authorization, //??
 	orderError?: string,
@@ -67,20 +82,12 @@ export type CreditCardEntity = {
 	type: string,
 }
 
-export type Product = {
-	id?: string,
-	name: string,
-	price: number,
-	description: string,
-	type?: string,
-	imageFilename?: string,
-	image?: any,
-	quantity: number, //selected quantity
-}
+
 
 
 export type Category = {
 	name:string
+	id: string
 }
 
 

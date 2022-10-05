@@ -97,7 +97,7 @@ const mapStateToProps = (state: AppState): ProductsState => {
         items: state.products.items,
         productsError: "",
         updatingProduct: false,
-        categories: ["xxx", "yyy"]
+        categories: state.products.categories
         // productsAsKeyMap: state.productsX
         // Authorization: state.login.loginToken,
     };

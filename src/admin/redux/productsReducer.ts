@@ -1,11 +1,45 @@
 import {Actions} from './productActions';
 
-import type {ProductsState} from "../../AppState";
+import type {Product, ProductsState} from "../../AppState";
 
-function getCats(data: any): Array<string> {
+/**
+ * transform products array into an object with keys that are the category. Each category has an
+ * array of products
+ * @param productsArray
+ */
+export function getCats(productsArray: Array<Product>):  { [category: string]: Array<Product> } {
 
-	return ["blah", " blah2"]
-	// extract cats
+	let catProds: { [category: string]: Array<Product> } = {}
+	// catProds["main"] = []
+	// catProds["drinks"] = []
+
+	let filtered = productsArray.filter(p => {
+
+		let cats = p.categories;
+		for (const cat of cats) {
+			if (cat.name === "main") {
+				return true;
+			}
+		}
+		return false;
+	})
+
+	let filtered3 = productsArray.filter(p => {
+
+		let cats = p.categories;
+		for (const cat of cats) {
+			if (cat.name === "drinks") {
+				return true;
+			}
+		}
+		return false;
+		// return true;
+	})
+
+	catProds["mainX"] = filtered;
+	catProds["drinksX"] = filtered3;
+
+	return catProds;
 }
 
 export function productsReducer(state: ProductsState = initialState, action: any) {
@@ -41,12 +75,13 @@ export function productsReducer(state: ProductsState = initialState, action: any
 		case Actions.FETCH_PRODUCTS:
 
 
-			let c = getCats(action.data)
+			let productsAndCategories = getCats(action.data)
 
 			return {
 				...state,
-				items: action.data,
-				categories: c
+				items: action.data, //all products
+				productsAndCategories: productsAndCategories,
+				categories: "keys of pAndC"
 			};
 		case Actions.UPDATE_PRODUCT_SELECTION:
 			return {
@@ -66,7 +101,8 @@ export function productsReducer(state: ProductsState = initialState, action: any
 	}
 }
 
-const initialState = {
+const initialState: ProductsState = {
+	categories: [""],
 	items: [],
 	productsError: "",
 	updatingProduct: false,
