@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {ComponentMeta} from '@storybook/react';
 
@@ -18,7 +19,6 @@ export const Simple_Product_Items = () => (
             name: "Pizza",
             price: 1.2,
             description: "This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh ",
-            type: "main",
             image: imageFile,
             quantity: 1
         }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
@@ -26,7 +26,6 @@ export const Simple_Product_Items = () => (
             id: "2",
             name: "Pizza",
             description: "This is the simple product description. blah. This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh This is the simple product description  blauh ",
-            type: "main",
             price: 1.2,
             image: imageFile,
             quantity: 1
@@ -36,7 +35,6 @@ export const Simple_Product_Items = () => (
             name: "Pizza No desc",
             description: "",
             price: 1.2,
-            type: "main",
             image: imageFile,
             quantity: 1
         }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
@@ -46,7 +44,6 @@ export const Simple_Product_Items = () => (
             name: "Pizza Wide",
             description: "",
             price: 1.2,
-            type: "main",
             image: imageFile,
             quantity: 1
         }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>
@@ -56,7 +53,6 @@ export const Simple_Product_Items = () => (
             name: "Pizza Tall",
             description: "",
             price: 1.2,
-            type: "main",
             image: imageFile,
             quantity: 1
         }} editProductCallback={() => 1} deleteProductCallback={() => 1} updateImageCallback={() => 1}/>

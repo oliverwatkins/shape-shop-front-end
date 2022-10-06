@@ -1,109 +1,126 @@
 import {Actions} from './productActions';
 
-import type {Product, ProductsState} from "../../AppState";
+import type {Category, Product, ProductsState} from "../../AppState";
+
+
+const initialState: ProductsState = {
+    categories: [],
+    allProducts: [],
+    productsError: "",
+    updatingProduct: false,
+};
+
+export function productsReducer(state: ProductsState = initialState, action: any): ProductsState {
+
+    console.info("in product reducer with action " + action.type)
+
+    switch (action.type) {
+        case Actions.ADD_PRODUCT:
+            let newItems = state.allProducts;
+            newItems.push(action.product);
+            return {
+                ...state,
+                allProducts: newItems
+                // updatingProduct: true
+            };
+        case Actions.DELETE_PRODUCT:
+            return {
+                ...state,
+                allProducts: state.allProducts.filter((elem) => {
+                    return elem.id !== action.product.id
+                })
+            };
+        case Actions.UPDATE_PRODUCT:
+            const i = state.allProducts.map((elem) => {
+                if (elem.id === action.product.id)
+                    return action.product;
+                return elem;
+            });
+            return {
+                ...state,
+                allProducts: i
+            };
+        case Actions.FETCH_PRODUCTS:
+            let productsAndCategories = getCategoryProducts(action.data)
+            return {
+                ...state,
+                allProducts: action.data, //all products
+                categoryProducts: productsAndCategories,
+                categories: extractUniqueCategories(action.data)
+            };
+        case Actions.UPDATE_PRODUCT_SELECTION:
+            return {
+                ...state,
+                allProducts: state.allProducts.map((item) => {
+                    if (item.id === action.id) {
+                        return {
+                            ...item,
+                            "quantity": action.value
+                        }
+                    }
+                    return item;
+                }),
+            };
+        default :
+            return state;
+    }
+}
+
 
 /**
  * transform products array into an object with keys that are the category. Each category has an
  * array of products
- * @param productsArray
  */
-export function getCats(productsArray: Array<Product>):  { [category: string]: Array<Product> } {
+export function getCategoryProducts(productsArray: Array<Product>): { [category: string]: Array<Product> } {
 
-	let catProds: { [category: string]: Array<Product> } = {}
-	// catProds["main"] = []
-	// catProds["drinks"] = []
+    let catProds: { [category: string]: Array<Product> } = {}
 
-	let filtered = productsArray.filter(p => {
+    let uniqueCategories = extractUniqueCategories(productsArray);
 
-		let cats = p.categories;
-		for (const cat of cats) {
-			if (cat.name === "main") {
-				return true;
-			}
-		}
-		return false;
-	})
+    for (const uniqueCategory of uniqueCategories) {
 
-	let filtered3 = productsArray.filter(p => {
+        let filtered = productsArray.filter(p => {
+            let cats: Array<Category> | undefined = p.categories;
+            if (cats)
+                for (const cat of cats) {
+                    if (cat.name === uniqueCategory.name) {
+                        return true;
+                    }
+                }
+            return false;
+        })
 
-		let cats = p.categories;
-		for (const cat of cats) {
-			if (cat.name === "drinks") {
-				return true;
-			}
-		}
-		return false;
-		// return true;
-	})
-
-	catProds["mainX"] = filtered;
-	catProds["drinksX"] = filtered3;
-
-	return catProds;
+        let stripOutCats = (el: Product) => {
+            //strip out categories, qty,
+            return {
+                id: el.id,
+                name: el.name,
+                price: el.price,
+                imageFilename: el.imageFilename,
+                description: el.description
+            }
+        }
+        filtered = filtered.map(stripOutCats);
+        catProds[uniqueCategory.name] = filtered;
+    }
+    return catProds;
 }
 
-export function productsReducer(state: ProductsState = initialState, action: any) {
 
-	console.info("in product reducer with action " + action.type)
+function extractUniqueCategories(productsArray: Array<Product>) {
+    let uniqueCategories: Array<Category> = [];
 
-	switch (action.type) {
-		case Actions.ADD_PRODUCT:
-			let newItems = state.items;
-			newItems.push(action.product);
-			return {
-				...state,
-				items: newItems
-				// updatingProduct: true
-			};
-		case Actions.DELETE_PRODUCT:
-			return {
-				...state,
-				items: state.items.filter((elem)=>{
-					return elem.id !== action.product.id
-				})
-			};
-		case Actions.UPDATE_PRODUCT:
-			const i = state.items.map((elem)=> {
-				if (elem.id === action.product.id)
-					return action.product;
-				return elem;
-			});
-			return {
-				...state,
-				items: i
-			};
-		case Actions.FETCH_PRODUCTS:
+    // extract categories
+    for (const product of productsArray) {
 
-
-			let productsAndCategories = getCats(action.data)
-
-			return {
-				...state,
-				items: action.data, //all products
-				productsAndCategories: productsAndCategories,
-				categories: "keys of pAndC"
-			};
-		case Actions.UPDATE_PRODUCT_SELECTION:
-			return {
-				...state,
-				items: state.items.map((item) => {
-					if (item.id === action.id) {
-						return {
-							...item,
-							"quantity" : action.value
-						}
-					}
-					return item;
-				}),
-			};
-		default :
-			return state;
-	}
+        let categories: Array<Category> | undefined = product.categories;
+        if (categories)
+            for (const cat of categories) {
+                let foundCat = uniqueCategories.find(el => el.name === cat.name)
+                if (!foundCat)
+                    uniqueCategories.push(cat)
+            }
+    }
+    return uniqueCategories;
 }
 
-const initialState: ProductsState = {
-	categories: [""],
-	items: [],
-	productsError: "",
-	updatingProduct: false,
-};

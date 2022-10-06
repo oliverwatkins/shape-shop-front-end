@@ -1,27 +1,25 @@
 
 
-import {getCats} from "../productsReducer";
+import { getCategoryProducts } from "../productsReducer";
 import {ByCategory, Product} from "../../../AppState";
 
+it("create category product tree", () => {
+    let catProds: ByCategory = getCategoryProducts(allProducts);
 
-
-it("renders without crashing", () => {
-    let x: ByCategory = getCats(allProducts);
-
-    expect(x).toEqual(productsAndCategories);
+    expect(catProds).toEqual(productsAndCategories);
 });
 
-let productsAndCategories = {
+let productsAndCategories: { [category: string]: Array<Product> } = {
     main: [
         {
-            "id": 1,
+            "id": "1",
             "name": "main1",
             "price": 1,
             "description": "main1 desc",
             "imageFilename": "main1.jpg",
         },
         {
-            "id": 2,
+            "id": "2",
             "name": "main2",
             "price": 2,
             "description": "main2 desc",
@@ -30,14 +28,14 @@ let productsAndCategories = {
     ],
     drinks: [
         {
-            "id": 3,
+            "id": "3",
             "name": "drink1",
             "price": 3,
             "description": "drink1 desc",
             "imageFilename": "drink1.jpg",
         },
         {
-            "id": 4,
+            "id": "4",
             "name": "drink2",
             "price": 4,
             "description": "drink2 desc",
@@ -101,57 +99,3 @@ let allProducts = [
         ]
     }
 ]
-
-
-
-export type Country = {
-    name:string,
-    language:string,
-    continent?:string
-}
-
-let allCountries: Array<Country> = [
-    {
-        "name": "Japan",
-        "language": "Japanese",
-        "continent": "Asia"
-    },
-    {
-        "name": "Netherlands",
-        "language": "Dutch",
-        "continent": "Europe"
-    },
-    {
-        "name": "Germany",
-        "language": "German",
-        "continent": "Europe"
-    }
-]
-
-
-type ByContinent = { [continents: string]: Array<Country> };
-
-let byContinent: ByContinent  = {
-
-    asia: [
-        {
-            "name": "Japan",
-            "language": "Japanese",
-            "continent": "Asia"
-        },
-    ],
-    europe: [
-        {
-            "name": "Netherlands",
-            "language": "Dutch",
-            "continent": "Europe"
-        },
-        {
-            "name": "Germany",
-            "language": "German",
-            "continent": "Europe"
-        }
-    ]
-}
-
-

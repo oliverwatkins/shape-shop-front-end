@@ -121,9 +121,7 @@ function AdminScreen(props: Props) {
                     </Box>
                 </Route>
                 <Route exact path="/admin/products">
-
-
-                    <ProductsPanel/>
+                    <ProductsPanel categoryProducts={{}} categories={[]}/>
 
 
                     {/*// TODO changed label to title in div component. need to update the Tabs component.*/}

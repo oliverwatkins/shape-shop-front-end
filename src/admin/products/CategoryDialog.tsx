@@ -28,7 +28,7 @@ export default function CategoryDialog(props: Props) {
         )
     }
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm<Category>();
 
     return (
         <Dialog
@@ -51,7 +51,7 @@ export default function CategoryDialog(props: Props) {
                         variant="outlined"
                         fullWidth={true}
                         {...register("name", {required: true, minLength: 5, maxLength: 35})}
-                        error={errors.name}
+                        // error={errors.name} TODO put back in
                         helperText={errors.name?.type}
                     />
                 </form>

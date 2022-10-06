@@ -52,7 +52,7 @@ const apiReal = {
 	 *
 	 * @param category
 	 */
-	fetchProducts: async (category: Category) => {
+	fetchProducts: async (category?: Category) => {
 		let data = await fetch(baseURL + constants.company + '/products', {
 			method: "GET",
 			headers: {
@@ -64,14 +64,22 @@ const apiReal = {
 				throw new Error('Network response was not ok');
 			}
 			return response.json()
-		}).then(data => {
-			let	filtered = data;
+		}).then(allProducts => {
+			let	filteredProducts = allProducts;
 			if (category) {
-				filtered = data.filter((el: Product)=>el.type === category.name);
+				filteredProducts = allProducts.filter((product: Product)=> {
+
+					if (product.categories) {
+						let c = product.categories.find(cat => cat.name === category.name)
+						if (c)
+							return true;
+					}
+					return false;
+				});
 			}
 			return {
 				status:200,
-				data: filtered
+				data: filteredProducts
 			}
 		}).catch(error => {
 			console.error(error)
@@ -230,7 +238,7 @@ const apiReal = {
 					"name": values.name,
 					"price": values.price,
 					"description": values.description,
-					"type": values.type,
+					// "type": values.type,
 				}),
 			headers: {
 				'Content-Type': 'application/json',

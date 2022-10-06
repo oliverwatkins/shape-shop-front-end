@@ -16,20 +16,28 @@ import {
     createUpdateProductSuccessAction
 } from "../redux/productActions";
 import {useSelector} from "react-redux";
-import {AppState} from "../../AppState";
+import {AppState, ProductsState} from "../../AppState";
 import {Notify} from "../../notify";
 import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 import {useReducer} from "react";
 import {productsReducer} from "../redux/productsReducer";
 
 type Props = {
-    category: Category,
+    category?: Category,
     products: Array<Product> | null
 }
 
+const initialState: ProductsState = {
+    categories: [],
+    allProducts: [],
+    categoryProducts: {},
+    productsError: "",
+    updatingProduct: false,
+};
+
 export default function ProductPanel(props: Props) {
 
-    const [state, dispatch] = useReducer(productsReducer, {updatingProduct:false, items:[], productsError:""});
+    const [state, dispatch] = useReducer(productsReducer, initialState);
 
     const Authorization: any = useSelector((state: AppState) => state.login.loginToken)
 
@@ -150,7 +158,7 @@ export default function ProductPanel(props: Props) {
                 <Button startIcon={<EditIcon/>} variant={"contained"} sx={buttonStyle}
                         onClick={() => setOpenCategoryDialog(true)}>
                     Edit Category</Button>
-                {openCategoryDialog && <CategoryDialog type={"Edit"}
+                {openCategoryDialog && props.category && <CategoryDialog type={"Edit"}
                                                        handleCancel={() => {
                                                            setOpenCategoryDialog(false)
                                                        }}

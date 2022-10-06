@@ -16,11 +16,11 @@ type Props = {
     handleSubmit: (data: any) => void
     product?: Product
 }
-
+// TODO comment back in errors
 //create/update
 export default function ProductDialog(props: Props) {
 
-    const {register, handleSubmit, formState: {errors}} = useForm();
+    const {register, handleSubmit, formState: {errors}} = useForm<Product>();
     const onSubmit = (productData: Product) => {
         props.handleSubmit(
             {...props.product, ...productData}
@@ -51,7 +51,7 @@ export default function ProductDialog(props: Props) {
                                     variant="outlined"
                                     fullWidth={true}
                                     {...register("name", {required: true, maxLength: 35})}
-                                    error={errors.name}
+                                    // error={errors.name}
                                     helperText={errors.name?.type}
                                 />
                             </Grid>
@@ -62,7 +62,7 @@ export default function ProductDialog(props: Props) {
                                            maxRows={4} minRows={4}
                                            label={"description"}
                                            {...register("description", {required: true, maxLength: 120})}
-                                           error={errors.description}
+                                           // error={errors.description}
                                            helperText={errors.description?.type}
                                 />
                             </Grid>
@@ -72,11 +72,15 @@ export default function ProductDialog(props: Props) {
                                            fullWidth={true}
                                            label={"price"}
                                            {...register("price", {required: true, maxLength: 5})}
-                                           error={errors.price}
+                                           // error={errors.price}
                                            helperText={errors.price?.type}
                                 />
                             </Grid>
-                            <input type="hidden" {...register("type")} defaultValue={"main"}/>
+
+                            {/*TODO category drop down here??*/}
+                            {/*<input type="hidden" {...register("type")} defaultValue={"main"}/>*/}
+
+
                         </Grid>
                     </Box>
                 </form>

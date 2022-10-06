@@ -11,8 +11,9 @@ export type AppState = {
 export type ProductsState = {
 	productsError: string,
 	updatingProduct: boolean,
-	items: Array<Product>,
-	categories: Array<string>
+	allProducts: Array<Product>,
+	categoryProducts?: { [category: string]: Array<Product> }
+	categories: Array<Category>
 }
 
 export type Product = {
@@ -20,11 +21,10 @@ export type Product = {
 	name: string,
 	price: number,
 	description: string,
-	// type?: string,
 	imageFilename?: string,
-	image?: any,
+	image?: any, //??
 	quantity?: number, //selected quantity
-	categories: Array<Category>
+	categories?: Array<Category>
 }
 
 export type ByCategory = { [cat: string]: Array<Product> };
@@ -61,7 +61,7 @@ export enum OrderStateType {
 	CLOSED = "CLOSED"
 }
 
-
+//todo rename to order
 export type OrderState = {
 	id?: string,
 	orderState: OrderStateType,
@@ -86,7 +86,7 @@ export type CreditCardEntity = {
 
 
 export type Category = {
-	name:string
+	name:string,
 	id: string
 }
 

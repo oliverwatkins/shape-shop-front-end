@@ -20,12 +20,12 @@ export function OrderSummary(props: Props) {
 				</tr>
 				}
 				{
-					props.selectedProducts2 && props.selectedProducts2.map((elem: Product) => {
-						return <tr key={elem.name}>
-							<td>{elem.name}</td>
-							<td>{elem.price}</td>
-							<td>{elem.quantity && (elem.quantity > 1) ? elem.quantity : " "}</td>
-							<td>{priceTimesQty(elem.price, elem.quantity)}</td>
+					props.selectedProducts2 && props.selectedProducts2.map((product: Product) => {
+						return <tr key={product.name}>
+							<td>{product.name}</td>
+							<td>{product.price}</td>
+							<td>{product.quantity && (product.quantity > 1) ? product.quantity : " "}</td>
+							<td>{priceTimesQty(product.price, product.quantity)}</td>
 						</tr>
 					})
 				}
@@ -59,9 +59,12 @@ export function OrderSummary(props: Props) {
 	);
 }
 
-function priceTimesQty(p: number, qty: number): string {
-	let t: number = p * qty
-	return t.toFixed(2);
+function priceTimesQty(price: number, qty?: number): string {
+	if (qty) {
+		let t: number = price * qty
+		return t.toFixed(2);
+	}
+	return "" + price
 }
 
 export default OrderSummary;

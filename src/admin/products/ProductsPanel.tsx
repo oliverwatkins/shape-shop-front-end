@@ -6,14 +6,15 @@ import MenuIcon from "@mui/icons-material/Menu";
 import {useEffect, useReducer} from "react";
 import {productsReducer} from "../redux/productsReducer";
 import {useAsync} from "react-async-hook";
-import {AdminState, AppState, Product, ProductsState} from "../../AppState";
+import {AdminState, AppState, Category, Product, ProductsState} from "../../AppState";
 import {api} from "../../api/api";
 import {createFetchProductsSuccessAction} from "../redux/productActions";
 import ProductPanel from "./ProductPanel";
 import {connect} from "react-redux";
 
 type Props = {
-    categories: Array<string>
+    categoryProducts: { [category: string]: Array<Product> }
+    categories: Array<Category>
 }
 
 export function ProductsPanel(props: Props) {
@@ -25,7 +26,14 @@ export function ProductsPanel(props: Props) {
         };
     }
 
-    const [state, dispatch] = useReducer(productsReducer, {updatingProduct:false, items:[], productsError:"", categories: [""]});
+    // productsError: string,
+    //     updatingProduct: boolean,
+    //     allProducts: Array<Product>,
+    //     categoryProducts?: { [category: string]: Array<Product> }
+    // categories: Array<string>
+
+
+    const [state, dispatch] = useReducer(productsReducer, {updatingProduct:false, allProducts:[], productsError:"", categories: [], categoryProducts: {}});
 
     const {
         loading: productLoading,
@@ -68,25 +76,18 @@ export function ProductsPanel(props: Props) {
                 <Box>
                     <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
                         {
-                            props.categories && props.categories.map((value: string, i:number) =>
-                            <Tab label={value} {...a11yProps(i)} />
+                            props.categoryProducts && Object.keys(props.categoryProducts).map((categoryName: string, i:number) =>
+                            <Tab label={categoryName} {...a11yProps(i)} />
                             )
                         }
                     </Tabs>
                 </Box>
                 {
-                    // props.categories[productTabValue]
+                    props.categoryProducts && Object.keys(props.categoryProducts).map((categoryName: string, i:number) =>
+                    <ProductPanel key={productTabValue} category={props.categories.find(e => e.name === categoryName)} products={props.categoryProducts[categoryName]}/>
+                    )
 
-                    <ProductPanel key={productTabValue} category={{name:props.categories[productTabValue]}} products={products}/>
-                    // props.categories && props.categories.map((value: string, i:number) =>
-                    //     <ProductPanel key={i} category={{name:value + "nussig"}} products={products}/>
-                    // )
                 }
-
-            {/*    {productTabValue === 0 && <ProductPanel key={1}*/}
-            {/*                                            category={{name:"main"}} products={products}/>}*/}
-            {/*    {productTabValue === 1 && <ProductPanel key={2}*/}
-            {/*                                            category={{name:"drinks"}} products={products}/>}*/}
             </Box>
         </Box>
     )
@@ -94,10 +95,11 @@ export function ProductsPanel(props: Props) {
 
 const mapStateToProps = (state: AppState): ProductsState => {
     return {
-        items: state.products.items,
+        allProducts: state.products.allProducts,
         productsError: "",
         updatingProduct: false,
-        categories: state.products.categories
+        categories: state.products.categories,
+        categoryProducts: state.products.categoryProducts
         // productsAsKeyMap: state.productsX
         // Authorization: state.login.loginToken,
     };

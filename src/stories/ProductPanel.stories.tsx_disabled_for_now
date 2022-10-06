@@ -14,7 +14,7 @@ export default {
 
 export const Product_Panel = () => (
     <>
-        <ProductPanel category={{name:"main"}}/>
+        <ProductPanel category={{name:"main", id:"1"}} products={[]}/>
     </>
 );
 

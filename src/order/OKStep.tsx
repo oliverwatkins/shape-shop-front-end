@@ -11,6 +11,7 @@ import {connect} from "react-redux";
 import {createPlaceOrderAction} from "../admin/redux/productActions";
 import {useEffect} from "react";
 import {LoadingView} from "../misc/LoadingView";
+import {DeliveryType, PaymentType} from "../AppState";
 
 
 type Props = {
@@ -58,7 +59,22 @@ const mapDispatchToProps = (dispatch: any) => {
 	};
 };
 
-const mapStateToProps = (state: AppState) => {
+// a view of an order
+export type WhatIsThis = {
+	products: Array<Product>,
+	products2: Array<Product>,
+	order: OrderState,
+	address: Address | undefined,
+	selectedProducts: Array<Product>,
+	selectedProducts2: Array<Product>,
+	deliveryType: string,
+	paymentType: PaymentType,
+	submittingOrder: boolean | undefined,
+	orderError: string | undefined
+	// orderError: state.order && state.order.orderError
+}
+
+const mapStateToProps = (state: AppState): WhatIsThis => {
 	return {
 		products: selectProductsByType(state, "main"),
 		products2: selectProductsByType(state, "drinks"),
