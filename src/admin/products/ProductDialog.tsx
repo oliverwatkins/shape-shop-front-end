@@ -79,8 +79,6 @@ export default function ProductDialog(props: Props) {
 
                             {/*TODO category drop down here??*/}
                             {/*<input type="hidden" {...register("type")} defaultValue={"main"}/>*/}
-
-
                         </Grid>
                     </Box>
                 </form>

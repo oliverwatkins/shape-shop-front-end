@@ -12,7 +12,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import {api} from "../../api/api";
 import {
     createAddProductAction,
-    createDeleteProductAction, createFetchProductsSuccessAction,
+    createDeleteProductAction, 
     createUpdateProductSuccessAction
 } from "../redux/productActions";
 import {useSelector} from "react-redux";
@@ -35,6 +35,9 @@ const initialState: ProductsState = {
     updatingProduct: false,
 };
 
+/**
+ * Show products for a categoy.
+ */
 export default function ProductPanel(props: Props) {
 
     const [state, dispatch] = useReducer(productsReducer, initialState);
@@ -48,21 +51,6 @@ export default function ProductPanel(props: Props) {
     const [openCreateProduct, setOpenCreateProduct] = React.useState(false);
     const [openCategoryDialog, setOpenCategoryDialog] = React.useState(false);
     const [deleteCatDialogOpen, setDeleteCatDialogOpen] = React.useState(false);
-
-    // const {
-    //     loading: productLoading,
-    //     error: productError,
-    //     result: products = null,
-    // } = useAsync<Product[]>(api.fetchProducts, [props.category]);
-    //
-
-
-
-    // useEffect(() => {
-    //     if (products) {
-    //         dispatch(createFetchProductsSuccessAction(products));
-    //     }
-    // }, [products]);
 
     const deleteProductCallback = async (item: Product) => {
         try {

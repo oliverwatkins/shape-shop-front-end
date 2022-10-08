@@ -17,11 +17,6 @@ type Props = {
 	updateDeliveryType: (value: any)=>void
 }
 
-// type State = {
-// 	redirect: boolean,
-// 	deliveryType: "DELIVERY" | "PICKUP",
-// }
-
 function AddresStep(props: Props) {
 
 	const [redirect, setRedirect]  = React.useState(false);

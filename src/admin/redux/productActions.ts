@@ -43,7 +43,6 @@ export function createUpdatePaymentType(value: any) {
 	};
 }
 
-
 export function createPlaceOrderAction(data: any) {
 	return {
 		type: Actions.PLACE_ORDER,
@@ -98,9 +97,6 @@ export const Actions = {
 	UPDATE_DELIVERY_TYPE: 'UPDATE_DELIVERY_TYPE',
 
 	UPDATE_CREDIT_CARD: 'UPDATE_CREDIT_CARD',
-
-
-
 
 	FETCH_PRODUCTS: 'FETCH_PRODUCTS_SUCCESS',
 	ADD_PRODUCT: 'ADD_PRODUCT',

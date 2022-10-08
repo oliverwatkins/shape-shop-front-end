@@ -6,7 +6,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import {useEffect, useReducer} from "react";
 import {productsReducer} from "../redux/productsReducer";
 import {useAsync} from "react-async-hook";
-import {AdminState, AppState, Category, Product, ProductsState} from "../../AppState";
+import {AppState, Category, Product, ProductsState} from "../../AppState";
 import {api} from "../../api/api";
 import {createFetchProductsSuccessAction} from "../redux/productActions";
 import ProductPanel from "./ProductPanel";
@@ -26,6 +26,7 @@ export function ProductsPanel(props: Props) {
         };
     }
 
+    //TODO why do we have initial state when using useReducer, but we also need in in the reducer itself?
     const [state, dispatch] = useReducer(productsReducer, {updatingProduct:false, allProducts:[], productsError:"", categories: [], categoryProducts: {}});
 
     const {
@@ -90,7 +91,6 @@ const mapStateToProps = (state: AppState): ProductsState => {
         updatingProduct: false,
         categories: state.products.categories,
         categoryProducts: state.products.categoryProducts
-        // productsAsKeyMap: state.productsX
         // Authorization: state.login.loginToken,
     };
 };

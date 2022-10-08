@@ -36,54 +36,10 @@ type Props = {
     updateImageCallback: Function;
 };
 
-interface ExpandMoreProps extends IconButtonProps {
-    expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-    const {expand, ...other} = props;
-    return <IconButton {...other} />;
-})(({theme, expand}: any) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
-}));
-
-
-async function fetchApi<WhateverthefyouwantittoBe = Record<string, User>>(path: string): Promise<WhateverthefyouwantittoBe> {
-    const response = await fetch(`https://example.com/api${path}`);
-    return response.json();
-}
-
-type User = {
-    name: string;
-}
-
-async function blah() {
-
-
-    // const data = await fetchApi<User[]>('/users')
-    const data2 = await fetchApi('/users')
-
-    let l = data2.name
-    // data.
-
-}
-
-
+/**
+ * Details for single product
+ */
 export function ProductItem(props: Props) {
-
-
-
-    // let c = fetchApi<Props>("asdfasdf")
-    // c.then(x =>
-    // // x.
-    //
-    // )
-
-
 
     const [expanded, setExpanded] = React.useState(false);
 
@@ -218,3 +174,18 @@ function getProductFields(product: Product) {
         </Grid>
     </Box>;
 }
+
+interface ExpandMoreProps extends IconButtonProps {
+    expand: boolean;
+}
+
+const ExpandMore = styled((props: ExpandMoreProps) => {
+    const {expand, ...other} = props;
+    return <IconButton {...other} />;
+})(({theme, expand}: any) => ({
+    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+    }),
+}));

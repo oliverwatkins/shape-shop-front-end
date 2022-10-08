@@ -106,13 +106,13 @@ export function getCategoryProducts(productsArray: Array<Product>): { [category:
     return catProds;
 }
 
-
+/**
+ * pull out unique categories from products
+ */
 function extractUniqueCategories(productsArray: Array<Product>) {
     let uniqueCategories: Array<Category> = [];
 
-    // extract categories
     for (const product of productsArray) {
-
         let categories: Array<Category> | undefined = product.categories;
         if (categories)
             for (const cat of categories) {

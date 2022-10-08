@@ -122,41 +122,6 @@ function AdminScreen(props: Props) {
                 </Route>
                 <Route exact path="/admin/products">
                     <ProductsPanel categoryProducts={{}} categories={[]}/>
-
-
-                    {/*// TODO changed label to title in div component. need to update the Tabs component.*/}
-                    {/*<Box title={"Products"}>*/}
-                    {/*    <Box sx={{width: '100%'}}>*/}
-                    {/*        <Box sx={{flexGrow: 1}}>*/}
-                    {/*            <AppBar position="static">*/}
-                    {/*                <Toolbar>*/}
-                    {/*                    <IconButton*/}
-                    {/*                        size="large"*/}
-                    {/*                        edge="start"*/}
-                    {/*                        color="inherit"*/}
-                    {/*                        aria-label="menu"*/}
-                    {/*                        sx={{mr: 2}}*/}
-                    {/*                    >*/}
-                    {/*                        <MenuIcon/>*/}
-                    {/*                    </IconButton>*/}
-                    {/*                    <Typography variant="h6" component="div" sx={{flexGrow: 1}}>*/}
-                    {/*                        Products*/}
-                    {/*                    </Typography>*/}
-                    {/*                </Toolbar>*/}
-                    {/*            </AppBar>*/}
-                    {/*        </Box>*/}
-                    {/*        <Box>*/}
-                    {/*            <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">*/}
-                    {/*                <Tab label="Products 1" {...a11yProps(0)} />*/}
-                    {/*                <Tab label="Products 2" {...a11yProps(1)} />*/}
-                    {/*            </Tabs>*/}
-                    {/*        </Box>*/}
-                    {/*            {productTabValue === 0 && <ProductPanel key={1}*/}
-                    {/*                                                    category={{name:"main"}}/>}*/}
-                    {/*            {productTabValue === 1 && <ProductPanel key={2}*/}
-                    {/*                                                    category={{name:"drinks"}}/>}*/}
-                    {/*    </Box>*/}
-                    {/*</Box>*/}
                 </Route>
                 <Route path="/admin/settings">
                     <div title={"Settings"}>
