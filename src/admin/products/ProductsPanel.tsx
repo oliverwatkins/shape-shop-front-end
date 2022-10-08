@@ -26,13 +26,6 @@ export function ProductsPanel(props: Props) {
         };
     }
 
-    // productsError: string,
-    //     updatingProduct: boolean,
-    //     allProducts: Array<Product>,
-    //     categoryProducts?: { [category: string]: Array<Product> }
-    // categories: Array<string>
-
-
     const [state, dispatch] = useReducer(productsReducer, {updatingProduct:false, allProducts:[], productsError:"", categories: [], categoryProducts: {}});
 
     const {
@@ -51,6 +44,8 @@ export function ProductsPanel(props: Props) {
     const handleProdTab = (event: any, newValue: number) => {
         setProductTabValue(newValue);
     };
+
+    let category = props.categories[productTabValue];
 
     return (
         <Box title={"Products"}>
@@ -76,18 +71,13 @@ export function ProductsPanel(props: Props) {
                 <Box>
                     <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
                         {
-                            props.categoryProducts && Object.keys(props.categoryProducts).map((categoryName: string, i:number) =>
-                            <Tab label={categoryName} {...a11yProps(i)} />
+                            props.categories.map((category: Category, i:number) =>
+                            <Tab label={category.name} {...a11yProps(i)} />
                             )
                         }
                     </Tabs>
                 </Box>
-                {
-                    props.categoryProducts && Object.keys(props.categoryProducts).map((categoryName: string, i:number) =>
-                    <ProductPanel key={productTabValue} category={props.categories.find(e => e.name === categoryName)} products={props.categoryProducts[categoryName]}/>
-                    )
-
-                }
+                {props.categoryProducts && <ProductPanel key={productTabValue} category={category} products={props.categoryProducts[category.name]}/>}
             </Box>
         </Box>
     )
