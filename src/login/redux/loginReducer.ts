@@ -6,8 +6,11 @@ export function reducer(state: LoginState = initialState, action: any) {
 
 	console.info("in login reducer with action " + action.type)
 
+	//login action is being caugt in SAGA
 	switch (action.type) {
 		case LoginActions.LOGIN_SUCCESS:
+
+			console.info("action.token = " + action.token)
 			return {
 				...state,
 				loginToken: action.token,

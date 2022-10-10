@@ -9,6 +9,7 @@ export const baseURL = 'http://localhost:8080/';
 
 export let api: any = {}
 
+// TODO are the asyn/awaits here really necessary?
 
 const apiReal = {
 
@@ -119,10 +120,10 @@ const apiReal = {
 		return data.data;
 	},
 
-	loginUser: async (credentials: any) => {
+	loginUser: (credentials: any) => {
 		console.info("credentialis " + JSON.stringify(credentials))
 
-		let data = await fetch(baseURL + 'authenticate', {
+		let data = fetch(baseURL + 'authenticate', {
 			method: "POST",
 			body: JSON.stringify(credentials),
 			headers: {

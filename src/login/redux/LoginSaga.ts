@@ -1,8 +1,17 @@
-import {call, put, take} from 'redux-saga/effects';
+import {call, fork, put, take} from 'redux-saga/effects';
 // @ts-ignore
 import jwtDecode from 'jwt-decode';
 import {createLoginFailAction, createLoginSuccessAction, LoginActions} from './loginActions';
 import {api} from "../../api/api";
+
+
+// yield takeLatest(LoginActions.LOGOUT, logoutWorker);
+
+
+
+
+
+
 
 
 export function* loginWatcher() {
@@ -11,10 +20,16 @@ export function* loginWatcher() {
 
 	while (true) {
 
-		console.info(".................")
+		console.info(" in while true")
 
 		const { user, password } = yield take(LoginActions.LOGIN);
-		yield call(login, user, password);
+
+
+		// @ts-ignore
+		yield call(login, user, password); //hanging here ?
+
+		console.info(" in while true 2.  what is t?")
+
 	}
 }
 

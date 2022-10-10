@@ -18,6 +18,7 @@ type State = {
 
 export default function LoginScreen(props: Props) {
 
+	// alert("in login screen")
 	const dispatch = useDispatch();
 
 	const isLoggedIn = useSelector(isUserLoggedIn)
@@ -25,8 +26,10 @@ export default function LoginScreen(props: Props) {
 	let onSubmit = (data:any) => {
 		dispatch(createLoginAction(data.username, data.password));
 	}
+	console.info("is logged in = " + isLoggedIn)
 
 	if (isLoggedIn) {
+		console.info("is logged in ")
 		return <Redirect to="/admin/orders/" />
 	}
 

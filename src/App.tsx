@@ -17,8 +17,8 @@ import Nav from "./Nav";
 
 import OrderWizard from "./order/OrderWizardContainer";
 import Footer from "./Footer";
+import RedirectToLogout from "./login/RedirectToLogout";
 import Logout from "./login/Logout";
-import {Logout2} from "./login/Logout2";
 import AdminScreen from "./admin/AdminScreen";
 import {ToastContainer} from "react-toastify";
 import {useAsync} from "react-async-hook";
@@ -70,13 +70,13 @@ function App(props: Props) {
                     <Route path="/logout">
                         <Nav/>
                         {getMarq()}
-                        <Logout/>
+                        <RedirectToLogout/>
                         <Footer/>
                     </Route>
                     <Route path="/logout2">
                         <Nav/>
                         {getMarq()}
-                        <Logout2/>
+                        <Logout/>
                         <Footer/>
                     </Route>
                     <Route path="/order">
