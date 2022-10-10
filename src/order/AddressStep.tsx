@@ -18,7 +18,6 @@ type Props = {
 }
 
 function AddresStep(props: Props) {
-
 	const [redirect, setRedirect]  = React.useState(false);
 	const [deliveryType, setDeliveryType]  = React.useState(DeliveryType.pickup);
 

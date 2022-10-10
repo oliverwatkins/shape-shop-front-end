@@ -4,7 +4,6 @@ import {createLogoutAction} from './redux/loginActions';
 import {useHistory} from "react-router-dom";
 
 /**
-
  * Just redirect
  */
 export default function RedirectToLogout(props: any) {

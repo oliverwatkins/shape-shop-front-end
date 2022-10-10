@@ -1,4 +1,4 @@
-import type {AppState, OrderState, Product} from "./AppState";
+import type {AppState, Category, OrderState, Product} from "./AppState";
 
 export const isUserLoggedIn = (state: AppState) => {
 	return Boolean(state.login.loginToken && state.login.loginToken.role);
@@ -20,10 +20,13 @@ export const selectProductsByType = (state: AppState, type: string): Array<Produ
 //
 // export const selectProductsByType = (state: AppState, type: string) => state.products.allProducts.filter(product => product.type === type);
 
+export const selectCategories = (state: AppState): Array<Category> => state.products.categories;
+
 
 //deprecated
 // export const selectSelectedProductByType = (state: AppState, type: string) => state.products.allProducts.filter(product => product.quantity && product.quantity > 0  && product.type === type);
 export const selectSelectedProductByType = (state: AppState, type: string): Array<Product>  => state.products.allProducts.filter(product => product.quantity && product.quantity > 0) //  && product.type === type);
+
 
 
 

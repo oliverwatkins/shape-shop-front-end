@@ -25,7 +25,8 @@ class Nav extends React.PureComponent<Props> {
 						<Link to="/">Home</Link>
 					</li>
 					<li>
-						<Link to="/order/productlist">Order</Link>
+						{/*//TODO put first cat name in here*/}
+						<Link to="/order/cat_main">Order</Link>
 					</li>
 					<li className={"admin"}>
 						<Link to="/login">Admin</Link>

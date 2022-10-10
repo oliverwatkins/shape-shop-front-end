@@ -45,8 +45,6 @@ function App(props: Props) {
         }
     }, [products]);
 
-
-
     return (
         <div className="App">
             <div>
@@ -82,7 +80,7 @@ function App(props: Props) {
                     <Route path="/order">
                         <Nav/>
                         {getMarq()}
-                        <OrderWizard/>
+                        <OrderWizard categoryProducts={{}} categories={[]}/>
                         <Footer/>
                     </Route>
                     <Route path="/login">
@@ -115,15 +113,15 @@ const mapStateToProps = (state: any) => {
     };
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-    return {
-        // fetchProducts: () => {
-        //     dispatch(createFetchProductsSuccessAction());
-        // },
-    };
-};
+// const mapDispatchToProps = (dispatch: any) => {
+//     return {
+//         // fetchProducts: () => {
+//         //     dispatch(createFetchProductsSuccessAction());
+//         // },
+//     };
+// };
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps,
+    mapStateToProps
+    // mapDispatchToProps,
 )(App);

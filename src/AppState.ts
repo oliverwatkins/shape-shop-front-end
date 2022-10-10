@@ -82,9 +82,6 @@ export type CreditCardEntity = {
 	type: string,
 }
 
-
-
-
 export type Category = {
 	name:string,
 	id: string
