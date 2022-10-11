@@ -44,7 +44,7 @@ function AddresStep(props: Props) {
 					<div className={"radioBox"}>
 						<input type="radio"
 							   id="contactChoice1"
-							   name="pckupOrDelivery"
+							   name="pickupOrDelivery"
 							   value={DeliveryType.pickup}
 							   onChange={onRadioChanged}
 							   checked={deliveryType === DeliveryType.pickup}/>
@@ -69,7 +69,7 @@ function AddresStep(props: Props) {
 						}}>
 
 						{({values, errors, touched, handleChange, handleBlur, handleSubmit, isSubmitting}) => (
-							<form onSubmit={handleSubmit} id="addressForm">
+							<form onSubmit={handleSubmit} id="addressForm" aria-label="form">
 								<div>
 									<label htmlFor="name">Name</label>
 									<input

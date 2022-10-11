@@ -113,15 +113,6 @@ const mapStateToProps = (state: any) => {
     };
 };
 
-// const mapDispatchToProps = (dispatch: any) => {
-//     return {
-//         // fetchProducts: () => {
-//         //     dispatch(createFetchProductsSuccessAction());
-//         // },
-//     };
-// };
-
 export default connect(
     mapStateToProps
-    // mapDispatchToProps,
 )(App);
