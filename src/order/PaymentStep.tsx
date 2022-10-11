@@ -44,11 +44,11 @@ function PaymentStep(props: Props) {
 					</div>
 					<div className={"stripe-payment-panel"}>
 						<Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-							<CheckoutForm updateCC={props.updateCC} amount={calculateTotal(props.selectedProducts, props.selectedProducts2)}/>
+							<CheckoutForm updateCC={props.updateCC} amount={calculateTotal(props.selectedProducts)}/>
 						</Elements>
 					</div>
 				</div>
-				<OrderSummary selectedProducts={props.selectedProducts} selectedProducts2={props.selectedProducts2}/>
+				<OrderSummary selectedProducts={props.selectedProducts} />
 			</div>
 		</div>
 	);

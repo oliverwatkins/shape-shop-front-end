@@ -69,7 +69,8 @@ export function reducer(state: OrderState = initialState , action: any) {
 }
 
 const initialState: OrderState = {
+	selectedProducts: [],
 	orderState: OrderStateType.OPEN,
 	paymentType: PaymentType.cash,
-	deliveryType: DeliveryType.pickup,
+	deliveryType: DeliveryType.pickup
 };

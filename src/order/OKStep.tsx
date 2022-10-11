@@ -5,7 +5,7 @@ import type {Address, AppState, OrderState, Product} from "../AppState";
 import {
 	selectOrder,
 	selectProductsByType,
-	selectSelectedProductByType
+	selectSelectedProducts
 } from "../selectors";
 import {connect} from "react-redux";
 import {createPlaceOrderAction} from "../admin/redux/productActions";
@@ -16,7 +16,7 @@ import {DeliveryType, PaymentType} from "../AppState";
 
 type Props = {
 	selectedProducts: Array<Product>,
-	selectedProducts2: Array<Product>,
+	// selectedProducts2: Array<Product>,
 	address?: Address,
 	deliveryType: string,
 	paymentType: string,
@@ -66,7 +66,6 @@ export type WhatIsThis = {
 	order: OrderState,
 	address: Address | undefined,
 	selectedProducts: Array<Product>,
-	selectedProducts2: Array<Product>,
 	deliveryType: string,
 	paymentType: PaymentType,
 	submittingOrder: boolean | undefined,
@@ -80,12 +79,13 @@ const mapStateToProps = (state: AppState): WhatIsThis => {
 		products2: selectProductsByType(state, "drinks"),
 		order: selectOrder(state),
 		address: state.order && state.order.address,
-		selectedProducts: selectSelectedProductByType(state, "main"),
-		selectedProducts2: selectSelectedProductByType(state, "drinks"),
+		selectedProducts: selectSelectedProducts(state),
+		// selectedProducts: selectSelectedProductByType(state, "main"),
+		// selectedProducts2: selectSelectedProductByType(state, "drinks"),
 		deliveryType: state.order && state.order.deliveryType,
 		paymentType: state.order && state.order.paymentType,
 		submittingOrder: state.order && state.order.submittingOrder,
-		orderError: state.order && state.order.orderError,
+		orderError: state.order && state.order.orderError
 	};
 };
 

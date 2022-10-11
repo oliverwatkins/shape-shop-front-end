@@ -22,11 +22,9 @@ export const wizardPages = {
 }
 
 type Props = {
-
 	categoryProducts: { [category: string]: Array<Product> },
 	categories: Array<Category>,
 	selectedProducts?: Array<Product>,
-	// selectedProducts2?: Array<Product>,
 	address?: Address,
 	deliveryType?: string,
 	paymentType?: string,
@@ -59,13 +57,10 @@ function OrderWizardContainer(props: Props) {
 						/>
 					</Route>
 					<Route path={wizardPages.OK}>
-						<OKStep/>
+						<OKStep />
 					</Route>
 					<Route path={wizardPages.PAYMENT}>
-						<PaymentStep
-							selectedProducts={props.selectedProducts}
-							// selectedProducts2={props.selectedProducts2}
-						/>
+						<PaymentStep selectedProducts={props.selectedProducts} />
 					</Route>
 				</Switch>
 			</Router>
@@ -101,9 +96,7 @@ function createCategoryPages(props: Props) {
 	// </Route>)
 
 
-	return (
-		pages
-	)
+	return (pages)
 }
 
 
@@ -111,19 +104,8 @@ function createCategoryPages(props: Props) {
 
 const mapStateToProps = (state: AppState) => {
 	return {
-
 		categories: selectCategories(state),
 		categoryProducts: state.products.categoryProducts,
-
-
-
-
-		// products: selectProductsByType(state, "main"),
-		// products2: selectProductsByType(state, "drinks"),
-
-
-		// selectedProducts: selectSelectedProductByType(state, "main"),
-		// selectedProducts2: selectSelectedProductByType(state, "drinks"),
 		productsError: state.products.productsError,
 		address: state.order && state.order.address,
 		deliveryType: state.order && state.order.deliveryType,

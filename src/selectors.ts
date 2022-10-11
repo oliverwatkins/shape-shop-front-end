@@ -25,9 +25,10 @@ export const selectCategories = (state: AppState): Array<Category> => state.prod
 
 //deprecated
 // export const selectSelectedProductByType = (state: AppState, type: string) => state.products.allProducts.filter(product => product.quantity && product.quantity > 0  && product.type === type);
-export const selectSelectedProductByType = (state: AppState, type: string): Array<Product>  => state.products.allProducts.filter(product => product.quantity && product.quantity > 0) //  && product.type === type);
+export const selectSelectedProductByType = (state: AppState): Array<Product>  => state.products.allProducts.filter(product => product.quantity && product.quantity > 0) //  && product.type === type);
 
 
+export const selectSelectedProducts = (state: AppState): Array<Product>  => state.products.allProducts.filter(product => product.quantity && product.quantity > 0)
 
 
 
@@ -44,6 +45,8 @@ export const selectOrder = (state: AppState): OrderState => {
 		address: state.order && state.order.address,
 		creditCard: state.order && state.order.creditCard,
 		orderItems: state.order.orderItems,
+		selectedProducts: selectSelectedProductByType(state),
+
 		//@deprecated
 		// selectedProducts: selectSelectedProductByType(state, "main"),
 		// //@deprecated

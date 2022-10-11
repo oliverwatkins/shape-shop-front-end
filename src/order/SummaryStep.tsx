@@ -25,7 +25,7 @@ function Summary(props: Props) {
 				<BackButton page={pages.WHICH_PAYMENT}/>
 				<div className="wizardCenter">
 					<h3><u>Order</u></h3>
-					<OrderSummary selectedProducts={props.selectedProducts} selectedProducts2={props.selectedProducts2}/>
+					<OrderSummary selectedProducts={props.selectedProducts}/>
 
 					<div>Delivery type -
 						{props.deliveryType === DeliveryType.pickup && <span>

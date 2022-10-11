@@ -7,9 +7,7 @@ import {fireEvent, render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import configureStore from "redux-mock-store";
 
-
 //TODO change all enzyme tests to testing library
-
 describe('Address Step test', () => {
 	const mockStore = configureStore();
 

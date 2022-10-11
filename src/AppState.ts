@@ -64,6 +64,7 @@ export enum OrderStateType {
 //todo rename to order
 export type OrderState = {
 	id?: string,
+	selectedProducts: Array<Product>,
 	orderState: OrderStateType,
 	paymentType: PaymentType,
 	deliveryType: string,

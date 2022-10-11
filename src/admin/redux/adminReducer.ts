@@ -26,7 +26,8 @@ export function reducer(state: OrderState = initialState,
 }
 
 const initialState: OrderState = {
+	selectedProducts: [],
 	orderState: OrderStateType.OPEN, //todo convert to enum
 	paymentType: PaymentType.card,
-	deliveryType: DeliveryType.delivery,
+	deliveryType: DeliveryType.delivery
 };

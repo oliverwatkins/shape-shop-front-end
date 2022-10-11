@@ -1,7 +1,7 @@
 import React from 'react';
 import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {BrowserRouter as Router, MemoryRouter, Redirect, Route, Switch} from 'react-router-dom';
+import {MemoryRouter} from 'react-router-dom';
 import {createMemoryHistory} from "history";
 import App from "../../App";
 import configureStore from "redux-mock-store";
