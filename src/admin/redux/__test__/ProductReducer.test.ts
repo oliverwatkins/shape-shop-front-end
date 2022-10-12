@@ -1,7 +1,7 @@
 
 
-import { getCategoryProducts } from "../productsReducer";
 import {ByCategory, Product} from "../../../AppState";
+import {getCategoryProducts} from "../../../util/util";
 
 it("create category product tree", () => {
     let catProds: ByCategory = getCategoryProducts(allProducts);
