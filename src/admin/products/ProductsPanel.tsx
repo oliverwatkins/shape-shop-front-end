@@ -8,7 +8,7 @@ import {productsReducer} from "../redux/productsReducer";
 import {useAsync} from "react-async-hook";
 import {AppState, Category, Product, ProductsState} from "../../AppState";
 import {api} from "../../api/api";
-import {createFetchProductsSuccessAction} from "../redux/productActions";
+import {createFetchProductsSuccessAction} from "../redux/productsReducer";
 import ProductPanel from "./ProductPanel";
 import {connect} from "react-redux";
 
@@ -37,7 +37,7 @@ export function ProductsPanel(props: Props) {
 
     useEffect(() => {
         if (products) {
-            dispatch(createFetchProductsSuccessAction(products));
+            dispatch(createFetchProductsSuccessAction({data: products}));
         }
     }, [products]);
 
@@ -69,7 +69,7 @@ export function ProductsPanel(props: Props) {
                         </Toolbar>
                     </AppBar>
                 </Box>
-                <Box>
+                <Box key={"tabs"}>
                     <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
                         {
                             props.categories.map((category: Category, i:number) =>

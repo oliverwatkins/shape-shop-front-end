@@ -14,7 +14,7 @@ import {
     createAddProductAction,
     createDeleteProductAction, 
     createUpdateProductSuccessAction
-} from "../redux/productActions";
+} from "../redux/productsReducer";
 import {useSelector} from "react-redux";
 import {AppState, ProductsState} from "../../AppState";
 import {Notify} from "../../notify";
@@ -55,7 +55,7 @@ export default function ProductPanel(props: Props) {
     const deleteProductCallback = async (item: Product) => {
         try {
             await api.deleteProduct(item, Authorization)
-            dispatch(createDeleteProductAction(item))
+            dispatch(createDeleteProductAction({product: item}))
             Notify.success("Deleted Product " + item.name);
         } catch (e) {
             console.error(e)
@@ -66,8 +66,10 @@ export default function ProductPanel(props: Props) {
         try {
             await api.updateProduct(item, Authorization)
 
+
+            let l = createUpdateProductSuccessAction({product: item})
             //after update in backend, update the state from this component
-            dispatch(createUpdateProductSuccessAction(item))
+            dispatch(l)
 
             setOpenEditPProduct(false);
 
@@ -94,7 +96,7 @@ export default function ProductPanel(props: Props) {
     const createProductCallback = async (item: Product) => {
         try {
             await api.createProduct(item, Authorization)
-            dispatch(createAddProductAction(item));
+            dispatch(createAddProductAction({product: item}));
 
             setOpenCreateProduct(false);
             Notify.success("Created Product " + item.name);

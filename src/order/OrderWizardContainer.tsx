@@ -31,8 +31,6 @@ type Props = {
 	productsError?: string,
 }
 
-
-
 function OrderWizardContainer(props: Props) {
 	return (
 		<div className={"order-wizard"}>
@@ -42,8 +40,6 @@ function OrderWizardContainer(props: Props) {
 					{createCategoryPages(props)}
 					<Route path={wizardPages.ADDRESS}>
 						<AddressStep/>
-
-						{/*<AddressStep/>*/}
 					</Route>
 					<Route path={wizardPages.WHICH_PAYMENT}>
 						<WhichPayment/>
@@ -68,7 +64,6 @@ function OrderWizardContainer(props: Props) {
 	)
 }
 
-
 function createCategoryPages(props: Props) {
 
 	if (!props.categoryProducts)
@@ -89,18 +84,8 @@ function createCategoryPages(props: Props) {
 			return (
 				<div>an error has occurred</div>)
 	})
-
-	// pages.push(				<Route key={1000} path={"/order/XXXX"}>
-	//
-	// 	{/*<ProductStep categoryProducts={props.categoryProducts} category={category} categories={props.categories}/>*/}
-	// </Route>)
-
-
 	return (pages)
 }
-
-
-
 
 const mapStateToProps = (state: AppState) => {
 	return {

@@ -36,7 +36,7 @@ function ProductStep(props: Props) {
 	);
 }
 
-
+//TODO refactor these f's ?
 function getPrevPageURL(props: Props) {
 	let c = getPrevCategory(props.category, props.categories)
 	if (c)

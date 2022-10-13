@@ -17,7 +17,7 @@ export type ProductsState = {
 }
 
 export type Product = {
-	id?: string,
+	id: string,
 	name: string,
 	price: number,
 	description: string,

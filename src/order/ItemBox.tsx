@@ -5,7 +5,7 @@ import {baseURL} from "../api/api";
 
 type Props = {
 	product: Product,
-	handleChangeSelection: any
+	handleChangeSelection: (arg1: number, arg2: string) => void //qty, id
 }
 
 

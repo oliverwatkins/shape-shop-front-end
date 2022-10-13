@@ -11,7 +11,7 @@ import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
 import {
     createFetchProductsSuccessAction
-} from "./admin/redux/productActions";
+} from "./admin/redux/productsReducer";
 import Nav from "./Nav";
 
 
@@ -22,13 +22,12 @@ import Logout from "./login/Logout";
 import AdminScreen from "./admin/AdminScreen";
 import {ToastContainer} from "react-toastify";
 import {useAsync} from "react-async-hook";
-import {OrderState} from "./AppState";
+import {OrderState, Product} from "./AppState";
 import {api} from "./api/api";
 
 type Props = {
     fetchProducts: Function
 }
-
 
 function App(props: Props) {
     let dispatch = useDispatch();
@@ -37,11 +36,11 @@ function App(props: Props) {
         loading: productLoading,
         error: productError,
         result: products = null,
-    } = useAsync<OrderState[]>(api.fetchProducts, []);
+    } = useAsync<Product[]>(api.fetchProducts, []);
 
     useEffect(() => {
         if (products) {
-            dispatch(createFetchProductsSuccessAction(products));
+            dispatch(createFetchProductsSuccessAction({data: products}));
         }
     }, [products]);
 

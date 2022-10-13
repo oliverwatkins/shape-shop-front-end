@@ -1,13 +1,13 @@
 import * as React from 'react';
 
 import ItemBox from "./ItemBox";
-import {createUpdateProductSelection} from "../admin/redux/productActions";
+import {createUpdateProductSelection} from "../admin/redux/productsReducer";
 import {connect} from "react-redux";
 import type {Product} from "../AppState";
 
 type Props = {
 	productItems?: Array<Product>,
-	updateProductSelection: Function
+	updateProductSelection: (arg1: number, arg2: string) => void
 }
 
 function ProductSelection(props: Props) {
@@ -26,10 +26,11 @@ function ProductSelection(props: Props) {
 	);
 }
 
+//todo use dispatch hook
 const mapDispatchToProps = (dispatch: any) => {
 	return {
-		updateProductSelection: (value: any, id: any) => {
-			dispatch(createUpdateProductSelection(value, id));
+		updateProductSelection: (quantity: number, productId: string) => {
+			dispatch(createUpdateProductSelection({value: quantity, productid: productId}));
 		},
 	};
 };

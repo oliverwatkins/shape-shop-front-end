@@ -7,16 +7,9 @@ import OrderPanel from "./OrderPanel";
 import ProductPanel from "./products/ProductPanel";
 import {Link, Route, Switch} from "react-router-dom";
 import "./admin.scss";
-import {AppBar, Box, Tab, Tabs, Toolbar, Typography} from "@mui/material";
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import {Box, Tab, Tabs, Typography} from "@mui/material";
 import Button from "@mui/material/Button";
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
-import {useAsync} from "react-async-hook";
-import {api} from "../api/api";
-import {useEffect, useReducer} from "react";
-import {createFetchProductsSuccessAction} from "./redux/productActions";
-import {productsReducer} from "./redux/productsReducer";
 import ProductsPanel from "./products/ProductsPanel";
 
 type Props = {

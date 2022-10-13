@@ -15,7 +15,6 @@ type Props = {
 function WhichPayment(props: Props) {
 
 	const [paymentType, setPaymentType]  = React.useState(PaymentType.cash);
-	// const [redirect, setRedirect]  = React.useState(false);
 
 	function onRadioChanged(e: React.ChangeEvent<HTMLInputElement>){
 		// @ts-ignore
@@ -43,7 +42,6 @@ function WhichPayment(props: Props) {
 						   value={PaymentType.card}
 						   checked={paymentType === PaymentType.card}
 						   onChange={onRadioChanged}
-
 					/>
 					<label htmlFor="contactChoice1">Pay online now with credit card</label>
 				</div>

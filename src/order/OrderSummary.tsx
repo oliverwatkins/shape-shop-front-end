@@ -17,12 +17,10 @@ export function OrderSummary(props: Props) {
         splitIntoCategories = getCategoryProducts(props.selectedProducts);
     }
 
-
     return (
         <div className={"order-summary"}>
             <table>
                 <tbody>
-
                 {splitIntoCategories && Object.keys(splitIntoCategories).map(e => {
 
                     let categoryProducts = splitIntoCategories[e];
@@ -35,37 +33,17 @@ export function OrderSummary(props: Props) {
                             <td>{priceTimesQty(product.price, product.quantity)}</td>
                             </tr>
                     )});
-
                     return (
                         <>
-                        <tr><td><h4>{e}</h4></td></tr>
+                        <tr key={e}><td><h4>{e}</h4></td></tr>
                         {products}
                         </>
                     );
                 })}
-                {/*{props.selectedProducts && props.selectedProducts.length > 0 &&*/}
-                {/*    <tr>*/}
-                {/*        <td><h4>Mains?</h4></td>*/}
-                {/*        <td/>*/}
-                {/*        <td/>*/}
-                {/*        <td/>*/}
-                {/*    </tr>*/}
-                {/*}*/}
-                {/*{*/}
-                {/*    props.selectedProducts && props.selectedProducts.map((elem: Product) => {*/}
-                {/*        return <tr key={elem.name}>*/}
-                {/*            <td>{elem.name}</td>*/}
-                {/*            <td>{elem.price}</td>*/}
-                {/*            <td>{elem.quantity && (elem.quantity > 1) ? elem.quantity : " "}</td>*/}
-                {/*            <td>{priceTimesQty(elem.price, elem.quantity)}</td>*/}
-                {/*        </tr>*/}
-                {/*    })*/}
-                {/*}*/}
                 <tr>
                     <td></td>
                     <td><b>Total:</b></td>
                     <td></td>
-                    {/*<td>{calculateTotal(props.selectedProducts, props.selectedProducts2)}</td>*/}
                     <td>{calculateTotal(props.selectedProducts)}</td>
                 </tr>
                 </tbody>
