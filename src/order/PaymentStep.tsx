@@ -48,7 +48,7 @@ function PaymentStep(props: Props) {
 						</Elements>
 					</div>
 				</div>
-				<OrderSummary selectedProducts={props.selectedProducts} />
+				<OrderSummary/>
 			</div>
 		</div>
 	);

@@ -6,24 +6,22 @@ import {Formik} from "formik";
 import "./order.scss"
 import {Redirect} from "react-router";
 import {createUpdateAddress, createUpdateDeliveryType} from "../admin/redux/productActions";
-import {connect} from "react-redux";
+import {useDispatch} from "react-redux";
 import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
 import {DeliveryType} from "../AppState";
 
-type Props = {
-	updateAddress: (value: any)=>void,
-	updateDeliveryType: (value: any)=>void
-}
+export default function AddresStep() {
 
-function AddresStep(props: Props) {
+	const dispatch = useDispatch();
 	const [redirect, setRedirect]  = React.useState(false);
 	const [deliveryType, setDeliveryType]  = React.useState(DeliveryType.pickup);
 
 	function onRadioChanged(e: any) {
 		setDeliveryType(e.currentTarget.value)
-		props.updateDeliveryType(e.currentTarget.value)
+
+		dispatch(createUpdateDeliveryType(e.currentTarget.value));
 	}
 
 	if (redirect) {
@@ -63,7 +61,10 @@ function AddresStep(props: Props) {
 						onSubmit={(values, blah) => {
 							setTimeout(() => {
 								blah.setSubmitting(false);
-								props.updateAddress(values);
+
+								dispatch(createUpdateAddress(values));
+								// props.updateAddress(values);
+
 								setRedirect(true)
 							}, 400);
 						}}>
@@ -151,7 +152,6 @@ function AddresStep(props: Props) {
 						)}
 					</Formik>
 				</div>
-				{/*<NextButton label={"next"} page={pages.ADDRESS}/>*/}
 				<NextButton label={"next"} type={"submit"} form={"addressForm"}/>
 			</div>
 		</div>
@@ -174,20 +174,3 @@ let validator = (values: any) => {
 	}
 	return errors;
 }
-
-
-const mapDispatchToProps = (dispatch: any) => {
-	return {
-		updateAddress: (value: any) => {
-			dispatch(createUpdateAddress(value));
-		},
-		updateDeliveryType: (value: any) => {
-			dispatch(createUpdateDeliveryType(value));
-		},
-	};
-};
-
-export default connect(
-	null,
-	mapDispatchToProps,
-)(AddresStep);

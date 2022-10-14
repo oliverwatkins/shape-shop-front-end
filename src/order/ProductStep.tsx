@@ -25,11 +25,11 @@ function ProductStep(props: Props) {
 			<div className="wizardMain">
 				<BackButton page={getPrevPageURL(props)}/>
 				<div className="wizardCenter">
-					<ProductSelection productItems={props.categoryProducts[props.category.name]}/>
+					<ProductSelection productItems={props.categoryProducts[props.category.name]} />
 				</div>
 				<div style={{textAlign: "right"}}>
 					<NextButton label={"next"} page={getNextPageURL(props)}/>
-					<OrderSummary selectedProducts={props.selectedProducts}/>
+					<OrderSummary/>
 				</div>
 			</div>
 		</div>

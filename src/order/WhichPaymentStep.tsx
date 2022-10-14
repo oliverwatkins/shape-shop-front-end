@@ -3,23 +3,20 @@ import * as React from 'react';
 import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import {createUpdatePaymentType} from "../admin/redux/productActions";
 import {PaymentType} from "../AppState";
 
-type Props = {
-	updatePaymentType: (value: any)=>void
-}
-
-
-function WhichPayment(props: Props) {
+export default function WhichPayment() {
+	const dispatch = useDispatch();
 
 	const [paymentType, setPaymentType]  = React.useState(PaymentType.cash);
 
 	function onRadioChanged(e: React.ChangeEvent<HTMLInputElement>){
 		// @ts-ignore
 		setPaymentType(PaymentType[e.currentTarget.value])
-		props.updatePaymentType(e.currentTarget.value)
+
+		dispatch(createUpdatePaymentType(e.currentTarget.value));
 	}
 
 	return (
@@ -50,16 +47,3 @@ function WhichPayment(props: Props) {
 		</div>
 	);
 }
-
-const mapDispatchToProps = (dispatch: any) => {
-	return {
-		updatePaymentType: (value: any) => {
-			dispatch(createUpdatePaymentType(value));
-		},
-	};
-};
-
-export default connect(
-	null,
-	mapDispatchToProps,
-)(WhichPayment);

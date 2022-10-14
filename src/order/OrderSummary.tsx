@@ -3,18 +3,20 @@ import type {Product} from "../AppState";
 import {calculateTotal} from "./utils";
 import {AppState} from "../AppState";
 import {selectSelectedProducts} from "../selectors";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {getCategoryProducts} from "../util/util";
 
 type Props = {
     selectedProducts?: Array<Product>,
 }
 
-export function OrderSummary(props: Props) {
+export default function OrderSummary() {
+
+    let selectedProducts = useSelector(selectSelectedProducts);
 
     let splitIntoCategories: { [category: string]: Array<Product> } = {};
-    if (props.selectedProducts && props.selectedProducts.length > 0) {
-        splitIntoCategories = getCategoryProducts(props.selectedProducts);
+    if (selectedProducts && selectedProducts.length > 0) {
+        splitIntoCategories = getCategoryProducts(selectedProducts);
     }
 
     return (
@@ -44,7 +46,7 @@ export function OrderSummary(props: Props) {
                     <td></td>
                     <td><b>Total:</b></td>
                     <td></td>
-                    <td>{calculateTotal(props.selectedProducts)}</td>
+                    <td>{calculateTotal(selectedProducts)}</td>
                 </tr>
                 </tbody>
             </table>
@@ -59,15 +61,3 @@ function priceTimesQty(price: number, qty?: number): string {
     }
     return "" + price
 }
-
-// export default OrderSummary;
-const mapStateToProps = (state: AppState) => {
-    return {
-        selectedProducts: selectSelectedProducts(state),
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    null,
-)(OrderSummary);
