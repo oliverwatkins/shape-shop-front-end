@@ -12,7 +12,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Box} from "@material-ui/core";
 import {Typography} from "@mui/material";
 import {createUpdateProductSuccessAction} from "../redux/productsReducer";
-// import {useDispatch, useSelector} from "react-redux";
+
 type Props = {
     open: boolean
     handleCancel: () => any

@@ -4,20 +4,23 @@ import {AppBar, Box, Tab, Tabs, Toolbar} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import {useEffect, useReducer} from "react";
-import {productsReducer} from "../redux/productsReducer";
 import {useAsync} from "react-async-hook";
-import {AppState, Category, Product, ProductsState} from "../../AppState";
+import {AppState, Category, Product} from "../../AppState";
 import {api} from "../../api/api";
 import {createFetchProductsSuccessAction} from "../redux/productsReducer";
 import ProductPanel from "./ProductPanel";
-import {connect} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 
 type Props = {
     categoryProducts: { [category: string]: Array<Product> }
     categories: Array<Category>
 }
 
-export function ProductsPanel(props: Props) {
+export default function ProductsPanel(propsX: Props) {
+
+    const categories = useSelector((state: AppState) => state.products.categories)
+    const categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
+    const dispatch = useDispatch()
 
     function a11yProps(index: number) {
         return {
@@ -25,9 +28,6 @@ export function ProductsPanel(props: Props) {
             'aria-controls': `simple-tabpanel-${index}`,
         };
     }
-
-    //TODO why do we have initial state when using useReducer, but we also need in in the reducer itself?
-    const [state, dispatch] = useReducer(productsReducer, {updatingProduct:false, allProducts:[], productsError:"", categories: [], categoryProducts: {}});
 
     const {
         loading: productLoading,
@@ -46,7 +46,7 @@ export function ProductsPanel(props: Props) {
         setProductTabValue(newValue);
     };
 
-    let category = props.categories[productTabValue];
+    let category = categories[productTabValue];
 
     return (
         <Box title={"Products"}>
@@ -72,30 +72,14 @@ export function ProductsPanel(props: Props) {
                 <Box key={"tabs"}>
                     <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
                         {
-                            props.categories.map((category: Category, i:number) =>
+                            categories.map((category: Category, i:number) =>
                             <Tab label={category.name} {...a11yProps(i)} />
                             )
                         }
                     </Tabs>
                 </Box>
-                {props.categoryProducts && <ProductPanel key={productTabValue} category={category} products={props.categoryProducts[category.name]}/>}
+                {categoryProducts && <ProductPanel key={productTabValue} category={category} products={categoryProducts[category.name]}/>}
             </Box>
         </Box>
     )
 }
-
-const mapStateToProps = (state: AppState): ProductsState => {
-    return {
-        allProducts: state.products.allProducts,
-        productsError: "",
-        updatingProduct: false,
-        categories: state.products.categories,
-        categoryProducts: state.products.categoryProducts
-        // Authorization: state.login.loginToken,
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    null,
-)(ProductsPanel);

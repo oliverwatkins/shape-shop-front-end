@@ -40,7 +40,7 @@ const initialState: ProductsState = {
  */
 export default function ProductPanel(props: Props) {
 
-    const [state, dispatch] = useReducer(productsReducer, initialState);
+    const [state, dispatch] = useReducer(productsReducer, initialState); //TODO useDispatch
 
     const Authorization: any = useSelector((state: AppState) => state.login.loginToken)
 

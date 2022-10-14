@@ -1,6 +1,3 @@
-import {
-    Actions,
-} from './productActions';
 import type {ProductsState} from "../../AppState";
 import {extractUniqueCategories, getCategoryProducts} from "../../util/util";
 import { AnyAction } from "redux";
@@ -14,11 +11,19 @@ const initialState: ProductsState = {
     updatingProduct: false,
 };
 
-export const createAddProductAction = createAction<{ product: Product } >(Actions.ADD_PRODUCT);
-export const createDeleteProductAction = createAction<{ product: Product } >(Actions.DELETE_PRODUCT);
-export const createUpdateProductSuccessAction = createAction<{ product: Product } >(Actions.UPDATE_PRODUCT);
-export const createFetchProductsSuccessAction = createAction<{ data: any }>(Actions.FETCH_PRODUCTS);
-export const createUpdateProductSelection = createAction<{ value: number, productid: string } >(Actions.UPDATE_PRODUCT_SELECTION);
+export const ProductActions = {
+    UPDATE_PRODUCT_SELECTION: 'UPDATE_PRODUCT_SELECTION',
+    FETCH_PRODUCTS: 'FETCH_PRODUCTS_SUCCESS',
+    ADD_PRODUCT: 'ADD_PRODUCT',
+    UPDATE_PRODUCT: 'UPDATE_PRODUCT_SUCCESS',
+    DELETE_PRODUCT: 'DELETE_PRODUCT'
+}
+
+export const createAddProductAction = createAction<{ product: Product } >(ProductActions.ADD_PRODUCT);
+export const createDeleteProductAction = createAction<{ product: Product } >(ProductActions.DELETE_PRODUCT);
+export const createUpdateProductSuccessAction = createAction<{ product: Product } >(ProductActions.UPDATE_PRODUCT);
+export const createFetchProductsSuccessAction = createAction<{ data: any }>(ProductActions.FETCH_PRODUCTS);
+export const createUpdateProductSelection = createAction<{ value: number, productid: string } >(ProductActions.UPDATE_PRODUCT_SELECTION);
 
 //TODO this is how reducers are supposed to be written. Change other reducers to this, or
 // maybe even go further with "createSlice" ? https://redux-toolkit.js.org/usage/usage-with-typescript
@@ -76,6 +81,3 @@ export function productsReducer(state: ProductsState = initialState, action: Any
     }
     return state;
 }
-
-
-

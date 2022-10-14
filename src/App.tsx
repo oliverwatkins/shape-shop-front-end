@@ -22,14 +22,14 @@ import Logout from "./login/Logout";
 import AdminScreen from "./admin/AdminScreen";
 import {ToastContainer} from "react-toastify";
 import {useAsync} from "react-async-hook";
-import {OrderState, Product} from "./AppState";
+import {AppState, OrderState, Product} from "./AppState";
 import {api} from "./api/api";
 
-type Props = {
-    fetchProducts: Function
-}
+// type Props = {
+//     fetchProducts: Function
+// }
 
-function App(props: Props) {
+export default function App() {
     let dispatch = useDispatch();
 
     const {
@@ -105,13 +105,3 @@ function getMarq() {
         <p>-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- </p>
     </div>;
 }
-
-const mapStateToProps = (state: any) => {
-    return {
-        login: state.login,
-    };
-};
-
-export default connect(
-    mapStateToProps
-)(App);

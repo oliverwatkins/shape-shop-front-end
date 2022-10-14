@@ -1,6 +1,3 @@
-//@flow
-
-
 export type AppState = {
 	products: ProductsState,
 	order: OrderState,
@@ -88,7 +85,6 @@ export type Category = {
 	id: string
 }
 
-
 export type Address = {
 	name: string,
 	telephone: string,
@@ -97,6 +93,3 @@ export type Address = {
 	username: string,
 	email: string
 }
-
-
-
