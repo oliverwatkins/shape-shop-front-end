@@ -141,7 +141,8 @@ function AdminScreen(props: Props) {
 
 const mapStateToProps = (state: AppState): AdminState => {
     return {
-        Authorization: state.login.loginToken,
+        orders: state.admin.orders,
+        Authorization: state.login.loginToken
     };
 };
 

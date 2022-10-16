@@ -71,12 +71,13 @@ const mapDispatchToProps = (dispatch: any) => {
 	};
 };
 
+
 const mapStateToProps = (state: AppState) => {
 	return {
 		creditCardEntity: state.order.creditCard,
 	};
 };
-
+//TODO move to hooks
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps,

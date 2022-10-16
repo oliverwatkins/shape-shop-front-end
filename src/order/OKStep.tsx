@@ -1,42 +1,33 @@
 import * as React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
-import type {Address, AppState, OrderState, Product} from "../AppState";
+import type {AppState} from "../AppState";
 import {
 	selectOrder,
-	selectProductsByType,
-	selectSelectedProducts
 } from "../selectors";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createPlaceOrderAction} from "../admin/redux/productActions";
 import {useEffect} from "react";
 import {LoadingView} from "../misc/LoadingView";
-import {DeliveryType, PaymentType} from "../AppState";
 
 
-type Props = {
-	selectedProducts: Array<Product>,
-	// selectedProducts2: Array<Product>,
-	address?: Address,
-	deliveryType: string,
-	paymentType: string,
-	submittingOrder?: boolean,
-	orderError?: string,
-	placeOrder: Function,
-	order: OrderState
-}
+export default function OKStep() {
 
-function OKStep(props: Props) {
+	const dispatch = useDispatch();
+
+	const order = useSelector(selectOrder);
+	const orderError = useSelector((state: AppState)=> state.order && state.order.orderError);
+	const submittingOrder = useSelector((state: AppState)=> state.order && state.order.submittingOrder);
 
 	useEffect(() => {
-		props.placeOrder(props.order);
-	}, []);
+		dispatch(createPlaceOrderAction(order));
+		}, []);
 
 	return (
 		<div className={"okPanel"}>
-			{props.orderError && <span className={"error"}>{props.orderError}</span>}
-			{props.submittingOrder && <LoadingView msg={"Placing Order"}/>}
-			{!props.submittingOrder && !props.orderError &&
+			{orderError && <span className={"error"}>{orderError}</span>}
+			{submittingOrder && <LoadingView msg={"Placing Order"}/>}
+			{!submittingOrder && !orderError &&
 			<div>
 				<div>
 					<h1>OK</h1>
@@ -51,44 +42,3 @@ function OKStep(props: Props) {
 	);
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-	return {
-		placeOrder: (data: any) => {
-			dispatch(createPlaceOrderAction(data));
-		},
-	};
-};
-
-// a view of an order
-export type WhatIsThis = {
-	products: Array<Product>,
-	products2: Array<Product>,
-	order: OrderState,
-	address: Address | undefined,
-	selectedProducts: Array<Product>,
-	deliveryType: string,
-	paymentType: PaymentType,
-	submittingOrder: boolean | undefined,
-	orderError: string | undefined
-	// orderError: state.order && state.order.orderError
-}
-
-const mapStateToProps = (state: AppState): WhatIsThis => {
-	return {
-		products: selectProductsByType(state, "main"),
-		products2: selectProductsByType(state, "drinks"),
-		order: selectOrder(state),
-		address: state.order && state.order.address,
-		selectedProducts: selectSelectedProducts(state),
-		deliveryType: state.order && state.order.deliveryType,
-		paymentType: state.order && state.order.paymentType,
-		submittingOrder: state.order && state.order.submittingOrder,
-		orderError: state.order && state.order.orderError
-	};
-};
-
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(OKStep);

@@ -53,6 +53,7 @@ class Nav extends React.PureComponent<Props> {
 	}
 }
 
+//TODO mvoe to hooks
 const mapStateToProps = (state: AppState) => {
 	return {
 		isUserLoggedIn: isUserLoggedIn(state),

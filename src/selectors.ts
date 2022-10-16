@@ -14,11 +14,9 @@ export const selectOpenOrders = (orders: Array<OrderState>) => orders.filter(o =
 
 export const selectClosedOrders = (orders: Array<OrderState>) => orders.filter(o => o.orderState === "CLOSED");
 
-export const selectProductsByType = (state: AppState, type: string): Array<Product> => state.products.allProducts;
+export const selectProductsByType = (state: AppState): Array<Product> => state.products.allProducts;
 
 export const selectCategories = (state: AppState): Array<Category> => state.products.categories;
-
-export const selectSelectedProductByType = (state: AppState): Array<Product>  => state.products.allProducts.filter(product => product.quantity && product.quantity > 0) //  && product.type === type);
 
 export const selectSelectedProducts = (state: AppState): Array<Product>  => state.products.allProducts.filter(product => product.quantity && product.quantity > 0)
 
@@ -29,7 +27,7 @@ export const selectOrder = (state: AppState): OrderState => {
 		address: state.order && state.order.address,
 		creditCard: state.order && state.order.creditCard,
 		orderItems: state.order.orderItems,
-		selectedProducts: selectSelectedProductByType(state),
+		selectedProducts: selectSelectedProducts(state),
 		deliveryType: state.order && state.order.deliveryType,
 		paymentType: state.order && state.order.paymentType,
 		submittingOrder: state.order && state.order.submittingOrder,

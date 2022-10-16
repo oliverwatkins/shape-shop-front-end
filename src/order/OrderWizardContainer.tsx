@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {connect} from "react-redux";
-import {selectCategories, selectSelectedProductByType} from "../selectors";
+import {selectCategories} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Summary from "./SummaryStep";
 import WhichPayment from "./WhichPaymentStep";
@@ -87,6 +87,7 @@ function createCategoryPages(props: Props) {
 	return (pages)
 }
 
+//TODO move to hooks
 const mapStateToProps = (state: AppState) => {
 	return {
 		categories: selectCategories(state),

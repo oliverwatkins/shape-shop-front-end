@@ -11,9 +11,9 @@ import {Authorization, DeliveryType, OrderState, OrderStateType, PaymentType} fr
 import "./orderPanel.scss";
 import {useDispatch} from "react-redux";
 import {useAsync} from "react-async-hook";
-import {createFetchOrdersSuccessAction} from "./redux/adminActions";
 import {CircularProgress} from "@mui/material";
 import {api} from "../api/api";
+import {createFetchOrdersSuccessAction} from "./redux/adminReducer";
 
 type Props = {
     type: OrderStateType,
@@ -32,7 +32,7 @@ export default function OrderPanel(props: Props) {
 
     useEffect(() => {
         if (orders) {
-            dispatch(createFetchOrdersSuccessAction(orders));
+            dispatch(createFetchOrdersSuccessAction({data: orders}));
         }
     }, [orders]);
 

@@ -1,8 +1,9 @@
 export type AppState = {
 	products: ProductsState,
-	order: OrderState,
+	order: OrderState, //current order
 	login: LoginState,
-	admin: AdminState
+	admin: AdminState,
+
 };
 
 export type ProductsState = {
@@ -30,6 +31,7 @@ export type ByCategory = { [cat: string]: Array<Product> };
 export type AdminState = {
 	Authorization?: Authorization, //??
 	orderError?: string,
+	orders: OrderState[]
 }
 
 export type LoginState = {
