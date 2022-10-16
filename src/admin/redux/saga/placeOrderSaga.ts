@@ -1,15 +1,10 @@
 
-import {
-	Actions,
-	// createFetchProductsSuccessAction,
-	createPlaceOrderErrorAction,
-	createPlaceOrderSuccessAction
-} from '../productActions';
 import {delay} from "@redux-saga/core/effects";
 import type {OrderState, Product} from "../../../AppState";
 import {api} from "../../../api/api";
 
 import * as sagaEffects from 'redux-saga/effects'
+import {createPlaceOrderErrorAction, placeOrderSuccessAction, OrderActions} from "../orderReducer";
 
 //bypassing typescript problems by doing this :
 const takeLatest: any = sagaEffects.takeLatest;
@@ -17,10 +12,8 @@ const call: any = sagaEffects.call;
 const put: any = sagaEffects.put;
 
 //TODO do we need a SAGA for this?
-
-
 export function* placeOrderWatcher() {
-	yield takeLatest(Actions.PLACE_ORDER, placeOrder);
+	yield takeLatest(OrderActions.PLACE_ORDER, placeOrder);
 }
 //TODO this needs to be fixed up
 function* placeOrder(orderData: OrderState) {
@@ -62,14 +55,14 @@ function* placeOrder(orderData: OrderState) {
 
 		if (response.status === 200) {
 			yield delay(1000);
-			yield put(createPlaceOrderSuccessAction(response.data));
+			yield put(placeOrderSuccessAction(response.data));
 		} else {
-			yield put(createPlaceOrderErrorAction(response.data, "Server error  "));
+			yield put(createPlaceOrderErrorAction({errorMessage:  "Server Error.. "}));
 		}
 	} catch (e) {
 		console.error('Error placing order !!');
 		console.error(e);
-		yield put(createPlaceOrderErrorAction({}, "Unkown Error.. "));
+		yield put(createPlaceOrderErrorAction({errorMessage:  "Unkown Error.. "}));
 
 	}
 }

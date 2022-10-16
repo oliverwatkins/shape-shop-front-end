@@ -9,27 +9,31 @@ import {wizardPages as pages} from "./OrderWizardContainer";
 import {BackButton} from "./buttons/BackButton";
 
 import "./order.scss"
-import {createUpdateCreditCard} from "../admin/redux/productActions";
-import {connect} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 // import {Address} from "./AddressStep";
 import type {AppState, Product} from "../AppState";
 import {CreditCardEntity} from "../AppState";
 import {Redirect} from "react-router";
+import {updateCreditCardAction} from "../admin/redux/orderReducer";
+import {selectSelectedProducts} from "../selectors";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe("pk_test_TYooMQauvdEDq54NiTphI7jx");
 
+export default function PaymentStep() {
 
-type Props = {
-	updateCC: Function,
-	creditCardEntity?: CreditCardEntity,
-	selectedProducts?: Array<Product>,
-	selectedProducts2?: Array<Product>
-}
+	const creditCardEntity = useSelector((state: AppState) => state.order.creditCard)
+	const selectedProducts = useSelector(selectSelectedProducts);
 
-function PaymentStep(props: Props) {
-	if(props.creditCardEntity){
+	const dispatch = useDispatch();
+
+	const updateCC = (value: any) => {
+		console.info(" " + JSON.stringify(value))
+		dispatch(updateCreditCardAction(value));
+	}
+
+	if(creditCardEntity){
 		return <Redirect to="/order/OK/" />
 	}
 
@@ -44,7 +48,7 @@ function PaymentStep(props: Props) {
 					</div>
 					<div className={"stripe-payment-panel"}>
 						<Elements stripe={stripePromise} options={ELEMENTS_OPTIONS}>
-							<CheckoutForm updateCC={props.updateCC} amount={calculateTotal(props.selectedProducts)}/>
+							<CheckoutForm updateCC={updateCC} amount={calculateTotal(selectedProducts)}/>
 						</Elements>
 					</div>
 				</div>
@@ -62,23 +66,4 @@ const ELEMENTS_OPTIONS = {
 	],
 };
 
-const mapDispatchToProps = (dispatch: any) => {
-	return {
-		updateCC: (value: any) => {
-			console.info(" " + JSON.stringify(value))
-			dispatch(createUpdateCreditCard(value));
-		},
-	};
-};
 
-
-const mapStateToProps = (state: AppState) => {
-	return {
-		creditCardEntity: state.order.creditCard,
-	};
-};
-//TODO move to hooks
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(PaymentStep);

@@ -56,7 +56,7 @@ function OrderWizardContainer(props: Props) {
 						<OKStep />
 					</Route>
 					<Route path={wizardPages.PAYMENT}>
-						<PaymentStep selectedProducts={props.selectedProducts} />
+						<PaymentStep />
 					</Route>
 				</Switch>
 			</Router>

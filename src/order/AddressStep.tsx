@@ -5,12 +5,12 @@ import {Formik} from "formik";
 
 import "./order.scss"
 import {Redirect} from "react-router";
-import {createUpdateAddress, createUpdateDeliveryType} from "../admin/redux/productActions";
 import {useDispatch} from "react-redux";
 import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
 import {DeliveryType} from "../AppState";
+import {updateAddressAction, updateDeliveryTypeAction} from "../admin/redux/orderReducer";
 
 export default function AddresStep() {
 
@@ -21,7 +21,7 @@ export default function AddresStep() {
 	function onRadioChanged(e: any) {
 		setDeliveryType(e.currentTarget.value)
 
-		dispatch(createUpdateDeliveryType(e.currentTarget.value));
+		dispatch(updateDeliveryTypeAction(e.currentTarget.value));
 	}
 
 	if (redirect) {
@@ -62,7 +62,7 @@ export default function AddresStep() {
 							setTimeout(() => {
 								blah.setSubmitting(false);
 
-								dispatch(createUpdateAddress(values));
+								dispatch(updateAddressAction({address:values}));
 								// props.updateAddress(values);
 
 								setRedirect(true)

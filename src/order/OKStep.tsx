@@ -6,9 +6,9 @@ import {
 	selectOrder,
 } from "../selectors";
 import {useDispatch, useSelector} from "react-redux";
-import {createPlaceOrderAction} from "../admin/redux/productActions";
 import {useEffect} from "react";
 import {LoadingView} from "../misc/LoadingView";
+import {placeOrderAction} from "../admin/redux/orderReducer";
 
 
 export default function OKStep() {
@@ -20,7 +20,7 @@ export default function OKStep() {
 	const submittingOrder = useSelector((state: AppState)=> state.order && state.order.submittingOrder);
 
 	useEffect(() => {
-		dispatch(createPlaceOrderAction(order));
+		dispatch(placeOrderAction({value:order}));
 		}, []);
 
 	return (

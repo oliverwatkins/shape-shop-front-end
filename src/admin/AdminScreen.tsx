@@ -1,10 +1,9 @@
 import * as React from 'react';
-import {connect} from "react-redux";
-import type {AdminState, AppState, OrderState, Product} from "../AppState";
-import {Authorization, OrderStateType} from "../AppState";
+import {useSelector} from "react-redux";
+import type {AppState} from "../AppState";
+import {OrderStateType} from "../AppState";
 
 import OrderPanel from "./OrderPanel";
-import ProductPanel from "./products/ProductPanel";
 import {Link, Route, Switch} from "react-router-dom";
 import "./admin.scss";
 import {Box, Tab, Tabs, Typography} from "@mui/material";
@@ -12,26 +11,16 @@ import Button from "@mui/material/Button";
 import DoubleArrowIcon from '@mui/icons-material/DoubleArrow';
 import ProductsPanel from "./products/ProductsPanel";
 
-type Props = {
-    orders?: Array<OrderState>,
-    closedOrders?: Array<OrderState>,
-    fetchOrders?: () => void,
-    dispatch?: Function,
-    Authorization?: Authorization,
-    products1?: Array<Product>,
-    products2?: Array<Product>
-}
+export default function AdminScreen() {
 
-function AdminScreen(props: Props) {
-
+    let orders = useSelector((state: AppState) => state.admin.orders)
+    let loginToken = useSelector((state: AppState) => state.login.loginToken)
 
     //tab state : (move into hook?)
     const [topTabValue, setTopTabValue] = React.useState<number>(0);
     const handleTopTab = (event: any, newValue: number) => {
         setTopTabValue(newValue);
     };
-
-
 
     const [orderTabValue, setOrderTabValue] = React.useState<number>(0);
     const handleOrderTab = (event: any, newValue: number) => {
@@ -100,7 +89,7 @@ function AdminScreen(props: Props) {
                             id={`simple-tabpanel-${0}`}
                             aria-labelledby={`simple-tab-${0}`}
                         >
-                            {orderTabValue === 0 && <OrderPanel type={OrderStateType.OPEN} Authorization={props.Authorization}/>}
+                            {orderTabValue === 0 && <OrderPanel type={OrderStateType.OPEN} Authorization={loginToken}/>}
                         </Box>
                         <Box
                             sx={{p: 3}}
@@ -109,7 +98,7 @@ function AdminScreen(props: Props) {
                             id={`simple-tabpanel-${1}`}
                             aria-labelledby={`simple-tab-${1}`}
                         >
-                            {orderTabValue === 1 && <OrderPanel type={OrderStateType.CLOSED} Authorization={props.Authorization}/>}
+                            {orderTabValue === 1 && <OrderPanel type={OrderStateType.CLOSED} Authorization={loginToken}/>}
                         </Box>
                     </Box>
                 </Route>
@@ -138,15 +127,3 @@ function AdminScreen(props: Props) {
         </div>
     );
 }
-
-const mapStateToProps = (state: AppState): AdminState => {
-    return {
-        orders: state.admin.orders,
-        Authorization: state.login.loginToken
-    };
-};
-
-export default connect(
-    mapStateToProps,
-    null,
-)(AdminScreen);

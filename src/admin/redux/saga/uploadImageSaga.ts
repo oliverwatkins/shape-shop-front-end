@@ -1,9 +1,8 @@
 import { put, call, takeLatest } from 'redux-saga/effects';
 
 import {
-	Actions,
 	createUploadImageFailAction, createUploadImageSuccessAction
-} from '../adminActions';
+} from '../imageReducer';
 import {api} from "../../../api/api";
 
 export function* uploadImageWatcher() {

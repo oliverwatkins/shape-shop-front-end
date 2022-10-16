@@ -1,72 +1,8 @@
-import {Actions} from './productActions';
 import type {OrderState} from "../../AppState";
-import {Notify} from "../../notify";
 import {DeliveryType, OrderStateType, PaymentType} from "../../AppState";
-
-export function reducer(state: OrderState = initialState , action: any) {
-
-	console.info("in order reducer with action " + action.type)
-
-	switch (action.type) {
-		case Actions.UPDATE_ADDRESS:
-			return {
-				...state,
-				addressEntity: action.value
-			}
-		case Actions.UPDATE_CREDIT_CARD:
-
-			let cardType = action.value.paymentMethod.card.brand;
-
-			let m = action.value.paymentMethod.card.exp_month;
-			let y = action.value.paymentMethod.card.exp_year;
-
-			let last4 = action.value.paymentMethod.card.last4;
-
-			return {
-				...state,
-				creditCardEntity: {
-					type: cardType,
-					expDate: "" + m + y,
-					number: "xxxx-xxxxx-xxxxx-" + last4
-				}
-			}
-		case Actions.UPDATE_PAYMENT_TYPE:
-			return {
-				...state,
-				paymentType: action.value
-			}
-		case Actions.UPDATE_DELIVERY_TYPE:
-			return {
-				...state,
-				deliveryType: action.value
-			}
-		case Actions.PLACE_ORDER:
-			return {
-				...state,
-				submittingOrder: true,
-			}
-		case Actions.PLACE_ORDER_SUCCESS:
-			return {
-				...state,
-				paymentType: null,
-				deliveryType: null,
-				addressEntity: null,
-				creditCardEntity: null,
-				submittingOrder: false,
-			}
-		case Actions.PLACE_ORDER_ERROR:
-
-			Notify.error("Errror placing order - " + action.errorMessage)
-
-			return {
-				...state,
-				submittingOrder: false,
-				orderError: action.value,
-			}
-		default :
-			return state;
-	}
-}
+import {Notify} from "../../notify";
+import {AnyAction} from "redux";
+import {createAction} from "@reduxjs/toolkit";
 
 const initialState: OrderState = {
 	selectedProducts: [],
@@ -74,3 +10,87 @@ const initialState: OrderState = {
 	paymentType: PaymentType.cash,
 	deliveryType: DeliveryType.pickup
 };
+
+export const OrderActions = {
+	PLACE_ORDER: "PLACE_ORDER",
+	PLACE_ORDER_SUCCESS: "PLACE_ORDER_SUCCESS",
+	PLACE_ORDER_ERROR: "PLACE_ORDER_ERROR",
+	UPDATE_PAYMENT_TYPE: 'UPDATE_PAYMENT_TYPE',
+	UPDATE_ADDRESS: 'UPDATE_ADDRESS',
+	UPDATE_DELIVERY_TYPE: 'UPDATE_DELIVERY_TYPE',
+	UPDATE_CREDIT_CARD: 'UPDATE_CREDIT_CARD',
+};
+
+export const updateCreditCardAction = createAction<{ creditCard: any } >(OrderActions.UPDATE_CREDIT_CARD);
+export const updateAddressAction = createAction<{ address: any } >(OrderActions.UPDATE_ADDRESS);
+export const updateDeliveryTypeAction = createAction<{ value: any } >(OrderActions.UPDATE_DELIVERY_TYPE);
+export const updatePaymentTypeAction = createAction<{ value: any } >(OrderActions.UPDATE_PAYMENT_TYPE);
+export const placeOrderAction = createAction<{ value: any } >(OrderActions.PLACE_ORDER);
+export const placeOrderSuccessAction = createAction<{ value: any } >(OrderActions.PLACE_ORDER_SUCCESS);
+export const createPlaceOrderErrorAction = createAction<{ errorMessage: any } >(OrderActions.PLACE_ORDER_ERROR);
+
+export function reducer(state: OrderState = initialState, action: AnyAction): OrderState {
+	if (updateAddressAction.match(action)) {
+		return {
+			...state,
+			address: action.payload.address
+		}
+	}
+	if (updateCreditCardAction.match(action)) {
+		let cardType = action.payload.creditCard.paymentMethod.card.brand;
+
+		let m = action.payload.creditCard.paymentMethod.card.exp_month;
+		let y = action.payload.creditCard.paymentMethod.card.exp_year;
+
+		let last4 = action.payload.creditCard.paymentMethod.card.last4;
+
+		return {
+			...state,
+			creditCard: {
+				name: "??TODO",
+				type: cardType,
+				expDate: "" + m + y,
+				number: "xxxx-xxxxx-xxxxx-" + last4
+			}
+		}
+	}
+	if (updatePaymentTypeAction.match(action)) {
+		return {
+			...state,
+			paymentType: action.payload.value
+		};
+	}
+	if (updateDeliveryTypeAction.match(action)) {
+		return {
+			...state,
+			deliveryType: action.payload.value
+		}
+	}
+	if (placeOrderAction.match(action)) {
+		return {
+			...state,
+			submittingOrder: true,
+		}
+	}
+	if (placeOrderSuccessAction.match(action)) {
+		return {
+			...state,
+			paymentType: undefined,
+			deliveryType: undefined,
+			address: undefined,
+			creditCard: undefined,
+			submittingOrder: false,
+		}
+	}
+	if (createPlaceOrderErrorAction.match(action)) {
+		Notify.error("Errror placing order - " + action.payload.errorMessage)
+
+		return {
+			...state,
+			submittingOrder: false,
+			orderError: action.payload.errorMessage,
+		}
+	}
+	return state;
+}
+

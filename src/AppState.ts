@@ -64,9 +64,9 @@ export enum OrderStateType {
 export type OrderState = {
 	id?: string,
 	selectedProducts: Array<Product>,
-	orderState: OrderStateType,
-	paymentType: PaymentType,
-	deliveryType: string,
+	orderState?: OrderStateType,
+	paymentType?: PaymentType,
+	deliveryType?: DeliveryType,
 	address?: Address,
 	date?: Date,
 	orderItems?: Array<ProductsState>

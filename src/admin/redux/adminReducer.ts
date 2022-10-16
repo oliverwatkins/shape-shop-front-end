@@ -8,18 +8,17 @@ export const AdminActions = {
 	FETCH_ORDERS_FAIL: 'FETCH_ORDERS_FAIL',
 };
 
-
-export const createFetchOrdersSuccessAction = createAction<{ data: OrderState[] }>(AdminActions.FETCH_ORDERS_SUCCESS);
-export const createFetchOrdersFailAction = createAction<{ errorMessage: string }>(AdminActions.FETCH_ORDERS_FAIL);
+export const fetchOrdersSuccessAction = createAction<{ data: OrderState[] }>(AdminActions.FETCH_ORDERS_SUCCESS);
+export const fetchOrdersFailAction = createAction<{ errorMessage: string }>(AdminActions.FETCH_ORDERS_FAIL);
 
 export function reducer(state: AdminState = {orders: []}, action: AnyAction): AdminState {
-	if (createFetchOrdersSuccessAction.match(action)) {
+	if (fetchOrdersSuccessAction.match(action)) {
 		return {
 			...state,
 			orders: action.payload.data
 		}
 	}
-	if (createFetchOrdersFailAction.match(action)) {
+	if (fetchOrdersFailAction.match(action)) {
 		return {
 			...state,
 			orders: [],

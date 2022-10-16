@@ -4,8 +4,8 @@ import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
 import {connect, useDispatch} from "react-redux";
-import {createUpdatePaymentType} from "../admin/redux/productActions";
 import {PaymentType} from "../AppState";
+import {updatePaymentTypeAction} from "../admin/redux/orderReducer";
 
 export default function WhichPayment() {
 	const dispatch = useDispatch();
@@ -16,7 +16,7 @@ export default function WhichPayment() {
 		// @ts-ignore
 		setPaymentType(PaymentType[e.currentTarget.value])
 
-		dispatch(createUpdatePaymentType(e.currentTarget.value));
+		dispatch(updatePaymentTypeAction({value: e.currentTarget.value}));
 	}
 
 	return (

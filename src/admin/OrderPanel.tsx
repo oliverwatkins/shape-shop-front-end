@@ -13,7 +13,7 @@ import {useDispatch} from "react-redux";
 import {useAsync} from "react-async-hook";
 import {CircularProgress} from "@mui/material";
 import {api} from "../api/api";
-import {createFetchOrdersSuccessAction} from "./redux/adminReducer";
+import {fetchOrdersSuccessAction} from "./redux/adminReducer";
 
 type Props = {
     type: OrderStateType,
@@ -32,7 +32,7 @@ export default function OrderPanel(props: Props) {
 
     useEffect(() => {
         if (orders) {
-            dispatch(createFetchOrdersSuccessAction({data: orders}));
+            dispatch(fetchOrdersSuccessAction({data: orders}));
         }
     }, [orders]);
 
