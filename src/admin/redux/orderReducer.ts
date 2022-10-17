@@ -5,6 +5,7 @@ import {AnyAction} from "redux";
 import {createAction} from "@reduxjs/toolkit";
 
 const initialState: OrderState = {
+	orderItems: [],
 	selectedProducts: [],
 	orderState: OrderStateType.OPEN,
 	paymentType: PaymentType.cash,

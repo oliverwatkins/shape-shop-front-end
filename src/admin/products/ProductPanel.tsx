@@ -67,15 +67,17 @@ export default function ProductPanel(props: Props) {
             await api.updateProduct(item, Authorization)
 
 
-            let l = createUpdateProductSuccessAction({product: item})
             //after update in backend, update the state from this component
-            dispatch(l)
+            dispatch(createUpdateProductSuccessAction({product: item}))
 
             setOpenEditPProduct(false);
 
             Notify.success("Edited Product " + item.name);
         } catch (e) {
             console.error(e)
+
+            // dispatch(createUpdateProductAction({product: item})) //TODO fail action?
+
             setOpenEditPProduct(false);
             Notify.error("Error editing product");
         }

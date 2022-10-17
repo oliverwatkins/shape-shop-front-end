@@ -20,8 +20,8 @@ function* placeOrder(orderData: OrderState) {
 	try {
 		console.info("orderData before : " + JSON.stringify(orderData))
 
-		let prods = [
-			...orderData.selectedProducts,
+		let prods: Product[]= [
+			// ...orderData.payload.value.selectedProducts,
 			// ...orderData.value.selectedProducts2,
 		]
 
@@ -34,7 +34,7 @@ function* placeOrder(orderData: OrderState) {
 					id: prod.id,
 					name: prod.name,
 				},
-				amount: prod.quantity
+				amount: prod.amount
 			};
 		})
 

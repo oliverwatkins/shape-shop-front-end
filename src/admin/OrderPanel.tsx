@@ -7,7 +7,7 @@ import {faCreditCard, faHandHolding, faMoneyBill, faTruck} from "@fortawesome/fr
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import {calculateTotal2} from "../order/utils";
-import {Authorization, DeliveryType, OrderState, OrderStateType, PaymentType} from "../AppState";
+import {Address, Authorization, DeliveryType, OrderState, OrderStateType, PaymentType} from "../AppState";
 import "./orderPanel.scss";
 import {useDispatch} from "react-redux";
 import {useAsync} from "react-async-hook";
@@ -126,28 +126,33 @@ export default function OrderPanel(props: Props) {
 }
 
 
-function AddressPanel(props: any) {
-    return (
-        <div>
-            <table className={"contactTable"}>
-                <tbody>
-                <tr>
-                    <td colSpan={2}>{props.address.name && <span>{props.address.name}</span>}</td>
-                </tr>
-                <tr>
-                    <td>{props.address.street && <span>{props.address.street}</span>}</td>
-                    <td>{props.address.postcode && <span>{props.address.postcode}</span>}</td>
-                </tr>
-                <tr>
-                    <td colSpan={2}>Tel : {props.address.telephone && <span>{props.address.telephone}</span>}</td>
-                </tr>
-                <tr>
-                    <td colSpan={2}>Email : {props.address.email && <span>{props.address.email}</span>}</td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    )
+function AddressPanel(props: {address: Address | undefined}) {
+
+
+    if (!props.address)
+        return (<div></div>)
+    else
+        return (
+            <div>
+                <table className={"contactTable"}>
+                    <tbody>
+                    <tr>
+                        <td colSpan={2}>{props.address.name && <span>{props.address.name}</span>}</td>
+                    </tr>
+                    <tr>
+                        <td>{props.address.street && <span>{props.address.street}</span>}</td>
+                        <td>{props.address.postcode && <span>{props.address.postcode}</span>}</td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>Tel : {props.address.telephone && <span>{props.address.telephone}</span>}</td>
+                    </tr>
+                    <tr>
+                        <td colSpan={2}>Email : {props.address.email && <span>{props.address.email}</span>}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        )
 }
 
 function CardPanel(props: any) {

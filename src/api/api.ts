@@ -3,6 +3,9 @@ import {api_MOCK} from "./api_mock";
 import {Authorization, Category, OrderState, OrderStateType, Product} from "../AppState";
 import {delay} from "@redux-saga/core/effects";
 import {selectOpenOrders} from "../selectors";
+import {Notify} from "../notify";
+import axios from "axios";
+import {Test} from "../playground/asynchExample/UserDebitCards";
 
 export const baseURL = 'http://localhost:8080/';
 // const ADMIN_TOKEN = ADMIN_TOKEN2;
@@ -171,7 +174,25 @@ const apiReal = {
 		// return data;
 	},
 
-	placeOrder: async (values: any) => {
+	placeOrder_: async (values: OrderState) => {
+		await sleep(4000);
+		const response = await axios.post<OrderState>(
+			baseURL + constants.company + '/orders', values
+		);
+
+		return response.data || [];
+	},
+
+	placeOrder: async (values: OrderState) => {
+
+		Notify.warn("before wait");
+		await sleep(4000);
+		Notify.warn("after wait");
+
+
+
+		// orderItems: orderItems,
+
 		let data = await fetch(baseURL + constants.company + '/orders', {
 			method: "POST",
 			body: JSON.stringify(values),
@@ -180,20 +201,27 @@ const apiReal = {
 				'Accept': 'application/json',
 			},
 		}).then(response => {
+
+			// alert("first then")
+			// Notify.warn("first then");
 			console.info("status : " + response.status)
 			if (!response.ok) {
-				throw new Error('Network response was not ok');
+				throw new Error('1. Network response was not ok');
 			}
 			return response.json()
 		}).then(data => {
+			Notify.warn("second then");
 			return {
 				status:200,
 				data: data
 			}
 		}).catch(error => {
-			console.error('There has been a problem with your fetch operation:', error);
+			Notify.warn("in catch");
+			console.error('2. There has been a problem with your fetch operation:', error);
 			throw error;
 		});
+
+		Notify.warn("at return");
 		return data;
 	},
 	uploadImage: async (auth: Authorization, file: any, productId: string) => {

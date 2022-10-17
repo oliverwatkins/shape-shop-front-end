@@ -18,7 +18,7 @@ export const selectProductsByType = (state: AppState): Array<Product> => state.p
 
 export const selectCategories = (state: AppState): Array<Category> => state.products.categories;
 
-export const selectSelectedProducts = (state: AppState): Array<Product>  => state.products.allProducts.filter(product => product.quantity && product.quantity > 0)
+export const selectSelectedProducts = (state: AppState): Array<Product>  => state.products.allProducts.filter(product => product.amount && product.amount > 0)
 
 //total order
 export const selectOrder = (state: AppState): OrderState => {

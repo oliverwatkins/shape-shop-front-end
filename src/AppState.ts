@@ -21,7 +21,7 @@ export type Product = {
 	description: string,
 	imageFilename?: string,
 	image?: any, //??
-	quantity?: number, //selected quantity
+	amount?: number, //selected quantity
 	categories?: Array<Category>
 }
 
@@ -69,7 +69,11 @@ export type OrderState = {
 	deliveryType?: DeliveryType,
 	address?: Address,
 	date?: Date,
-	orderItems?: Array<ProductsState>
+	// orderItems?: Array<ProductsState> // ????
+
+	orderItems: Array<{product: Product, amount?: number}>,
+
+
 	creditCard?: CreditCardEntity,
 	submittingOrder?:boolean,
 	orderError?:string,

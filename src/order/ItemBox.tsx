@@ -13,7 +13,7 @@ function ItemBox(props: Props) {
 
 	let selected = ""
 	let checked = false
-	if (props.product.quantity && props.product.quantity > 0) {
+	if (props.product.amount && props.product.amount > 0) {
 		selected = "selected"
 		checked = true
 	}
@@ -47,7 +47,7 @@ function ItemBox(props: Props) {
 					   id="selectCheckbox"
 					   checked={checked}
 					   onChange={handleChangeCheckbox}/>
-				<select className={"item-box-options"} id="qty" onChange={handleChangeQuantity} value={props.product.quantity}>
+				<select className={"item-box-options"} id="qty" onChange={handleChangeQuantity} value={props.product.amount}>
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>

@@ -23,7 +23,7 @@ export function getCategoryProducts(productsArray: Array<Product>): { [category:
             return false;
         })
 
-        let stripOutCats = (el: Product) => {
+        let stripOutCats = (el: Product): Product => {
             //strip out categories, qty,
             return {
                 id: el.id,
@@ -31,7 +31,7 @@ export function getCategoryProducts(productsArray: Array<Product>): { [category:
                 price: el.price,
                 imageFilename: el.imageFilename,
                 description: el.description,
-                quantity: el.quantity
+                amount: el.amount
             }
         }
         filtered = filtered.map(stripOutCats);

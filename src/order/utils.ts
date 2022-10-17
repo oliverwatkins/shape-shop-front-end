@@ -6,7 +6,7 @@ import type {Product} from "../AppState";
  */
 export function calculateTotal2(products: any) {
 	let t = products.reduce((acc: any, cur: Product) => {
-		return acc + ((cur.quantity ? cur.quantity : 0) * cur.price);
+		return acc + ((cur.amount ? cur.amount : 0) * cur.price);
 	}, 0)
 
 	t = t.toFixed(2);
@@ -20,7 +20,7 @@ export function calculateTotal(selectedProducts?: Array<Product>) {
 
 	if (selectedProducts) {
 		let t = selectedProducts.reduce((acc: any, cur: Product) => {
-			return acc + ((cur.quantity ? cur.quantity : 0) * cur.price);
+			return acc + ((cur.amount ? cur.amount : 0) * cur.price);
 		}, 0)
 
 		t = (t).toFixed(2);

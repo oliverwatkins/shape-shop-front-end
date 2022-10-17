@@ -68,11 +68,11 @@ export function productsReducer(state: ProductsState = initialState, action: Any
     if (createUpdateProductSelection.match(action)) {
         return {
             ...state,
-            allProducts: state.allProducts.map((item) => {
+            allProducts: state.allProducts.map((item): Product => {
                 if (item.id === action.payload.productid) {
                     return {
                         ...item,
-                        "quantity": action.payload.value
+                        amount: action.payload.value
                     }
                 }
                 return item;

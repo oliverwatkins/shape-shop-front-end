@@ -1,14 +1,13 @@
 import * as React from 'react';
 import type {Product} from "../AppState";
 import {calculateTotal} from "./utils";
-import {AppState} from "../AppState";
 import {selectSelectedProducts} from "../selectors";
-import {connect, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {getCategoryProducts} from "../util/util";
 
-type Props = {
-    selectedProducts?: Array<Product>,
-}
+// type Props = {
+//     selectedProducts?: Array<Product>,
+// }
 
 export default function OrderSummary() {
 
@@ -31,8 +30,8 @@ export default function OrderSummary() {
                         return (<tr key={product.name}>
                             <td>{product.name}</td>
                             <td>{product.price}</td>
-                            <td>{product.quantity && (product.quantity > 1) ? product.quantity : " "}</td>
-                            <td>{priceTimesQty(product.price, product.quantity)}</td>
+                            <td>{product.amount && (product.amount > 1) ? product.amount : " "}</td>
+                            <td>{priceTimesQty(product.price, product.amount)}</td>
                             </tr>
                     )});
                     return (
