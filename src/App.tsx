@@ -79,7 +79,7 @@ export default function App() {
                     <Route path="/order">
                         <Nav/>
                         {getMarq()}
-                        <OrderWizard categoryProducts={{}} categories={[]}/>
+                        <OrderWizard />
                         <Footer/>
                     </Route>
                     <Route path="/login">

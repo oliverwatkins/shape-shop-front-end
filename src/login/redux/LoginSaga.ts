@@ -4,38 +4,17 @@ import jwtDecode from 'jwt-decode';
 import {createLoginFailAction, createLoginSuccessAction, LoginActions} from './loginActions';
 import {api} from "../../api/api";
 
-
-// yield takeLatest(LoginActions.LOGOUT, logoutWorker);
-
-
-
-
-
-
-
-
 export function* loginWatcher() {
-
 	console.info("starting LOGIN SAGA")
 
 	while (true) {
-
-		console.info(" in while true")
-
 		const { user, password } = yield take(LoginActions.LOGIN);
-
-
 		// @ts-ignore
-		yield call(login, user, password); //hanging here ?
-
-		console.info(" in while true 2.  what is t?")
-
+		yield call(login, user, password);
 	}
 }
 
 function* login(user: string, password?: string) {
-
-	console.info("in LOGIN SAGA")
 
 	if (user && password) {
 		user = user.trim().toLowerCase();

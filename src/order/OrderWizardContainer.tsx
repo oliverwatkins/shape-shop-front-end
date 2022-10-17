@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {connect} from "react-redux";
+import {useSelector} from "react-redux";
 import {selectCategories} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Summary from "./SummaryStep";
@@ -21,23 +21,22 @@ export const wizardPages = {
 	OK: "/order/OK"
 }
 
-type Props = {
-	categoryProducts: { [category: string]: Array<Product> },
-	categories: Array<Category>,
-	selectedProducts?: Array<Product>,
-	address?: Address,
-	deliveryType?: string,
-	paymentType?: string,
-	productsError?: string,
-}
 
-function OrderWizardContainer(props: Props) {
+export default function OrderWizardContainer() {
+
+	let categories = useSelector(selectCategories)
+	let categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
+	let productsError = useSelector((state: AppState) => state.products.productsError)
+	let address = useSelector((state: AppState) => state.order && state.order.address)
+	let deliveryType = useSelector((state: AppState) => state.order && state.order.deliveryType)
+	let paymentType = useSelector((state: AppState) => state.order && state.order.paymentType)
+
 	return (
 		<div className={"order-wizard"}>
-			{props.productsError && <span className={"error"}>{props.productsError}</span>}
+			{productsError && <span className={"error"}>{productsError}</span>}
 			<Router>
 				<Switch>
-					{createCategoryPages(props)}
+					{createCategoryPages(categoryProducts, categories)}
 					<Route path={wizardPages.ADDRESS}>
 						<AddressStep/>
 					</Route>
@@ -46,10 +45,9 @@ function OrderWizardContainer(props: Props) {
 					</Route>
 					<Route path={wizardPages.SUMMARY}>
 						<Summary
-							selectedProducts={props.selectedProducts}
-							address={props.address}
-							deliveryType={props.deliveryType}
-							paymentType={props.paymentType}
+							address={address}
+							deliveryType={deliveryType}
+							paymentType={paymentType}
 						/>
 					</Route>
 					<Route path={wizardPages.OK}>
@@ -64,20 +62,20 @@ function OrderWizardContainer(props: Props) {
 	)
 }
 
-function createCategoryPages(props: Props) {
+function createCategoryPages(categoryProducts: { [category: string]: Array<Product> } | undefined, categories: Category[]) {
 
-	if (!props.categoryProducts)
+	if (!categoryProducts)
 		return <div>no products</div>
 
-	let pages: Array<JSX.Element> = Object.keys(props.categoryProducts).map((key, i) => {
-		let category: Category | undefined = props.categories.find(e => e.name === key);
+	let pages: Array<JSX.Element> = Object.keys(categoryProducts).map((key, i) => {
+		let category: Category | undefined = categories.find(e => e.name === key);
 
 		if (category)
 			return(
 				<Route key={i} path={"/order/cat_" + category.name}>
-					<ProductStep categoryProducts={props.categoryProducts}
+					<ProductStep categoryProducts={categoryProducts}
 								 category={category}
-								 categories={props.categories}
+								 categories={categories}
 								 nextURL={wizardPages.ADDRESS}/>
 				</Route>)
 		else
@@ -86,20 +84,3 @@ function createCategoryPages(props: Props) {
 	})
 	return (pages)
 }
-
-//TODO move to hooks
-const mapStateToProps = (state: AppState) => {
-	return {
-		categories: selectCategories(state),
-		categoryProducts: state.products.categoryProducts,
-		productsError: state.products.productsError,
-		address: state.order && state.order.address,
-		deliveryType: state.order && state.order.deliveryType,
-		paymentType: state.order && state.order.paymentType,
-	};
-};
-
-export default connect(
-	mapStateToProps,
-	null,
-)(OrderWizardContainer);

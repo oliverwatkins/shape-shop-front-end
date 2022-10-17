@@ -5,10 +5,6 @@ import {selectSelectedProducts} from "../selectors";
 import {useSelector} from "react-redux";
 import {getCategoryProducts} from "../util/util";
 
-// type Props = {
-//     selectedProducts?: Array<Product>,
-// }
-
 export default function OrderSummary() {
 
     let selectedProducts = useSelector(selectSelectedProducts);
@@ -42,9 +38,9 @@ export default function OrderSummary() {
                     );
                 })}
                 <tr>
-                    <td></td>
+                    <td/>
                     <td><b>Total:</b></td>
-                    <td></td>
+                    <td/>
                     <td>{calculateTotal(selectedProducts)}</td>
                 </tr>
                 </tbody>
