@@ -55,9 +55,12 @@ export default function ProductPanel(props: Props) {
     const deleteProductCallback = async (item: Product) => {
         try {
             await api.deleteProduct(item, Authorization)
+
+            //will this work??
             dispatch(createDeleteProductAction({product: item}))
             Notify.success("Deleted Product " + item.name);
         } catch (e) {
+            //TODO this will not catch errors here. Use useAsync (See OrderPanel)
             console.error(e)
             Notify.error("Error deleting product")
         }
@@ -65,7 +68,6 @@ export default function ProductPanel(props: Props) {
     let editProductCallback = async (item: Product) => {
         try {
             await api.updateProduct(item, Authorization)
-
 
             //after update in backend, update the state from this component
             dispatch(createUpdateProductSuccessAction({product: item}))
@@ -77,7 +79,7 @@ export default function ProductPanel(props: Props) {
             console.error(e)
 
             // dispatch(createUpdateProductAction({product: item})) //TODO fail action?
-
+//TODO this will not catch errors here. Use useAsync (See OrderPanel)
             setOpenEditPProduct(false);
             Notify.error("Error editing product");
         }
@@ -103,6 +105,7 @@ export default function ProductPanel(props: Props) {
             setOpenCreateProduct(false);
             Notify.success("Created Product " + item.name);
         } catch (e) {
+            //TODO this will not catch errors here. Use useAsync (See OrderPanel)
             Notify.error("Error creating product");
         }
     }

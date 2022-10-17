@@ -76,7 +76,7 @@ export type OrderState = {
 
 	creditCard?: CreditCardEntity,
 	submittingOrder?:boolean,
-	orderError?:string,
+	// orderError?:string,
 }
 
 export type CreditCardEntity = {

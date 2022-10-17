@@ -174,24 +174,9 @@ const apiReal = {
 		// return data;
 	},
 
-	placeOrder_: async (values: OrderState) => {
-		await sleep(4000);
-		const response = await axios.post<OrderState>(
-			baseURL + constants.company + '/orders', values
-		);
-
-		return response.data || [];
-	},
-
 	placeOrder: async (values: OrderState) => {
 
-		Notify.warn("before wait");
-		await sleep(4000);
-		Notify.warn("after wait");
-
-
-
-		// orderItems: orderItems,
+		await sleep(2000);
 
 		let data = await fetch(baseURL + constants.company + '/orders', {
 			method: "POST",
@@ -201,27 +186,21 @@ const apiReal = {
 				'Accept': 'application/json',
 			},
 		}).then(response => {
-
-			// alert("first then")
-			// Notify.warn("first then");
 			console.info("status : " + response.status)
 			if (!response.ok) {
 				throw new Error('1. Network response was not ok');
 			}
 			return response.json()
 		}).then(data => {
-			Notify.warn("second then");
 			return {
 				status:200,
 				data: data
 			}
 		}).catch(error => {
-			Notify.warn("in catch");
 			console.error('2. There has been a problem with your fetch operation:', error);
 			throw error;
 		});
 
-		Notify.warn("at return");
 		return data;
 	},
 	uploadImage: async (auth: Authorization, file: any, productId: string) => {

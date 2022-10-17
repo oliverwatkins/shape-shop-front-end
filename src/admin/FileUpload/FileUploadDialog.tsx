@@ -55,6 +55,7 @@ export function FileUploadDialog(props: Props) {
 
             let pp = props.product;
 
+            //TODO this will not work. Use useAsync (See OrderPanel)
             pp.imageFilename = selectedFile.selectedFile.name
 
             dispatch(createUpdateProductSuccessAction({product: pp}))
@@ -63,6 +64,7 @@ export function FileUploadDialog(props: Props) {
 
         }catch(e){
 
+            //TODO this will not catch errors here. Use useAsync (See OrderPanel)
             Notify.error("Error uploading image " + e);
             console.error(e)
         }finally {

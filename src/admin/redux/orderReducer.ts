@@ -1,6 +1,5 @@
 import type {OrderState} from "../../AppState";
 import {DeliveryType, OrderStateType, PaymentType} from "../../AppState";
-import {Notify} from "../../notify";
 import {AnyAction} from "redux";
 import {createAction} from "@reduxjs/toolkit";
 
@@ -27,8 +26,6 @@ export const updateAddressAction = createAction<{ address: any } >(OrderActions.
 export const updateDeliveryTypeAction = createAction<{ value: any } >(OrderActions.UPDATE_DELIVERY_TYPE);
 export const updatePaymentTypeAction = createAction<{ value: any } >(OrderActions.UPDATE_PAYMENT_TYPE);
 export const placeOrderAction = createAction<{ value: any } >(OrderActions.PLACE_ORDER);
-export const placeOrderSuccessAction = createAction<{ value: any } >(OrderActions.PLACE_ORDER_SUCCESS);
-export const createPlaceOrderErrorAction = createAction<{ errorMessage: any } >(OrderActions.PLACE_ORDER_ERROR);
 
 export function reducer(state: OrderState = initialState, action: AnyAction): OrderState {
 	if (updateAddressAction.match(action)) {
@@ -71,25 +68,6 @@ export function reducer(state: OrderState = initialState, action: AnyAction): Or
 		return {
 			...state,
 			submittingOrder: true,
-		}
-	}
-	if (placeOrderSuccessAction.match(action)) {
-		return {
-			...state,
-			paymentType: undefined,
-			deliveryType: undefined,
-			address: undefined,
-			creditCard: undefined,
-			submittingOrder: false,
-		}
-	}
-	if (createPlaceOrderErrorAction.match(action)) {
-		Notify.error("Errror placing order - " + action.payload.errorMessage)
-
-		return {
-			...state,
-			submittingOrder: false,
-			orderError: action.payload.errorMessage,
 		}
 	}
 	return state;
