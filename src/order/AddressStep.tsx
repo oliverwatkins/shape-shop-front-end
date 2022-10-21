@@ -145,6 +145,7 @@ export default function AddresStep() {
 									{errors.email && touched.email && errors.email}
 									</span>
 								</div>
+								{/*//TODO remove submit button*/}
 								<button type="submit" disabled={isSubmitting}>
 									Submit
 								</button>

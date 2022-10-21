@@ -7,11 +7,59 @@ import {fireEvent, render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
 import configureStore from "redux-mock-store";
 
-//TODO change all enzyme tests to testing library
+
+
+//TODO change all other enzyme tests to testing library (like here)
 describe('Address Step test', () => {
 	const mockStore = configureStore();
 
-	const store = mockStore({
+	const store = mockStore(getData());
+
+	it('matches snapshot', () => {
+		expect(render(<Provider store={store}>
+			<MemoryRouter>
+				<AddressStep/>
+			</MemoryRouter>
+		</Provider>)).toMatchSnapshot();
+	});
+
+
+	it('select radio button - check that it works', async () => {
+		render(<Provider store={store}>
+		 			<MemoryRouter>
+		 				<AddressStep/>
+					</MemoryRouter>
+				</Provider>)
+
+		await screen.findAllByRole('heading')
+
+		expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?')
+
+		const labelRadio: HTMLInputElement[] = await screen.findAllByRole('radio');
+		expect(labelRadio[0].checked).toEqual(true);
+
+		let firstRadio = labelRadio[0];
+		let secondRadio = labelRadio[1];
+
+		fireEvent.click(firstRadio);
+
+		let textBoxes: HTMLInputElement[] = await screen.findAllByRole('textbox');
+		expect(textBoxes.length).toBe(3);
+
+		fireEvent.click(secondRadio);
+
+		textBoxes = await screen.findAllByRole('textbox');
+		expect(textBoxes.length).toBe(5);
+
+		fireEvent.click(firstRadio);
+
+		textBoxes = await screen.findAllByRole('textbox');
+		expect(textBoxes.length).toBe(3);
+	});
+});
+
+function getData() {
+	return {
 		products: {
 			items: [
 				{
@@ -49,51 +97,7 @@ describe('Address Step test', () => {
 			loggingIn: false,
 		},
 		user: Function, //??
-	});
-
-	it('matches snapshot', () => {
-		expect(render(<Provider store={store}>
-			<MemoryRouter>
-				<AddressStep/>
-			</MemoryRouter>
-		</Provider>)).toMatchSnapshot();
-	});
-
-
-	it('selects radio button', async () => {
-		render(<Provider store={store}>
-		 			<MemoryRouter>
-		 				<AddressStep/>
-					</MemoryRouter>
-				</Provider>)
-
-
-		await screen.findAllByRole('heading')
-
-		expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?')
-
-		const labelRadio: HTMLInputElement[] = await screen.findAllByRole('radio');
-		expect(labelRadio[0].checked).toEqual(true);
-
-		let firstRadio = labelRadio[0];
-		let secondRadio = labelRadio[1];
-
-		fireEvent.click(firstRadio);
-
-		let t: HTMLInputElement[] = await screen.findAllByRole('textbox');
-		expect(t.length).toBe(3);
-
-		fireEvent.click(secondRadio);
-
-		let t2: HTMLInputElement[] = await screen.findAllByRole('textbox');
-		expect(t2.length).toBe(5);
-
-		fireEvent.click(firstRadio);
-
-		let t3: HTMLInputElement[] = await screen.findAllByRole('textbox');
-		expect(t3.length).toBe(3);
-	});
-});
-
+	};
+}
 
 
