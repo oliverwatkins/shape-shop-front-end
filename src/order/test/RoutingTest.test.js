@@ -12,6 +12,8 @@ Enzyme.configure({adapter: new Adapter()});
 
 const history = createMemoryHistory();
 
+
+//TODO redundant? this isbeing testede in orderWizard test
 describe('Routing test (next and back buttons)', () => {
 	let wrapper;
 

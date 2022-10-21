@@ -7,7 +7,6 @@ import OrderWizardContainer from "../OrderWizardContainer";
 
 
 describe('Payment Step test', () => {
-    // let wrapper;
     const mockStore = configureStore();
 
     let store = mockStore(getData());
@@ -16,7 +15,6 @@ describe('Payment Step test', () => {
         expect(render(<Provider store={store}>
             <MemoryRouter initialEntries={["/order/cat_main", ""]}>
                 <OrderWizardContainer/>
-                {/*<ProductStep categories={{}} category={}/>*/}
             </MemoryRouter>
         </Provider>)).toMatchSnapshot();
     });
