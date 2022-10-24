@@ -60,7 +60,7 @@ export function productsReducer(state: ProductsState = initialState, action: Any
         let productsAndCategories = getCategoryProducts(action.payload.data)
         return {
             ...state,
-            allProducts: action.payload.data, //all products
+            allProducts: action.payload.data, //all products..
             categoryProducts: productsAndCategories,
             categories: extractUniqueCategories(action.payload.data)
         };
