@@ -16,6 +16,7 @@ function ItemBox(props: Props) {
 	if (props.product.amount && props.product.amount > 0) {
 		selected = "selected"
 		checked = true
+		// alert()
 	}
 
 	function handleChangeCheckbox(e: any) {

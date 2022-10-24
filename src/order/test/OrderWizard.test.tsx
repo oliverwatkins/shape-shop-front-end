@@ -4,7 +4,7 @@ import {Provider} from 'react-redux';
 import {MemoryRouter} from "react-router-dom";
 import {fireEvent, render, screen} from "@testing-library/react";
 import OrderWizardContainer from "../OrderWizardContainer";
-
+import userEvent from "@testing-library/user-event";
 
 describe('Payment Step test', () => {
     const mockStore = configureStore();
@@ -33,13 +33,36 @@ describe('Payment Step test', () => {
          * *******************/
         await screen.findAllByRole('heading')
 
-        const labelRadio: HTMLInputElement[] = await screen.findAllByRole('checkbox');
-        expect(labelRadio.length).toBe(15);
+        const checkboxes: HTMLInputElement[] = await screen.findAllByRole('checkbox');
+        expect(checkboxes.length).toBe(15);
 
         // expect(screen.getByText(/main/i)).toBeInTheDocument()
         let buttons: HTMLInputElement[] = await screen.findAllByRole("button");
 
+        checkboxes.map(checkbox =>
+            expect(checkbox.checked).toEqual(false)
+        )
+
+        fireEvent.click(checkboxes[0]);
+
+        checkboxes.map(checkbox =>
+            expect(checkbox.checked).toEqual(false)
+        )
+        // await userEvent.click(checkboxes[0]);
+
+
+
+
+
+
         expect(buttons.length).toBe(2);
+
+        // expect(screen.getByText(/main/i)).toBeInTheDocument()
+        let checkbox: HTMLInputElement[] = await screen.findAllByRole("checkbox");
+
+        expect(checkbox.length).toBe(15);
+
+
 
         fireEvent.click(buttons[1]);
 

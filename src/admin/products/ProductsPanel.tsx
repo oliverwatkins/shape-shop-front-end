@@ -10,6 +10,8 @@ import {api} from "../../api/api";
 import {createFetchProductsSuccessAction} from "../redux/productsReducer";
 import ProductPanel from "./ProductPanel";
 import {connect, useDispatch, useSelector} from "react-redux";
+import Button from "@mui/material/Button";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 type Props = {
     categoryProducts: { [category: string]: Array<Product> }
@@ -66,6 +68,14 @@ export default function ProductsPanel(propsX: Props) {
                             <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
                                 Products
                             </Typography>
+                            {/*<Button startIcon={<AddCircleOutlineIcon/>} sx={buttonStyle} onClick={() => setOpenCreateProduct(true)}*/}
+                            {/*        variant={"contained"}>*/}
+                            {/*    Add Product</Button>*/}
+                            <Button startIcon={<AddCircleOutlineIcon/>}
+                                    variant={"contained"}>
+                                Create Category</Button>
+
+
                         </Toolbar>
                     </AppBar>
                 </Box>

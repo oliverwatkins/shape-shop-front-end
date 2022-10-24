@@ -66,17 +66,23 @@ export function productsReducer(state: ProductsState = initialState, action: Any
         };
     }
     if (createUpdateProductSelection.match(action)) {
+
+        let allProducts = state.allProducts.map((item): Product => {
+            if (item.id === action.payload.productid) {
+                return {
+                    ...item,
+                    amount: action.payload.value
+                }
+            }
+            return item;
+        })
+        //recalculate PCs
+        let productsAndCategories = getCategoryProducts(allProducts)
+
         return {
             ...state,
-            allProducts: state.allProducts.map((item): Product => {
-                if (item.id === action.payload.productid) {
-                    return {
-                        ...item,
-                        amount: action.payload.value
-                    }
-                }
-                return item;
-            }),
+            allProducts: allProducts,
+            categoryProducts: productsAndCategories
         };
     }
     return state;
