@@ -12,7 +12,7 @@ export default function OrderSummary() {
 
     let selectedProducts = useSelector(selectSelectedProducts);
     return (
-        <div className={"order-summary"} >
+        <div className={"order-summary"} data-testid ={"order-summary"}>
             <h3>Order Summary</h3>
             {getContent(selectedProducts)}
         </div>
