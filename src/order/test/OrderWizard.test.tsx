@@ -2,9 +2,12 @@ import React from 'react';
 import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {MemoryRouter} from "react-router-dom";
-import {fireEvent, render, screen} from "@testing-library/react";
+import {fireEvent, logRoles, prettyDOM, render, screen, waitFor} from "@testing-library/react";
 import OrderWizardContainer from "../OrderWizardContainer";
+
+import '@testing-library/jest-dom';
 import userEvent from "@testing-library/user-event";
+
 
 describe('Payment Step test', () => {
     const mockStore = configureStore();
@@ -21,58 +24,34 @@ describe('Payment Step test', () => {
 
     it('Step through wizard from product list, to address, payment, and OK screen', async () => {
 
-        render(<Provider store={store}>
+
+        const {container} = render(<Provider store={store}>
             <MemoryRouter initialEntries={["/order/cat_main", ""]}>
                 <OrderWizardContainer/>
             </MemoryRouter>
         </Provider>)
 
+        logRoles(container)
 
-        /*********************
-         * MAIN
-         * *******************/
-        await screen.findAllByRole('heading')
+        await testMains(container);
 
-        const checkboxes: HTMLInputElement[] = await screen.findAllByRole('checkbox');
-        expect(checkboxes.length).toBe(15);
-
-        // expect(screen.getByText(/main/i)).toBeInTheDocument()
         let buttons: HTMLInputElement[] = await screen.findAllByRole("button");
-
-        checkboxes.map(checkbox =>
-            expect(checkbox.checked).toEqual(false)
-        )
-
-        fireEvent.click(checkboxes[0]);
-
-        checkboxes.map(checkbox =>
-            expect(checkbox.checked).toEqual(false)
-        )
-        // await userEvent.click(checkboxes[0]);
-
-
-
-
-
-
-        expect(buttons.length).toBe(2);
-
-        // expect(screen.getByText(/main/i)).toBeInTheDocument()
-        let checkbox: HTMLInputElement[] = await screen.findAllByRole("checkbox");
-
-        expect(checkbox.length).toBe(15);
 
 
 
         fireEvent.click(buttons[1]);
 
+        console.info("xx")
 
         /*********************
          * DRINKS
          * *******************
          */
 
-        await screen.findAllByRole('heading')
+        // await screen.findAllByRole('heading')
+        const headings2: HTMLElement[] = await screen.findAllByRole('heading')
+        expect(headings2[0].textContent).toBe("drinks");
+        expect(headings2[1].textContent).toBe("Order Summary");
 
         const labelRadio2: HTMLInputElement[] = await screen.findAllByRole('checkbox');
         // let elems = wrapper.find("input[type='radio']");
@@ -119,6 +98,108 @@ describe('Payment Step test', () => {
     });
 })
 
+// function Checkboxes(props) {
+//     return (
+//         <div>
+//             <input className="item-box-checkbox-1" type="checkbox"/>
+//             <input className="item-box-checkbox-2" type="checkbox"/>
+//             <input className="item-box-checkbox-3" type="checkbox"/>
+//             <input className="item-box-checkbox-4" type="checkbox"/>
+//             ...
+//         </div>
+//     )
+// }
+
+
+async function testMains(container: HTMLElement) {
+    /*********************
+     * Check MAIN
+     * *******************/
+    let headings: HTMLElement[] = await screen.findAllByRole('heading')
+
+    expect(headings[0].textContent).toBe("main");
+    expect(headings[1].textContent).toBe("Order Summary");
+
+
+    // TODO check
+
+
+    const checkboxes: HTMLInputElement[] = await screen.findAllByRole('checkbox');
+    expect(checkboxes.length).toBe(15);
+
+    // expect(screen.getByText(/main/i)).toBeInTheDocument()
+    let buttons: HTMLInputElement[] = await screen.findAllByRole("button");
+    expect(buttons.length).toBe(2);
+
+    checkboxes.map(checkbox =>
+        expect(checkbox.checked).toEqual(false)
+    )
+
+    // logRoles(screen)
+
+    console.info("" + screen.debug())
+
+
+    let orderSummary = container.querySelector('.order-summary')
+
+    expect(orderSummary?.textContent).toContain("Nothing selected")
+
+
+    //***************
+    //Select Combo
+    //***************
+    let selects: HTMLInputElement[] = await screen.findAllByRole("combobox");
+    expect(selects.length).toBe(15);
+
+    selects.map(combo =>
+        expect(combo.value).toEqual("0") // assert value 0
+    )
+
+    fireEvent.change(selects[0], {target: {value: "2"}})
+
+    selects = await screen.findAllByRole("combobox");
+    expect(selects[0].value).toEqual("2") // assert value 0
+    // return buttons;
+
+
+    headings = await screen.findAllByRole('heading')
+
+    // let l = screen.getByText("Order Summary")
+
+    // orderSummary = await screen.findByTitle("Order Summary");
+    // orderSummary = container.querySelector('.order-summary')
+
+    // expect(orderSummary?.textContent).toContain("Lachs-Lasagne")
+    //***************
+    //Click checkbox
+    //***************
+
+    // expect(checkboxes[0]).not.toBeChecked();
+
+    // fireEvent.click(checkboxes[0]);
+    //
+    // const checkboxes2 = screen.getAllByRole('checkbox');
+    //
+    // console.log(prettyDOM(checkboxes2[0]))
+    // const checked = await screen.findAllByRole('checkbox', {checked: true}) //hangs
+    // expect(checked).toHaveLength(1);
+    //
+    // await waitFor(() => expect(checkboxes2[1]).toBeChecked())
+
+    //click first checkbox
+    // fireEvent.click(checkboxes[0]);
+    //
+    //
+    // await waitFor(() => expect(checkboxes[0]).toBeChecked())
+
+    // const checked = await screen.findAllByRole('checkbox', {checked: true})
+    // expect(checked).toHaveLength(1);
+    //check all checkboses unchecked
+    // checkboxes.map(checkbox =>
+    //     expect(checkbox.checked).toEqual(false)
+    // )
+    // await userEvent.click(checkboxes[0]);
+}
 
 function getData() {
     return {
