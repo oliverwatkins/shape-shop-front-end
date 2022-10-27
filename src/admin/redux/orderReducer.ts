@@ -1,4 +1,4 @@
-import type {OrderState} from "../../AppState";
+import type {Address, OrderState} from "../../AppState";
 import {DeliveryType, OrderStateType, PaymentType} from "../../AppState";
 import {AnyAction} from "redux";
 import {createAction} from "@reduxjs/toolkit";
@@ -22,7 +22,7 @@ export const OrderActions = {
 };
 
 export const updateCreditCardAction = createAction<{ creditCard: any } >(OrderActions.UPDATE_CREDIT_CARD);
-export const updateAddressAction = createAction<{ address: any } >(OrderActions.UPDATE_ADDRESS);
+export const updateAddressAction = createAction<{ address: Address } >(OrderActions.UPDATE_ADDRESS);
 export const updateDeliveryTypeAction = createAction<{ value: any } >(OrderActions.UPDATE_DELIVERY_TYPE);
 export const updatePaymentTypeAction = createAction<{ value: any } >(OrderActions.UPDATE_PAYMENT_TYPE);
 export const placeOrderAction = createAction<{ value: any } >(OrderActions.PLACE_ORDER);

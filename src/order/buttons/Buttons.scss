@@ -1,23 +1,38 @@
 
 .next-prev-button {
   cursor: pointer;
-  height: 100px;
+  height: 200px;
   background-color: rgba(0, 0, 0, 0); /*//transparent*/
 
-  border: none;
-  /*//color: white;*/
+  border: 2px #0a7d06 dashed;
+  ///*//color: white;*/
   padding: 20px;
   text-align: center;
   vertical-align: middle;
   display: table-cell;
 
-  /*.icon {*/
-  /*  font-size: 100px;*/
-  /*  color: lighten(gray, 6);*/
-  /*}*/
 
-  /*.label {*/
-  /*  font-size: 65px;*/
-  /*  color: lighten(gray, 6);*/
-  /*}*/
+  color: blue;
+
+  //button {
+  //  border: 2px #c65353 dashed;
+  //}
+
+
+  .icon {
+    font-size: 100px;
+    color: lighten(gray, 6);
+  }
+
+  .label {
+    font-size: 65px;
+    color: lighten(gray, 6);
+  }
+}
+
+
+.next-prev-button:disabled {
+  border: 1px solid #999999;
+  background-color: #f84040;
+  color: #666666;
 }

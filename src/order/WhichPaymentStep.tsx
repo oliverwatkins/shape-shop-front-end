@@ -42,7 +42,7 @@ export default function WhichPayment() {
 					/>
 					<label htmlFor="contactChoice1">Pay online now with credit card</label>
 				</div>
-				<NextButton label={"next"} page={pages.SUMMARY}/>
+				<NextButton disabled={false} label={"next"} page={pages.SUMMARY}/>
 			</div>
 		</div>
 	);

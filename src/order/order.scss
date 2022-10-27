@@ -201,10 +201,12 @@
   }
 
   .wizardMain {
+    border: 2px #0a7d06 dashed;
     display: flex;
     flex-direction: row;
 
     .wizardCenter {
+      border: 1px #6c1c86 dashed;
       width:100%;
       margin: 40px;
       flex: 4;

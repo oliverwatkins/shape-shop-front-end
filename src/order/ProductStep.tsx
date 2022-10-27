@@ -28,7 +28,7 @@ function ProductStep(props: Props) {
 					<ProductSelection productItems={props.categoryProducts[props.category.name]} />
 				</div>
 				<div style={{textAlign: "right"}}>
-					<NextButton label={"next"} page={getNextPageURL(props)}/>
+					<NextButton label={"next"} page={getNextPageURL(props)} disabled={false}/>
 					<OrderSummary/>
 				</div>
 			</div>

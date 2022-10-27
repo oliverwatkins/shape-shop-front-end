@@ -1,20 +1,21 @@
 import * as React from 'react';
 import type {Product} from "../AppState";
 import {calculateTotal} from "./utils";
-import {selectSelectedProducts} from "../selectors";
+import {selectOrder} from "../selectors";
 import {useSelector} from "react-redux";
 import {getCategoryProducts} from "../util/util";
 import './orderSummary.scss';
+
 /**
  * Right side summary shopping cart
  */
 export default function OrderSummary() {
 
-    let selectedProducts = useSelector(selectSelectedProducts);
+    let order = useSelector(selectOrder);
     return (
         <div className={"order-summary"} data-testid ={"order-summary"}>
             <h3>Order Summary</h3>
-            {getContent(selectedProducts)}
+            {getContent(order.selectedProducts)}
         </div>
     );
 }
@@ -23,7 +24,6 @@ function getContent(selectedProducts: Product[]) {
 
     if (!selectedProducts || selectedProducts.length == 0)
         return (<div>Nothing selected</div>)
-
 
     let splitIntoCategories: { [category: string]: Array<Product> } = {};
     if (selectedProducts && selectedProducts.length > 0) {

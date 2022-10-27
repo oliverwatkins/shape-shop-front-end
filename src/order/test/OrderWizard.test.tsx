@@ -1,14 +1,11 @@
 import React from 'react';
-import configureStore from 'redux-mock-store';
 import {Provider} from 'react-redux';
 import {MemoryRouter} from "react-router-dom";
-import {fireEvent, logRoles, prettyDOM, render, screen, waitFor} from "@testing-library/react";
+import {fireEvent, render, screen} from "@testing-library/react";
 import OrderWizardContainer from "../OrderWizardContainer";
 
 import '@testing-library/jest-dom';
-import userEvent from "@testing-library/user-event";
 import {combineReducers, createStore} from "redux";
-import {reducer as login} from "../../login/redux/loginReducer";
 import {productsReducer as products} from "../../admin/redux/productsReducer";
 import {reducer as order} from "../../admin/redux/orderReducer";
 import {reducer as admin} from "../../admin/redux/adminReducer";
@@ -28,12 +25,6 @@ export function createTestStore() {
 
 describe('Payment Step test', () => {
     const store = createTestStore();
-//
-//     store.
-// , getData()
-    const mockStore = configureStore();
-
-    // let store = mockStore(getData());
 
     xit('matches snapshot', () => {
         expect(render(<Provider store={store}>
@@ -51,15 +42,12 @@ describe('Payment Step test', () => {
             </MemoryRouter>
         </Provider>)
 
-        // logRoles(container)
 
         //mains
         await testMains(container);
 
-        let buttons: HTMLInputElement[] = await screen.findAllByRole("button");
-
-        fireEvent.click(buttons[1]);
-
+        let [backbutton, forwardButton] = await screen.findAllByRole("button");
+        fireEvent.click(forwardButton);
 
         /*********************
          * DRINKS
@@ -69,10 +57,8 @@ describe('Payment Step test', () => {
         //drinks
         await testDrinks(container);
 
-        // expect(screen.getByText(/main/i)).toBeInTheDocument()
-        buttons = await screen.findAllByRole("button");
-        fireEvent.click(buttons[1]);
-
+        [backbutton, forwardButton] = await screen.findAllByRole("button");
+        fireEvent.click(forwardButton);
 
         /*********************
          * ADDRESS
@@ -80,9 +66,9 @@ describe('Payment Step test', () => {
 
         await screen.findAllByRole('heading')
 
-        expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?')
+        expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
 
-        buttons = await screen.findAllByRole("button");
+        [backbutton, forwardButton] = await screen.findAllByRole("button");
 
         // let textBoxes: HTMLInputElement[] = await screen.findAllByRole('textbox');
         // expect(textBoxes.length).toBe(3);
@@ -93,8 +79,9 @@ describe('Payment Step test', () => {
         fireEvent.change(textBoxes[1], { target: { value: '122323' } })
         fireEvent.change(textBoxes[2], { target: { value: '123@asdf.com' } })
 
-        expect(buttons.length).toBe(3);
-        fireEvent.click(buttons[2]);
+        let buttons = await screen.findAllByRole("button");
+        expect(buttons.length).toBe(2); // should be two
+        fireEvent.click(buttons[1]);
         //TODO clicking on NEXT does not go to payment, but it should because fields are correctly filled.
 
         /*********************
@@ -108,53 +95,36 @@ describe('Payment Step test', () => {
     });
 })
 
-// function Checkboxes(props) {
-//     return (
-//         <div>
-//             <input className="item-box-checkbox-1" type="checkbox"/>
-//             <input className="item-box-checkbox-2" type="checkbox"/>
-//             <input className="item-box-checkbox-3" type="checkbox"/>
-//             <input className="item-box-checkbox-4" type="checkbox"/>
-//             ...
-//         </div>
-//     )
-// }
 
+function checkAllCheckboxesUnchecked(checkboxes: HTMLInputElement[]) {
 
+    checkboxes.map(checkbox =>
+        expect(checkbox.checked).toEqual(false)
+    )
+}
 
 async function testMains(container: HTMLElement) {
-
 
     /*********************
      * Check MAIN
      * *******************/
     let headings: HTMLElement[] = await screen.findAllByRole('heading')
-
     expect(headings[0].textContent).toBe("main");
     expect(headings[1].textContent).toBe("Order Summary");
 
 
-    const checkboxes: HTMLInputElement[] = await screen.findAllByRole('checkbox');
+    //all checkboxes unchecked
+    let checkboxes: HTMLInputElement[] = await screen.findAllByRole('checkbox');
     expect(checkboxes.length).toBe(2);
+    checkAllCheckboxesUnchecked(checkboxes);
 
-    // expect(screen.getByText(/main/i)).toBeInTheDocument()
+    // 2 buttons (back and forward)
     let buttons: HTMLInputElement[] = await screen.findAllByRole("button");
     expect(buttons.length).toBe(2);
 
-    checkboxes.map(checkbox =>
-        expect(checkbox.checked).toEqual(false)
-    )
+    let orderSummary = screen.queryByTestId("order-summary")
 
-    let l = screen.queryByTestId("order-summary")
-    // logRoles(screen)
-
-    // console.info("" + screen.debug())
-
-
-    // let orderSummary = container.querySelector('.order-summary')
-
-    expect(l?.textContent).toContain("Nothing selected")
-
+    expect(orderSummary?.textContent).toContain("Nothing selected")
 
     //***************
     //Select Combo
@@ -170,94 +140,50 @@ async function testMains(container: HTMLElement) {
 
     comboboxes = await screen.findAllByRole("combobox");
 
+    expect(comboboxes[0].value).toEqual("3")
 
-    expect(comboboxes[0].value).toEqual("3") // assert value 0
-    // return buttons;
+    orderSummary = screen.queryByTestId("order-summary")
 
+    expect(orderSummary?.textContent).toContain("Lachs-Lasagne")
+    expect(orderSummary?.textContent).toContain("Total:32.70") //3x lasagna (10,90)
 
-    console.info("*********************** TOTAL selects *********************** ")
+    //check first checkbox checked
+    checkboxes = await screen.findAllByRole('checkbox');
+    expect(checkboxes.length).toBe(2);
+    checkboxes.map((checkbox, i) => {
+        if ( i == 0)
+            expect(checkbox.checked).toEqual(true)
+        else
+            expect(checkbox.checked).toEqual(false)
+        }
+    )
 
-    console.info("" + screen.debug(comboboxes[0]),300000)
-
-    // headings = await screen.findAllByRole('heading')
-
-    // let l = screen.getByText("Order Summary")
-
-    // orderSummary = await screen.findByTitle("Order Summary");
-    // orderSummary = container.querySelector('.order-summary')
-    l = screen.queryByTestId("order-summary")
-    // logRoles(screen)
-
-
-    // const maxLengthToPrint = 100000
-    // screen.debug();
-    console.info("*********************** TOTAL SCREEN *********************** ")
-
-    console.info("" + screen.debug(),300000)
-
-
-    // let orderSummary = container.querySelector('.order-summary')
-
-    expect(l?.textContent).toContain("Lachs-Lasagne")
-    // expect(orderSummary?.textContent).toContain("Lachs-Lasagne")
-    // screen.debug();
-    // expect(screen.getByText('Total:')).toBeInTheDocument();
-
-    //***************
-    //Click checkbox TODO : NOT WORKING
-    //***************
-
-    // expect(checkboxes[0]).not.toBeChecked();
-
-    // fireEvent.click(checkboxes[0]);
-    //
-    // const checkboxes2 = screen.getAllByRole('checkbox');
-    //
-    // console.log(prettyDOM(checkboxes2[0]))
-    // const checked = await screen.findAllByRole('checkbox', {checked: true}) //hangs
-    // expect(checked).toHaveLength(1);
-    //
-    // await waitFor(() => expect(checkboxes2[1]).toBeChecked())
-
-    //click first checkbox
-    // fireEvent.click(checkboxes[0]);
-    //
-    //
-    // await waitFor(() => expect(checkboxes[0]).toBeChecked())
-
-    // const checked = await screen.findAllByRole('checkbox', {checked: true})
-    // expect(checked).toHaveLength(1);
-    //check all checkboses unchecked
-    // checkboxes.map(checkbox =>
-    //     expect(checkbox.checked).toEqual(false)
-    // )
-    // await userEvent.click(checkboxes[0]);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 async function testDrinks(container: HTMLElement) {
 
-    // await screen.findAllByRole('heading')
     const headings2: HTMLElement[] = await screen.findAllByRole('heading')
     expect(headings2[0].textContent).toBe("drinks");
     expect(headings2[1].textContent).toBe("Order Summary");
+    let checkboxes: HTMLInputElement[] = await screen.findAllByRole('checkbox');
+    expect(checkboxes.length).toBe(2);
 
-    const labelRadio2: HTMLInputElement[] = await screen.findAllByRole('checkbox');
-    // let elems = wrapper.find("input[type='radio']");
-    expect(labelRadio2.length).toBe(4);
+    //select a product with checkbox
+    fireEvent.click(checkboxes[1]);
+    checkboxes = await screen.findAllByRole('checkbox');
+    checkboxes.map((checkbox, i) => {
+            if ( i == 1)
+                expect(checkbox.checked).toEqual(true)
+            else
+                expect(checkbox.checked).toEqual(false)
+        }
+    )
+
+    let orderSummary = screen.queryByTestId("order-summary")
+    expect(orderSummary?.textContent).toContain("Lachs-Lasagne")
+    expect(orderSummary?.textContent).toContain("Beer")
+    expect(orderSummary?.textContent).toContain("Total:53.20") //3x lasagna (10,90) + 1x beer (20.5)
 
 }
 function getData(): AppState {
@@ -312,7 +238,7 @@ function getData(): AppState {
                 {
                     id: "30",
                     name: 'Wine',
-                    price: 22.7,
+                    price: 16.3,
                     description: 'Grauburgunder Weingut Braun, Pfalz 0,75 l',
                     imageFilename: 'wine3.jpg',
                     categories: [
@@ -325,9 +251,9 @@ function getData(): AppState {
                 {
                     id: "31",
                     name: 'Beer',
-                    price: 22.7,
-                    description: 'Lugana Villa Trendi, Gardasee 0,75 l',
-                    imageFilename: 'wine4.jpg',
+                    price: 20.5,
+                    description: 'biaar',
+                    imageFilename: 'beer.jpg',
                     categories: [
                         {
                             id: "2",
@@ -368,8 +294,8 @@ function getData(): AppState {
                         id: "31",
                         name: 'Beer',
                         price: 20.5,
-                        imageFilename: 'wine4.JPG',
-                        description: 'Lugana Villa Trendi, Gardasee 0,75 l',
+                        imageFilename: 'beer.JPG',
+                        description: 'biaar',
                     }
                 ]
             }
@@ -386,57 +312,5 @@ function getData(): AppState {
         },
     }
 }
-
-
-// let checkNoAddressFields = (wrapper) => {
-//     let elems = wrapper.find(".paymentPanel");
-//     expect(elems.length).toBe(0);
-// }
-//
-// let checkAddressFieldsDoExist = (wrapper) => {
-//     let elems = wrapper.find(".paymentPanel");
-//     expect(elems.length).toBe(1);
-// }
-
-// const data = {
-//     products: {
-//         items: [
-//             {
-//                 name: "prod1",
-//                 quantity: 1,
-//                 price: 123,
-//                 description: "asfd",
-//                 type: "main",
-//                 imageFilename: "",
-//             },
-//             {
-//                 name: "prod2",
-//                 quantity: 2,
-//                 price: 124,
-//                 description: "fasfdasfd",
-//                 type: "drink",
-//                 imageFilename: "",
-//             },
-//         ]
-//     },
-//     order: {
-//         paymentType: "cash",
-//         deliveryType: "pickup",
-//         address: {
-//             name: "fasdfas",
-//             telephone: "1234444",
-//             street: "asdfasdfasdf",
-//             postcode: "sfdsd23",
-//             username: "asdfasdf"
-//         }
-//     },
-//     login: {
-//         loginToken: "should something be here?",
-//         role: "asfd",
-//         loggingIn: false,
-//     },
-//     user: Function, //??
-// };
-
 
 

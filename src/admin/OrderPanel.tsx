@@ -178,21 +178,21 @@ function CardPanel(props: any) {
 function ProductListPanel(props: any) {
     return (
         <table className={"productListTable"}>
-            <thead>
-            <tr>
-                <td>item</td>
-                <td>price</td>
-                <td>type</td>
-                <td>qty</td>
+            <thead key={"head"}>
+            <tr key={"head-tr"}>
+                <td  key={"i"}>item</td>
+                <td  key={"p"}>price</td>
+                <td  key={"t"}>type</td>
+                <td  key={"q"}>qty</td>
             </tr>
             </thead>
             <tbody>
             {props.orderItems && props.orderItems.map((item: any) =>
                 <tr className={"orderItemBox"} key={item.id}>
-                    <td> {item.product.name} </td>
-                    <td> {item.product.price} </td>
-                    <td> {item.product.type} </td>
-                    <td> {item.amount} </td>
+                    <td key={item.id + "-1"}> {item.product.name} </td>
+                    <td key={item.id + "-2"}> {item.product.price} </td>
+                    <td key={item.id + "-3"}> {item.product.type} </td>
+                    <td key={item.id + "-4"}> {item.amount} </td>
                 </tr>
             )}
             </tbody>

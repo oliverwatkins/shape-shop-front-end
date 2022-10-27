@@ -8,6 +8,8 @@ import {MOCK_MODE} from "./constants";
 
 
 export default function Nav() {
+	{/*//TODO put first cat name in here*/}
+	let firstCat = "main";
 
 	let isUserLoggedInx = useSelector(isUserLoggedIn);
 	let username = useSelector(selectUserEmail);
@@ -21,8 +23,8 @@ export default function Nav() {
 					<Link to="/">Home</Link>
 				</li>
 				<li>
-					{/*//TODO put first cat name in here*/}
-					<Link to="/order/cat_main">Order</Link>
+
+					<Link to={"/order/cat_" + firstCat} >Order</Link>
 				</li>
 				<li className={"admin"}>
 					<Link to="/login">Admin</Link>

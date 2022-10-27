@@ -8,43 +8,45 @@ import {BackButton} from "./buttons/BackButton";
 
 import type {Address, Product} from "../AppState";
 import {DeliveryType, PaymentType} from "../AppState";
+import {useSelector} from "react-redux";
+import {selectOrder} from "../selectors";
 
 type Props = {
-	selectedProducts?: Array<Product>,
-	selectedProducts2?: Array<Product>,
-	address?: Address,
-	deliveryType?: string,
-	paymentType?: string,
+	// selectedProducts?: Array<Product>,
+	// selectedProducts2?: Array<Product>,
+	// address?: Address,
+	// deliveryType?: string,
+	// paymentType?: string,
 }
 
 function Summary(props: Props) {
+
+	let order = useSelector(selectOrder);
+
 	return (
 		<div className="wizardPanel summary-step">
 			<h2 className="wizardHeader">Summary</h2>
 			<div className="wizardMain">
 				<BackButton page={pages.WHICH_PAYMENT}/>
 				<div className="wizardCenter">
-					<h3><u>Order</u></h3>
+
 					<OrderSummary/>
 
-					<div>Delivery type -
-						{props.deliveryType === DeliveryType.pickup && <span>
-							<b> pickup</b></span>}
-						{props.deliveryType === DeliveryType.delivery && <span>
-							<b> delivery</b></span>}
+					<div>
+						{order.deliveryType === DeliveryType.pickup && <span><h3> pickup</h3></span>}
+						{order.deliveryType === DeliveryType.delivery && <span><h3> delivery</h3></span>}
 					</div>
-
-					{props.deliveryType === "delivery" && <AddressSummary address={props.address}/>}
-
-					<div>Payment type -
-						{props.paymentType === PaymentType.cash && <span>
-							<b> cash</b></span>}
-						{props.paymentType === PaymentType.card && <span>
-							<b> card</b></span>}
-					</div>
+					{<AddressSummary address={order.address}/>}
+					<h3>Payment with
+						{order.paymentType === PaymentType.cash && <span> cash</span>}
+						{order.paymentType === PaymentType.card && <span> card</span>}
+					</h3>
 				</div>
-				{props.paymentType === PaymentType.card && <span><NextButton label={"To Payment"} page={pages.PAYMENT}/></span>}
-				{props.paymentType !== PaymentType.card && <span><NextButton label={"OK"} page={pages.OK}/></span>}
+
+
+
+				{order.paymentType === PaymentType.card && <span><NextButton label={"To Payment"} page={pages.PAYMENT} disabled={false}/></span>}
+				{order.paymentType !== PaymentType.card && <span><NextButton label={"OK"} page={pages.OK} disabled={false}/></span>}
 			</div>
 		</div>
 	);

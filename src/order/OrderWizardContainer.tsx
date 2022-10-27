@@ -45,9 +45,9 @@ export default function OrderWizardContainer() {
 					</Route>
 					<Route path={wizardPages.SUMMARY}>
 						<Summary
-							address={address}
-							deliveryType={deliveryType}
-							paymentType={paymentType}
+							// address={address}
+							// deliveryType={deliveryType}
+							// paymentType={paymentType}
 						/>
 					</Route>
 					<Route path={wizardPages.OK}>
