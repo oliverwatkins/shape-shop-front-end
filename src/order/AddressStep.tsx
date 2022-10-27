@@ -41,7 +41,7 @@ export default function AddresStep() {
     }
 
     const dispatch = useDispatch();
-    const [redirect, setRedirect] = React.useState(false);
+    const [redirect, setRedirect] = React.useState<boolean>(false);
     const [deliveryType, setDeliveryType] = React.useState(DeliveryType.pickup);
 
     function onRadioChanged(e: any) {
@@ -54,7 +54,7 @@ export default function AddresStep() {
     }
 
     const onSubmit = (data: Address) => {
-        alert(JSON.stringify(data))
+        // alert(JSON.stringify(data))
 
         dispatch(updateAddressAction({address: data}));
         setRedirect(true)

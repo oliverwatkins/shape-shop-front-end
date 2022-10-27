@@ -65,7 +65,6 @@ describe('Payment Step test', () => {
          * *******************/
 
         await screen.findAllByRole('heading')
-
         expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
 
         [backbutton, forwardButton] = await screen.findAllByRole("button");
@@ -76,7 +75,7 @@ describe('Payment Step test', () => {
         expect(textBoxes.length).toBe(3);
 
         fireEvent.change(textBoxes[0], { target: { value: '123' } })
-        fireEvent.change(textBoxes[1], { target: { value: '122323' } })
+        // fireEvent.change(textBoxes[1], { target: { value: '018012333' } })
         fireEvent.change(textBoxes[2], { target: { value: '123@asdf.com' } })
 
         let buttons = await screen.findAllByRole("button");
@@ -84,9 +83,23 @@ describe('Payment Step test', () => {
         fireEvent.click(buttons[1]);
         //TODO clicking on NEXT does not go to payment, but it should because fields are correctly filled.
 
+        await screen.findAllByRole('heading')
+        expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
+
+        fireEvent.change(textBoxes[0], { target: { value: 'bob' } })
+        fireEvent.change(textBoxes[1], { target: { value: '018012333' } })
+        fireEvent.change(textBoxes[2], { target: { value: '123@asdf.com' } })
+
+        buttons = await screen.findAllByRole("button");
+        expect(buttons.length).toBe(2); // should be two
+        fireEvent.click(buttons[1]);
         /*********************
          * PAYMENT
          * *******************/
+
+        // await screen.findAllByRole('heading')
+        // expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
+
 
         // await screen.findAllByRole('heading')
         //

@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Summary from "./SummaryStep";
 import WhichPayment from "./WhichPaymentStep";
 import OKStep from "./OKStep";
-import type {Address, AppState, Category, Product} from "../AppState";
+import type {AppState, Category, Product} from "../AppState";
 import PaymentStep from "./PaymentStep";
 import AddressStep from "./AddressStep";
 import ProductStep from "./ProductStep";
@@ -21,15 +21,11 @@ export const wizardPages = {
 	OK: "/order/OK"
 }
 
-
 export default function OrderWizardContainer() {
 
 	let categories = useSelector(selectCategories)
 	let categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
 	let productsError = useSelector((state: AppState) => state.products.productsError)
-	let address = useSelector((state: AppState) => state.order && state.order.address)
-	let deliveryType = useSelector((state: AppState) => state.order && state.order.deliveryType)
-	let paymentType = useSelector((state: AppState) => state.order && state.order.paymentType)
 
 	return (
 		<div className={"order-wizard"}>
@@ -44,11 +40,7 @@ export default function OrderWizardContainer() {
 						<WhichPayment/>
 					</Route>
 					<Route path={wizardPages.SUMMARY}>
-						<Summary
-							// address={address}
-							// deliveryType={deliveryType}
-							// paymentType={paymentType}
-						/>
+						<Summary/>
 					</Route>
 					<Route path={wizardPages.OK}>
 						<OKStep />
