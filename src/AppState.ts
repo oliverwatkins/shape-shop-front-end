@@ -46,8 +46,8 @@ export type Authorization = {
 };
 
 export enum PaymentType {
-	cash = "CASH",
-	card = "CARD"
+	CASH = "CASH",
+	CARD = "CARD"
 }
 
 export enum DeliveryType {

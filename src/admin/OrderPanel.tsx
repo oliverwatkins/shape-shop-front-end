@@ -98,14 +98,14 @@ export default function OrderPanel(props: Props) {
                             <AddressPanel address={order.address}/>
                         </td>
                         <td className={"paymentType"}>
-                            {order.paymentType === PaymentType.cash && <div className="icon-container">
+                            {order.paymentType === PaymentType.CASH && <div className="icon-container">
                                 <FontAwesomeIcon icon={faMoneyBill} style={{
                                     fontSize: "14px",
                                     color: "green",
                                     margin: "1px"
                                 }}/> {order.paymentType}
                             </div>}
-                            {order.paymentType === PaymentType.card && <div className="icon-container">
+                            {order.paymentType === PaymentType.CARD && <div className="icon-container">
                                 <FontAwesomeIcon icon={faCreditCard} style={{
                                     fontSize: "14px",
                                     color: "black",

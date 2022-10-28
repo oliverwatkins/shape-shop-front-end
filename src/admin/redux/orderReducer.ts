@@ -7,7 +7,7 @@ const initialState: OrderState = {
 	orderItems: [],
 	selectedProducts: [],
 	orderState: OrderStateType.OPEN,
-	paymentType: PaymentType.cash,
+	paymentType: PaymentType.CASH,
 	deliveryType: DeliveryType.pickup
 };
 

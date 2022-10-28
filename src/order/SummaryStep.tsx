@@ -38,15 +38,15 @@ function Summary(props: Props) {
 					</div>
 					{<AddressSummary address={order.address}/>}
 					<h3>Payment with
-						{order.paymentType === PaymentType.cash && <span> cash</span>}
-						{order.paymentType === PaymentType.card && <span> card</span>}
+						{order.paymentType === PaymentType.CASH && <span> cash</span>}
+						{order.paymentType === PaymentType.CARD && <span> card</span>}
 					</h3>
 				</div>
 
 
 
-				{order.paymentType === PaymentType.card && <span><NextButton label={"To Payment"} page={pages.PAYMENT} disabled={false}/></span>}
-				{order.paymentType !== PaymentType.card && <span><NextButton label={"OK"} page={pages.OK} disabled={false}/></span>}
+				{order.paymentType === PaymentType.CARD && <span><NextButton label={"To Payment"} page={pages.PAYMENT} disabled={false}/></span>}
+				{order.paymentType !== PaymentType.CARD && <span><NextButton label={"OK"} page={pages.OK} disabled={false}/></span>}
 			</div>
 		</div>
 	);

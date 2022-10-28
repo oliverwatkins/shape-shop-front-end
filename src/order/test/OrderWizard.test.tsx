@@ -25,14 +25,11 @@ export function createTestStore() {
 
 async function testContact() {
 
-
     await screen.findAllByRole('heading')
     expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
 
     let [backbutton, forwardButton] = await screen.findAllByRole("button");
 
-    // let textBoxes: HTMLInputElement[] = await screen.findAllByRole('textbox');
-    // expect(textBoxes.length).toBe(3);
     let textBoxes: HTMLInputElement[] = await screen.findAllByRole("textbox");
     expect(textBoxes.length).toBe(3);
 
@@ -40,10 +37,11 @@ async function testContact() {
     // required field "telephone" is left empty
     fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
 
-    let buttons = await screen.findAllByRole("button");
-    expect(buttons.length).toBe(2);
-    fireEvent.click(buttons[1]);
+    await act(async () => {
+        fireEvent.click(forwardButton);
+    });
 
+    //Will NOT move to the next screen, because the form is not yet valid.
     await screen.findAllByRole('heading')
     expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
 
@@ -51,8 +49,6 @@ async function testContact() {
     fireEvent.change(textBoxes[1], {target: {value: '018012333'}})
     fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
 
-    buttons = await screen.findAllByRole("button");
-    expect(buttons.length).toBe(2); // should be two
 
     /**
      * Use "act" to make it resemble more how it works in the browser :
@@ -60,8 +56,12 @@ async function testContact() {
      * "This makes your test run closer to how React works in the browser"
      */
     await act(async () => {
-        fireEvent.click(buttons[1]);
+        fireEvent.click(forwardButton);
     });
+
+    // now we are in the next screen
+    await screen.findAllByRole('heading')
+    expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
 }
 
 describe('Payment Step test', () => {
@@ -109,9 +109,7 @@ describe('Payment Step test', () => {
         /*********************
          * PAYMENT
          *********************/
-
-        await screen.findAllByRole('heading')
-        expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
+        await testWhichPayment();
 
 
         // await screen.findAllByRole('heading')
@@ -128,6 +126,24 @@ function checkAllCheckboxesUnchecked(checkboxes: HTMLInputElement[]) {
         expect(checkbox.checked).toEqual(false)
     )
 }
+
+async function testWhichPayment() {
+    let headings: HTMLElement[] = await screen.findAllByRole('heading')
+    expect(headings[0].textContent).toBe("How do you wish to pay?");
+
+    let [firstRadio, secondRadio]: HTMLElement[] = await screen.findAllByRole('radio')
+    // expect(radios.length).toBe(2);
+    // expect(firstRadio).toBe(selected);
+    expect(firstRadio).toBeChecked()
+    expect(secondRadio).not.toBeChecked()
+
+    fireEvent.click(secondRadio);
+    expect(firstRadio).not.toBeChecked()
+    expect(secondRadio).toBeChecked()
+
+    // expect(headings[1].textContent).toBe("Order Summary");
+}
+
 
 async function testMains() {
 

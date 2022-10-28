@@ -10,11 +10,17 @@ import {updatePaymentTypeAction} from "../admin/redux/orderReducer";
 export default function WhichPayment() {
 	const dispatch = useDispatch();
 
-	const [paymentType, setPaymentType]  = React.useState(PaymentType.cash);
+	const [paymentType, setPaymentType]  = React.useState(PaymentType.CASH);
 
 	function onRadioChanged(e: React.ChangeEvent<HTMLInputElement>){
-		// @ts-ignore
-		setPaymentType(PaymentType[e.currentTarget.value])
+
+		let radioVal = e.currentTarget.value;
+
+		if (radioVal === "CASH") {
+			setPaymentType(PaymentType.CASH)
+		} else if (radioVal === "CARD") {
+			setPaymentType(PaymentType.CARD)
+		}
 
 		dispatch(updatePaymentTypeAction({value: e.currentTarget.value}));
 	}
@@ -28,16 +34,16 @@ export default function WhichPayment() {
 					<input type="radio"
 						   id="choice1"
 						   name="cashOrCard"
-						   value={PaymentType.cash}
-						   checked={paymentType === PaymentType.cash}
+						   value={PaymentType.CASH}
+						   checked={paymentType === PaymentType.CASH}
 						   onChange={onRadioChanged}
 					/>
 					<label htmlFor="contactChoice2">Pay on arrival</label>
 					<input type="radio"
 						   id="choice2"
 						   name="cashOrCard"
-						   value={PaymentType.card}
-						   checked={paymentType === PaymentType.card}
+						   value={PaymentType.CARD}
+						   checked={paymentType === PaymentType.CARD}
 						   onChange={onRadioChanged}
 					/>
 					<label htmlFor="contactChoice1">Pay online now with credit card</label>
