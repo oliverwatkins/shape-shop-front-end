@@ -3,25 +3,19 @@ import * as React from 'react';
 import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
-import {connect, useDispatch} from "react-redux";
-import {PaymentType} from "../AppState";
+import {connect, useDispatch, useSelector} from "react-redux";
+import {OrderState, PaymentType} from "../AppState";
 import {updatePaymentTypeAction} from "../admin/redux/orderReducer";
+import {selectOrder} from "../selectors";
 
 export default function WhichPayment() {
 	const dispatch = useDispatch();
 
-	const [paymentType, setPaymentType]  = React.useState(PaymentType.CASH);
+	let order: OrderState = useSelector(selectOrder);
+
+	let paymentType = order.paymentType;
 
 	function onRadioChanged(e: React.ChangeEvent<HTMLInputElement>){
-
-		let radioVal = e.currentTarget.value;
-
-		if (radioVal === "CASH") {
-			setPaymentType(PaymentType.CASH)
-		} else if (radioVal === "CARD") {
-			setPaymentType(PaymentType.CARD)
-		}
-
 		dispatch(updatePaymentTypeAction({value: e.currentTarget.value}));
 	}
 

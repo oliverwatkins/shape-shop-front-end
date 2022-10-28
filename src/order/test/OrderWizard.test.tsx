@@ -23,46 +23,7 @@ export function createTestStore() {
     return store;
 }
 
-async function testContact() {
 
-    await screen.findAllByRole('heading')
-    expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
-
-    let [backbutton, forwardButton] = await screen.findAllByRole("button");
-
-    let textBoxes: HTMLInputElement[] = await screen.findAllByRole("textbox");
-    expect(textBoxes.length).toBe(3);
-
-    fireEvent.change(textBoxes[0], {target: {value: 'bob'}})
-    // required field "telephone" is left empty
-    fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
-
-    await act(async () => {
-        fireEvent.click(forwardButton);
-    });
-
-    //Will NOT move to the next screen, because the form is not yet valid.
-    await screen.findAllByRole('heading')
-    expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
-
-    fireEvent.change(textBoxes[0], {target: {value: 'bob'}})
-    fireEvent.change(textBoxes[1], {target: {value: '018012333'}})
-    fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
-
-
-    /**
-     * Use "act" to make it resemble more how it works in the browser :
-     *
-     * "This makes your test run closer to how React works in the browser"
-     */
-    await act(async () => {
-        fireEvent.click(forwardButton);
-    });
-
-    // now we are in the next screen
-    await screen.findAllByRole('heading')
-    expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
-}
 
 describe('Payment Step test', () => {
     const store = createTestStore();
@@ -132,8 +93,7 @@ async function testWhichPayment() {
     expect(headings[0].textContent).toBe("How do you wish to pay?");
 
     let [firstRadio, secondRadio]: HTMLElement[] = await screen.findAllByRole('radio')
-    // expect(radios.length).toBe(2);
-    // expect(firstRadio).toBe(selected);
+
     expect(firstRadio).toBeChecked()
     expect(secondRadio).not.toBeChecked()
 
@@ -141,7 +101,34 @@ async function testWhichPayment() {
     expect(firstRadio).not.toBeChecked()
     expect(secondRadio).toBeChecked()
 
-    // expect(headings[1].textContent).toBe("Order Summary");
+    let [backButton, forwardButton]: HTMLElement[] = await screen.findAllByRole('button')
+    fireEvent.click(forwardButton);
+
+    let [SummaryHeading]: HTMLElement[] = await screen.findAllByRole('heading')
+    expect(SummaryHeading.textContent).toBe("Summary");
+
+    [backButton, forwardButton] = await screen.findAllByRole('button')
+    expect(forwardButton.textContent).toBe("To Payment");
+    //forward button must be "To Payment" button
+    fireEvent.click(backButton);
+
+    [SummaryHeading] = await screen.findAllByRole('heading')
+    expect(SummaryHeading.textContent).toBe("How do you wish to pay?");
+
+    [firstRadio, secondRadio] = await screen.findAllByRole('radio')
+    fireEvent.click(firstRadio);
+
+    [backButton, forwardButton] = await screen.findAllByRole('button')
+    fireEvent.click(forwardButton);
+
+    [SummaryHeading] = await screen.findAllByRole('heading')
+    expect(SummaryHeading.textContent).toBe("Summary");
+    [backButton, forwardButton] = await screen.findAllByRole('button')
+    fireEvent.click(forwardButton);
+    //forward button must be "OK" button now
+    expect(forwardButton.textContent).toBe("OK");
+
+    fireEvent.click(backButton);
 }
 
 
@@ -225,4 +212,45 @@ async function testDrinks() {
     expect(orderSummary?.textContent).toContain("Beer")
     expect(orderSummary?.textContent).toContain("Total:53.20") //3x lasagna (10,90) + 1x beer (20.5)
 
+}
+
+async function testContact() {
+
+    await screen.findAllByRole('heading')
+    expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
+
+    let [backbutton, forwardButton] = await screen.findAllByRole("button");
+
+    let textBoxes: HTMLInputElement[] = await screen.findAllByRole("textbox");
+    expect(textBoxes.length).toBe(3);
+
+    fireEvent.change(textBoxes[0], {target: {value: 'bob'}})
+    // required field "telephone" is left empty
+    fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
+
+    await act(async () => {
+        fireEvent.click(forwardButton);
+    });
+
+    //Will NOT move to the next screen, because the form is not yet valid.
+    await screen.findAllByRole('heading')
+    expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
+
+    fireEvent.change(textBoxes[0], {target: {value: 'bob'}})
+    fireEvent.change(textBoxes[1], {target: {value: '018012333'}})
+    fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
+
+
+    /**
+     * Use "act" to make it resemble more how it works in the browser :
+     *
+     * "This makes your test run closer to how React works in the browser"
+     */
+    await act(async () => {
+        fireEvent.click(forwardButton);
+    });
+
+    // now we are in the next screen
+    await screen.findAllByRole('heading')
+    expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
 }

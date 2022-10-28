@@ -29,16 +29,7 @@ export default function AddresStep() {
         resolver: yupResolver(schema)
     });
 
-    console.info("errors")
-
     let errors = formState.errors
-
-    try {
-        console.info(JSON.stringify(errors))
-    }
-    catch(e) {
-        console.error("circular error")
-    }
 
     const dispatch = useDispatch();
     const [redirect, setRedirect] = React.useState<boolean>(false);

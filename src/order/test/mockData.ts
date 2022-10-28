@@ -1,4 +1,4 @@
-import {AppState} from "../../AppState";
+import {AppState, PaymentType} from "../../AppState";
 
 
 export function getData(): AppState {
@@ -119,7 +119,7 @@ export function getData(): AppState {
 			orderItems: [],
 			selectedProducts: [],
 			// orderState: 'OPEN',
-			// paymentType: 'CASH',
+			paymentType: PaymentType.CASH
 			// deliveryType: 'PICKUP'
 		},
 		admin: {
