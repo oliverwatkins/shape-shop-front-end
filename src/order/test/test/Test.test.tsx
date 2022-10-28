@@ -1,5 +1,5 @@
 import React from 'react';
-import {fireEvent, render, screen} from "@testing-library/react";
+import {act, fireEvent, render, screen} from "@testing-library/react";
 import '@testing-library/jest-dom';
 import Test from "./Test";
 
@@ -14,7 +14,11 @@ describe('Test', () => {
         await screen.findAllByRole('heading')
 
         let buttons = await screen.findAllByRole("button");
-        fireEvent.click(buttons[0]);
+
+        await act(async () => {
+            fireEvent.click(buttons[0]);
+        });
+        // fireEvent.click(buttons[0]);
     });
 })
 

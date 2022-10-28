@@ -19,8 +19,9 @@ export default function Test() {
         <>
             <h1>Test</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
+                <button type={"submit"}>Hi</button>
             </form>
-            <button onClick={()=>onSubmit()}>Hi</button>
+            {/*<button onClick={()=>onSubmit()}>Hi</button>*/}
         </>
     );
 }

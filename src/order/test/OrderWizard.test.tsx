@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {MemoryRouter} from "react-router-dom";
-import {fireEvent, render, screen} from "@testing-library/react";
+import {act, fireEvent, render, screen} from "@testing-library/react";
 import OrderWizardContainer from "../OrderWizardContainer";
 
 import '@testing-library/jest-dom';
@@ -9,7 +9,7 @@ import {combineReducers, createStore} from "redux";
 import {productsReducer as products} from "../../admin/redux/productsReducer";
 import {reducer as order} from "../../admin/redux/orderReducer";
 import {reducer as admin} from "../../admin/redux/adminReducer";
-import {AppState} from "../../AppState";
+import {getData} from "./mockData";
 
 export function createTestStore() {
     const store = createStore(
@@ -21,6 +21,47 @@ export function createTestStore() {
         }), getData()
     );
     return store;
+}
+
+async function testContact() {
+
+
+    await screen.findAllByRole('heading')
+    expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
+
+    let [backbutton, forwardButton] = await screen.findAllByRole("button");
+
+    // let textBoxes: HTMLInputElement[] = await screen.findAllByRole('textbox');
+    // expect(textBoxes.length).toBe(3);
+    let textBoxes: HTMLInputElement[] = await screen.findAllByRole("textbox");
+    expect(textBoxes.length).toBe(3);
+
+    fireEvent.change(textBoxes[0], {target: {value: 'bob'}})
+    // required field "telephone" is left empty
+    fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
+
+    let buttons = await screen.findAllByRole("button");
+    expect(buttons.length).toBe(2);
+    fireEvent.click(buttons[1]);
+
+    await screen.findAllByRole('heading')
+    expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
+
+    fireEvent.change(textBoxes[0], {target: {value: 'bob'}})
+    fireEvent.change(textBoxes[1], {target: {value: '018012333'}})
+    fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
+
+    buttons = await screen.findAllByRole("button");
+    expect(buttons.length).toBe(2); // should be two
+
+    /**
+     * Use "act" to make it resemble more how it works in the browser :
+     *
+     * "This makes your test run closer to how React works in the browser"
+     */
+    await act(async () => {
+        fireEvent.click(buttons[1]);
+    });
 }
 
 describe('Payment Step test', () => {
@@ -42,9 +83,10 @@ describe('Payment Step test', () => {
             </MemoryRouter>
         </Provider>)
 
-
-        //mains
-        await testMains(container);
+        /*********************
+         * Check MAIN
+         * *******************/
+        await testMains();
 
         let [backbutton, forwardButton] = await screen.findAllByRole("button");
         fireEvent.click(forwardButton);
@@ -53,52 +95,23 @@ describe('Payment Step test', () => {
          * DRINKS
          * *******************
          */
-
-        //drinks
-        await testDrinks(container);
+        await testDrinks();
 
         [backbutton, forwardButton] = await screen.findAllByRole("button");
         fireEvent.click(forwardButton);
 
         /*********************
-         * ADDRESS
+         * CONTACT
          * *******************/
+        await testContact();
 
-        await screen.findAllByRole('heading')
-        expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
 
-        [backbutton, forwardButton] = await screen.findAllByRole("button");
-
-        // let textBoxes: HTMLInputElement[] = await screen.findAllByRole('textbox');
-        // expect(textBoxes.length).toBe(3);
-        let textBoxes: HTMLInputElement[] = await screen.findAllByRole("textbox");
-        expect(textBoxes.length).toBe(3);
-
-        fireEvent.change(textBoxes[0], { target: { value: '123' } })
-        // fireEvent.change(textBoxes[1], { target: { value: '018012333' } })
-        fireEvent.change(textBoxes[2], { target: { value: '123@asdf.com' } })
-
-        let buttons = await screen.findAllByRole("button");
-        expect(buttons.length).toBe(2); // should be two
-        fireEvent.click(buttons[1]);
-        //TODO clicking on NEXT does not go to payment, but it should because fields are correctly filled.
-
-        await screen.findAllByRole('heading')
-        expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
-
-        fireEvent.change(textBoxes[0], { target: { value: 'bob' } })
-        fireEvent.change(textBoxes[1], { target: { value: '018012333' } })
-        fireEvent.change(textBoxes[2], { target: { value: '123@asdf.com' } })
-
-        buttons = await screen.findAllByRole("button");
-        expect(buttons.length).toBe(2); // should be two
-        fireEvent.click(buttons[1]);
         /*********************
          * PAYMENT
-         * *******************/
+         *********************/
 
-        // await screen.findAllByRole('heading')
-        // expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
+        await screen.findAllByRole('heading')
+        expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
 
 
         // await screen.findAllByRole('heading')
@@ -116,11 +129,9 @@ function checkAllCheckboxesUnchecked(checkboxes: HTMLInputElement[]) {
     )
 }
 
-async function testMains(container: HTMLElement) {
+async function testMains() {
 
-    /*********************
-     * Check MAIN
-     * *******************/
+
     let headings: HTMLElement[] = await screen.findAllByRole('heading')
     expect(headings[0].textContent).toBe("main");
     expect(headings[1].textContent).toBe("Order Summary");
@@ -174,7 +185,7 @@ async function testMains(container: HTMLElement) {
 }
 
 
-async function testDrinks(container: HTMLElement) {
+async function testDrinks() {
 
     const headings2: HTMLElement[] = await screen.findAllByRole('heading')
     expect(headings2[0].textContent).toBe("drinks");
@@ -199,131 +210,3 @@ async function testDrinks(container: HTMLElement) {
     expect(orderSummary?.textContent).toContain("Total:53.20") //3x lasagna (10,90) + 1x beer (20.5)
 
 }
-function getData(): AppState {
-    return {
-
-        login: {
-            loggingIn: false,
-            loginToken: {
-                username: "itdoesntmatter",
-                token: "itdoesntmatter",
-            },
-            // logout: 'IN_PROGRESS'
-        },
-        products: {
-            categories: [
-                {
-                    id: "1",
-                    name: 'main'
-                },
-                {
-                    id: "2",
-                    name: 'drinks'
-                }
-            ],
-            allProducts: [
-                {
-                    id: "13",
-                    name: 'Lachs-Lasagne',
-                    price: 10.9,
-                    description: 'Lachs-Spinat-Lasagne',
-                    imageFilename: 'lachs_spinat.jpg',
-                    categories: [
-                        {
-                            id: "1",
-                            name: 'main'
-                        }
-                    ]
-                },
-                {
-                    id: "14",
-                    name: 'Calamari',
-                    price: 4.5,
-                    description: 'Gegrillte Calamari gefÃ¼llt mit Zucchini und Paprika auf Aurberginen-PÃ¼ree',
-                    imageFilename: 'calamari.jpg',
-                    categories: [
-                        {
-                            id: "1",
-                            name: 'main'
-                        }
-                    ]
-                },
-                {
-                    id: "30",
-                    name: 'Wine',
-                    price: 16.3,
-                    description: 'Grauburgunder Weingut Braun, Pfalz 0,75 l',
-                    imageFilename: 'wine3.jpg',
-                    categories: [
-                        {
-                            id: "2",
-                            name: 'drinks'
-                        }
-                    ]
-                },
-                {
-                    id: "31",
-                    name: 'Beer',
-                    price: 20.5,
-                    description: 'biaar',
-                    imageFilename: 'beer.jpg',
-                    categories: [
-                        {
-                            id: "2",
-                            name: 'drinks'
-                        }
-                    ]
-                }
-            ],
-            productsError: '',
-            updatingProduct: false,
-            categoryProducts: {
-                main: [
-                    {
-                        id: "13",
-                        name: 'Lachs-Lasagne',
-                        price: 10.9,
-                        imageFilename: 'lachs_spinat.jpg',
-                        description: 'Lachs-Spinat-Lasagne'
-                    },
-                    {
-                        id: "14",
-                        name: 'Calamari',
-                        price: 4.5,
-                        imageFilename: 'calamari.jpg',
-                        description: 'Gegrillte Calamari gefÃ¼llt mit Zucchini und Paprika auf Aurberginen-PÃ¼ree'
-                    },
-
-                ],
-                drinks: [
-                    {
-                        id: "30",
-                        name: 'Wine',
-                        price: 16.3,
-                        imageFilename: 'wine3.jpg',
-                        description: 'Grauburgunder Weingut Braun, Pfalz 0,75 l',
-                    },
-                    {
-                        id: "31",
-                        name: 'Beer',
-                        price: 20.5,
-                        imageFilename: 'beer.JPG',
-                        description: 'biaar',
-                    }
-                ]
-            }
-        },
-        order: {
-            orderItems: [],
-            selectedProducts: [],
-            // orderState: 'OPEN',
-            // paymentType: 'CASH',
-            // deliveryType: 'PICKUP'
-        },
-        admin: {
-            orders: []
-        },
-    }
-}
-
-
