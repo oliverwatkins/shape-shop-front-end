@@ -14,13 +14,13 @@ describe('Address Step test', () => {
 
 	const store = mockStore(getData());
 
-	it('matches snapshot', () => {
-		expect(render(<Provider store={store}>
-			<MemoryRouter>
-				<AddressStep/>
-			</MemoryRouter>
-		</Provider>)).toMatchSnapshot();
-	});
+	// it('matches snapshot', () => {
+	// 	expect(render(<Provider store={store}>
+	// 		<MemoryRouter>
+	// 			<AddressStep/>
+	// 		</MemoryRouter>
+	// 	</Provider>)).toMatchSnapshot();
+	// });
 
 
 	it('select radio button - check that it works', async () => {
