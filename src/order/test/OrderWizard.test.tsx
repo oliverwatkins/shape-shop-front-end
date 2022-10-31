@@ -28,13 +28,13 @@ export function createTestStore() {
 describe('Payment Step test', () => {
     const store = createTestStore();
 
-    xit('matches snapshot', () => {
-        expect(render(<Provider store={store}>
-            <MemoryRouter initialEntries={["/order/cat_main", ""]}>
-                <OrderWizardContainer/>
-            </MemoryRouter>
-        </Provider>)).toMatchSnapshot();
-    });
+    // xit('matches snapshot', () => {
+    //     expect(render(<Provider store={store}>
+    //         <MemoryRouter initialEntries={["/order/cat_main", ""]}>
+    //             <OrderWizardContainer/>
+    //         </MemoryRouter>
+    //     </Provider>)).toMatchSnapshot();
+    // });
 
     it('Step through wizard from product list, to address, payment, and OK screen', async () => {
 
@@ -231,8 +231,8 @@ async function testContact() {
     expect(textBoxes.length).toBe(3);
 
     fireEvent.change(textBoxes[0], {target: {value: 'bob'}})
-    // required field "telephone" is left empty
-    fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
+    // !!! required field "telephone" is left empty !!!!
+    fireEvent.change(textBoxes[2], {target: {value: 'bob@bob.com'}})
 
     await act(async () => {
         fireEvent.click(forwardButton);
@@ -243,8 +243,8 @@ async function testContact() {
     expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
 
     fireEvent.change(textBoxes[0], {target: {value: 'bob'}})
-    fireEvent.change(textBoxes[1], {target: {value: '018012333'}})
-    fireEvent.change(textBoxes[2], {target: {value: '123@asdf.com'}})
+    fireEvent.change(textBoxes[1], {target: {value: '123456789'}})
+    fireEvent.change(textBoxes[2], {target: {value: 'bob@bob.com'}})
 
 
     /**
@@ -259,4 +259,26 @@ async function testContact() {
     // now we are in the next screen
     await screen.findAllByRole('heading')
     expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
+
+    [backbutton, forwardButton] = await screen.findAllByRole("button");
+    fireEvent.click(backbutton);
+    // [backbutton, forwardButton] = await screen.findAllByRole("button");
+
+    textBoxes = await screen.findAllByRole("textbox");
+    // [backbutton, forwardButton] = await screen.findAllByRole("button");
+
+    expect(textBoxes.length).toBe(3);
+    expect(textBoxes[0].value).toBe("bob")
+    expect(textBoxes[1].value).toBe("123456789")
+    expect(textBoxes[2].value).toBe("bob@bob.com")
+
+    let [backbutton2, forwardButton2]= await screen.findAllByRole("button");
+
+    await act(async () => {
+        fireEvent.click(forwardButton2);
+    });
+
+    expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
+
+
 }

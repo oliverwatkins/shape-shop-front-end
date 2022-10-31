@@ -32,6 +32,8 @@ export default function WhichPayment() {
 						   checked={paymentType === PaymentType.CASH}
 						   onChange={onRadioChanged}
 					/>
+
+					{/*TODO if delivery then text should read "pay at the door"*/}
 					<label htmlFor="contactChoice2">Pay on arrival</label>
 					<input type="radio"
 						   id="choice2"

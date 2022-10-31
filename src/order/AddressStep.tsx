@@ -7,14 +7,14 @@ import * as yup from "yup";
 
 import "./order.scss"
 import {Redirect} from "react-router";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {wizardPages as pages} from "./OrderWizardContainer"
 import {NextButton} from "./buttons/NextButton";
 import {BackButton} from "./buttons/BackButton";
 import {Address, DeliveryType, Product} from "../AppState";
 import {updateAddressAction, updateDeliveryTypeAction} from "../admin/redux/orderReducer";
 import {useForm} from "react-hook-form";
-import {Link} from "react-router-dom";
+import {selectOrder} from "../selectors";
 
 const schema = yup.object({
     name: yup.string().required(),
@@ -30,6 +30,8 @@ export default function AddresStep() {
     });
 
     let errors = formState.errors
+
+    const order = useSelector(selectOrder);
 
     const dispatch = useDispatch();
     const [redirect, setRedirect] = React.useState<boolean>(false);
@@ -53,7 +55,7 @@ export default function AddresStep() {
     return (
         <div className="wizardPanel address-step">
 
-            {formState.isValid && <h4>IS VALID</h4> }
+            {formState.isValid && <span>IS VALID</span> }
             <h2 className={"wizardHeader"}>Delivery or Pickup?</h2>
                 <div className="wizardMain">
                     <BackButton page={"/order/cat_drinks"}/>
@@ -76,7 +78,7 @@ export default function AddresStep() {
                                 <label htmlFor="contactChoice1">Pickup</label>
                                 <input type="radio"
                                        id="contactChoice2"
-                                       name="pckupOrDelivery"
+                                       name="pickupOrDelivery"
                                        value={DeliveryType.delivery}
                                        checked={deliveryType === DeliveryType.delivery}
                                        onChange={onRadioChanged}/>
@@ -88,6 +90,7 @@ export default function AddresStep() {
                                 <input
                                     id="name"
                                     type="text"
+                                    value={order.address?.name}
                                     {...register("name", {required: true, maxLength: 45})}
                                 />
                                 <span className={"error"}>
@@ -124,6 +127,7 @@ export default function AddresStep() {
                                 <input
                                     id="tel"
                                     type="text"
+                                    value={order.address?.telephone}
                                     {...register("telephone", {required: true, maxLength: 85})}
                                 />
                                 <span className={"error"}>
@@ -135,6 +139,7 @@ export default function AddresStep() {
                                 <input
                                     id="email"
                                     type="text"
+                                    value={order.address?.email}
                                     {...register("email", {required: false, maxLength: 85})}
                                 />
                                 <span className={"error"}>
