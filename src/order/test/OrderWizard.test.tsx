@@ -88,6 +88,9 @@ function checkAllCheckboxesUnchecked(checkboxes: HTMLInputElement[]) {
     )
 }
 
+/**
+ * Tests the radio button clicks on this screen, and whether or not it has an effect on the next screen.
+ */
 async function testWhichPayment() {
     let headings: HTMLElement[] = await screen.findAllByRole('heading')
     expect(headings[0].textContent).toBe("How do you wish to pay?");
@@ -214,6 +217,9 @@ async function testDrinks() {
 
 }
 
+/**
+ * Test "delivery or pickup screen and form"
+ */
 async function testContact() {
 
     await screen.findAllByRole('heading')
