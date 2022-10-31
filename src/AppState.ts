@@ -51,8 +51,8 @@ export enum PaymentType {
 }
 
 export enum DeliveryType {
-	pickup = "PICKUP",
-	delivery = "DELIVERY"
+	PICKUP = "PICKUP",
+	DELIVERY = "DELIVERY"
 }
 
 export enum OrderStateType {

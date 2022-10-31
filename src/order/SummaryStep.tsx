@@ -33,8 +33,8 @@ function Summary(props: Props) {
 					<OrderSummary/>
 
 					<div>
-						{order.deliveryType === DeliveryType.pickup && <span><h3> pickup</h3></span>}
-						{order.deliveryType === DeliveryType.delivery && <span><h3> delivery</h3></span>}
+						{order.deliveryType === DeliveryType.PICKUP && <span><h3> pickup</h3></span>}
+						{order.deliveryType === DeliveryType.DELIVERY && <span><h3> delivery</h3></span>}
 					</div>
 					{<AddressSummary address={order.address}/>}
 					<h3>Payment with

@@ -81,14 +81,14 @@ export default function OrderPanel(props: Props) {
                             <b>TOTAL PRICE : {calculateTotal2(order.orderItems)} </b>
                         </td>
                         <td className={"deliveryType"}>
-                            {order.deliveryType === DeliveryType.delivery && <div className="icon-container">
+                            {order.deliveryType === DeliveryType.DELIVERY && <div className="icon-container">
                                 <FontAwesomeIcon icon={faTruck} style={{
                                     fontSize: "14px",
                                     color: "navy",
                                     margin: "1px"
                                 }}/> {order.deliveryType}
                             </div>}
-                            {order.deliveryType === DeliveryType.pickup && <div className="icon-container">
+                            {order.deliveryType === DeliveryType.PICKUP && <div className="icon-container">
                                 <FontAwesomeIcon icon={faHandHolding} style={{
                                     fontSize: "14px",
                                     color: "pink",

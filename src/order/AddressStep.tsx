@@ -35,10 +35,10 @@ export default function AddresStep() {
 
     const dispatch = useDispatch();
     const [redirect, setRedirect] = React.useState<boolean>(false);
-    const [deliveryType, setDeliveryType] = React.useState(DeliveryType.pickup);
+    // const [deliveryType, setDeliveryType] = React.useState(DeliveryType.pickup);
 
     function onRadioChanged(e: any) {
-        setDeliveryType(e.currentTarget.value)
+        // setDeliveryType(e.currentTarget.value)
         dispatch(updateDeliveryTypeAction(e.currentTarget.value));
     }
 
@@ -55,6 +55,7 @@ export default function AddresStep() {
     return (
         <div className="wizardPanel address-step">
 
+            {order && order.deliveryType}
             {formState.isValid && <span>IS VALID</span> }
             <h2 className={"wizardHeader"}>Delivery or Pickup?</h2>
                 <div className="wizardMain">
@@ -72,15 +73,15 @@ export default function AddresStep() {
                                 <input type="radio"
                                        id="contactChoice1"
                                        name="pickupOrDelivery"
-                                       value={DeliveryType.pickup}
+                                       value={DeliveryType.PICKUP}
                                        onChange={onRadioChanged}
-                                       checked={deliveryType === DeliveryType.pickup}/>
+                                       checked={order.deliveryType === DeliveryType.PICKUP}/>
                                 <label htmlFor="contactChoice1">Pickup</label>
                                 <input type="radio"
                                        id="contactChoice2"
                                        name="pickupOrDelivery"
-                                       value={DeliveryType.delivery}
-                                       checked={deliveryType === DeliveryType.delivery}
+                                       value={DeliveryType.DELIVERY}
+                                       checked={order.deliveryType === DeliveryType.DELIVERY}
                                        onChange={onRadioChanged}/>
                                 <label htmlFor="contactChoice2">Delivery</label>
                             </div>
@@ -97,7 +98,7 @@ export default function AddresStep() {
                                     {errors.name?.type === 'required' && <p role="alert">Name is required</p>}
                             </span>
                             </div>
-                            {deliveryType && (deliveryType === DeliveryType.delivery) &&
+                            {order.deliveryType && (order.deliveryType === DeliveryType.DELIVERY) &&
                                 <div>
                                     <div>
                                         <label htmlFor="street">Strasse</label>
@@ -106,9 +107,7 @@ export default function AddresStep() {
                                             type="text"
                                             {...register("street", {required: false, maxLength: 85})}
                                         />
-                                        <span className={"error"}>
-
-                            </span>
+                                        <span className={"error"}></span>
                                     </div>
                                     <div>
                                         <label htmlFor="postcode">Postleitzahl</label>
@@ -117,8 +116,7 @@ export default function AddresStep() {
                                             type="text"
                                             {...register("postcode", {required: false, maxLength: 85})}
                                         />
-                                        <span className={"error"}>
-                                </span>
+                                        <span className={"error"}></span>
                                     </div>
                                 </div>
                             }

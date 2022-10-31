@@ -8,7 +8,7 @@ const initialState: OrderState = {
 	selectedProducts: [],
 	orderState: OrderStateType.OPEN,
 	paymentType: PaymentType.CASH,
-	deliveryType: DeliveryType.pickup
+	deliveryType: DeliveryType.PICKUP
 };
 
 export const OrderActions = {
@@ -23,7 +23,7 @@ export const OrderActions = {
 
 export const updateCreditCardAction = createAction<{ creditCard: any } >(OrderActions.UPDATE_CREDIT_CARD);
 export const updateAddressAction = createAction<{ address: Address } >(OrderActions.UPDATE_ADDRESS);
-export const updateDeliveryTypeAction = createAction<{ value: any } >(OrderActions.UPDATE_DELIVERY_TYPE);
+export const updateDeliveryTypeAction = createAction<string >(OrderActions.UPDATE_DELIVERY_TYPE);
 export const updatePaymentTypeAction = createAction<{ value: any } >(OrderActions.UPDATE_PAYMENT_TYPE);
 export const placeOrderAction = createAction<{ value: any } >(OrderActions.PLACE_ORDER);
 
@@ -61,7 +61,7 @@ export function reducer(state: OrderState = initialState, action: AnyAction): Or
 	if (updateDeliveryTypeAction.match(action)) {
 		return {
 			...state,
-			deliveryType: action.payload.value
+			deliveryType: action.payload === DeliveryType.PICKUP ?  DeliveryType.PICKUP : DeliveryType.DELIVERY
 		}
 	}
 	if (placeOrderAction.match(action)) {
