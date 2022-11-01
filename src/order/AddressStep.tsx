@@ -16,29 +16,41 @@ import {updateAddressAction, updateDeliveryTypeAction} from "../admin/redux/orde
 import {useForm} from "react-hook-form";
 import {selectOrder} from "../selectors";
 
-const schema = yup.object({
-    name: yup.string().required(),
-    telephone: yup.number().positive().integer().required(),
-    email: yup.string().email()
-}).required();
-
-
 export default function AddresStep() {
 
+    const order = useSelector(selectOrder);
+
+    let schema = yup.object({
+        name: yup.string().required(),
+        telephone: yup.number().positive().integer().required(),
+        email: yup.string().email(),
+        postcode: yup.string().required(),
+        street: yup.string().required(),
+    }).required();
+
+    let schema2 = yup.object({
+            name: yup.string().required(),
+            telephone: yup.number().positive().integer().required(),
+            email: yup.string().email(),
+        }).required();
+
     const { register, handleSubmit, formState } = useForm<Address>({
-        resolver: yupResolver(schema)
+        resolver: yupResolver((order.deliveryType === DeliveryType.DELIVERY) ? schema: schema2),
+        defaultValues: {
+            name: order.address ? order.address.name : "",
+            email: order.address ? order.address.email : "",
+            street: order.address ? order.address.street : "",
+            telephone: order.address ? order.address.telephone : "",
+            postcode: order.address ? order.address.postcode : ""
+        }
     });
 
     let errors = formState.errors
 
-    const order = useSelector(selectOrder);
-
     const dispatch = useDispatch();
     const [redirect, setRedirect] = React.useState<boolean>(false);
-    // const [deliveryType, setDeliveryType] = React.useState(DeliveryType.pickup);
 
     function onRadioChanged(e: any) {
-        // setDeliveryType(e.currentTarget.value)
         dispatch(updateDeliveryTypeAction(e.currentTarget.value));
     }
 
@@ -47,8 +59,6 @@ export default function AddresStep() {
     }
 
     const onSubmit = (data: Address) => {
-        // alert(JSON.stringify(data))
-
         dispatch(updateAddressAction({address: data}));
         setRedirect(true)
     }
@@ -61,14 +71,10 @@ export default function AddresStep() {
                 <div className="wizardMain">
                     <BackButton page={"/order/cat_drinks"}/>
                     <form onSubmit={handleSubmit(onSubmit)} id="addressForm" aria-label="form" style={{border: "5px green dashed", width: "100%"}}>
-
                         <div className="wizardCenter">
-
                             <div className="icon-container">
-                                <FontAwesomeIcon icon={faTruck}
-                                                 style={{fontSize: "60px", color: "navy", margin: "25px"}}/>
+                                <FontAwesomeIcon icon={faTruck} style={{fontSize: "60px", color: "navy", margin: "25px"}}/>
                             </div>
-
                             <div className={"radioBox"}>
                                 <input type="radio"
                                        id="contactChoice1"
@@ -88,24 +94,19 @@ export default function AddresStep() {
 
                             <div>
                                 <label htmlFor="name">Name</label>
-                                <input
-                                    id="name"
-                                    type="text"
-                                    value={order.address?.name}
-                                    {...register("name", {required: true, maxLength: 45})}
+                                <input id="name" type="text"
+                                    {...register("name", {required: true, maxLength: 45, })}
                                 />
                                 <span className={"error"}>
                                     {errors.name?.type === 'required' && <p role="alert">Name is required</p>}
-                            </span>
+                                </span>
                             </div>
                             {order.deliveryType && (order.deliveryType === DeliveryType.DELIVERY) &&
                                 <div>
                                     <div>
                                         <label htmlFor="street">Strasse</label>
-                                        <input
-                                            id="street"
-                                            type="text"
-                                            {...register("street", {required: false, maxLength: 85})}
+                                        <input id="street" type="text"
+                                            {...register("street", {required: true, maxLength: 85})}
                                         />
                                         <span className={"error"}></span>
                                     </div>
@@ -114,7 +115,7 @@ export default function AddresStep() {
                                         <input
                                             id="postcode"
                                             type="text"
-                                            {...register("postcode", {required: false, maxLength: 85})}
+                                            {...register("postcode", {required: true, maxLength: 85})}
                                         />
                                         <span className={"error"}></span>
                                     </div>
@@ -125,7 +126,6 @@ export default function AddresStep() {
                                 <input
                                     id="tel"
                                     type="text"
-                                    value={order.address?.telephone}
                                     {...register("telephone", {required: true, maxLength: 85})}
                                 />
                                 <span className={"error"}>
@@ -141,7 +141,7 @@ export default function AddresStep() {
                                     {...register("email", {required: false, maxLength: 85})}
                                 />
                                 <span className={"error"}>
-                                    {errors.email?.type === 'required' && <p role="alert">Email is required</p>}
+                                    {errors.email?.type === 'pattern' && <p role="alert">Email pattern is wrong</p>}
                                 </span>
                             </div>
                         </div>

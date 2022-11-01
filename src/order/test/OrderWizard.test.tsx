@@ -12,7 +12,7 @@ import {reducer as admin} from "../../admin/redux/adminReducer";
 import {getData} from "./mockData";
 
 export function createTestStore() {
-    const store = createStore(
+    return createStore(
         combineReducers({
             // login: login,
             products: products,
@@ -20,9 +20,7 @@ export function createTestStore() {
             admin: admin
         }), getData()
     );
-    return store;
 }
-
 
 
 describe('Payment Step test', () => {
@@ -66,16 +64,17 @@ describe('Payment Step test', () => {
          * *******************/
         await testContact();
 
-
         /*********************
          * PAYMENT
          *********************/
         await testWhichPayment();
 
+        /*********************
+         * SUMMARY
+         *********************/
+        await testSummary();
 
-        // await screen.findAllByRole('heading')
-        //
-        // expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?')
+        //TODO test OK screen and credit card payment screen.
 
     });
 })
@@ -88,51 +87,10 @@ function checkAllCheckboxesUnchecked(checkboxes: HTMLInputElement[]) {
     )
 }
 
-/**
- * Tests the radio button clicks on this screen, and whether or not it has an effect on the next screen.
- */
-async function testWhichPayment() {
-    let headings: HTMLElement[] = await screen.findAllByRole('heading')
-    expect(headings[0].textContent).toBe("How do you wish to pay?");
 
-    let [firstRadio, secondRadio]: HTMLElement[] = await screen.findAllByRole('radio')
 
-    expect(firstRadio).toBeChecked()
-    expect(secondRadio).not.toBeChecked()
 
-    fireEvent.click(secondRadio);
-    expect(firstRadio).not.toBeChecked()
-    expect(secondRadio).toBeChecked()
 
-    let [backButton, forwardButton]: HTMLElement[] = await screen.findAllByRole('button')
-    fireEvent.click(forwardButton);
-
-    let [SummaryHeading]: HTMLElement[] = await screen.findAllByRole('heading')
-    expect(SummaryHeading.textContent).toBe("Summary");
-
-    [backButton, forwardButton] = await screen.findAllByRole('button')
-    expect(forwardButton.textContent).toBe("To Payment");
-    //forward button must be "To Payment" button
-    fireEvent.click(backButton);
-
-    [SummaryHeading] = await screen.findAllByRole('heading')
-    expect(SummaryHeading.textContent).toBe("How do you wish to pay?");
-
-    [firstRadio, secondRadio] = await screen.findAllByRole('radio')
-    fireEvent.click(firstRadio);
-
-    [backButton, forwardButton] = await screen.findAllByRole('button')
-    fireEvent.click(forwardButton);
-
-    [SummaryHeading] = await screen.findAllByRole('heading')
-    expect(SummaryHeading.textContent).toBe("Summary");
-    [backButton, forwardButton] = await screen.findAllByRole('button')
-    fireEvent.click(forwardButton);
-    //forward button must be "OK" button now
-    expect(forwardButton.textContent).toBe("OK");
-
-    fireEvent.click(backButton);
-}
 
 
 async function testMains() {
@@ -281,4 +239,67 @@ async function testContact() {
     expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
 
 
+}
+
+/**
+ * Tests the radio button clicks on this screen, and whether or not it has an effect on the next screen. Either
+ */
+async function testWhichPayment() {
+    let headings: HTMLElement[] = await screen.findAllByRole('heading')
+    expect(headings[0].textContent).toBe("How do you wish to pay?");
+
+    let [firstRadio, secondRadio]: HTMLElement[] = await screen.findAllByRole('radio')
+
+    expect(firstRadio).toBeChecked()
+    expect(secondRadio).not.toBeChecked()
+
+    fireEvent.click(secondRadio);
+    expect(firstRadio).not.toBeChecked()
+    expect(secondRadio).toBeChecked()
+
+    let [backButton, forwardButton]: HTMLElement[] = await screen.findAllByRole('button')
+    fireEvent.click(forwardButton);
+
+    let [SummaryHeading]: HTMLElement[] = await screen.findAllByRole('heading')
+    expect(SummaryHeading.textContent).toBe("Summary");
+
+    [backButton, forwardButton] = await screen.findAllByRole('button')
+    expect(forwardButton.textContent).toBe("To Payment"); //TO PAYMENT
+    //forward button must be "To Payment" button
+    fireEvent.click(backButton);
+
+    [SummaryHeading] = await screen.findAllByRole('heading')
+    expect(SummaryHeading.textContent).toBe("How do you wish to pay?");
+
+    [firstRadio, secondRadio] = await screen.findAllByRole('radio')
+    fireEvent.click(firstRadio);
+
+    [backButton, forwardButton] = await screen.findAllByRole('button')
+    fireEvent.click(forwardButton);
+
+    [SummaryHeading] = await screen.findAllByRole('heading')
+    expect(SummaryHeading.textContent).toBe("Summary");
+    [backButton, forwardButton] = await screen.findAllByRole('button')
+    // fireEvent.click(forwardButton);
+    //forward button must be "OK" button now
+    expect(forwardButton.textContent).toBe("OK"); //OK
+
+    fireEvent.click(backButton);
+}
+
+async function testSummary() {
+
+    let [backButton, forwardButton]: HTMLElement[] = await screen.findAllByRole('button')
+    fireEvent.click(forwardButton);
+
+    let headings: HTMLElement[] = await screen.findAllByRole('heading')
+    expect(headings[0].textContent).toBe("Summary");
+
+    let orderSummary = screen.queryByTestId("order-summary")
+
+    expect(orderSummary?.textContent).toContain("Lachs-Lasagne")
+    expect(orderSummary?.textContent).toContain("Beer")
+    expect(orderSummary?.textContent).toContain("Total:53.20")
+
+    //TODO test more of the orders values being displayed
 }
