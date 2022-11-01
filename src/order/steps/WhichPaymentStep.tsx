@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import {wizardPages as pages} from "./OrderWizardContainer"
-import {NextButton} from "./buttons/NextButton";
-import {BackButton} from "./buttons/BackButton";
+import {wizardPages as pages} from "../OrderWizardContainer"
+import {NextButton} from "../buttons/NextButton";
+import {BackButton} from "../buttons/BackButton";
 import {connect, useDispatch, useSelector} from "react-redux";
-import {OrderState, PaymentType} from "../AppState";
-import {updatePaymentTypeAction} from "../admin/redux/orderReducer";
-import {selectOrder} from "../selectors";
+import {OrderState, PaymentType} from "../../AppState";
+import {updatePaymentTypeAction} from "../../admin/redux/orderReducer";
+import {selectOrder} from "../../selectors";
 
 export default function WhichPayment() {
 	const dispatch = useDispatch();

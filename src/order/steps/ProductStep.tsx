@@ -1,10 +1,10 @@
 import * as React from 'react';
-import ProductSelection from "./ProductSelection";
-import OrderSummary from "./OrderSummary";
-import {wizardPages as pages} from "./OrderWizardContainer"
-import {NextButton} from "./buttons/NextButton";
-import type {Category, Product} from "../AppState";
-import {BackButton} from "./buttons/BackButton";
+import ProductSelection from "../ProductSelection";
+import OrderSummary from "../OrderSummary";
+import {wizardPages as pages} from "../OrderWizardContainer"
+import {NextButton} from "../buttons/NextButton";
+import type {Category, Product} from "../../AppState";
+import {BackButton} from "../buttons/BackButton";
 
 type Props = {
 	categoryProducts: { [category: string]: Array<Product> },

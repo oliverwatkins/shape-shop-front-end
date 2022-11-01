@@ -1,21 +1,21 @@
 import * as React from 'react';
-import {CheckoutForm} from "./stripe/PaymentForm";
+import {CheckoutForm} from "../stripe/PaymentForm";
 
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
-import OrderSummary from "./OrderSummary";
-import {calculateTotal} from "./utils";
-import {wizardPages as pages} from "./OrderWizardContainer";
-import {BackButton} from "./buttons/BackButton";
+import OrderSummary from "../OrderSummary";
+import {calculateTotal} from "../utils";
+import {wizardPages as pages} from "../OrderWizardContainer";
+import {BackButton} from "../buttons/BackButton";
 
-import "./order.scss"
+import "../order.scss"
 import {connect, useDispatch, useSelector} from "react-redux";
 // import {Address} from "./AddressStep";
-import type {AppState, Product} from "../AppState";
-import {CreditCardEntity} from "../AppState";
+import type {AppState, Product} from "../../AppState";
+import {CreditCardEntity} from "../../AppState";
 import {Redirect} from "react-router";
-import {updateCreditCardAction} from "../admin/redux/orderReducer";
-import {selectSelectedProducts} from "../selectors";
+import {updateCreditCardAction} from "../../admin/redux/orderReducer";
+import {selectSelectedProducts} from "../../selectors";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.

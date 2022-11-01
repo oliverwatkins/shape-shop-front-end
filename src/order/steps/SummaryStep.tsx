@@ -1,15 +1,15 @@
 import * as React from 'react';
-import OrderSummary from "./OrderSummary";
-import {NextButton} from "./buttons/NextButton";
-import {wizardPages as pages} from "./OrderWizardContainer";
-import AddressSummary from "./AddressSummary";
+import OrderSummary from "../OrderSummary";
+import {NextButton} from "../buttons/NextButton";
+import {wizardPages as pages} from "../OrderWizardContainer";
+import AddressSummary from "../AddressSummary";
 
-import {BackButton} from "./buttons/BackButton";
+import {BackButton} from "../buttons/BackButton";
 
-import type {Address, Product} from "../AppState";
-import {DeliveryType, PaymentType} from "../AppState";
+import type {Address, Product} from "../../AppState";
+import {DeliveryType, PaymentType} from "../../AppState";
 import {useSelector} from "react-redux";
-import {selectOrder} from "../selectors";
+import {selectOrder} from "../../selectors";
 
 type Props = {
 	// selectedProducts?: Array<Product>,

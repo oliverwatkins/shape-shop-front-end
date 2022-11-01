@@ -2,13 +2,13 @@ import * as React from 'react';
 import {useSelector} from "react-redux";
 import {selectCategories} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-import Summary from "./SummaryStep";
-import WhichPayment from "./WhichPaymentStep";
+import Summary from "./steps/SummaryStep";
+import WhichPayment from "./steps/WhichPaymentStep";
 import OKStep from "./OKStep";
 import type {AppState, Category, Product} from "../AppState";
-import PaymentStep from "./PaymentStep";
-import AddressStep from "./AddressStep";
-import ProductStep from "./ProductStep";
+import PaymentStep from "./steps/PaymentStep";
+import AddressStep from "./steps/AddressStep";
+import ProductStep from "./steps/ProductStep";
 
 //navigation links
 export const wizardPages = {

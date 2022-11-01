@@ -1,6 +1,6 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import AddressStep from "../AddressStep";
+import AddressStep from "../steps/AddressStep";
 import {MemoryRouter} from "react-router-dom";
 
 import {fireEvent, render, screen} from '@testing-library/react'
