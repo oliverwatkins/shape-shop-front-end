@@ -4,8 +4,7 @@
   height: 200px;
   background-color: rgba(0, 0, 0, 0); /*//transparent*/
 
-  border: 2px #0a7d06 dashed;
-  ///*//color: white;*/
+  border: 0px #0a7d06 dashed;
   padding: 20px;
   text-align: center;
   vertical-align: middle;
@@ -32,7 +31,7 @@
 
 
 .next-prev-button:disabled {
-  border: 1px solid #999999;
+  //border: 1px solid #999999;
   background-color: #f84040;
   color: #666666;
 }

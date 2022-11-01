@@ -6,20 +6,11 @@ import AddressSummary from "../AddressSummary";
 
 import {BackButton} from "../buttons/BackButton";
 
-import type {Address, Product} from "../../AppState";
 import {DeliveryType, PaymentType} from "../../AppState";
 import {useSelector} from "react-redux";
 import {selectOrder} from "../../selectors";
 
-type Props = {
-	// selectedProducts?: Array<Product>,
-	// selectedProducts2?: Array<Product>,
-	// address?: Address,
-	// deliveryType?: string,
-	// paymentType?: string,
-}
-
-function Summary(props: Props) {
+function Summary() {
 
 	let order = useSelector(selectOrder);
 

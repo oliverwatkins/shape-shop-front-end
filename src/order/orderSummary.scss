@@ -2,13 +2,18 @@
 
 .order-summary {
   background: rgba(109, 115, 119, 0.14);
-  border: 2px #1cd5af dashed;
+  //border: 2px #1cd5af dashed;
   border-radius: 9px;
   text-align: left;
+  width: 500px;
+  //background: #3bdef0;
+  td {
+    padding: 5px 9px 12px 23px;
+  }
 }
 
 .order-summary .address {
-  border: 2px #bf11fa dashed;
+  //border: 2px #bf11fa dashed;
 }
 
 

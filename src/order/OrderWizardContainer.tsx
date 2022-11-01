@@ -4,11 +4,13 @@ import {selectCategories} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Summary from "./steps/SummaryStep";
 import WhichPayment from "./steps/WhichPaymentStep";
-import OKStep from "./OKStep";
+import OKStep from "./steps/OKStep";
 import type {AppState, Category, Product} from "../AppState";
 import PaymentStep from "./steps/PaymentStep";
 import AddressStep from "./steps/AddressStep";
 import ProductStep from "./steps/ProductStep";
+
+import "./order.scss"
 
 //navigation links
 export const wizardPages = {

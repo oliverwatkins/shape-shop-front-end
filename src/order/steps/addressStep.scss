@@ -1,0 +1,58 @@
+@import "./../../index.scss";
+
+.address-step {
+  label {
+    color: $base-text-color;
+    font-weight: bold;
+  }
+
+
+  //TODO width shouldnt be on form
+  form {
+    width: 100%;
+  }
+
+  .radioBox {
+    //background: red;
+    display: flex;
+    margin: 20px;
+    //padding: 20px;
+    input {
+      margin:15px;
+    }
+    label{
+      margin:15px;
+    }
+  }
+
+  input[type=text]{
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+  }
+
+  input[type=text]#name{
+    width: 50%;
+  }
+
+  input[type=text]#street{
+    width: 50%;
+  }
+
+  input[type=text]#postcode{
+    width: 20%;
+  }
+
+  input[type=text]#tel{
+    width: 20%;
+  }
+
+  input[type=text]#email{
+    width: 50%;
+    margin-bottom: 20px;
+    padding: 12px;
+    //border: 2px solid #ccc;
+    border-radius: 3px;
+  }
+}

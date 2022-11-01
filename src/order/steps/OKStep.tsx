@@ -1,18 +1,19 @@
 import * as React from 'react';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCheckCircle} from "@fortawesome/free-solid-svg-icons";
-import type {AppState} from "../AppState";
+import type {AppState} from "../../AppState";
 import {
 	selectOrder,
-} from "../selectors";
+} from "../../selectors";
 import {useSelector} from "react-redux";
 import {useEffect} from "react";
-import {LoadingView} from "../misc/LoadingView";
-import {api} from "../api/api";
-import {Notify} from "../notify";
+import {LoadingView} from "../../misc/LoadingView";
+import {api} from "../../api/api";
+import {Notify} from "../../notify";
 import {useAsync} from "react-async-hook";
 import {CircularProgress} from "@mui/material";
 
+import "./okStep.scss";
 
 export default function OKStep() {
 

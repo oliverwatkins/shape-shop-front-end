@@ -5,7 +5,6 @@ import {faTruck} from "@fortawesome/free-solid-svg-icons";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 
-import "../order.scss"
 import {Redirect} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
 import {wizardPages as pages} from "../OrderWizardContainer"
@@ -15,6 +14,8 @@ import {Address, DeliveryType, Product} from "../../AppState";
 import {updateAddressAction, updateDeliveryTypeAction} from "../../admin/redux/orderReducer";
 import {useForm} from "react-hook-form";
 import {selectOrder} from "../../selectors";
+
+import "./addressStep.scss"
 
 export default function AddresStep() {
 
@@ -65,12 +66,11 @@ export default function AddresStep() {
     return (
         <div className="wizardPanel address-step">
 
-            {order && order.deliveryType}
-            {formState.isValid && <span>IS VALID</span> }
+            {/*{order && order.deliveryType}*/}
             <h2 className={"wizardHeader"}>Delivery or Pickup?</h2>
                 <div className="wizardMain">
                     <BackButton page={"/order/cat_drinks"}/>
-                    <form onSubmit={handleSubmit(onSubmit)} id="addressForm" aria-label="form" style={{border: "5px green dashed", width: "100%"}}>
+                    <form onSubmit={handleSubmit(onSubmit)} id="addressForm" aria-label="form">
                         <div className="wizardCenter">
                             <div className="icon-container">
                                 <FontAwesomeIcon icon={faTruck} style={{fontSize: "60px", color: "navy", margin: "25px"}}/>

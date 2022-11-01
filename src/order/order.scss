@@ -9,104 +9,10 @@
   }
 }
 
-//Product selection
-.product-selection {
-  display: flex;
-  flex-wrap: wrap;
-  //background-color: #fff6fe;
-}
 
-.address-step {
-  label {
-    color: $base-text-color;
-    font-weight: bold;
-  }
-
-  .radioBox {
-    //background: red;
-    display: flex;
-    margin: 20px;
-    //padding: 20px;
-
-    input {
-      margin:15px;
-    }
-    label{
-      margin:15px;
-    }
-
-  }
-
-  input[type=text]{
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 2px solid #ccc;
-    border-radius: 3px;
-  }
-
-  input[type=text]#name{
-    width: 50%;
-  }
-
-  input[type=text]#street{
-    width: 50%;
-  }
-
-  input[type=text]#postcode{
-    width: 20%;
-  }
-
-  input[type=text]#tel{
-    width: 20%;
-  }
-
-  input[type=text]#email{
-    width: 50%;
-    margin-bottom: 20px;
-    padding: 12px;
-    border: 2px solid #ccc;
-    border-radius: 3px;
-  }
-
-}
-
-.payment-step {
-  label {
-    font-weight: bold;
-    color: $base-text-color;
-  }
-}
-
-//credit card
-.payment-panel {
-
-  .description {
-    padding: 10px;
-    color: $base-text-color;
-    font-weight: bold;
-    //font-style: ;
-    //background: #0DA108;
-  }
-}
-
-
-
-.summary-step {
-
-}
-
-//OK Panel
-.okPanel {
-  background: #fdfcfc;
-  //display: flex;
-  width: 100%;
-  border: 1px solid #180404;
-  text-align: center;
-}
-
-
+//////////////////
 .order-wizard {
-  display: flex;
+  //display: flex;
   background: #fff6fe;
 }
 
@@ -177,14 +83,6 @@
     size: 30px;
   }
 
-  //input[type=text] {
-  //  width: 50%;
-  //  margin-bottom: 20px;
-  //  padding: 12px;
-  //  border: 2px solid #ccc;
-  //  border-radius: 3px;
-  //}
-
 
   select {
     padding: 0;
@@ -201,18 +99,17 @@
   }
 
   .wizardMain {
-    border: 2px #0a7d06 dashed;
+    //border: 2px #0a7d06 dashed;
     display: flex;
     flex-direction: row;
 
     .wizardCenter {
-      border: 1px #6c1c86 dashed;
+      //border: 1px #6c1c86 dashed;
       width:100%;
       margin: 40px;
       flex: 4;
     }
   }
-
 
   label {
     margin-bottom: 10px;
@@ -222,26 +119,6 @@
   span.price {
     float: right;
     color: grey;
-  }
-
-  .address-summary {
-    width: 500px;
-    div {
-      background: #ffffff;
-
-      div {
-        padding: 5px 5px 5px 50px;
-      }
-    }
-  }
-
-  //floating panel on right throughout wizard
-  .order-summary {
-    width: 500px;
-    //background: #3bdef0;
-    td {
-      padding: 5px 9px 12px 23px;
-    }
   }
 }
 

@@ -8,11 +8,8 @@ import {calculateTotal} from "../utils";
 import {wizardPages as pages} from "../OrderWizardContainer";
 import {BackButton} from "../buttons/BackButton";
 
-import "../order.scss"
-import {connect, useDispatch, useSelector} from "react-redux";
-// import {Address} from "./AddressStep";
-import type {AppState, Product} from "../../AppState";
-import {CreditCardEntity} from "../../AppState";
+import {useDispatch, useSelector} from "react-redux";
+import type {AppState} from "../../AppState";
 import {Redirect} from "react-router";
 import {updateCreditCardAction} from "../../admin/redux/orderReducer";
 import {selectSelectedProducts} from "../../selectors";

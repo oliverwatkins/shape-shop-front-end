@@ -1,0 +1,9 @@
+
+@import "./../../index.scss";
+
+.payment-step {
+  label {
+    font-weight: bold;
+    color: $base-text-color;
+  }
+}
