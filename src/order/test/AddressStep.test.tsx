@@ -5,25 +5,43 @@ import {MemoryRouter} from "react-router-dom";
 
 import {fireEvent, render, screen} from '@testing-library/react'
 import '@testing-library/jest-dom'
-import configureStore from "redux-mock-store";
+import {combineReducers, createStore} from "redux";
+import {productsReducer as products} from "../../admin/redux/productsReducer";
+import {reducer as order} from "../../admin/redux/orderReducer";
+import {reducer as admin} from "../../admin/redux/adminReducer";
+import {getData} from "./mockData";
 
 
+export function createTestStore() {
+	return createStore(
+		combineReducers({
+			// login: login,
+			products: products,
+			order: order,
+			admin: admin
+		}), getData()
+	);
+}
 //TODO change all other enzyme tests to testing library (like here)
 describe('Address Step test', () => {
-	const mockStore = configureStore();
-
-	const store = mockStore(getData());
-
-	// it('matches snapshot', () => {
-	// 	expect(render(<Provider store={store}>
-	// 		<MemoryRouter>
-	// 			<AddressStep/>
-	// 		</MemoryRouter>
-	// 	</Provider>)).toMatchSnapshot();
-	// });
+	const store = createTestStore();
+	it('matches snapshot', () => {
+		expect(render(<Provider store={store}>
+			<MemoryRouter>
+				<AddressStep/>
+			</MemoryRouter>
+		</Provider>)).toMatchSnapshot();
+	});
 
 
 	it('select radio button - check that it works', async () => {
+		// const {container} = render(<Provider store={store}>
+		// 	<MemoryRouter initialEntries={["/order/cat_main", ""]}>
+		// 		<OrderWizardContainer/>
+		// 	</MemoryRouter>
+		// </Provider>)
+
+
 		render(<Provider store={store}>
 		 			<MemoryRouter>
 		 				<AddressStep/>
@@ -35,6 +53,7 @@ describe('Address Step test', () => {
 		expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?')
 
 		const labelRadio: HTMLInputElement[] = await screen.findAllByRole('radio');
+		//TODO not working :
 		expect(labelRadio[0].checked).toEqual(true);
 
 		let firstRadio = labelRadio[0];
@@ -56,47 +75,3 @@ describe('Address Step test', () => {
 		expect(textBoxes.length).toBe(3);
 	});
 });
-
-function getData() {
-	return {
-		products: {
-			items: [
-				{
-					name: "prod1",
-					quantity: 1,
-					price: 123,
-					description: "asfd",
-					type: "main",
-					imageFilename: "",
-				},
-				{
-					name: "prod2",
-					quantity: 2,
-					price: 124,
-					description: "fasfdasfd",
-					type: "drink",
-					imageFilename: "",
-				},
-			]
-		},
-		order: {
-			paymentType: "cash",
-			deliveryType: "pickup",
-			address: {
-				name: "fasdfas",
-				telephone: "1234444",
-				street: "asdfasdfasdf",
-				postcode: "sfdsd23",
-				username: "asdfasdf"
-			}
-		},
-		login: {
-			loginToken: "should something be here?",
-			role: "asfd",
-			loggingIn: false,
-		},
-		user: Function, //??
-	};
-}
-
-
