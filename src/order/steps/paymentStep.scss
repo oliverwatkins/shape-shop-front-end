@@ -13,31 +13,60 @@ CREDIT CARD PAYMENT STEP
     //font-style: ;
     //background: #0DA108;
   }
-}
 
-label {
-  color: $base-text-color;
-  font-weight: bold;
-}
 
-//disable border on field sets
-fieldset {
-  border: 0;
-}
+  label {
+    color: $base-text-color;
+    font-weight: bold;
+  }
 
-button.SubmitButton {
-  width: 150px;
-  padding: 10px;
-  margin:13px;
-  font: normal 16px Arial, sans-serif;
-}
+  //disable border on field sets
+  fieldset {
+    border: 0;
+  }
 
-input {
-  margin-bottom: 20px;
-  padding: 12px;
-  border: 2px solid #ccc;
-  border-radius: 3px;
+  button.SubmitButton {
+    width: 150px;
+    padding: 10px;
+    margin:13px;
+    font: normal 16px Arial, sans-serif;
+  }
+
+  input {
+    margin-bottom: 20px;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 3px;
+  }
+
+
+
+
 }
+//
+//label {
+//  color: $base-text-color;
+//  font-weight: bold;
+//}
+//
+////disable border on field sets
+//fieldset {
+//  border: 0;
+//}
+//
+//button.SubmitButton {
+//  width: 150px;
+//  padding: 10px;
+//  margin:13px;
+//  font: normal 16px Arial, sans-serif;
+//}
+//
+//input {
+//  margin-bottom: 20px;
+//  padding: 12px;
+//  border: 2px solid #ccc;
+//  border-radius: 3px;
+//}
 
 
 
