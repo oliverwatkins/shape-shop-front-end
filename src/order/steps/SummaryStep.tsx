@@ -20,22 +20,17 @@ function Summary() {
 			<div className="wizardMain">
 				<BackButton page={pages.WHICH_PAYMENT}/>
 				<div className="wizardCenter">
-
 					<OrderSummary/>
-
-					<div>
-						{order.deliveryType === DeliveryType.PICKUP && <span><h3> pickup</h3></span>}
-						{order.deliveryType === DeliveryType.DELIVERY && <span><h3> delivery</h3></span>}
-					</div>
-					{<AddressSummary address={order.address}/>}
-					<h3>Payment with
+					{/*<div>*/}
+					{/*	{order.deliveryType === DeliveryType.PICKUP && <span><h3> pickup</h3></span>}*/}
+					{/*	{order.deliveryType === DeliveryType.DELIVERY && <span><h3> delivery</h3></span>}*/}
+					{/*</div>*/}
+					<AddressSummary order={order}/>
+					<h4>Payment with
 						{order.paymentType === PaymentType.CASH && <span> cash</span>}
 						{order.paymentType === PaymentType.CARD && <span> card</span>}
-					</h3>
+					</h4>
 				</div>
-
-
-
 				{order.paymentType === PaymentType.CARD && <span><NextButton label={"To Payment"} page={pages.PAYMENT} disabled={false}/></span>}
 				{order.paymentType !== PaymentType.CARD && <span><NextButton label={"OK"} page={pages.OK} disabled={false}/></span>}
 			</div>

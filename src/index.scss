@@ -2,11 +2,20 @@
 
 $base-background-color: #c65353;
 $base-foreground-color: rgba($base-background-color, 0.88);
-$base-text-color: #5e95f6;
+
+
 $itembox-color-unselected: rgba(180, 213, 236, 0.14);
 $itembox-color-selected: #f30e43;
 $error-color: red;
 
+//global font and color
+body {
+  font: normal 16px Arial, sans-serif;
+}
+$base-text-color: #5e95f6;
+
+
+$shaded-background: rgba(180, 213, 236, 0.14);
 
 $base-header-color: $base-foreground-color;
 $h1-color: darken($base-header-color, 8%);
