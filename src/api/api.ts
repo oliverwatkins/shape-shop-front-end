@@ -7,7 +7,7 @@ import {Notify} from "../notify";
 import axios from "axios";
 import {Test} from "../playground/asynchExample/UserDebitCards";
 
-export const baseURL = 'http://localhost:8080/';
+// export const baseURL = 'http://localhost:8080/';
 // const ADMIN_TOKEN = ADMIN_TOKEN2;
 
 export let api: any = {}
@@ -17,7 +17,7 @@ export let api: any = {}
 const apiReal = {
 
 	deleteProduct: async (values: Product, auth: Authorization)=> {
-		let data = await fetch(baseURL + constants.company + '/products/'  + values.id, {
+		let data = await fetch(constants.baseURL + constants.company + '/products/'  + values.id, {
 			method: "DELETE",
 			// body: //TODO not needed
 			// 	JSON.stringify({
@@ -57,7 +57,7 @@ const apiReal = {
 	 * @param category
 	 */
 	fetchProducts: async (category?: Category) => {
-		let data = await fetch(baseURL + constants.company + '/products', {
+		let data = await fetch(constants.baseURL + constants.company + '/products', {
 			method: "GET",
 			headers: {
 				'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ const apiReal = {
 
 		await sleep(1000);
 
-		let data = await fetch(baseURL + constants.company + '/orders', {
+		let data = await fetch(constants.baseURL + constants.company + '/orders', {
 			method: "GET",
 			headers: [["Authorization", "Bearer " + auth.token]]
 		}).then(response => {
@@ -126,7 +126,7 @@ const apiReal = {
 	loginUser: (credentials: any) => {
 		console.info("credentialis " + JSON.stringify(credentials))
 
-		let data = fetch(baseURL + 'authenticate', {
+		let data = fetch(constants.baseURL + 'authenticate', {
 			method: "POST",
 			body: JSON.stringify(credentials),
 			headers: {
@@ -159,7 +159,7 @@ const apiReal = {
 	// ???
 	logoutUser: async (Authorization: any) => {
 		//TODO not working yet
-		await fetch(baseURL + 'logout', {
+		await fetch(constants.baseURL + 'logout', {
 			method: "POST",
 			headers: {
 				'Content-Type': 'application/json',
@@ -178,7 +178,7 @@ const apiReal = {
 
 		await sleep(2000);
 
-		let data = await fetch(baseURL + constants.company + '/orders', {
+		let data = await fetch(constants.baseURL + constants.company + '/orders', {
 			method: "POST",
 			body: JSON.stringify(values),
 			headers: {
@@ -212,7 +212,7 @@ const apiReal = {
 
 		console.info("FormData " + JSON.stringify(formData));
 
-		let data = await fetch(baseURL + constants.company + '/uploadfile/' + productId, {
+		let data = await fetch(constants.baseURL + constants.company + '/uploadfile/' + productId, {
 			method: "POST",
 			body: formData,
 			headers: {
@@ -239,7 +239,7 @@ const apiReal = {
 	},
 
 	createProduct: async (values: Product, auth: Authorization)=> {
-		let data = await fetch(baseURL + constants.company + '/products', {
+		let data = await fetch(constants.baseURL + constants.company + '/products', {
 			method: "POST",
 			body:
 				JSON.stringify({
@@ -278,7 +278,7 @@ const apiReal = {
 		console.info("updateProduct : " + JSON.stringify(values))
 		console.info("Authorization : " + JSON.stringify(auth))
 
-		let data = await fetch(baseURL + constants.company + '/products/' + values.id, {
+		let data = await fetch(constants.baseURL + constants.company + '/products/' + values.id, {
 			method: "PUT",
 			body: JSON.stringify(values),
 			headers: {

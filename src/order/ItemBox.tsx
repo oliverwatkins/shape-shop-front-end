@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type {Product} from "../AppState";
 import './itemBox.scss';
-import {baseURL} from "../api/api";
+import {baseURL} from "../constants";
 
 type Props = {
 	product: Product,

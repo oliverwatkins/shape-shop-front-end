@@ -2,7 +2,11 @@
 
 export const company = "alpenhof";
 
-export const baseURL = "http://localhost:8080/";
+// export const baseURL = "http://localhost:8080/";
+export const baseURL = "https://shapeshop-shapeshop.azuremicroservices.io/";
+
+// https://shapeshop-shapeshop.azuremicroservices.io/alpenhof/products
+
 
 // switches -
 
