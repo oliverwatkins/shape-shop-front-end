@@ -1,14 +1,6 @@
 import * as constants from "../constants";
 import {api_MOCK} from "./api_mock";
 import {Authorization, Category, OrderState, OrderStateType, Product} from "../AppState";
-import {delay} from "@redux-saga/core/effects";
-import {selectOpenOrders} from "../selectors";
-import {Notify} from "../notify";
-import axios from "axios";
-import {Test} from "../playground/asynchExample/UserDebitCards";
-
-// export const baseURL = 'http://localhost:8080/';
-// const ADMIN_TOKEN = ADMIN_TOKEN2;
 
 export let api: any = {}
 
@@ -175,7 +167,6 @@ const apiReal = {
 	},
 
 	placeOrder: async (values: OrderState) => {
-
 		await sleep(2000);
 
 		let data = await fetch(constants.baseURL + constants.company + '/orders', {

@@ -103,7 +103,7 @@ export default function AdminScreen() {
                     </Box>
                 </Route>
                 <Route exact path="/admin/products">
-                    <ProductsPanel categoryProducts={{}} categories={[]}/>
+                    <ProductsPanel/>
                 </Route>
                 <Route path="/admin/settings">
                     <div title={"Settings"}>
