@@ -42,7 +42,6 @@ Object {
           <form
             aria-label="form"
             id="addressForm"
-            style="border: 5px dashed green; width: 100%;"
           >
             <div
               class="wizardCenter"
@@ -146,7 +145,6 @@ Object {
             form="addressForm"
             type="submit"
           >
-            Form button
             <div
               style="display: flex;"
             >
@@ -216,7 +214,6 @@ Object {
         <form
           aria-label="form"
           id="addressForm"
-          style="border: 5px dashed green; width: 100%;"
         >
           <div
             class="wizardCenter"
@@ -320,7 +317,6 @@ Object {
           form="addressForm"
           type="submit"
         >
-          Form button
           <div
             style="display: flex;"
           >

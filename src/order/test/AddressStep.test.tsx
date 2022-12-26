@@ -35,12 +35,6 @@ describe('Address Step test', () => {
 
 
 	it('select radio button - check that it works', async () => {
-		// const {container} = render(<Provider store={store}>
-		// 	<MemoryRouter initialEntries={["/order/cat_main", ""]}>
-		// 		<OrderWizardContainer/>
-		// 	</MemoryRouter>
-		// </Provider>)
-
 
 		render(<Provider store={store}>
 		 			<MemoryRouter>
@@ -53,6 +47,10 @@ describe('Address Step test', () => {
 		expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?')
 
 		const labelRadio: HTMLInputElement[] = await screen.findAllByRole('radio');
+
+
+
+
 		//TODO not working :
 		expect(labelRadio[0].checked).toEqual(true);
 
