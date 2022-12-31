@@ -9,7 +9,7 @@ import {combineReducers, createStore} from "redux";
 import {productsReducer as products} from "../../admin/redux/productsReducer";
 import {reducer as order} from "../../admin/redux/orderReducer";
 import {reducer as admin} from "../../admin/redux/adminReducer";
-import {getData} from "./mockData";
+import {getMockData} from "./mockData";
 
 export function createTestStore() {
     return createStore(
@@ -18,7 +18,7 @@ export function createTestStore() {
             products: products,
             order: order,
             admin: admin
-        }), getData()
+        }), getMockData()
     );
 }
 

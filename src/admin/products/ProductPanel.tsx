@@ -185,6 +185,7 @@ export default function ProductPanel(props: Props) {
             {/*{productError &&*/}
             {/*    <span>Fetch Product Error </span>*/}
             {/*}*/}
+            {!props.products && <h4>No Products</h4>}
 
             {props.products &&
                 <Grid container spacing={2}>
@@ -209,11 +210,11 @@ export default function ProductPanel(props: Props) {
                                          deleteProductCallback
                                      }
                                 />
-                        </Grid>
-                    )
-                }
+                            </Grid>)
+                    }
                 </Grid>
             }
+
         </>
     )
 }

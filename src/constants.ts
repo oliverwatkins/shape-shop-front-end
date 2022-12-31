@@ -11,7 +11,7 @@ export const baseURL = "http://localhost:8081/";
 // switches -
 
 // persist in local storage
-export const CACHE = true;
+export const CACHE = false;
 
 // mock mode
 export const MOCK_MODE = false;

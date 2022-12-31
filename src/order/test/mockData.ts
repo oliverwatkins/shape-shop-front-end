@@ -1,7 +1,7 @@
 import {AppState, DeliveryType, PaymentType} from "../../AppState";
 
 
-export function getData(): AppState {
+export function getMockData(): AppState {
 	return {
 
 		login: {

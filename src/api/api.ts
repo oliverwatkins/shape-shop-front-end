@@ -5,6 +5,12 @@ import {Authorization, Category, OrderState, OrderStateType, Product} from "../A
 export let api: any = {}
 
 // TODO are the asyn/awaits here really necessary?
+//
+// export async function getTest() {
+// 	const response = await fetch("/someservice");
+//
+// 	return response.data || [];
+// }
 
 const apiReal = {
 
@@ -48,7 +54,10 @@ const apiReal = {
 	 *
 	 * @param category
 	 */
-	fetchProducts: async (category?: Category) => {
+	fetchProducts: async (category?: Category)=> {
+
+		console.info("in fetch products")
+
 		let data = await fetch(constants.baseURL + constants.company + '/products', {
 			method: "GET",
 			headers: {

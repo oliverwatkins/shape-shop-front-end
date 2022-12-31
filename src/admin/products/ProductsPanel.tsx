@@ -12,9 +12,11 @@ import ProductPanel from "./ProductPanel";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import fetchProducts2 from "./api2";
 
 export default function ProductsPanel() {
 
+    // alert()
     const categories = useSelector((state: AppState) => state.products.categories)
     const categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
     const dispatch = useDispatch()
@@ -30,7 +32,7 @@ export default function ProductsPanel() {
         loading: productLoading,
         error: productError,
         result: products = null,
-    } = useAsync<Product[]>(api.fetchProducts, []);
+    } = useAsync<Product[]>(fetchProducts2, []);
 
     useEffect(() => {
         if (products) {
@@ -44,6 +46,9 @@ export default function ProductsPanel() {
     };
 
     let category = categories[productTabValue];
+
+    // console.info("category " + category + " p Tabvalue " + productTabValue);
+    console.info("categories " + JSON.stringify(categories));
 
     return (
         <Box title={"Products"}>
