@@ -17,13 +17,6 @@ const apiReal = {
 	deleteProduct: async (values: Product, auth: Authorization)=> {
 		let data = await fetch(constants.baseURL + constants.company + '/products/'  + values.id, {
 			method: "DELETE",
-			// body: //TODO not needed
-			// 	JSON.stringify({
-			// 		"name": values.name,
-			// 		"price": values.price,
-			// 		"description": values.description,
-			// 		"type": values.type,
-			// 	}),
 			headers: {
 				'Content-Type': 'application/json',
 				'Accept': 'application/json',

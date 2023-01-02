@@ -80,24 +80,20 @@ export function ProductItem(props: Props) {
                                     maxHeight: heigt * 4.5,
                                     width: 200,
                                 },
-                            }}
-                        >
-                            <MenuItem key={"1"} selected={false} onClick={() => props.editProductCallback(product)}
-                            >
+                            }}>
+                            <MenuItem key={"1"} selected={false} onClick={() => props.editProductCallback(product)}>
                                 <ListItemIcon>
                                     <EditIcon/>
                                 </ListItemIcon>
                                 <ListItemText primary="Edit"/>
                             </MenuItem>
-                            <MenuItem key={"2"} selected={false} onClick={() => props.updateImageCallback(product)}
-                            >
+                            <MenuItem key={"2"} selected={false} onClick={() => props.updateImageCallback(product)}>
                                 <ListItemIcon>
                                     <PhotoIcon/>
                                 </ListItemIcon>
                                 <ListItemText primary="Update Image"/>
                             </MenuItem>
-                            <MenuItem key={"3"} selected={false} onClick={() => props.deleteProductCallback(product)}
-                            >
+                            <MenuItem key={"3"} selected={false} onClick={() => props.deleteProductCallback(product)}>
                                 <ListItemIcon>
                                     <DeleteIcon/>
                                 </ListItemIcon>

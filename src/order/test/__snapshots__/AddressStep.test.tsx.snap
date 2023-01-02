@@ -70,6 +70,7 @@ Object {
                 class="radioBox"
               >
                 <input
+                  checked=""
                   id="contactChoice1"
                   name="pickupOrDelivery"
                   type="radio"
@@ -242,6 +243,7 @@ Object {
               class="radioBox"
             >
               <input
+                checked=""
                 id="contactChoice1"
                 name="pickupOrDelivery"
                 type="radio"
