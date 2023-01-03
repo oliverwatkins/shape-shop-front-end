@@ -1,6 +1,6 @@
 import * as React from "react";
 import Typography from '@mui/material/Typography';
-import {AppBar, Box, Tab, Tabs, Toolbar} from "@mui/material";
+import {AppBar, Box, CircularProgress, Tab, Tabs, Toolbar} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import {useEffect, useReducer} from "react";
@@ -12,11 +12,9 @@ import ProductPanel from "./ProductPanel";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import fetchProducts2 from "./api2";
 
 export default function ProductsPanel() {
 
-    // alert()
     const categories = useSelector((state: AppState) => state.products.categories)
     const categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
     const dispatch = useDispatch()
@@ -32,7 +30,7 @@ export default function ProductsPanel() {
         loading: productLoading,
         error: productError,
         result: products = null,
-    } = useAsync<Product[]>(fetchProducts2, []);
+    } = useAsync<Product[]>(api.fetchProducts, []);
 
     useEffect(() => {
         if (products) {
@@ -47,47 +45,53 @@ export default function ProductsPanel() {
 
     let category = categories[productTabValue];
 
-    // console.info("category " + category + " p Tabvalue " + productTabValue);
     console.info("categories " + JSON.stringify(categories));
 
+    console.info("productError " + JSON.stringify(productError));
+
+
     return (
-        <Box title={"Products"}>
-            <Box sx={{width: '100%'}}>
-                <Box sx={{flexGrow: 1}}>
-                    <AppBar position="static">
-                        <Toolbar>
-                            <IconButton
-                                size="large"
-                                edge="start"
-                                color="inherit"
-                                aria-label="menu"
-                                sx={{mr: 2}}
-                            >
-                                <MenuIcon/>
-                            </IconButton>
-                            <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
-                                Products
-                            </Typography>
-                            {/*<Button startIcon={<AddCircleOutlineIcon/>} sx={buttonStyle} onClick={() => setOpenCreateProduct(true)}*/}
-                            {/*        variant={"contained"}>*/}
-                            {/*    Add Product</Button>*/}
-                            <Button startIcon={<AddCircleOutlineIcon/>}
-                                    variant={"contained"}>
-                                Create Category</Button>
-                        </Toolbar>
-                    </AppBar>
+        <>
+
+            <Box title={"Products"}>
+
+                <Box sx={{width: '100%'}}>
+                    <Box sx={{flexGrow: 1}}>
+                        <AppBar position="static">
+                            <Toolbar>
+                                <IconButton
+                                    size="large"
+                                    edge="start"
+                                    color="inherit"
+                                    aria-label="menu"
+                                    sx={{mr: 2}}
+                                >
+                                    <MenuIcon/>
+                                </IconButton>
+                                <Typography variant="h6" component="div" sx={{flexGrow: 1}}>
+                                    Products
+                                </Typography>
+                                <Button startIcon={<AddCircleOutlineIcon/>}
+                                        variant={"contained"}>
+                                    Create Category</Button>
+                            </Toolbar>
+                        </AppBar>
+                    </Box>
+                    {productLoading && <CircularProgress color="primary"/>}
+                    {productError && <span>ERROR product error: {productError.message}</span>}
+
+                    <Box key={"tabs"}>
+                        <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
+                            {
+                                categories.map((category: Category, i:number) =>
+                                <Tab label={category.name} {...a11yProps(i)} />
+                                )
+                            }
+                        </Tabs>
+                    </Box>
+                    {categoryProducts && <ProductPanel key={productTabValue} category={category} products={categoryProducts[category.name]}/>}
                 </Box>
-                <Box key={"tabs"}>
-                    <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
-                        {
-                            categories.map((category: Category, i:number) =>
-                            <Tab label={category.name} {...a11yProps(i)} />
-                            )
-                        }
-                    </Tabs>
-                </Box>
-                {categoryProducts && <ProductPanel key={productTabValue} category={category} products={categoryProducts[category.name]}/>}
             </Box>
-        </Box>
+        </>
     )
 }

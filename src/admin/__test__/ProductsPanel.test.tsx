@@ -35,9 +35,6 @@ export function createTestStore() {
 	);
 }
 
-// jest.mock("../products/api2");
-// jest.setTimeout(100000)
-
 let productlist = [
 	{
 		"id": 1,
@@ -67,10 +64,28 @@ let productlist = [
 	}
 ]
 
-
+// jest.setTimeout(1000000)
 describe('Products test', () => {
 
 	beforeAll(() => jest.spyOn(window, 'fetch'))
+
+	it("renders error", async () => {
+
+		// @ts-ignore
+		window.fetch.mockResolvedValueOnce({
+			ok: false,
+			json: async () => ([]),
+		})
+
+		// @ts-ignore
+		const {container} = render(<Provider store={createTestStore()}>
+			<MemoryRouter>
+				<ProductsPanel/>
+			</MemoryRouter>
+		</Provider>);
+
+		await screen.findByText('ERROR product error: Network response was not ok', { collapseWhitespace: true })
+	});
 
 	it("renders products correctly", async () => {
 

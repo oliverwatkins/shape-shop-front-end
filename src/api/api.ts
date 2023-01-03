@@ -1,6 +1,7 @@
 import * as constants from "../constants";
 import {api_MOCK} from "./api_mock";
 import {Authorization, Category, OrderState, OrderStateType, Product} from "../AppState";
+import {setEnvironmentData} from "worker_threads";
 
 export let api: any = {}
 
@@ -35,8 +36,7 @@ const apiReal = {
 			}
 		}).catch(error => {
 			console.error('There has been a problem with your fetch operation:', error);
-			// Noti
-			throw error;
+			return Promise.reject("error")
 		});
 		return data;
 	},
@@ -48,7 +48,7 @@ const apiReal = {
 	 * @param category
 	 */
 	fetchProducts: async (category?: Category)=> {
-
+		await sleep(100);
 		console.info("in fetch products")
 
 		let data = await fetch(constants.baseURL + constants.company + '/products', {
@@ -81,7 +81,15 @@ const apiReal = {
 			}
 		}).catch(error => {
 			console.error(error)
+			// setEnvironmentData()
 			throw error;
+
+
+			// return {
+			// 	status: 400,
+			// 	error: "blah"
+			// }
+
 			// console.error('There has been a problem with your fetch operation:', error);
 		});
 		return data.data;
