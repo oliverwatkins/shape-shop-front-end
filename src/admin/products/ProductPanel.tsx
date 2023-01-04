@@ -65,25 +65,33 @@ export default function ProductPanel(props: Props) {
             Notify.error("Error deleting product")
         }
     }
-    let editProductCallback = async (item: Product) => {
-        try {
-            await api.updateProduct(item, Authorization)
 
-            //after update in backend, update the state from this component
-            dispatch(createUpdateProductSuccessAction({product: item}))
 
-            setOpenEditPProduct(false);
 
-            Notify.success("Edited Product " + item.name);
-        } catch (e) {
-            console.error(e)
 
-            // dispatch(createUpdateProductAction({product: item})) //TODO fail action?
-//TODO this will not catch errors here. Use useAsync (See OrderPanel)
-            setOpenEditPProduct(false);
-            Notify.error("Error editing product");
-        }
-    }
+//     let editProductCallback = async (item: Product) => {
+//         try {
+//             await api.updateProduct(item, Authorization)
+//
+//             //after update in backend, update the state from this component
+//             dispatch(createUpdateProductSuccessAction({product: item}))
+//
+//             setOpenEditPProduct(false);
+//
+//             Notify.success("Edited Product " + item.name);
+//         } catch (e) {
+//             console.error(e)
+//
+//             // dispatch(createUpdateProductAction({product: item})) //TODO fail action?
+// //TODO this will not catch errors here. Use useAsync (See OrderPanel)
+//             setOpenEditPProduct(false);
+//             Notify.error("Error editing product");
+//         }
+//     }
+
+
+
+
 
     let editCategoryCallback = async (item: Category) => {
         try {
@@ -141,13 +149,14 @@ export default function ProductPanel(props: Props) {
                 {openEditPProduct && <ProductDialog open={openEditPProduct}
                                                     type={"Edit"}
                                                     product={selectedProduct}
-                                                    handleSubmit={editProductCallback}
-                                                    handleCancel={() => setOpenEditPProduct(false)}/>}
+                                                    // handleSubmit={editProductCallback}
+                                                    handleCancel={() => setOpenEditPProduct(false)} />}
 
                 {openCreateProduct && <ProductDialog open={openCreateProduct} type={"Create"}
-                                                     handleCancel={() => setOpenCreateProduct(false)} handleSubmit={
-                    createProductCallback
-                }/>}
+                                                     handleCancel={() => setOpenCreateProduct(false)}
+                                                     // handleSubmit={createProductCallback}
+
+                />}
 
                 {/*edit category*/}
                 <Button startIcon={<EditIcon/>} variant={"contained"} sx={buttonStyle}

@@ -81,16 +81,7 @@ const apiReal = {
 			}
 		}).catch(error => {
 			console.error(error)
-			// setEnvironmentData()
 			throw error;
-
-
-			// return {
-			// 	status: 400,
-			// 	error: "blah"
-			// }
-
-			// console.error('There has been a problem with your fetch operation:', error);
 		});
 		return data.data;
 	},
@@ -240,6 +231,36 @@ const apiReal = {
 	},
 
 	createProduct: async (values: Product, auth: Authorization)=> {
+
+
+		//TODO refactor me
+		let cats: { id: number; name: Category; }[] = [];
+		if (values.categories)
+
+			if(values.categories instanceof Array) {
+				cats = values.categories.map(
+					elem => {
+						return {
+							"id": 1,
+							"name": elem
+						}
+					});
+
+			}else {
+				//just a string
+				cats = [
+					{
+						id: 233,
+						name: values.categories
+					}
+				];
+			}
+
+
+		// "{\"name\": \"jam scone\", \"price\": \"10\", \"description\": \"asdfasdf\" }";
+		if (!auth)
+			alert("error: not logged in")
+
 		let data = await fetch(constants.baseURL + constants.company + '/products', {
 			method: "POST",
 			body:
@@ -247,7 +268,7 @@ const apiReal = {
 					"name": values.name,
 					"price": values.price,
 					"description": values.description,
-					// "type": values.type,
+					"categories": cats ? cats : []
 				}),
 			headers: {
 				'Content-Type': 'application/json',
@@ -269,8 +290,6 @@ const apiReal = {
 			console.error('There has been a problem with your fetch operation:', error);
 			throw error;
 		});
-
-		// alert("created product" )
 		return data;
 	},
 
@@ -278,6 +297,9 @@ const apiReal = {
 
 		console.info("updateProduct : " + JSON.stringify(values))
 		console.info("Authorization : " + JSON.stringify(auth))
+
+		if (!auth)
+			alert("error: not logged in")
 
 		let data = await fetch(constants.baseURL + constants.company + '/products/' + values.id, {
 			method: "PUT",

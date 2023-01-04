@@ -15,6 +15,8 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 export default function ProductsPanel() {
 
+
+
     const categories = useSelector((state: AppState) => state.products.categories)
     const categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
     const dispatch = useDispatch()
@@ -84,7 +86,7 @@ export default function ProductsPanel() {
                         <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
                             {
                                 categories.map((category: Category, i:number) =>
-                                <Tab label={category.name} {...a11yProps(i)} />
+                                <Tab key={category.name} label={category.name} {...a11yProps(i)} />
                                 )
                             }
                         </Tabs>
