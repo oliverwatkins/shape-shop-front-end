@@ -66,33 +66,6 @@ export default function ProductPanel(props: Props) {
         }
     }
 
-
-
-
-//     let editProductCallback = async (item: Product) => {
-//         try {
-//             await api.updateProduct(item, Authorization)
-//
-//             //after update in backend, update the state from this component
-//             dispatch(createUpdateProductSuccessAction({product: item}))
-//
-//             setOpenEditPProduct(false);
-//
-//             Notify.success("Edited Product " + item.name);
-//         } catch (e) {
-//             console.error(e)
-//
-//             // dispatch(createUpdateProductAction({product: item})) //TODO fail action?
-// //TODO this will not catch errors here. Use useAsync (See OrderPanel)
-//             setOpenEditPProduct(false);
-//             Notify.error("Error editing product");
-//         }
-//     }
-
-
-
-
-
     let editCategoryCallback = async (item: Category) => {
         try {
             alert("editCategoryCallback TODO")
@@ -102,19 +75,6 @@ export default function ProductPanel(props: Props) {
             console.error(e)
             setOpenCategoryDialog(false);
             Notify.error("Error editing category");
-        }
-    }
-
-    const createProductCallback = async (item: Product) => {
-        try {
-            await api.createProduct(item, Authorization)
-            dispatch(createAddProductAction({product: item}));
-
-            setOpenCreateProduct(false);
-            Notify.success("Created Product " + item.name);
-        } catch (e) {
-            //TODO this will not catch errors here. Use useAsync (See OrderPanel)
-            Notify.error("Error creating product");
         }
     }
 
@@ -133,7 +93,7 @@ export default function ProductPanel(props: Props) {
                 }}
             >
                 <Typography variant="h6" color='primary' sx={{flexGrow: 1}}>
-                    Category : {props.category?.name}
+                    openEditPProduct = { '' + openEditPProduct } XCategory : {props.category?.name}
                 </Typography>
 
                 {/*add product*/}
@@ -149,12 +109,11 @@ export default function ProductPanel(props: Props) {
                 {openEditPProduct && <ProductDialog open={openEditPProduct}
                                                     type={"Edit"}
                                                     product={selectedProduct}
-                                                    // handleSubmit={editProductCallback}
-                                                    handleCancel={() => setOpenEditPProduct(false)} />}
+                                                    handleClose={() => setOpenEditPProduct(false)} />}
 
-                {openCreateProduct && <ProductDialog open={openCreateProduct} type={"Create"}
-                                                     handleCancel={() => setOpenCreateProduct(false)}
-                                                     // handleSubmit={createProductCallback}
+                {openCreateProduct && <ProductDialog open={openCreateProduct}
+                                                     type={"Create"}
+                                                     handleClose={() => setOpenCreateProduct(false)}
 
                 />}
 

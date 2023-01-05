@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {Box, Grid, MenuItem, Select, Tab, TextField} from "@mui/material";
+import {Box, Grid, InputLabel, MenuItem, Select, Tab, TextField} from "@mui/material";
 import {AppState, Category, Product} from "../../AppState";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
@@ -13,12 +13,12 @@ import {api} from "../../api/api";
 import {createUpdateProductSuccessAction} from "../redux/productsReducer";
 import {Notify} from "../../notify";
 import {useAsync} from "react-async-hook";
+import {screen} from "@testing-library/react";
 
 type Props = {
     open: boolean
     type: "Create" | "Edit"
-    handleCancel: () => void
-    // handleSubmit: (data: any) => void
+    handleClose: () => void
     product?: Product
 }
 // TODO comment back in errors
@@ -28,77 +28,39 @@ export default function ProductDialog(props: Props) {
     const categories = useSelector((state: AppState) => state.products.categories)
     let loginToken = useSelector((state: AppState) => state.login.loginToken)
     const dispatch = useDispatch()
-    // const {
-    //     loading: productLoading,
-    //     error: productError,
-    //     result: products = null,
-    // } = useAsync<Product[]>(api.updateProduct, []);
-
-
-
-//
-//     let editProductCallback = async (item: Product) => {
-//         try {
-//             await api.updateProduct(item, Authorization)
-//
-//             //after update in backend, update the state from this component
-//             dispatch(createUpdateProductSuccessAction({product: item}))
-//
-//             setOpenEditPProduct(false);
-//
-//             Notify.success("Edited Product " + item.name);
-//         } catch (e) {
-//             console.error(e)
-//
-//             // dispatch(createUpdateProductAction({product: item})) //TODO fail action?
-// //TODO this will not catch errors here. Use useAsync (See OrderPanel)
-//             setOpenEditPProduct(false);
-//             Notify.error("Error editing product");
-//         }
-//     }
-
-
-
-
-
-
 
     const {register, handleSubmit, formState: {errors}} = useForm<Product>();
     const onSubmit = (productData: Product) => {
 
+        if (props.type === "Create") {
 
-        // alert()
-        // props.handleSubmit(
-        //     {...props.product, ...productData}
-        // )
+            api.createProduct(productData, loginToken).then(() => {
+                    Notify.success("Created Product " + productData.name);
+                    dispatch(createUpdateProductSuccessAction({product: productData}))
+                }).catch((error: { message: any; }) => {
+                    Notify.error(`onRejected function called: ${error.message}`);
+                }).finally(() => {
+                    console.log('Experiment completed');
+                    props.handleClose(); //TODO
+            });
+        } else {
+            productData.id = props?.product?.id as string;
 
-        // const {
-        //     loading: productLoading,
-        //     error: productError,
-        //     result: products = null,
-        // } = useAsync<Product[]>(api.updateProduct, [productData, loginToken]);
-        api.createProduct(productData, loginToken);
-
-        // api.createProduct(productData, loginToken).then((e:any) =>
-        //     alert("then")
-        // ).catch((e:any) => {
-        //     console.error(e)
-        //     alert("catch")
-        //     }
-        //     // alert("catch")
-        // )
-
-        dispatch(createUpdateProductSuccessAction({product: productData}))
-
-        // setOpenEditPProduct(false); TODO
-
-        Notify.success("Edited Product " + productData.name);
-
+            api.updateProduct(productData, loginToken).then(() => {
+                Notify.success("Updated Product " + productData.name);
+                dispatch(createUpdateProductSuccessAction({product: productData}))
+            }).catch((error: { message: any; }) => {
+                Notify.error(`onRejected function called: ${error.message}`);
+            }).finally(() => {
+                console.log('Experiment completed');
+                props.handleClose(); //TODO
+            });
+        }
     }
     return (
         <Dialog
             open={props.open}
-            onClose={props.handleCancel}
+            onClose={props.handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
@@ -146,12 +108,13 @@ export default function ProductDialog(props: Props) {
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                <InputLabel>category</InputLabel>
                                 <Select variant="outlined"
+                                        // name={"categories"}
                                         multiline={true}
-                                           defaultValue={props.product?.price}
-                                           fullWidth={true}
-                                           label={"XXXX"}
-                                           {...register("categories", {required: true, maxLength: 5})}
+                                        defaultValue={"main"}
+                                        fullWidth={true}
+                                        {...register("categories", {required: true, maxLength: 5})}
                                     // error={errors.price}
                                     //        helperText={errors.price?.type}
                                 >
@@ -186,7 +149,7 @@ export default function ProductDialog(props: Props) {
                 >
                     {(props.type === "Create") ? "Submit" : "Update"}
                 </Button>
-                <Button onClick={props.handleCancel}>Cancel</Button>
+                <Button onClick={props.handleClose}>Cancel</Button>
             </DialogActions>
         </Dialog>
     );

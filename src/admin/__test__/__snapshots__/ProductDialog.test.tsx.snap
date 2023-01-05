@@ -1,9 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Products test matches snapshot 1`] = `
+exports[`Products dialog test matches snapshot 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body>
+  "baseElement": <body
+    style=""
+  >
     <div>
       <div
         class="MuiBox-root css-0"
