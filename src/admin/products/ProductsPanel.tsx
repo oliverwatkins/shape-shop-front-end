@@ -46,11 +46,15 @@ export default function ProductsPanel() {
     };
 
     let category = categories[productTabValue];
+    //
+    // console.info("categories " + JSON.stringify(categories));
+    //
+    // console.info("productError " + JSON.stringify(productError));
 
-    console.info("categories " + JSON.stringify(categories));
-
-    console.info("productError " + JSON.stringify(productError));
-
+    if (!category)
+        console.info(" -- > " + categories);
+    else
+        console.info(categories);
 
     return (
         <>

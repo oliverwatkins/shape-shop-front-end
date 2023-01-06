@@ -35,6 +35,16 @@ export function createTestStore() {
 	);
 }
 
+
+// login: {
+// 	loginToken: {
+// 		token: "atoken",
+// 			role: "arole",
+// 			username: "auser"
+// 	},
+// 	loggingIn: false
+// },
+
 let productlist = [
 	{
 		"id": 1,

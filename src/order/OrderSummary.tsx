@@ -38,7 +38,7 @@ function getContent(selectedProducts: Product[]) {
 
             let products = categoryProducts.map(product => {
                 return (<tr key={product.name}>
-                        <td>{product.name}</td>
+                        <td >{product.name}</td>
                         <td>{product.price}</td>
                         <td>{product.amount && (product.amount > 1) ? product.amount : " "}</td>
                         <td>{priceTimesQty(product.price, product.amount)}</td>

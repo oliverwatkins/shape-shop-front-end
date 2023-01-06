@@ -11,6 +11,8 @@ import {reducer as admin} from "../../admin/redux/adminReducer";
 import { Provider } from 'react-redux';
 import {MemoryRouter} from "react-router-dom";
 import ProductsPanel from "../products/ProductsPanel";
+import {getMockData} from "../../order/test/mockData";
+import {Notify} from "../../notify";
 
 export function createTestStore() {
 
@@ -21,17 +23,7 @@ export function createTestStore() {
 			products: products,
 			order: order,
 			admin: admin
-		}),
-		{
-			login: {
-				loginToken: {
-					token: "atoken",
-					role: "arole",
-					username: "auser"
-				},
-				loggingIn: false
-			},
-		}
+		}), getMockData()
 	);
 }
 
@@ -45,7 +37,7 @@ let productlist = [
 		"categories": [
 			{
 				"id": 0,
-				"name": "catone"
+				"name": "main"
 			}
 		]
 	},
@@ -58,18 +50,35 @@ let productlist = [
 		"categories": [
 			{
 				"id": 1,
-				"name": "cattwo"
+				"name": "drinks"
 			}
 		]
 	}
 ]
 
-// jest.setTimeout(1000000)
+jest.setTimeout(1000000)
 describe('Products dialog test', () => {
 
-	beforeAll(() => jest.spyOn(window, 'fetch'))
+	beforeAll(() => {
+		jest.spyOn(window, 'fetch')
+		jest.spyOn(Notify, 'success')
+		// @ts-ignore
+
+		// Notify.success("banana1")
+		// Notify.success("banana2")
+	})
 
 	it("create product", async () => {
+
+		// @ts-ignore
+		Notify.success.mockImplementation(
+			(e: string) => {
+
+				console.info("some crap " + e)
+				throw "fuck this shit"
+			}
+		);
+
 
 		// @ts-ignore
 		window.fetch.mockResolvedValueOnce({
@@ -117,7 +126,7 @@ describe('Products dialog test', () => {
 		// @ts-ignore
 		window.fetch.mockResolvedValueOnce({
 			ok: true,
-			json: async () => ({
+			json: async () => ([{
 				"id": 34,
 				"company": {
 					"id": 1,
@@ -129,14 +138,27 @@ describe('Products dialog test', () => {
 				"description": "sdfg",
 				"price": 12,
 				"imageFilename": "todo"
-			}),
+			}]),
 		})
 
-		let cP5 = screen.getByRole('button', {name: 'Submit'});
+		//
+		// // @ts-ignore
+		// window.fetch.mockResolvedValueOnce({
+		// 	ok: true,
+		// 	json: async () => (productlist),
+		// })
 
-		fireEvent.click(cP5);
+		let submitButton = screen.getByRole('button', {name: 'Submit'});
 
-		screen.debug(container);
+
+		fireEvent.click(submitButton);
+
+
+
+		//TODO trying to mock Notify.success but not working at the moment
+		// expect(Notify.success).toHaveBeenCalledTimes(1);
+
+
 
 		//TODO make sure the dialog disapears.
 	});

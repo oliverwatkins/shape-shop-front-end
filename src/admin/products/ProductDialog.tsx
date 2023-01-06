@@ -154,3 +154,27 @@ export default function ProductDialog(props: Props) {
         </Dialog>
     );
 }
+//
+// //TODO refactor me
+// let cats: { id: number; name: Category; }[] = [];
+// if (values.categories)
+//
+//     if(values.categories instanceof Array) {
+//         cats = values.categories.map(
+//             elem => {
+//                 return {
+//                     "id": 1,
+//                     "name": elem
+//                 }
+//             });
+//
+//     }else {
+//         //just a string
+//         cats = [
+//             {
+//                 id: 233,
+//                 name: values.categories
+//             }
+//         ];
+//     }
+

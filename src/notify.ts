@@ -19,7 +19,7 @@ export const Notify = {
     success: (msg: string) => {
         toast.success(msg, {
             position: "top-right",
-            autoClose: 8000,
+            autoClose: 800000,
             hideProgressBar: false,
             closeOnClick: true,
             pauseOnHover: true,

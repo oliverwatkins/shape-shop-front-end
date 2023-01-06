@@ -46,6 +46,21 @@ export function getCategoryProducts(productsArray: Array<Product>): { [category:
 export function extractUniqueCategories(productsArray: Array<Product>) {
     let uniqueCategories: Array<Category> = [];
 
+
+    // {
+    //     "id": 34,
+    //     "company": {
+    //     "id": 1,
+    //         "name": "alpenhof"
+    // },
+    //     "orders": [],
+    //     "productCategories": [],
+    //     "name": "asdfasdf",
+    //     "description": "sdfg",
+    //     "price": 12,
+    //     "imageFilename": "todo"
+    // }
+
     for (const product of productsArray) {
         let categories: Array<Category> | undefined = product.categories;
         if (categories)

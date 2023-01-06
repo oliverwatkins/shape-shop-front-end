@@ -51,6 +51,10 @@ const persistor = persistStore(store);
 // 	window.location.replace(`${window.location.protocol}//${window.location.host}${window.location.pathname}`);
 // }
 
+
+// store.subscribe()
+
+
 if (!CACHE) {
 	persistor.purge();
 }

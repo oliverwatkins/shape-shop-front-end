@@ -13,7 +13,128 @@ export let api: any = {}
 // 	return response.data || [];
 // }
 
+
 const apiReal = {
+
+
+
+    /**
+     * Fetch products for company. If category exists, filter results by category.
+     *
+     * @param category
+     */
+    fetchProducts: async (category?: Category)=> {
+        // await sleep(100);
+        console.info("in fetch products")
+
+        let data = await fetch(constants.baseURL + constants.company + '/products', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            console.info("status : " + response.status)
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json()
+        }).then(allProducts => {
+            let	filteredProducts = allProducts;
+
+            if (filteredProducts.length == 1)
+                throw "didnt expect that"
+
+            if (category) {
+                filteredProducts = allProducts.filter((product: Product)=> {
+
+                    if (product.categories) {
+                        let c = product.categories.find(cat => cat.name === category.name)
+                        if (c)
+                            return true;
+                    }
+                    return false;
+                });
+            }
+            return {
+                status:200,
+                data: filteredProducts
+            }
+        }).catch(error => {
+            console.error(error)
+            throw error;
+        });
+        return data.data;
+    },
+
+
+    createProduct: async (values: Product, auth: Authorization)=> {
+        let categories = extractCategories(values);
+
+        // "{\"name\": \"jam scone\", \"price\": \"10\", \"description\": \"asdfasdf\" }";
+        if (!auth)
+            alert("error: not logged in")
+
+        let data = await fetch(constants.baseURL + constants.company + '/products', {
+            method: "POST",
+            body:
+                JSON.stringify({
+                    "name": values.name,
+                    "price": values.price,
+                    "description": values.description,
+                    "categories": categories ? categories : []
+                }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': "Bearer " + auth.token
+            },
+        }).then(response => {
+            console.info("status : " + response.status)
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json()
+        }).then(data => {
+            return {
+                status:200,
+                data: data
+            }
+        }).catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+            throw error;
+        });
+        return data;
+    },
+
+    updateProduct: async (values: Product, auth: Authorization) => {
+
+        console.info("updateProduct : " + JSON.stringify(values))
+        console.info("Authorization : " + JSON.stringify(auth))
+
+        if (!auth)
+            alert("error: not logged in")
+
+        let data = await fetch(constants.baseURL + constants.company + '/products/' + values.id, {
+            method: "PUT",
+            body: JSON.stringify(values),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': "Bearer " + auth.token
+            },
+        }).then(response => {
+            console.info("status : " + response.status)
+            if (!response.ok) {
+                throw new Error('Network response was not ok status : ' + response.status);
+            }
+            return response
+        }).catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+            throw error;
+        });
+        return data;
+    },
+
 
 	deleteProduct: async (values: Product, auth: Authorization)=> {
 		let data = await fetch(constants.baseURL + constants.company + '/products/'  + values.id, {
@@ -42,49 +163,7 @@ const apiReal = {
 	},
 
 
-	/**
-	 * Fetch products for company. If category exists, filter results by category.
-	 *
-	 * @param category
-	 */
-	fetchProducts: async (category?: Category)=> {
-		await sleep(100);
-		console.info("in fetch products")
 
-		let data = await fetch(constants.baseURL + constants.company + '/products', {
-			method: "GET",
-			headers: {
-				'Content-Type': 'application/json'
-			}
-		}).then(response => {
-			console.info("status : " + response.status)
-			if (!response.ok) {
-				throw new Error('Network response was not ok');
-			}
-			return response.json()
-		}).then(allProducts => {
-			let	filteredProducts = allProducts;
-			if (category) {
-				filteredProducts = allProducts.filter((product: Product)=> {
-
-					if (product.categories) {
-						let c = product.categories.find(cat => cat.name === category.name)
-						if (c)
-							return true;
-					}
-					return false;
-				});
-			}
-			return {
-				status:200,
-				data: filteredProducts
-			}
-		}).catch(error => {
-			console.error(error)
-			throw error;
-		});
-		return data.data;
-	},
 
 	fetchOrders: async (auth: Authorization, orderState: OrderStateType) => {
 
@@ -167,166 +246,104 @@ const apiReal = {
 		// return data;
 	},
 
-	placeOrder: async (values: OrderState) => {
-		await sleep(2000);
-
-		let data = await fetch(constants.baseURL + constants.company + '/orders', {
-			method: "POST",
-			body: JSON.stringify(values),
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json',
-			},
-		}).then(response => {
-			console.info("status : " + response.status)
-			if (!response.ok) {
-				throw new Error('1. Network response was not ok');
-			}
-			return response.json()
-		}).then(data => {
-			return {
-				status:200,
-				data: data
-			}
-		}).catch(error => {
-			console.error('2. There has been a problem with your fetch operation:', error);
-			throw error;
-		});
-
-		return data;
-	},
-	uploadImage: async (auth: Authorization, file: any, productId: string) => {
-
-		console.info("file " + JSON.stringify(file));
-
-		const formData = new FormData();
-		formData.append('file', file);
-
-		console.info("FormData " + JSON.stringify(formData));
-
-		let data = await fetch(constants.baseURL + constants.company + '/uploadfile/' + productId, {
-			method: "POST",
-			body: formData,
-			headers: {
-				'Accept': 'application/json',
-				'Authorization': "Bearer " + auth.token
-			},
-		}).then(response => {
-			// console.info("status : " + response.status)
-			if (!response.ok) {
-				console.error('Network response was not ok. status : ' + response.status);
-				throw new Error('Network response was not ok');
-			}
-			return response
-		}).then(data => {
-			return {
-				status: 200,
-				data: data
-			}
-		}).catch(error => {
-			console.error('There was a problem with your fetch operation:', error);
-			throw error;
-		});
-		return data;
-	},
-
-	createProduct: async (values: Product, auth: Authorization)=> {
 
 
-		//TODO refactor me
-		let cats: { id: number; name: Category; }[] = [];
-		if (values.categories)
-
-			if(values.categories instanceof Array) {
-				cats = values.categories.map(
-					elem => {
-						return {
-							"id": 1,
-							"name": elem
-						}
-					});
-
-			}else {
-				//just a string
-				cats = [
-					{
-						id: 233,
-						name: values.categories
-					}
-				];
-			}
 
 
-		// "{\"name\": \"jam scone\", \"price\": \"10\", \"description\": \"asdfasdf\" }";
-		if (!auth)
-			alert("error: not logged in")
 
-		let data = await fetch(constants.baseURL + constants.company + '/products', {
-			method: "POST",
-			body:
-				JSON.stringify({
-					"name": values.name,
-					"price": values.price,
-					"description": values.description,
-					"categories": cats ? cats : []
-				}),
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json',
-				'Authorization': "Bearer " + auth.token
-			},
-		}).then(response => {
-			console.info("status : " + response.status)
-			if (!response.ok) {
-				throw new Error('Network response was not ok');
-			}
-			return response.json()
-		}).then(data => {
-			return {
-				status:200,
-				data: data
-			}
-		}).catch(error => {
-			console.error('There has been a problem with your fetch operation:', error);
-			throw error;
-		});
-		return data;
-	},
+    placeOrder: async (values: OrderState) => {
+        await sleep(2000);
 
-	updateProduct: async (values: Product, auth: Authorization) => {
+        let data = await fetch(constants.baseURL + constants.company + '/orders', {
+            method: "POST",
+            body: JSON.stringify(values),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+        }).then(response => {
+            console.info("status : " + response.status)
+            if (!response.ok) {
+                throw new Error('1. Network response was not ok');
+            }
+            return response.json()
+        }).then(data => {
+            return {
+                status:200,
+                data: data
+            }
+        }).catch(error => {
+            console.error('2. There has been a problem with your fetch operation:', error);
+            throw error;
+        });
 
-		console.info("updateProduct : " + JSON.stringify(values))
-		console.info("Authorization : " + JSON.stringify(auth))
+        return data;
+    },
+    uploadImage: async (auth: Authorization, file: any, productId: string) => {
 
-		if (!auth)
-			alert("error: not logged in")
+        console.info("file " + JSON.stringify(file));
 
-		let data = await fetch(constants.baseURL + constants.company + '/products/' + values.id, {
-			method: "PUT",
-			body: JSON.stringify(values),
-			headers: {
-				'Content-Type': 'application/json',
-				'Accept': 'application/json',
-				'Authorization': "Bearer " + auth.token
-			},
-		}).then(response => {
-			console.info("status : " + response.status)
-			if (!response.ok) {
-				throw new Error('Network response was not ok status : ' + response.status);
-			}
-			return response
-		}).catch(error => {
-			console.error('There has been a problem with your fetch operation:', error);
-			throw error;
-		});
-		return data;
-	}
+        const formData = new FormData();
+        formData.append('file', file);
+
+        console.info("FormData " + JSON.stringify(formData));
+
+        let data = await fetch(constants.baseURL + constants.company + '/uploadfile/' + productId, {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': "Bearer " + auth.token
+            },
+        }).then(response => {
+            // console.info("status : " + response.status)
+            if (!response.ok) {
+                console.error('Network response was not ok. status : ' + response.status);
+                throw new Error('Network response was not ok');
+            }
+            return response
+        }).then(data => {
+            return {
+                status: 200,
+                data: data
+            }
+        }).catch(error => {
+            console.error('There was a problem with your fetch operation:', error);
+            throw error;
+        });
+        return data;
+    }
 };
 
 function sleep(ms: number) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+function extractCategories(values: Product) {
+    //TODO refactor me
+    let cats: { id: number; name: Category; }[] = [];
+    if (values.categories)
+
+        if (values.categories instanceof Array) {
+            cats = values.categories.map(
+                elem => {
+                    return {
+                        "id": 1,
+                        "name": elem
+                    }
+                });
+
+        } else {
+            //just a string
+            cats = [
+                {
+                    id: 233,
+                    name: values.categories
+                }
+            ];
+        }
+    return cats;
+}
 
 if (constants.MOCK_MODE) {
 	api = api_MOCK;
