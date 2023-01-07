@@ -7,15 +7,13 @@ import {useEffect, useReducer} from "react";
 import {useAsync} from "react-async-hook";
 import {AppState, Category, Product} from "../../AppState";
 import {api} from "../../api/api";
-import {createFetchProductsSuccessAction} from "../redux/productsReducer";
+import {fetchProductsSuccessAction} from "../redux/productsReducer";
 import ProductPanel from "./ProductPanel";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 
 export default function ProductsPanel() {
-
-
 
     const categories = useSelector((state: AppState) => state.products.categories)
     const categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
@@ -36,7 +34,7 @@ export default function ProductsPanel() {
 
     useEffect(() => {
         if (products) {
-            dispatch(createFetchProductsSuccessAction({data: products}));
+            dispatch(fetchProductsSuccessAction({data: products}));
         }
     }, [products]);
 
@@ -46,10 +44,6 @@ export default function ProductsPanel() {
     };
 
     let category = categories[productTabValue];
-    //
-    // console.info("categories " + JSON.stringify(categories));
-    //
-    // console.info("productError " + JSON.stringify(productError));
 
     if (!category)
         console.info(" -- > " + categories);

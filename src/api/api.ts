@@ -68,7 +68,7 @@ const apiReal = {
 
 
     createProduct: async (values: Product, auth: Authorization)=> {
-        let categories = extractCategories(values);
+        // let categories = extractCategories(productData.categoriesForForm, categories);
 
         // "{\"name\": \"jam scone\", \"price\": \"10\", \"description\": \"asdfasdf\" }";
         if (!auth)
@@ -81,7 +81,7 @@ const apiReal = {
                     "name": values.name,
                     "price": values.price,
                     "description": values.description,
-                    "categories": categories ? categories : []
+                    "categories": values.categories,
                 }),
             headers: {
                 'Content-Type': 'application/json',
@@ -108,6 +108,8 @@ const apiReal = {
 
     updateProduct: async (values: Product, auth: Authorization) => {
 
+        // let categories = extractCategories(productData.categoriesForForm, categories);
+
         console.info("updateProduct : " + JSON.stringify(values))
         console.info("Authorization : " + JSON.stringify(auth))
 
@@ -116,7 +118,7 @@ const apiReal = {
 
         let data = await fetch(constants.baseURL + constants.company + '/products/' + values.id, {
             method: "PUT",
-            body: JSON.stringify(values),
+            body: JSON.stringify({...values}),
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -319,29 +321,37 @@ function sleep(ms: number) {
 	return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-function extractCategories(values: Product) {
+/**
+ * convert "acat" or ["asdf", "asdf"]
+ *
+ * to [{id:"1", name:"acat"}]
+ */
+export function extractCategories(product: Product, categories: Array<Category>): Category[] {
     //TODO refactor me
-    let cats: { id: number; name: Category; }[] = [];
-    if (values.categories)
+    let cats: Category[] = [];
+    if (product.categoriesForForm) {
 
-        if (values.categories instanceof Array) {
-            cats = values.categories.map(
-                elem => {
-                    return {
-                        "id": 1,
-                        "name": elem
-                    }
-                });
+        if (product.categoriesForForm instanceof Array) {
+
+            let c = categories.filter(elem => product.categoriesForForm?.includes(elem.name))
+
+            cats = c;
+
+        } else if (typeof product.categoriesForForm === 'string') {
+
+
+            let c = categories.find(e => e.name === product.categoriesForForm)
+
+            //just a string
+            if (c)
+                cats = [c];
+            else
+                throw "cannopt find cat"
 
         } else {
-            //just a string
-            cats = [
-                {
-                    id: 233,
-                    name: values.categories
-                }
-            ];
+            throw "error..."
         }
+    }
     return cats;
 }
 

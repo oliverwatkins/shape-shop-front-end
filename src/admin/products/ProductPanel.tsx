@@ -11,9 +11,9 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import {api} from "../../api/api";
 import {
-    createAddProductAction,
-    createDeleteProductAction, 
-    createUpdateProductSuccessAction
+    addProductAction,
+    deleteProductAction,
+    updateProductSuccessAction
 } from "../redux/productsReducer";
 import {useSelector} from "react-redux";
 import {AppState, ProductsState} from "../../AppState";
@@ -57,7 +57,7 @@ export default function ProductPanel(props: Props) {
             await api.deleteProduct(item, Authorization)
 
             //will this work??
-            dispatch(createDeleteProductAction({product: item}))
+            dispatch(deleteProductAction({product: item}))
             Notify.success("Deleted Product " + item.name);
         } catch (e) {
             //TODO this will not catch errors here. Use useAsync (See OrderPanel)

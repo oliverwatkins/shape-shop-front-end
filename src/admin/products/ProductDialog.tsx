@@ -9,8 +9,8 @@ import {Box, Grid, InputLabel, MenuItem, Select, Tab, TextField} from "@mui/mate
 import {AppState, Category, Product} from "../../AppState";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
-import {api} from "../../api/api";
-import {createUpdateProductSuccessAction} from "../redux/productsReducer";
+import {api, extractCategories} from "../../api/api";
+import {updateProductSuccessAction} from "../redux/productsReducer";
 import {Notify} from "../../notify";
 import {useAsync} from "react-async-hook";
 import {screen} from "@testing-library/react";
@@ -32,31 +32,39 @@ export default function ProductDialog(props: Props) {
     const {register, handleSubmit, formState: {errors}} = useForm<Product>();
     const onSubmit = (productData: Product) => {
 
+        let cs = extractCategories(productData, categories);
+        productData.categories = cs;
+
         if (props.type === "Create") {
 
             api.createProduct(productData, loginToken).then(() => {
                     Notify.success("Created Product " + productData.name);
-                    dispatch(createUpdateProductSuccessAction({product: productData}))
+                    dispatch(updateProductSuccessAction({product: productData}))
                 }).catch((error: { message: any; }) => {
                     Notify.error(`onRejected function called: ${error.message}`);
+                    throw "this is an error"
                 }).finally(() => {
                     console.log('Experiment completed');
-                    props.handleClose(); //TODO
+                    props.handleClose();
             });
         } else {
             productData.id = props?.product?.id as string;
+            productData.imageFilename = props?.product?.imageFilename;
 
             api.updateProduct(productData, loginToken).then(() => {
                 Notify.success("Updated Product " + productData.name);
-                dispatch(createUpdateProductSuccessAction({product: productData}))
+                dispatch(updateProductSuccessAction({product: productData}))
             }).catch((error: { message: any; }) => {
                 Notify.error(`onRejected function called: ${error.message}`);
             }).finally(() => {
                 console.log('Experiment completed');
-                props.handleClose(); //TODO
+                props.handleClose();
             });
         }
     }
+    // @ts-ignore
+    // @ts-ignore
+    // @ts-ignore
     return (
         <Dialog
             open={props.open}
@@ -110,33 +118,16 @@ export default function ProductDialog(props: Props) {
                             <Grid item xs={12}>
                                 <InputLabel>category</InputLabel>
                                 <Select variant="outlined"
-                                        // name={"categories"}
                                         multiline={true}
                                         defaultValue={"main"}
                                         fullWidth={true}
-                                        {...register("categories", {required: true, maxLength: 5})}
-                                    // error={errors.price}
-                                    //        helperText={errors.price?.type}
+                                        {...register("categoriesForForm", {required: true, maxLength: 5})}
                                 >
-                                        {/*<MenuItem value={10}>Ten</MenuItem>*/}
-                                        {/*    /!*<Checkbox checked={personName.indexOf(name) > -1} />*!/*/}
-                                        {/*    /!*<ListItemText primary={name} />*!/*/}
-                                        {/*<MenuItem value={20}>Twenty</MenuItem>*/}
-                                        {/*<MenuItem value={30}>Thirty</MenuItem>*/}
-
                                     {categories.map((category: Category, i:number) =>
-                                        <MenuItem key={category.name} value={category.name}>
-                                            {category.name}
-                                        </MenuItem>
+                                        // @ts-ignore
+                                        <MenuItem key={category.name} value={category.name}>{category.name}</MenuItem>
                                     )}
-
-
-
-                            {/*</Grid>*/}
-
-                            {/*TODO category drop down here??*/}
-                            {/*<input type="hidden" {...register("type")} defaultValue={"main"}/>*/}
-                                    </Select>
+                                </Select>
                             </Grid>
                         </Grid>
                     </Box>
@@ -154,27 +145,4 @@ export default function ProductDialog(props: Props) {
         </Dialog>
     );
 }
-//
-// //TODO refactor me
-// let cats: { id: number; name: Category; }[] = [];
-// if (values.categories)
-//
-//     if(values.categories instanceof Array) {
-//         cats = values.categories.map(
-//             elem => {
-//                 return {
-//                     "id": 1,
-//                     "name": elem
-//                 }
-//             });
-//
-//     }else {
-//         //just a string
-//         cats = [
-//             {
-//                 id: 233,
-//                 name: values.categories
-//             }
-//         ];
-//     }
 

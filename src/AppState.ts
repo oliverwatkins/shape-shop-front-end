@@ -23,6 +23,8 @@ export type Product = {
 	image?: any, //??
 	amount?: number, //selected quantity
 	categories?: Array<Category>
+	categoriesForForm?: Array<string> | string //needed for form
+
 }
 
 export type ByCategory = { [cat: string]: Array<Product> };
@@ -87,8 +89,8 @@ export type CreditCardEntity = {
 }
 
 export type Category = {
-	name:string,
 	id: string
+	name:string,
 }
 
 export type Address = {

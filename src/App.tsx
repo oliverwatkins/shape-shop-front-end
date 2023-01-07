@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
 import {
-    createFetchProductsSuccessAction
+    fetchProductsSuccessAction
 } from "./admin/redux/productsReducer";
 import Nav from "./Nav";
 
@@ -40,7 +40,7 @@ export default function App() {
 
     useEffect(() => {
         if (products) {
-            dispatch(createFetchProductsSuccessAction({data: products}));
+            dispatch(fetchProductsSuccessAction({data: products}));
         }
     }, [products]);
 

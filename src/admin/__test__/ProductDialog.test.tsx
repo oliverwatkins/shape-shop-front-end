@@ -73,12 +73,9 @@ describe('Products dialog test', () => {
 		// @ts-ignore
 		Notify.success.mockImplementation(
 			(e: string) => {
-
-				console.info("some crap " + e)
-				throw "fuck this shit"
+				console.info("here " + e)
 			}
 		);
-
 
 		// @ts-ignore
 		window.fetch.mockResolvedValueOnce({
@@ -141,24 +138,19 @@ describe('Products dialog test', () => {
 			}]),
 		})
 
-		//
-		// // @ts-ignore
-		// window.fetch.mockResolvedValueOnce({
-		// 	ok: true,
-		// 	json: async () => (productlist),
-		// })
-
 		let submitButton = screen.getByRole('button', {name: 'Submit'});
-
 
 		fireEvent.click(submitButton);
 
+		const postItemNode = await screen.findByText('myname');
 
+		const boxes = container.getElementsByClassName('MuiCardHeader-root');
+		expect(boxes.length).toBe(3) //new prod has been added
+
+		// screen.debug(boxes[0]);
 
 		//TODO trying to mock Notify.success but not working at the moment
 		// expect(Notify.success).toHaveBeenCalledTimes(1);
-
-
 
 		//TODO make sure the dialog disapears.
 	});

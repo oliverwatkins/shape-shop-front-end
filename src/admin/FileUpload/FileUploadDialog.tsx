@@ -11,7 +11,7 @@ import {Notify} from "../../notify";
 import {useDispatch, useSelector} from "react-redux";
 import {Box} from "@material-ui/core";
 import {Typography} from "@mui/material";
-import {createUpdateProductSuccessAction} from "../redux/productsReducer";
+import {updateProductSuccessAction} from "../redux/productsReducer";
 
 type Props = {
     open: boolean
@@ -58,7 +58,7 @@ export function FileUploadDialog(props: Props) {
             //TODO this will not work. Use useAsync (See OrderPanel)
             pp.imageFilename = selectedFile.selectedFile.name
 
-            dispatch(createUpdateProductSuccessAction({product: pp}))
+            dispatch(updateProductSuccessAction({product: pp}))
 
             Notify.success("Saved Image ");
 

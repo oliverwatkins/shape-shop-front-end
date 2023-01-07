@@ -62,7 +62,7 @@ export function ProductItem(props: Props) {
 
     const heigt = 25;
     return (
-        <Card className="admin-item-box">
+        <Card className="admin-item-box" data-testid="custom-element" role={"fuck"}>
             <CardHeader
                 action={
                     <>

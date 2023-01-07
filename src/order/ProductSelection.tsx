@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import ItemBox from "./ItemBox";
-import {createUpdateProductSelection} from "../admin/redux/productsReducer";
+import {updateProductSelection} from "../admin/redux/productsReducer";
 import {connect, useDispatch} from "react-redux";
 import type {Product} from "../AppState";
 
@@ -14,8 +14,8 @@ export default function ProductSelection(props: Props) {
 
 	const dispatch = useDispatch();
 
-	let updateProductSelection = (quantity: number, productId: string) => {
-		dispatch(createUpdateProductSelection({value: quantity, productid: productId}));
+	let updateProdSelection = (quantity: number, productId: string) => {
+		dispatch(updateProductSelection({value: quantity, productid: productId}));
 	}
 
 	return (
@@ -23,7 +23,7 @@ export default function ProductSelection(props: Props) {
 			<div className="product-selection">
 				{
 					items && items.map((e) => (
-						<ItemBox key={e.name} product={e} handleChangeSelection={updateProductSelection}/>
+						<ItemBox key={e.name} product={e} handleChangeSelection={updateProdSelection}/>
 						)
 					)
 				}
