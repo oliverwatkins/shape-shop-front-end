@@ -28,36 +28,9 @@ export function createTestStore() {
 	);
 }
 
-let productlist = [
-	{
-		"id": 1,
-		"name": "first",
-		"price": 2.1,
-		"description": "my desc",
-		"imageFilename": "img.jpg",
-		"categories": [
-			{
-				"id": 0,
-				"name": "main"
-			}
-		]
-	},
-	{
-		"id": 2,
-		"name": "second",
-		"price": 3.1,
-		"description": "my desc 2",
-		"imageFilename": "img2.jpg",
-		"categories": [
-			{
-				"id": 1,
-				"name": "drinks"
-			}
-		]
-	}
-]
 
-jest.setTimeout(1000000)
+
+// jest.setTimeout(1000000)
 describe('Products dialog test', () => {
 
 	beforeAll(() => {
@@ -81,7 +54,7 @@ describe('Products dialog test', () => {
 		// @ts-ignore
 		window.fetch.mockResolvedValueOnce({
 			ok: true,
-			json: async () => (productlist),
+			json: async () => (productlist_2prods),
 		})
 
 		// @ts-ignore
@@ -156,7 +129,7 @@ describe('Products dialog test', () => {
 		// @ts-ignore
 		window.fetch.mockResolvedValueOnce({
 			ok: true,
-			json: async () => (productlist),
+			json: async () => (productlist_2prods),
 		})
 
 		// @ts-ignore
@@ -173,3 +146,33 @@ describe('Products dialog test', () => {
 
 	});
 });
+
+
+let productlist_2prods = [
+	{
+		"id": 1,
+		"name": "first",
+		"price": 2.1,
+		"description": "my desc",
+		"imageFilename": "img.jpg",
+		"categories": [
+			{
+				"id": 0,
+				"name": "main"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "second",
+		"price": 3.1,
+		"description": "my desc 2",
+		"imageFilename": "img2.jpg",
+		"categories": [
+			{
+				"id": 1,
+				"name": "drinks"
+			}
+		]
+	}
+]
