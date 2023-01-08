@@ -153,6 +153,22 @@ describe('Products dialog test', () => {
 
 	it("update product", async () => {
 
+		// @ts-ignore
+		window.fetch.mockResolvedValueOnce({
+			ok: true,
+			json: async () => (productlist),
+		})
+
+		// @ts-ignore
+		const {container} = render(<Provider store={createTestStore()}>
+			<MemoryRouter>
+				<ProductsPanel/>
+			</MemoryRouter>
+		</Provider>);
+
+		await screen.findAllByRole('heading')
+
+
 		//TODO
 
 	});

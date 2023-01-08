@@ -2,10 +2,10 @@
 
 export const company = "alpenhof";
 
-export const baseURL = "http://localhost:8080/";
+// export const baseURL = "http://localhost:8080/";
 
 // docker compose use :
-// export const baseURL = "http://localhost:8081/";
+export const baseURL = "http://localhost:8081/";
 
 
 

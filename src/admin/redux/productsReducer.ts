@@ -55,7 +55,12 @@ export function productsReducer(state: ProductsState = initialState, action: Any
     }
     if (updateProductSuccessAction.match(action)) {
 
-        const allProds = [...state.allProducts, action.payload.product];
+        const allProds = state.allProducts.map((elem) => {
+            if (elem.id === action.payload.product.id)
+                return action.payload.product;
+            return elem;
+        });
+
         let productsAndCategories = getCategoryProducts(allProds)
 
         return {
