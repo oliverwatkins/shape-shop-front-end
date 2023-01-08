@@ -32,11 +32,17 @@ export function productsReducer(state: ProductsState = initialState, action: Any
     // console.info("action " + action + " " + state)
 
     if (addProductAction.match(action)) {
-        let newItems = state.allProducts;
-        newItems.push(action.payload.product);
+        // let newItems = state.allProducts;
+        // newItems.push(action.payload.product);
+
+        let allProds = [...state.allProducts, action.payload.product]
+
+        let productsAndCategories = getCategoryProducts(allProds)
+
         return {
             ...state,
-            allProducts: newItems
+            allProducts: allProds,
+            categoryProducts: productsAndCategories
         };
     }
     if (deleteProductAction.match(action)) {

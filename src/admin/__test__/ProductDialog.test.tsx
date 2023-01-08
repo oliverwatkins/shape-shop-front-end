@@ -111,7 +111,7 @@ describe('Products dialog test', () => {
 		let cP3 = screen.getByLabelText('price')
 		//TODO do the categories...
 
-		fireEvent.change(cP1, {target: {value: 'myname'}})
+		fireEvent.change(cP1, {target: {value: 'third'}})
 		fireEvent.change(cP2, {target: {value: 'desc'}})
 		fireEvent.change(cP3, {target: {value: '12'}})
 		// fireEvent.change(cP4, {target: {value: 'cat'}})
@@ -127,7 +127,7 @@ describe('Products dialog test', () => {
 				},
 				"orders": [],
 				"productCategories": [],
-				"name": "asdfasdf",
+				"name": "third",
 				"description": "sdfg",
 				"price": 12,
 				"imageFilename": "todo"
@@ -138,7 +138,7 @@ describe('Products dialog test', () => {
 
 		fireEvent.click(submitButton);
 
-		const postItemNode = await screen.findByText('myname');
+		const postItemNode = await screen.findByText('third');
 
 		const boxes = container.getElementsByClassName('MuiCardHeader-root');
 		expect(boxes.length).toBe(3) //new prod has been added
@@ -151,7 +151,7 @@ describe('Products dialog test', () => {
 		//TODO make sure the dialog disapears.
 	});
 
-	it("update product", async () => {
+	xit("update product", async () => {
 
 		// @ts-ignore
 		window.fetch.mockResolvedValueOnce({
@@ -169,7 +169,7 @@ describe('Products dialog test', () => {
 		await screen.findAllByRole('heading')
 
 
-		//TODO
+		//TODO click on that little three dot thing
 
 	});
 });

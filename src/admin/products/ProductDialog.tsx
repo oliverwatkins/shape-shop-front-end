@@ -10,7 +10,7 @@ import {AppState, Category, Product} from "../../AppState";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
 import {api, extractCategories} from "../../api/api";
-import {updateProductSuccessAction} from "../redux/productsReducer";
+import {addProductAction, updateProductSuccessAction} from "../redux/productsReducer";
 import {Notify} from "../../notify";
 import {useAsync} from "react-async-hook";
 import {screen} from "@testing-library/react";
@@ -39,7 +39,7 @@ export default function ProductDialog(props: Props) {
 
             api.createProduct(productData, loginToken).then(() => {
                     Notify.success("Created Product " + productData.name);
-                    dispatch(updateProductSuccessAction({product: productData}))
+                    dispatch(addProductAction({product: productData}))
                 }).catch((error: { message: any; }) => {
                     Notify.error(`onRejected function called: ${error.message}`);
                     throw "this is an error"
