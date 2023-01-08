@@ -11,6 +11,7 @@ import {reducer as admin} from "../../admin/redux/adminReducer";
 import { Provider } from 'react-redux';
 import {MemoryRouter} from "react-router-dom";
 import ProductsPanel from "../products/ProductsPanel";
+import {getMockData} from "../../order/test/mockData";
 
 export function createTestStore() {
 
@@ -30,7 +31,7 @@ export function createTestStore() {
 					username: "auser"
 				},
 				loggingIn: false
-			},
+			}
 		}
 	);
 }
@@ -113,7 +114,7 @@ describe('Products test', () => {
 		</Provider>);
 
 		await screen.findAllByRole('heading')
-		screen.debug(container);
+		// screen.debug(container);
 
 		expect(screen.getByRole('heading')).toHaveTextContent('Category : catone')
 
@@ -138,10 +139,54 @@ describe('Products test', () => {
 	});
 
 	it('matches snapshot', () => {
-		expect(render(<Provider store={createTestStore()}>
+
+		let {container} = render(<Provider store={createTestStore2()}>
 			<MemoryRouter>
 				<ProductsPanel/>
 			</MemoryRouter>
-		</Provider>)).toMatchSnapshot();
+		</Provider>)
+
+		const postItemNode = screen.findByText('Lachs-Lasagne');
+
+		expect(container).toMatchSnapshot();
 	});
 });
+
+
+export function createTestStore2() {
+
+
+	return createStore(
+		combineReducers({
+			// @ts-ignore POS ts comnpiler
+			login: loginReducer,
+			products: products,
+			order: order,
+			admin: admin
+		}), getMockData()
+	);
+
+
+
+
+
+	// return createStore(
+	// 	combineReducers({
+	// 		// @ts-ignore POS ts comnpiler
+	// 		login: loginReducer,
+	// 		products: products,
+	// 		order: order,
+	// 		admin: admin
+	// 	}),
+	// 	{
+	// 		login: {
+	// 			loginToken: {
+	// 				token: "atoken",
+	// 				role: "arole",
+	// 				username: "auser"
+	// 			},
+	// 			loggingIn: false
+	// 		}
+	// 	}
+	// );
+}

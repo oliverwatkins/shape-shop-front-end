@@ -10,12 +10,25 @@ import {productsReducer as products} from "../../admin/redux/productsReducer";
 import {reducer as order} from "../../admin/redux/orderReducer";
 import {reducer as admin} from "../../admin/redux/adminReducer";
 import {getMockData} from "./mockData";
+import {reducer as loginReducer} from "../../login/redux/loginReducer";
 
-
+// export function createTestStore() {
+//
+// 	return createStore(
+// 		combineReducers({
+// 			// @ts-ignore POS ts comnpiler
+// 			login: loginReducer,
+// 			products: products,
+// 			order: order,
+// 			admin: admin
+// 		}), getMockData()
+// 	);
+// }
 export function createTestStore() {
 	return createStore(
 		combineReducers({
-			// login: login,
+			// @ts-ignore POS ts comnpiler
+			login: loginReducer,
 			products: products,
 			order: order,
 			admin: admin

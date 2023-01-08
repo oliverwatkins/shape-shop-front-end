@@ -13,6 +13,7 @@ import {MemoryRouter} from "react-router-dom";
 import ProductsPanel from "../products/ProductsPanel";
 import {getMockData} from "../../order/test/mockData";
 import {Notify} from "../../notify";
+import {createTestStore2} from "./ProductsPanel.test";
 
 export function createTestStore() {
 
@@ -73,7 +74,7 @@ describe('Products dialog test', () => {
 		// @ts-ignore
 		Notify.success.mockImplementation(
 			(e: string) => {
-				console.info("here " + e)
+				console.info("success called")
 			}
 		);
 
@@ -99,7 +100,6 @@ describe('Products dialog test', () => {
 
 		fireEvent.click(addBut);
 
-		// let addBut = screen.getByText('Create Product!')
 		let dia = await screen.findByRole("dialog")
 		let cP = screen.getByText('Create Product!')
 		expect(cP).toBeTruthy();
@@ -109,16 +109,12 @@ describe('Products dialog test', () => {
 		let cP1 = screen.getByLabelText('name')
 		let cP2 = screen.getByLabelText('description')
 		let cP3 = screen.getByLabelText('price')
-		// let cP4 = screen.getByRole('categories')
-		// let cP4 = screen.getByRole('button', {name: 'categories'});
 		//TODO do the categories...
 
 		fireEvent.change(cP1, {target: {value: 'myname'}})
 		fireEvent.change(cP2, {target: {value: 'desc'}})
 		fireEvent.change(cP3, {target: {value: '12'}})
 		// fireEvent.change(cP4, {target: {value: 'cat'}})
-
-
 
 		// @ts-ignore
 		window.fetch.mockResolvedValueOnce({
@@ -159,14 +155,5 @@ describe('Products dialog test', () => {
 
 		//TODO
 
-	});
-
-
-	it('matches snapshot', () => {
-		expect(render(<Provider store={createTestStore()}>
-			<MemoryRouter>
-				<ProductsPanel/>
-			</MemoryRouter>
-		</Provider>)).toMatchSnapshot();
 	});
 });

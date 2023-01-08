@@ -45,16 +45,9 @@ export default function ProductsPanel() {
 
     let category = categories[productTabValue];
 
-    if (!category)
-        console.info(" -- > " + categories);
-    else
-        console.info(categories);
-
     return (
         <>
-
             <Box title={"Products"}>
-
                 <Box sx={{width: '100%'}}>
                     <Box sx={{flexGrow: 1}}>
                         <AppBar position="static">

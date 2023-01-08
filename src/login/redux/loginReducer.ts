@@ -4,7 +4,7 @@ import {Notify} from "../../notify";
 
 export function reducer(state: LoginState = initialState, action: any) {
 
-	console.log("in login reducer with action " + action.type)
+	// console.log("in login reducer with action " + action.type)
 
 	//login action is being caugt in SAGA
 	switch (action.type) {

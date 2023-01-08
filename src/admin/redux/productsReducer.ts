@@ -29,7 +29,7 @@ export const updateProductSelection = createAction<{ value: number, productid: s
 // maybe even go further with "createSlice" ? https://redux-toolkit.js.org/usage/usage-with-typescript
 export function productsReducer(state: ProductsState = initialState, action: AnyAction): ProductsState {
 
-    console.info("action " + action + " " + state)
+    // console.info("action " + action + " " + state)
 
     if (addProductAction.match(action)) {
         let newItems = state.allProducts;

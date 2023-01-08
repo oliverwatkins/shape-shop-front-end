@@ -44,7 +44,6 @@ export default function ProductDialog(props: Props) {
                     Notify.error(`onRejected function called: ${error.message}`);
                     throw "this is an error"
                 }).finally(() => {
-                    console.log('Experiment completed');
                     props.handleClose();
             });
         } else {
@@ -62,8 +61,6 @@ export default function ProductDialog(props: Props) {
             });
         }
     }
-    // @ts-ignore
-    // @ts-ignore
     // @ts-ignore
     return (
         <Dialog

@@ -30,18 +30,18 @@ function getContent(selectedProducts: Product[]) {
         splitIntoCategories = getCategoryProducts(selectedProducts);
     }
 
-    return (<table>
-        <tbody>
+    return (<table key={"wtfdf"}>
+        <tbody key={"wtff"}>
         {splitIntoCategories && Object.keys(splitIntoCategories).map(categoryName => {
 
             let categoryProducts = splitIntoCategories[categoryName];
 
-            let products = categoryProducts.map(product => {
+            let products = categoryProducts.map((product, i) => {
                 return (<tr key={product.name}>
-                        <td >{product.name}</td>
-                        <td>{product.price}</td>
-                        <td>{product.amount && (product.amount > 1) ? product.amount : " "}</td>
-                        <td>{priceTimesQty(product.price, product.amount)}</td>
+                        <td key={1}>{product.name}</td>
+                        <td key={2} >{product.price}</td>
+                        <td key={3} >{product.amount && (product.amount > 1) ? product.amount : " "}</td>
+                        <td key={4} >{priceTimesQty(product.price, product.amount)}</td>
                     </tr>
                 )});
             return (
@@ -51,14 +51,19 @@ function getContent(selectedProducts: Product[]) {
                 </>
             );
         })}
-        <tr>
-            <td/>
-            <td><b>Total:</b></td>
-            <td/>
-            <td>{calculateTotal(selectedProducts)}</td>
-        </tr>
+        <Summary selectedProducts={selectedProducts}/>
         </tbody>
     </table>)
+}
+
+function Summary(props: any) {
+    return (
+        <tr key={"summmarz"}>
+            <td key={1} />
+            <td key={2}><b>Total:</b></td>
+            <td key={3}/>
+            <td key={4}>{calculateTotal(props.selectedProducts)}</td>
+        </tr>)
 }
 
 function priceTimesQty(price: number, qty?: number): string {

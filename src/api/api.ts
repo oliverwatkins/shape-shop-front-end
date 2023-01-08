@@ -25,7 +25,6 @@ const apiReal = {
      */
     fetchProducts: async (category?: Category)=> {
         // await sleep(100);
-        console.info("in fetch products")
 
         let data = await fetch(constants.baseURL + constants.company + '/products', {
             method: "GET",
@@ -33,7 +32,7 @@ const apiReal = {
                 'Content-Type': 'application/json'
             }
         }).then(response => {
-            console.info("status : " + response.status)
+            // console.info("status : " + response.status)
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -60,7 +59,7 @@ const apiReal = {
                 data: filteredProducts
             }
         }).catch(error => {
-            console.error(error)
+            // console.error(error)
             throw error;
         });
         return data.data;
@@ -89,7 +88,7 @@ const apiReal = {
                 'Authorization': "Bearer " + auth.token
             },
         }).then(response => {
-            console.info("status : " + response.status)
+            // console.info("status : " + response.status)
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
