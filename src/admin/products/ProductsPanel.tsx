@@ -1,35 +1,27 @@
 import * as React from "react";
+import {useEffect, useState} from "react";
 import Typography from '@mui/material/Typography';
 import {AppBar, Box, CircularProgress, Tab, Tabs, Toolbar} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import {useEffect, useReducer, useState} from "react";
-import {useAsync} from "react-async-hook";
 import {AppState, Category, Product} from "../../AppState";
-import {api, extractCategories} from "../../api/api";
-import {addProductAction, fetchProductsSuccessAction, updateProductSuccessAction} from "../redux/productsReducer";
+import {api} from "../../api/api";
+import {fetchCategoriesSuccessAction, fetchProductsSuccessAction} from "../redux/productsReducer";
 import ProductPanel from "./ProductPanel";
 import {useDispatch, useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import ProductDialog from "./ProductDialog";
 import CategoryDialog from "./CategoryDialog";
 import {Notify} from "../../notify";
+import useFetchProductsAndCategories from "../../hook/useProductsAndCategories";
 
 export default function ProductsPanel() {
 
-
     const [createCatDialogOpen, setCreateCatDialogOpen] = React.useState(false);
-    let [loading, setLoading] = useState<boolean>(false);
-    let [error, setError] = useState<{ message: any }>();
-    // let [loading, setLoading] = useState(false);
 
     const categories = useSelector((state: AppState) => state.products.categories)
 
-
-
     const categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
-    const dispatch = useDispatch()
 
     function a11yProps(index: number) {
         return {
@@ -38,33 +30,7 @@ export default function ProductsPanel() {
         };
     }
 
-
-    // setLoading(true)
-    useEffect(() => {
-
-        // const doit = (productData: Product) => {
-        setLoading(true)
-        // let cs = extractCategories(productData, categories);
-        // productData.categories = cs;
-
-
-        api.fetchProducts().then((products: Product[]) => {
-            // Notify.success("Created Product " + productData.name);
-            dispatch(fetchProductsSuccessAction({data: products}));
-            // dispatch(addProductAction({product: productData}))
-        }).catch((error: { message: any; }) => {
-            Notify.error(`onRejected function called: ${error.message}`);
-            setError(error)
-            // throw "this is an error"
-        }).finally(() => {
-            setLoading(false)
-            // props.handleClose();
-        });
-
-
-
-
-    }, []);
+    let [loading, error] = useFetchProductsAndCategories();
 
     const [productTabValue, setProductTabValue] = React.useState<number>(0);
     const handleProdTab = (event: any, newValue: number) => {
@@ -73,9 +39,10 @@ export default function ProductsPanel() {
 
     let category = categories[productTabValue];
 
+    console.info(category);
+
     return (
         <>
-
             {createCatDialogOpen && <CategoryDialog
                                     type={"Create"}
                                     handleClose={() => setCreateCatDialogOpen(false)}
@@ -105,27 +72,14 @@ export default function ProductsPanel() {
                         </AppBar>
                     </Box>
                     {loading && <CircularProgress color="primary"/>}
-                    {error && <span>ERROR product error: {error.message}</span>}
+                    {error && <span>ERROR product error: {error}</span>}
 
                     <Box key={"tabs"}>
-                        <Tabs value={productTabValue} onChange={handleProdTab} aria-label="asdfe">
+                        <Tabs value={productTabValue} onChange={handleProdTab} aria-label="products-tab">
                             {
-
-
-
                                 categories.map((category: Category, i:number) => {
-                                        // return <Tab key={category.name} label={category.name} {...a11yProps(i)} />
-
-                                    if (!category)
-                                        debugger;
-                                        // alert()
-
                                     return <Tab key={category.name} label={category.name} {...a11yProps(i)} />
-
-                                }
-
-
-                                )
+                                })
                             }
                         </Tabs>
                     </Box>

@@ -19,6 +19,7 @@ export const ProductActions = {
     DELETE_PRODUCT: 'DELETE_PRODUCT',
     ADD_CATEGORY: 'ADD_CATEGORY',
     UPDATE_CATEGORY: 'UPDATE_CATEGORY',
+    FETCH_CATEGORIES: 'FETCH_CATEGORIES',
 }
 
 export const addCategoryAction = createAction<{ category: Category } >(ProductActions.ADD_CATEGORY);
@@ -28,17 +29,19 @@ export const updateProductSuccessAction = createAction<{ product: Product } >(Pr
 export const deleteProductAction = createAction<{ product: Product } >(ProductActions.DELETE_PRODUCT);
 
 export const fetchProductsSuccessAction = createAction<{ data: any }>(ProductActions.FETCH_PRODUCTS);
+
+export const fetchCategoriesSuccessAction = createAction<{ data: any }>(ProductActions.FETCH_CATEGORIES);
+
+
 export const updateProductSelection = createAction<{ value: number, productid: string } >(ProductActions.UPDATE_PRODUCT_SELECTION);
 
 //TODO this is how reducers are supposed to be written. Change other reducers to this, or
 // maybe even go further with "createSlice" ? https://redux-toolkit.js.org/usage/usage-with-typescript
 export function productsReducer(state: ProductsState = initialState, action: AnyAction): ProductsState {
 
-    // console.info("action " + action + " " + state)
     if (addCategoryAction.match(action)) {
 
         let cats = [...state.categories, action.payload.category]
-
         return {
             ...state,
             categories: cats
@@ -60,11 +63,7 @@ export function productsReducer(state: ProductsState = initialState, action: Any
 
 
     if (addProductAction.match(action)) {
-        // let newItems = state.allProducts;
-        // newItems.push(action.payload.product);
-
         let allProds = [...state.allProducts, action.payload.product]
-
         let productsAndCategories = getCategoryProducts(allProds)
 
         return {
@@ -110,7 +109,13 @@ export function productsReducer(state: ProductsState = initialState, action: Any
             ...state,
             allProducts: action.payload.data, //all products..
             categoryProducts: productsAndCategories,
-            categories: extractUniqueCategories(action.payload.data) //no no no!!
+        };
+    }
+
+    if (fetchCategoriesSuccessAction.match(action)) {
+        return {
+            ...state,
+            categories: action.payload.data
         };
     }
     if (updateProductSelection.match(action)) {

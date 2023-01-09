@@ -5,17 +5,8 @@ import {setEnvironmentData} from "worker_threads";
 
 export let api: any = {}
 
-// TODO are the asyn/awaits here really necessary?
-//
-// export async function getTest() {
-// 	const response = await fetch("/someservice");
-//
-// 	return response.data || [];
-// }
-
 
 const apiReal = {
-
 
 
     /**
@@ -23,8 +14,36 @@ const apiReal = {
      *
      * @param category
      */
-    fetchProducts: async (category?: Category)=> {
+    fetchCategories: async ()=> {
         // await sleep(100);
+
+        let data = await fetch(constants.baseURL + constants.company + '/categories', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json()
+        }).then(allCategories => {
+            return {
+                status:200,
+                data: allCategories
+            }
+        }).catch(error => {
+            // console.error(error)
+            throw error;
+        });
+        return data.data;
+    },
+    /**
+     * Fetch products for company. If category exists, filter results by category.
+     *
+     * @param category
+     */
+    fetchProducts: async (category?: Category)=> {
 
         let data = await fetch(constants.baseURL + constants.company + '/products', {
             method: "GET",
@@ -67,9 +86,6 @@ const apiReal = {
 
 
     createProduct: async (values: Product, auth: Authorization)=> {
-        // let categories = extractCategories(productData.categoriesForForm, categories);
-
-        // "{\"name\": \"jam scone\", \"price\": \"10\", \"description\": \"asdfasdf\" }";
         if (!auth)
             alert("error: not logged in")
 
@@ -88,7 +104,6 @@ const apiReal = {
                 'Authorization': "Bearer " + auth.token
             },
         }).then(response => {
-            // console.info("status : " + response.status)
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -106,12 +121,6 @@ const apiReal = {
     },
 
     updateProduct: async (values: Product, auth: Authorization) => {
-
-        // let categories = extractCategories(productData.categoriesForForm, categories);
-
-        console.info("updateProduct : " + JSON.stringify(values))
-        console.info("Authorization : " + JSON.stringify(auth))
-
         if (!auth)
             alert("error: not logged in")
 
@@ -160,24 +169,7 @@ const apiReal = {
 		});
 		return data;
 	},
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     createCategory: async (values: Category, auth: Authorization)=> {
-        // let categories = extractCategories(productData.categoriesForForm, categories);
-
-        // "{\"name\": \"jam scone\", \"price\": \"10\", \"description\": \"asdfasdf\" }";
         if (!auth)
             alert("error: not logged in")
 
@@ -186,9 +178,6 @@ const apiReal = {
             body:
                 JSON.stringify({
                     "name": values.name,
-                    // "price": values.price,
-                    // "description": values.description,
-                    // "categories": values.categories,
                 }),
             headers: {
                 'Content-Type': 'application/json',
@@ -196,7 +185,6 @@ const apiReal = {
                 'Authorization': "Bearer " + auth.token
             },
         }).then(response => {
-            // console.info("status : " + response.status)
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -243,19 +231,6 @@ const apiReal = {
         });
         return data;
     },
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	fetchOrders: async (auth: Authorization, orderState: OrderStateType) => {
@@ -338,11 +313,6 @@ const apiReal = {
 		});
 		// return data;
 	},
-
-
-
-
-
 
     placeOrder: async (values: OrderState) => {
         await sleep(2000);

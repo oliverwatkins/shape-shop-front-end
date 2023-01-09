@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {useState} from 'react';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
@@ -8,22 +9,11 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {TextField} from "@mui/material";
 
 import {useForm} from "react-hook-form";
-import {AppState, Category, Product} from "../../AppState";
-import {api, extractCategories} from "../../api/api";
+import {AppState, Category} from "../../AppState";
+import {api} from "../../api/api";
 import {Notify} from "../../notify";
-import {addCategoryAction, addProductAction, updateCategorySuccessAction, updateProductSuccessAction} from "../redux/productsReducer";
+import {addCategoryAction, updateCategorySuccessAction} from "../redux/productsReducer";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
-
-// type Props = {
-//     category: Category
-//     open: boolean
-//     type: "Create" | "Edit"
-//     value?: string
-//     handleCancel: () => void
-//     handleSubmit: (data:any) => void
-// }
-
 
 type Props = {
     open: boolean
@@ -39,11 +29,7 @@ export default function CategoryDialog(props: Props) {
     const dispatch = useDispatch()
     let [loading, setLoading] = useState(true);
 
-
     const onSubmit = (categoryData: Category) => {
-
-        // let cs = extractCategories(categoryData, categories);
-        // categoryData.categories = cs;
 
         setLoading(true)
         if (props.type === "Create") {
@@ -60,8 +46,6 @@ export default function CategoryDialog(props: Props) {
                 setLoading(false)
             });
         } else {
-            // categoryData.id = props?.product?.id as string;
-            // categoryData.imageFilename = props?.product?.imageFilename;
 
             api.updateCategory(categoryData, loginToken).then(() => {
                 Notify.success("Updated Category " + categoryData.name);

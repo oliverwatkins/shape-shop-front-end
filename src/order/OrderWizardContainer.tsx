@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {selectCategories} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Summary from "./steps/SummaryStep";
@@ -11,6 +11,11 @@ import AddressStep from "./steps/AddressStep";
 import ProductStep from "./steps/ProductStep";
 
 import "./order.scss"
+import {useEffect, useState} from "react";
+import {api} from "../api/api";
+import {fetchCategoriesSuccessAction, fetchProductsSuccessAction} from "../admin/redux/productsReducer";
+import {Notify} from "../notify";
+import useProductsAndCategories from "../hook/useProductsAndCategories";
 
 //navigation links
 export const wizardPages = {
@@ -24,6 +29,9 @@ export const wizardPages = {
 }
 
 export default function OrderWizardContainer() {
+
+
+	let [loading, error] = useProductsAndCategories();
 
 	let categories = useSelector(selectCategories)
 	let categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
@@ -74,7 +82,7 @@ function createCategoryPages(categoryProducts: { [category: string]: Array<Produ
 				</Route>)
 		else
 			return (
-				<div>an error has occurred</div>)
+				<div>an error has occurred!!!</div>)
 	})
 	return (pages)
 }

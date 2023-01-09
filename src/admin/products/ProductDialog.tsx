@@ -12,8 +12,6 @@ import {useDispatch, useSelector} from "react-redux";
 import {api, extractCategories} from "../../api/api";
 import {addProductAction, updateProductSuccessAction} from "../redux/productsReducer";
 import {Notify} from "../../notify";
-import {useAsync} from "react-async-hook";
-import {screen} from "@testing-library/react";
 import {useState} from "react";
 
 type Props = {
@@ -21,6 +19,7 @@ type Props = {
     type: "Create" | "Edit"
     handleClose: () => void
     product?: Product
+    // currentCategory?: Category
 }
 // TODO comment back in errors
 //create/update
@@ -42,7 +41,7 @@ export default function ProductDialog(props: Props) {
                     Notify.success("Created Product " + productData.name);
                     dispatch(addProductAction({product: productData}))
                 }).catch((error: { message: any; }) => {
-                    Notify.error(`onRejected function called: ${error.message}`);
+                    Notify.error(`Created Product error ${error.message}`);
                     throw "this is an error"
                 }).finally(() => {
                     setLoading(false)
@@ -56,9 +55,8 @@ export default function ProductDialog(props: Props) {
                 Notify.success("Updated Product " + productData.name);
                 dispatch(updateProductSuccessAction({product: productData}))
             }).catch((error: { message: any; }) => {
-                Notify.error(`onRejected function called: ${error.message}`);
+                Notify.error(`Updated Product error ${error.message}`);
             }).finally(() => {
-                console.log('Experiment completed');
                 setLoading(false)
                 props.handleClose();
             });
@@ -122,7 +120,7 @@ export default function ProductDialog(props: Props) {
                                         multiline={true}
                                         defaultValue={"main"}
                                         fullWidth={true}
-                                        {...register("categoriesForForm", {required: true, maxLength: 5})}
+                                        {...register("categoriesForForm", {required: true, maxLength: 95})}
                                 >
                                     {categories.map((category: Category, i:number) =>
                                         // @ts-ignore

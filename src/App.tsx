@@ -32,17 +32,17 @@ import {api} from "./api/api";
 export default function App() {
     let dispatch = useDispatch();
 
-    const {
-        loading: productLoading,
-        error: productError,
-        result: products = null,
-    } = useAsync<Product[]>(api.fetchProducts, []);
-
-    useEffect(() => {
-        if (products) {
-            dispatch(fetchProductsSuccessAction({data: products}));
-        }
-    }, [products]);
+    // const {
+    //     loading: productLoading,
+    //     error: productError,
+    //     result: products = null,
+    // } = useAsync<Product[]>(api.fetchProducts, []);
+    //
+    // useEffect(() => {
+    //     if (products) {
+    //         dispatch(fetchProductsSuccessAction({data: products}));
+    //     }
+    // }, [products]);
 
     return (
         <div className="App">

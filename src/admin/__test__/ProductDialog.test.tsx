@@ -13,7 +13,6 @@ import {MemoryRouter} from "react-router-dom";
 import ProductsPanel from "../products/ProductsPanel";
 import {getMockData} from "../../order/test/mockData";
 import {Notify} from "../../notify";
-import {createTestStore2} from "./ProductsPanel.test";
 
 export function createTestStore() {
 

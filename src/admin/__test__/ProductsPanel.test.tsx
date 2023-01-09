@@ -37,44 +37,6 @@ export function createTestStore() {
 }
 
 
-// login: {
-// 	loginToken: {
-// 		token: "atoken",
-// 			role: "arole",
-// 			username: "auser"
-// 	},
-// 	loggingIn: false
-// },
-
-let productlist = [
-	{
-		"id": 1,
-		"name": "first",
-		"price": 2.1,
-		"description": "my desc",
-		"imageFilename": "img.jpg",
-		"categories": [
-			{
-				"id": 0,
-				"name": "catone"
-			}
-		]
-	},
-	{
-		"id": 2,
-		"name": "second",
-		"price": 3.1,
-		"description": "my desc 2",
-		"imageFilename": "img2.jpg",
-		"categories": [
-			{
-				"id": 1,
-				"name": "cattwo"
-			}
-		]
-	}
-]
-
 // jest.setTimeout(1000000)
 describe('Products test', () => {
 
@@ -103,7 +65,7 @@ describe('Products test', () => {
 		// @ts-ignore
 		window.fetch.mockResolvedValueOnce({
 			ok: true,
-			json: async () => (productlist),
+			json: async () => (productlist_2prods),
 		})
 
 		// @ts-ignore
@@ -154,8 +116,6 @@ describe('Products test', () => {
 
 
 export function createTestStore2() {
-
-
 	return createStore(
 		combineReducers({
 			// @ts-ignore POS ts comnpiler
@@ -165,28 +125,33 @@ export function createTestStore2() {
 			admin: admin
 		}), getMockData()
 	);
-
-
-
-
-
-	// return createStore(
-	// 	combineReducers({
-	// 		// @ts-ignore POS ts comnpiler
-	// 		login: loginReducer,
-	// 		products: products,
-	// 		order: order,
-	// 		admin: admin
-	// 	}),
-	// 	{
-	// 		login: {
-	// 			loginToken: {
-	// 				token: "atoken",
-	// 				role: "arole",
-	// 				username: "auser"
-	// 			},
-	// 			loggingIn: false
-	// 		}
-	// 	}
-	// );
 }
+
+let productlist_2prods = [
+	{
+		"id": 1,
+		"name": "first",
+		"price": 2.1,
+		"description": "my desc",
+		"imageFilename": "img.jpg",
+		"categories": [
+			{
+				"id": 0,
+				"name": "catone"
+			}
+		]
+	},
+	{
+		"id": 2,
+		"name": "second",
+		"price": 3.1,
+		"description": "my desc 2",
+		"imageFilename": "img2.jpg",
+		"categories": [
+			{
+				"id": 1,
+				"name": "cattwo"
+			}
+		]
+	}
+]

@@ -1,26 +1,21 @@
 import * as React from "react";
+import {useReducer} from "react";
 import type {Category, Product} from "../../AppState";
+import {AppState, ProductsState} from "../../AppState";
 import {ProductItem} from "./ProductItem";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import {Box, CircularProgress, Grid} from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import OKCancelDialog from "../common/OKCancelDialog";
 import CategoryDialog from "./CategoryDialog";
 import ProductDialog from "./ProductDialog";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import {api} from "../../api/api";
-import {
-    addProductAction,
-    deleteProductAction,
-    updateProductSuccessAction
-} from "../redux/productsReducer";
+import {deleteProductAction, productsReducer} from "../redux/productsReducer";
 import {useSelector} from "react-redux";
-import {AppState, ProductsState} from "../../AppState";
 import {Notify} from "../../notify";
 import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
-import {useReducer} from "react";
-import {productsReducer} from "../redux/productsReducer";
 
 type Props = {
     category?: Category,
@@ -53,30 +48,13 @@ export default function ProductPanel(props: Props) {
     const [deleteCatDialogOpen, setDeleteCatDialogOpen] = React.useState(false);
 
     const deleteProductCallback = async (item: Product) => {
-        try {
-            await api.deleteProduct(item, Authorization)
-
-            //will this work??
+        api.deleteProduct(item, Authorization).then(() => {
             dispatch(deleteProductAction({product: item}))
             Notify.success("Deleted Product " + item.name);
-        } catch (e) {
-            //TODO this will not catch errors here. Use useAsync (See OrderPanel)
-            console.error(e)
-            Notify.error("Error deleting product")
-        }
+        }).catch((error: { message: any; }) => {
+            Notify.error(`Deleted Product error ${error.message}`);
+        });
     }
-
-    // let editCategoryCallback = async (item: Category) => {
-    //     try {
-    //         alert("editCategoryCallback TODO")
-    //         setOpenCategoryDialog(false);
-    //         Notify.success("Edited Product " + item.name);
-    //     } catch (e) {
-    //         console.error(e)
-    //         setOpenCategoryDialog(false);
-    //         Notify.error("Error editing category");
-    //     }
-    // }
 
     const buttonStyle = {
         marginLeft: "0.5em",
@@ -157,32 +135,31 @@ export default function ProductPanel(props: Props) {
 
             {props.products &&
                 <Grid container spacing={2}>
-                    {
-                        props.products && props.products.map((product: Product, i:number) =>
-                            <Grid key={i} item xs={4} lg={2}>
-                                <ProductItem key={i} item={product}
-                                     editProductCallback={
-                                         // openEditProductDialog
-                                         (item: Product) => {
-                                             setSelectedProduct(item)
-                                             setOpenEditPProduct(true)
-                                         }
+                {
+                    props.products && props.products.map((product: Product, i:number) =>
+                        <Grid key={i} item xs={4} lg={2}>
+                            <ProductItem key={i} item={product}
+                                 editProductCallback={
+                                     // openEditProductDialog
+                                     (item: Product) => {
+                                         setSelectedProduct(item)
+                                         setOpenEditPProduct(true)
                                      }
-                                     updateImageCallback={
-                                         (item: Product) => {
-                                             setSelectedProduct(item)
-                                             setOpenUpdateImage(true)
-                                         }
+                                 }
+                                 updateImageCallback={
+                                     (item: Product) => {
+                                         setSelectedProduct(item)
+                                         setOpenUpdateImage(true)
                                      }
-                                     deleteProductCallback={
-                                         deleteProductCallback
-                                     }
-                                />
-                            </Grid>)
-                    }
+                                 }
+                                 deleteProductCallback={
+                                     deleteProductCallback
+                                 }
+                            />
+                        </Grid>)
+                }
                 </Grid>
             }
-
         </>
     )
 }

@@ -24,6 +24,7 @@ type Props = {
 export default function OrderPanel(props: Props) {
 
     let dispatch = useDispatch();
+    //TODO get rid of useAsync, do how it is in products
     const {
         loading: orderLoading,
         error: orderError,
