@@ -8,24 +8,72 @@ import DialogTitle from '@mui/material/DialogTitle';
 import {TextField} from "@mui/material";
 
 import {useForm} from "react-hook-form";
-import {Category} from "../../AppState";
+import {AppState, Category, Product} from "../../AppState";
+import {api, extractCategories} from "../../api/api";
+import {Notify} from "../../notify";
+import {addCategoryAction, addProductAction, updateCategorySuccessAction, updateProductSuccessAction} from "../redux/productsReducer";
+import {useDispatch, useSelector} from "react-redux";
+import {useState} from "react";
+
+// type Props = {
+//     category: Category
+//     open: boolean
+//     type: "Create" | "Edit"
+//     value?: string
+//     handleCancel: () => void
+//     handleSubmit: (data:any) => void
+// }
+
 
 type Props = {
-    category: Category
     open: boolean
     type: "Create" | "Edit"
-    value?: string
-    handleCancel: () => void
-    handleSubmit: (data:any) => void
+    handleClose: () => void
+    category?: Category
 }
 
 //create/update
 export default function CategoryDialog(props: Props) {
 
+    let loginToken = useSelector((state: AppState) => state.login.loginToken)
+    const dispatch = useDispatch()
+    let [loading, setLoading] = useState(true);
+
+
     const onSubmit = (categoryData: Category) => {
-        props.handleSubmit(
-            {...props.category, ...categoryData}
-        )
+
+        // let cs = extractCategories(categoryData, categories);
+        // categoryData.categories = cs;
+
+        setLoading(true)
+        if (props.type === "Create") {
+
+            api.createCategory(categoryData, loginToken).then(() => {
+                Notify.success("Created Category " + categoryData.name);
+
+                dispatch(addCategoryAction({category: categoryData}))
+            }).catch((error: { message: any; }) => {
+                Notify.error(`onRejected function called: ${error.message}`);
+                throw "this is an error"
+            }).finally(() => {
+                props.handleClose();
+                setLoading(false)
+            });
+        } else {
+            // categoryData.id = props?.product?.id as string;
+            // categoryData.imageFilename = props?.product?.imageFilename;
+
+            api.updateCategory(categoryData, loginToken).then(() => {
+                Notify.success("Updated Category " + categoryData.name);
+                dispatch(updateCategorySuccessAction({category: categoryData}))
+            }).catch((error: { message: any; }) => {
+                Notify.error(`onRejected function called: ${error.message}`);
+            }).finally(() => {
+                console.log('Experiment completed');
+                props.handleClose();
+                setLoading(false)
+            });
+        }
     }
 
     const {register, handleSubmit, formState: {errors}} = useForm<Category>();
@@ -33,7 +81,7 @@ export default function CategoryDialog(props: Props) {
     return (
         <Dialog
             open={props.open}
-            onClose={props.handleCancel}
+            onClose={props.handleClose}
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
@@ -60,7 +108,7 @@ export default function CategoryDialog(props: Props) {
                 <Button type="submit" form="categoryForm" variant={"contained"}>
                     {(props.type === "Create") ? "Submit" : "Update"}
                 </Button>
-                <Button onClick={props.handleCancel} variant={"outlined"}>Cancel</Button>
+                <Button onClick={props.handleClose} variant={"outlined"}>Cancel</Button>
             </DialogActions>
         </Dialog>
     );

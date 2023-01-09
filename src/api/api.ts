@@ -135,8 +135,6 @@ const apiReal = {
         });
         return data;
     },
-
-
 	deleteProduct: async (values: Product, auth: Authorization)=> {
 		let data = await fetch(constants.baseURL + constants.company + '/products/'  + values.id, {
 			method: "DELETE",
@@ -162,6 +160,100 @@ const apiReal = {
 		});
 		return data;
 	},
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    createCategory: async (values: Category, auth: Authorization)=> {
+        // let categories = extractCategories(productData.categoriesForForm, categories);
+
+        // "{\"name\": \"jam scone\", \"price\": \"10\", \"description\": \"asdfasdf\" }";
+        if (!auth)
+            alert("error: not logged in")
+
+        let data = await fetch(constants.baseURL + constants.company + '/categories', {
+            method: "POST",
+            body:
+                JSON.stringify({
+                    "name": values.name,
+                    // "price": values.price,
+                    // "description": values.description,
+                    // "categories": values.categories,
+                }),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': "Bearer " + auth.token
+            },
+        }).then(response => {
+            // console.info("status : " + response.status)
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json()
+        }).then(data => {
+            return {
+                status:200,
+                data: data
+            }
+        }).catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+            throw error;
+        });
+        return data;
+    },
+
+    updateCategory: async (values: Category, auth: Authorization) => {
+
+        // let categories = extractCategories(productData.categoriesForForm, categories);
+
+        console.info("update cats : " + JSON.stringify(values))
+        console.info("Authorization : " + JSON.stringify(auth))
+
+        if (!auth)
+            alert("error: not logged in")
+
+        let data = await fetch(constants.baseURL + constants.company + '/categories/' + values.id, {
+            method: "PUT",
+            body: JSON.stringify({...values}),
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': "Bearer " + auth.token
+            },
+        }).then(response => {
+            console.info("status : " + response.status)
+            if (!response.ok) {
+                throw new Error('Network response was not ok status : ' + response.status);
+            }
+            return response
+        }).catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+            throw error;
+        });
+        return data;
+    },
+
+
+
+
+
+
+
+
+
+
+
 
 
 

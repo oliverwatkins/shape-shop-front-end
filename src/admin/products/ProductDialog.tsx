@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import {Box, Grid, InputLabel, MenuItem, Select, Tab, TextField} from "@mui/material";
+import {Box, CircularProgress, Grid, InputLabel, MenuItem, Select, Tab, TextField} from "@mui/material";
 import {AppState, Category, Product} from "../../AppState";
 import {useForm} from "react-hook-form";
 import {useDispatch, useSelector} from "react-redux";
@@ -14,6 +14,7 @@ import {addProductAction, updateProductSuccessAction} from "../redux/productsRed
 import {Notify} from "../../notify";
 import {useAsync} from "react-async-hook";
 import {screen} from "@testing-library/react";
+import {useState} from "react";
 
 type Props = {
     open: boolean
@@ -28,10 +29,10 @@ export default function ProductDialog(props: Props) {
     const categories = useSelector((state: AppState) => state.products.categories)
     let loginToken = useSelector((state: AppState) => state.login.loginToken)
     const dispatch = useDispatch()
-
+    let [loading, setLoading] = useState(false);
     const {register, handleSubmit, formState: {errors}} = useForm<Product>();
     const onSubmit = (productData: Product) => {
-
+        setLoading(true)
         let cs = extractCategories(productData, categories);
         productData.categories = cs;
 
@@ -44,6 +45,7 @@ export default function ProductDialog(props: Props) {
                     Notify.error(`onRejected function called: ${error.message}`);
                     throw "this is an error"
                 }).finally(() => {
+                    setLoading(false)
                     props.handleClose();
             });
         } else {
@@ -57,6 +59,7 @@ export default function ProductDialog(props: Props) {
                 Notify.error(`onRejected function called: ${error.message}`);
             }).finally(() => {
                 console.log('Experiment completed');
+                setLoading(false)
                 props.handleClose();
             });
         }
@@ -69,6 +72,7 @@ export default function ProductDialog(props: Props) {
             aria-labelledby="alert-dialog-title"
             aria-describedby="alert-dialog-description"
         >
+            {loading && <CircularProgress color="primary"/>}
             <DialogTitle id="alert-dialog-title">
                 {(props.type === "Create") ? "Create Product!" : "Update Product!"}
             </DialogTitle>

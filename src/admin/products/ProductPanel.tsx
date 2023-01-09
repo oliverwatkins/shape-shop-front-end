@@ -66,17 +66,17 @@ export default function ProductPanel(props: Props) {
         }
     }
 
-    let editCategoryCallback = async (item: Category) => {
-        try {
-            alert("editCategoryCallback TODO")
-            setOpenCategoryDialog(false);
-            Notify.success("Edited Product " + item.name);
-        } catch (e) {
-            console.error(e)
-            setOpenCategoryDialog(false);
-            Notify.error("Error editing category");
-        }
-    }
+    // let editCategoryCallback = async (item: Category) => {
+    //     try {
+    //         alert("editCategoryCallback TODO")
+    //         setOpenCategoryDialog(false);
+    //         Notify.success("Edited Product " + item.name);
+    //     } catch (e) {
+    //         console.error(e)
+    //         setOpenCategoryDialog(false);
+    //         Notify.error("Error editing category");
+    //     }
+    // }
 
     const buttonStyle = {
         marginLeft: "0.5em",
@@ -92,8 +92,9 @@ export default function ProductPanel(props: Props) {
                     p: 3
                 }}
             >
+                {/*todo leave heading here, otherwise tests wont work*/}
                 <Typography variant="h6" color='primary' sx={{flexGrow: 1}}>
-                    openEditPProduct = { '' + openEditPProduct } XCategory : {props.category?.name}
+                    products of category {props.category?.name}
                 </Typography>
 
                 {/*add product*/}
@@ -122,10 +123,9 @@ export default function ProductPanel(props: Props) {
                         onClick={() => setOpenCategoryDialog(true)}>
                     Edit Category</Button>
                 {openCategoryDialog && props.category && <CategoryDialog type={"Edit"}
-                                                       handleCancel={() => {
+                                                       handleClose={() => {
                                                            setOpenCategoryDialog(false)
                                                        }}
-                                                       handleSubmit={editCategoryCallback}
                                                        open={openCategoryDialog} category={props.category}/>
                 }
                 {/*delete category*/}

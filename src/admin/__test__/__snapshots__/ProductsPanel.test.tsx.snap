@@ -148,9 +148,7 @@ exports[`Products test matches snapshot 1`] = `
         <h6
           class="MuiTypography-root MuiTypography-h6 css-1s4ev7b-MuiTypography-root"
         >
-          openEditPProduct = 
-          false
-           XCategory : 
+          products of category 
           main
         </h6>
         <button
@@ -267,7 +265,7 @@ exports[`Products test matches snapshot 1`] = `
               alt="lachs_spinat.jpg"
               class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
               height="250px"
-              src="http://localhost:8080/images/alpenhof/lachs_spinat.jpg"
+              src="http://localhost:8081/images/alpenhof/lachs_spinat.jpg"
               width="300px"
             />
             <div
@@ -348,7 +346,7 @@ exports[`Products test matches snapshot 1`] = `
               alt="calamari.jpg"
               class="MuiCardMedia-root MuiCardMedia-media MuiCardMedia-img css-o69gx8-MuiCardMedia-root"
               height="250px"
-              src="http://localhost:8080/images/alpenhof/calamari.jpg"
+              src="http://localhost:8081/images/alpenhof/calamari.jpg"
               width="300px"
             />
             <div

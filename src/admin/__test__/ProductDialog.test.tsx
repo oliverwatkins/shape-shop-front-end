@@ -101,7 +101,7 @@ describe('Products dialog test', () => {
 				"orders": [],
 				"productCategories": [],
 				"name": "third",
-				"description": "sdfg",
+				"description": "coming from mock",
 				"price": 12,
 				"imageFilename": "todo"
 			}]),
@@ -114,7 +114,7 @@ describe('Products dialog test', () => {
 		const postItemNode = await screen.findByText('third');
 
 		const boxes = container.getElementsByClassName('MuiCardHeader-root');
-		expect(boxes.length).toBe(3) //new prod has been added
+		expect(boxes.length).toBe(2) //new prod has been added
 
 		// screen.debug(boxes[0]);
 

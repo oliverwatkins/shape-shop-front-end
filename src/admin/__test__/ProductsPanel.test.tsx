@@ -116,7 +116,7 @@ describe('Products test', () => {
 		await screen.findAllByRole('heading')
 		// screen.debug(container);
 
-		expect(screen.getByRole('heading')).toHaveTextContent('Category : catone')
+		expect(screen.getByRole('heading')).toHaveTextContent('products of category catone')
 
 		expect(screen.getByText('Create Category')).toBeTruthy();
 		expect(screen.getByText('Add Product')).toBeTruthy();

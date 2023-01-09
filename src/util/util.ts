@@ -3,6 +3,8 @@ import {Category, Product} from "../AppState";
 /**
  * transform products array into an object with keys that are the category. Each category has an
  * array of products
+ *
+ * TODO memoise
  */
 export function getCategoryProducts(productsArray: Array<Product>): { [category: string]: Array<Product> } {
 
