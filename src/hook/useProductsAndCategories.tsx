@@ -8,7 +8,6 @@ import {Notify} from "../notify";
 
 const useProductsAndCategories = () => {
 
-    //TODO identical to
     const dispatch = useDispatch()
 
     let [loading, setLoading] = useState<boolean>(false);

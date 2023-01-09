@@ -1,19 +1,12 @@
-import React, {useEffect} from 'react';
-
-import {connect, useDispatch} from 'react-redux';
+import React from 'react';
 //TODO change to hashrouter
 import {Route, Switch} from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 
-
 import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
-import {
-    fetchProductsSuccessAction
-} from "./admin/redux/productsReducer";
 import Nav from "./Nav";
-
 
 import OrderWizard from "./order/OrderWizardContainer";
 import Footer from "./Footer";
@@ -21,28 +14,8 @@ import RedirectToLogout from "./login/RedirectToLogout";
 import Logout from "./login/Logout";
 import AdminScreen from "./admin/AdminScreen";
 import {ToastContainer} from "react-toastify";
-import {useAsync} from "react-async-hook";
-import {AppState, OrderState, Product} from "./AppState";
-import {api} from "./api/api";
-
-// type Props = {
-//     fetchProducts: Function
-// }
 
 export default function App() {
-    let dispatch = useDispatch();
-
-    // const {
-    //     loading: productLoading,
-    //     error: productError,
-    //     result: products = null,
-    // } = useAsync<Product[]>(api.fetchProducts, []);
-    //
-    // useEffect(() => {
-    //     if (products) {
-    //         dispatch(fetchProductsSuccessAction({data: products}));
-    //     }
-    // }, [products]);
 
     return (
         <div className="App">

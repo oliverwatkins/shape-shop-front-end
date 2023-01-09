@@ -1,18 +1,14 @@
 import * as React from "react";
-import {useEffect, useState} from "react";
 import Typography from '@mui/material/Typography';
 import {AppBar, Box, CircularProgress, Tab, Tabs, Toolbar} from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import {AppState, Category, Product} from "../../AppState";
-import {api} from "../../api/api";
-import {fetchCategoriesSuccessAction, fetchProductsSuccessAction} from "../redux/productsReducer";
+import {AppState, Category} from "../../AppState";
 import ProductPanel from "./ProductPanel";
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CategoryDialog from "./CategoryDialog";
-import {Notify} from "../../notify";
 import useFetchProductsAndCategories from "../../hook/useProductsAndCategories";
 
 export default function ProductsPanel() {
