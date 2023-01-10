@@ -11,7 +11,7 @@ const useProductsAndCategories = () => {
     const dispatch = useDispatch()
 
     let [loading, setLoading] = useState<boolean>(false);
-    let [error, setError] = useState<{ message: any }>();
+    let [error, setError] = useState<string>();
 
     useEffect(() => {
         setLoading(true)
@@ -25,17 +25,18 @@ const useProductsAndCategories = () => {
                 dispatch(fetchProductsSuccessAction({data: products}));
             }).catch((error: { message: any; }) => {
                 Notify.error(`Error fetching products : ${error.message}`);
-                setError(error)
+                setError(error.message)
             }).finally(() => {
                 setLoading(false)
             });
         }).catch((error: { message: any; }) => {
             Notify.error(`Error fetching categories : ${error.message}`);
-            setError(error)
+            setError(error.message)
         }).finally(() => {
-            setLoading(false)
+            // setLoading(false)
         });
     }, []);
+
 
     return [loading, error]
 

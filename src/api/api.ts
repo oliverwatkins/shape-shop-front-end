@@ -44,6 +44,7 @@ const apiReal = {
      * @param category
      */
     fetchProducts: async (category?: Category)=> {
+        // await sleep(1000);
 
         let data = await fetch(constants.baseURL + constants.company + '/products', {
             method: "GET",

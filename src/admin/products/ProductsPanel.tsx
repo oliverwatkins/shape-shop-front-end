@@ -33,10 +33,10 @@ export default function ProductsPanel() {
         setProductTabValue(newValue);
     };
 
+
     let category = categories[productTabValue];
 
-    console.info(category);
-
+    // @ts-ignore
     return (
         <>
             {createCatDialogOpen && <CategoryDialog
@@ -68,7 +68,8 @@ export default function ProductsPanel() {
                         </AppBar>
                     </Box>
                     {loading && <CircularProgress color="primary"/>}
-                    {error && <span>ERROR product error: {error}</span>}
+                    {/*TODO generic error panel :*/}
+                    {error && <span>{error}</span>}
 
                     <Box key={"tabs"}>
                         <Tabs value={productTabValue} onChange={handleProdTab} aria-label="products-tab">

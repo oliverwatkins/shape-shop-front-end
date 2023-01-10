@@ -38,18 +38,21 @@ export function createTestStore() {
 }
 
 
-// jest.setTimeout(1000000)
+jest.setTimeout(1000000)
 describe('Products test', () => {
 
 	beforeAll(() => jest.spyOn(window, 'fetch'))
 
 	it("renders error", async () => {
 
-		// @ts-ignore
-		window.fetch.mockResolvedValueOnce({
-			ok: false,
-			json: async () => ([]),
-		})
+
+		setupMockFetches(false)
+
+		// // @ts-ignore
+		// window.fetch.mockResolvedValueOnce({
+		// 	ok: false,
+		// 	json: async () => ([]),
+		// })
 
 		// @ts-ignore
 		const {container} = render(<Provider store={createTestStore()}>
@@ -58,7 +61,11 @@ describe('Products test', () => {
 			</MemoryRouter>
 		</Provider>);
 
-		await screen.findByText('ERROR product error: Network response was not ok', { collapseWhitespace: true })
+		screen.debug();
+
+		// await screen.findByRole('alert')
+
+		await screen.findByText('Network response was not ok', { collapseWhitespace: true })
 	});
 	// https://kentcdodds.com/blog/stop-mocking-fetch
 	it("renders products correctly", async () => {

@@ -1,25 +1,25 @@
 /**
  * mock the fetch calls
  */
-export function setupMockFetches() {
+export function setupMockFetches(ok: boolean  = true) {
 
     // @ts-ignore
     window.fetch = jest.fn((url:string, init) => {
         if (url.endsWith("categories")) {
             return Promise.resolve({
-                ok: true,
+                ok: ok,
                 json: async () => (catlist_2cats),
             })
             // @ts-ignore
         } else if ((url.endsWith("products")) && (init.method === "GET")) {
             return Promise.resolve({
-                ok: true,
+                ok: ok,
                 json: async () => (productlist_2prods),
             })
             // @ts-ignore
         } else if ((url.endsWith("products")) && (init.method === "POST")) {
             return Promise.resolve({
-                ok: true,
+                ok: ok,
                 json: async () => ([{
                     "id": 34,
                     "company": {
