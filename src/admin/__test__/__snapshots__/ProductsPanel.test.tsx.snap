@@ -102,7 +102,7 @@ exports[`Products test matches snapshot 1`] = `
             style="overflow: hidden; margin-bottom: 0px;"
           >
             <div
-              aria-label="asdfe"
+              aria-label="products-tab"
               class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
               role="tablist"
             >

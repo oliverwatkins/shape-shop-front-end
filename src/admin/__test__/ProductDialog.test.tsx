@@ -13,9 +13,9 @@ import {MemoryRouter} from "react-router-dom";
 import ProductsPanel from "../products/ProductsPanel";
 import {getMockData} from "../../order/test/mockData";
 import {Notify} from "../../notify";
+import {setupMockFetches} from "./mockFetch";
 
 export function createTestStore() {
-
 	return createStore(
 		combineReducers({
 			// @ts-ignore POS ts comnpiler
@@ -26,8 +26,6 @@ export function createTestStore() {
 		}), getMockData()
 	);
 }
-
-
 
 // jest.setTimeout(1000000)
 describe('Products dialog test', () => {
@@ -50,11 +48,7 @@ describe('Products dialog test', () => {
 			}
 		);
 
-		// @ts-ignore
-		window.fetch.mockResolvedValueOnce({
-			ok: true,
-			json: async () => (productlist_2prods),
-		})
+		setupMockFetches()
 
 		// @ts-ignore
 		const {container} = render(<Provider store={createTestStore()}>
@@ -88,24 +82,6 @@ describe('Products dialog test', () => {
 		fireEvent.change(cP3, {target: {value: '12'}})
 		// fireEvent.change(cP4, {target: {value: 'cat'}})
 
-		// @ts-ignore
-		window.fetch.mockResolvedValueOnce({
-			ok: true,
-			json: async () => ([{
-				"id": 34,
-				"company": {
-					"id": 1,
-					"name": "alpenhof"
-				},
-				"orders": [],
-				"productCategories": [],
-				"name": "third",
-				"description": "coming from mock",
-				"price": 12,
-				"imageFilename": "todo"
-			}]),
-		})
-
 		let submitButton = screen.getByRole('button', {name: 'Submit'});
 
 		fireEvent.click(submitButton);
@@ -115,7 +91,7 @@ describe('Products dialog test', () => {
 		const boxes = container.getElementsByClassName('MuiCardHeader-root');
 		expect(boxes.length).toBe(2) //new prod has been added
 
-		// screen.debug(boxes[0]);
+		screen.debug(boxes[0]);
 
 		//TODO trying to mock Notify.success but not working at the moment
 		// expect(Notify.success).toHaveBeenCalledTimes(1);
@@ -125,11 +101,8 @@ describe('Products dialog test', () => {
 
 	xit("update product", async () => {
 
-		// @ts-ignore
-		window.fetch.mockResolvedValueOnce({
-			ok: true,
-			json: async () => (productlist_2prods),
-		})
+
+		setupMockFetches()
 
 		// @ts-ignore
 		const {container} = render(<Provider store={createTestStore()}>
@@ -145,33 +118,3 @@ describe('Products dialog test', () => {
 
 	});
 });
-
-
-let productlist_2prods = [
-	{
-		"id": 1,
-		"name": "first",
-		"price": 2.1,
-		"description": "my desc",
-		"imageFilename": "img.jpg",
-		"categories": [
-			{
-				"id": 0,
-				"name": "main"
-			}
-		]
-	},
-	{
-		"id": 2,
-		"name": "second",
-		"price": 3.1,
-		"description": "my desc 2",
-		"imageFilename": "img2.jpg",
-		"categories": [
-			{
-				"id": 1,
-				"name": "drinks"
-			}
-		]
-	}
-]

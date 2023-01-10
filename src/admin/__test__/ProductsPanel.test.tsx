@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import {MemoryRouter} from "react-router-dom";
 import ProductsPanel from "../products/ProductsPanel";
 import {getMockData} from "../../order/test/mockData";
+import {setupMockFetches} from "./mockFetch";
 
 export function createTestStore() {
 
@@ -59,14 +60,10 @@ describe('Products test', () => {
 
 		await screen.findByText('ERROR product error: Network response was not ok', { collapseWhitespace: true })
 	});
-
+	// https://kentcdodds.com/blog/stop-mocking-fetch
 	it("renders products correctly", async () => {
 
-		// @ts-ignore
-		window.fetch.mockResolvedValueOnce({
-			ok: true,
-			json: async () => (productlist_2prods),
-		})
+		setupMockFetches()
 
 		// @ts-ignore
 		const {container} = render(<Provider store={createTestStore()}>
@@ -78,7 +75,7 @@ describe('Products test', () => {
 		await screen.findAllByRole('heading')
 		// screen.debug(container);
 
-		expect(screen.getByRole('heading')).toHaveTextContent('products of category catone')
+		expect(screen.getByRole('heading')).toHaveTextContent('products of category main')
 
 		expect(screen.getByText('Create Category')).toBeTruthy();
 		expect(screen.getByText('Add Product')).toBeTruthy();
@@ -90,7 +87,7 @@ describe('Products test', () => {
 		expect(boxes[0]).toHaveTextContent('first');
 
 		let b = screen.getByRole('tab', {
-			name: "cattwo"
+			name: "drinks"
 		})
 		fireEvent.click(b);
 
@@ -126,32 +123,3 @@ export function createTestStore2() {
 		}), getMockData()
 	);
 }
-
-let productlist_2prods = [
-	{
-		"id": 1,
-		"name": "first",
-		"price": 2.1,
-		"description": "my desc",
-		"imageFilename": "img.jpg",
-		"categories": [
-			{
-				"id": 0,
-				"name": "catone"
-			}
-		]
-	},
-	{
-		"id": 2,
-		"name": "second",
-		"price": 3.1,
-		"description": "my desc 2",
-		"imageFilename": "img2.jpg",
-		"categories": [
-			{
-				"id": 1,
-				"name": "cattwo"
-			}
-		]
-	}
-]
