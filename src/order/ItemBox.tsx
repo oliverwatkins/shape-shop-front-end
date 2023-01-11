@@ -9,7 +9,7 @@ type Props = {
 }
 
 
-function ItemBox(props: Props) {
+export default function ItemBox(props: Props) {
 
 	let selected = ""
 	let checked = false
@@ -60,4 +60,4 @@ function ItemBox(props: Props) {
 	)
 }
 
-export default ItemBox;
+// export default ItemBox;

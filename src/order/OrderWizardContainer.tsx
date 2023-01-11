@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {selectCategories} from "../selectors";
+import {selectCategories, selectCategoriesFromProducts} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Summary from "./steps/SummaryStep";
 import WhichPayment from "./steps/WhichPaymentStep";
@@ -33,7 +33,10 @@ export default function OrderWizardContainer() {
 
 	let [loading, error] = useProductsAndCategories();
 
-	let categories = useSelector(selectCategories)
+	let categories = useSelector(selectCategoriesFromProducts)
+	// let categories = useSelector(selectCategoriesWithProducts)
+
+
 	let categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
 	let productsError = useSelector((state: AppState) => state.products.productsError)
 

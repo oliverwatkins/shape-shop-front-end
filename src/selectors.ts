@@ -21,6 +21,17 @@ export const selectProductsByType = (state: AppState): Array<Product> => state.p
 
 export const selectCategories = (state: AppState): Array<Category> => state.products.categories;
 
+//TODO memoise with createSelector
+export const selectCategoriesFromProducts = (state: AppState): Array<Category> => {
+
+	if (state.products && state.products.categoryProducts) {
+		let catnames = Object.keys(state.products.categoryProducts);
+
+		return state.products.categories.filter(e => catnames.includes(e.name))
+	}
+	return state.products.categories;
+}
+
 export const selectSelectedProducts = (state: AppState): Array<Product>  => state.products.allProducts.filter(product => product.amount && product.amount > 0)
 
 //total order

@@ -40,7 +40,7 @@ function getContent(selectedProducts: Product[]) {
                 return (<tr key={product.name}>
                         <td key={1}>{product.name}</td>
                         <td key={2} >{product.price}</td>
-                        <td key={3} >{product.amount && (product.amount > 1) ? product.amount : " "}</td>
+                        <td key={3} > {product.amount && (product.amount > 1) ? " (" + product.amount + ") " : " "} </td>
                         <td key={4} >{priceTimesQty(product.price, product.amount)}</td>
                     </tr>
                 )});

@@ -14,28 +14,7 @@ import ProductsPanel from "../products/ProductsPanel";
 import {getMockData} from "../../order/test/mockData";
 import {setupMockFetches} from "./mockFetch";
 
-export function createTestStore() {
 
-	return createStore(
-		combineReducers({
-			// @ts-ignore POS ts comnpiler
-			login: loginReducer,
-			products: products,
-			order: order,
-			admin: admin
-		}),
-		{
-			login: {
-				loginToken: {
-					token: "atoken",
-					role: "arole",
-					username: "auser"
-				},
-				loggingIn: false
-			}
-		}
-	);
-}
 
 
 jest.setTimeout(1000000)
@@ -48,12 +27,6 @@ describe('Products test', () => {
 
 		setupMockFetches(false)
 
-		// // @ts-ignore
-		// window.fetch.mockResolvedValueOnce({
-		// 	ok: false,
-		// 	json: async () => ([]),
-		// })
-
 		// @ts-ignore
 		const {container} = render(<Provider store={createTestStore()}>
 			<MemoryRouter>
@@ -62,8 +35,6 @@ describe('Products test', () => {
 		</Provider>);
 
 		screen.debug();
-
-		// await screen.findByRole('alert')
 
 		await screen.findByText('Network response was not ok', { collapseWhitespace: true })
 	});
@@ -118,7 +89,31 @@ describe('Products test', () => {
 	});
 });
 
+//naked store
+export function createTestStore() {
 
+	return createStore(
+		combineReducers({
+			// @ts-ignore POS ts comnpiler
+			login: loginReducer,
+			products: products,
+			order: order,
+			admin: admin
+		}),
+		{
+			login: {
+				loginToken: {
+					token: "atoken",
+					role: "arole",
+					username: "auser"
+				},
+				loggingIn: false
+			}
+		}
+	);
+}
+
+//with mockdata
 export function createTestStore2() {
 	return createStore(
 		combineReducers({

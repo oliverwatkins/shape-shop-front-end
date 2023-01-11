@@ -9,15 +9,8 @@ export function getMockData(): AppState {
 			loginToken: {
 				username: "itdoesntmatter",
 				token: "itdoesntmatter",
-				role: "arole"
+				role: "itdoesntmatter"
 			},
-
-
-
-			// token: "atoken",
-			// role: "arole",
-			// username: "auser"
-			// logout: 'IN_PROGRESS'
 		},
 		products: {
 			categories: [
