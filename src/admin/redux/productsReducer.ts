@@ -7,7 +7,7 @@ import {Product} from "../../AppState";
 const initialState: ProductsState = {
     categories: [],
     allProducts: [],
-    productsError: "xx",
+    productsError: "",
     updatingProduct: false,
 };
 

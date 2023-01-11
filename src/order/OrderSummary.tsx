@@ -23,7 +23,7 @@ export default function OrderSummary() {
 function getContent(selectedProducts: Product[]) {
 
     if (!selectedProducts || selectedProducts.length == 0)
-        return (<div>Nothing selected</div>)
+        return (<div style={{paddingLeft:"7px"}}>Nothing selected</div>)
 
     let splitIntoCategories: { [category: string]: Array<Product> } = {};
     if (selectedProducts && selectedProducts.length > 0) {
@@ -62,7 +62,7 @@ function Summary(props: any) {
             <td key={1} />
             <td key={2}><b>Total:</b></td>
             <td key={3}/>
-            <td key={4}>{calculateTotal(props.selectedProducts)}</td>
+            <td key={4}><b>{calculateTotal(props.selectedProducts)}</b></td>
         </tr>)
 }
 
