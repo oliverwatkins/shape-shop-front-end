@@ -204,8 +204,6 @@ const apiReal = {
 
     updateCategory: async (values: Category, auth: Authorization) => {
 
-        // let categories = extractCategories(productData.categoriesForForm, categories);
-
         console.info("update cats : " + JSON.stringify(values))
         console.info("Authorization : " + JSON.stringify(auth))
 

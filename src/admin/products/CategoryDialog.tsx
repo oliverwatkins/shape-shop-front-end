@@ -47,6 +47,9 @@ export default function CategoryDialog(props: Props) {
             });
         } else {
 
+            categoryData.id = props?.category?.id as string;
+            // categoryData.imageFilename = props?.product?.imageFilename;
+
             api.updateCategory(categoryData, loginToken).then(() => {
                 Notify.success("Updated Category " + categoryData.name);
                 dispatch(updateCategorySuccessAction({category: categoryData}))
@@ -74,7 +77,7 @@ export default function CategoryDialog(props: Props) {
             </DialogTitle>
             <DialogContent>
                 <DialogContentText id="alert-dialog-description">
-                    {(props.type === "Create") ? "Do you want to add a category?" : "Do you want to update a category?"}
+                    {(props.type === "Create") ? "Enter a category name" : "Enter new name for category"}
                 </DialogContentText>
                 <form onSubmit={handleSubmit(onSubmit)} id="categoryForm">
                     <TextField
@@ -82,7 +85,7 @@ export default function CategoryDialog(props: Props) {
                         defaultValue={props.category?.name}
                         variant="outlined"
                         fullWidth={true}
-                        {...register("name", {required: true, minLength: 5, maxLength: 35})}
+                        {...register("name", {required: true, minLength: 5, maxLength: 55})}
                         // error={errors.name} TODO put back in
                         helperText={errors.name?.type}
                     />

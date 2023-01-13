@@ -21,6 +21,11 @@
     color: lighten(gray, 6);
   }
 
+  .icon:hover {
+    font-size: 100px;
+    color: darken(gray, 6);
+  }
+
   .label {
     font-size: 65px;
     color: lighten(gray, 6);
@@ -29,7 +34,10 @@
   }
 }
 
-
+//.next-prev-button:hover {
+//  color: yellow;
+//  border: 0px #0a7d06 dashed;
+//}
 .next-prev-button:disabled {
   //border: 1px solid #999999;
   background-color: #f84040;
