@@ -6,6 +6,14 @@ import {setEnvironmentData} from "worker_threads";
 export let api: any = {}
 
 
+function checkForToken(auth: Authorization) {
+    if (!auth.token) {
+        throw {
+            message: "token is null"
+        }
+    }
+}
+
 const apiReal = {
 
 
@@ -87,6 +95,8 @@ const apiReal = {
 
 
     createProduct: async (values: Product, auth: Authorization)=> {
+
+        checkForToken(auth);
         if (!auth)
             alert("error: not logged in")
 
@@ -106,7 +116,10 @@ const apiReal = {
             },
         }).then(response => {
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                if (response.status === 500)
+                    throw new Error('Unauthorized');
+                else
+                    throw new Error('Network response was not ok');
             }
             return response.json()
         }).then(data => {
@@ -122,6 +135,9 @@ const apiReal = {
     },
 
     updateProduct: async (values: Product, auth: Authorization) => {
+        checkForToken(auth);
+
+
         if (!auth)
             alert("error: not logged in")
 
@@ -146,6 +162,9 @@ const apiReal = {
         return data;
     },
 	deleteProduct: async (values: Product, auth: Authorization)=> {
+
+        checkForToken(auth);
+
 		let data = await fetch(constants.baseURL + constants.company + '/products/'  + values.id, {
 			method: "DELETE",
 			headers: {
@@ -171,8 +190,9 @@ const apiReal = {
 		return data;
 	},
     createCategory: async (values: Category, auth: Authorization)=> {
-        if (!auth)
-            alert("error: not logged in")
+
+        checkForToken(auth);
+
 
         let data = await fetch(constants.baseURL + constants.company + '/categories', {
             method: "POST",
@@ -204,11 +224,11 @@ const apiReal = {
 
     updateCategory: async (values: Category, auth: Authorization) => {
 
+        checkForToken(auth);
         console.info("update cats : " + JSON.stringify(values))
         console.info("Authorization : " + JSON.stringify(auth))
 
-        if (!auth)
-            alert("error: not logged in")
+
 
         let data = await fetch(constants.baseURL + constants.company + '/categories/' + values.id, {
             method: "PUT",
@@ -233,16 +253,23 @@ const apiReal = {
 
 
 	fetchOrders: async (auth: Authorization, orderState: OrderStateType) => {
+        checkForToken(auth);
 
-		await sleep(1000);
+        // await sleep(1000);
+
+        // let kkk=  'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiTUVSQ0hBTlQiLCJleHAiOjE1NTAyNDc5MjAsInN0YXR1cyI6ImFjdGl2ZSJ9.Y0Qg1meZb2t7fUFLJ9l0WN-smsN1Wrg7bgXVlKLA26O2SM5l_NYGQ6NXy3d16QGAiyFOyV0wKN6DvDjDfUPn5g';
 
 		let data = await fetch(constants.baseURL + constants.company + '/orders', {
 			method: "GET",
-			headers: [["Authorization", "Bearer " + auth.token]]
+			// headers: [["Authorization", kkk]]
+            headers: [["Authorization", "Bearer " + auth.token]]
 		}).then(response => {
 			console.info("status : " + response.status)
 			if (!response.ok) {
-				throw new Error('Network response was not ok');
+                if (response.status === 500)
+                    throw new Error('Unauthorized');
+                else
+                    throw new Error('Network response was not ok');
 			}
 			return response.json()
 		}).then(data => {
@@ -254,7 +281,9 @@ const apiReal = {
 				data: data
 			}
 		}).catch(error => {
-			// console.error('There has been a problem with your fetch operation:', error);
+
+
+			console.error('There has been a problem with your fetch operation:', error);
 			throw error;
 		});
 		console.info(" the data returned : " + data)
@@ -342,6 +371,8 @@ const apiReal = {
         return data;
     },
     uploadImage: async (auth: Authorization, file: any, productId: string) => {
+
+        checkForToken(auth);
 
         console.info("file " + JSON.stringify(file));
 

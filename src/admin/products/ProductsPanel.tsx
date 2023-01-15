@@ -10,6 +10,7 @@ import Button from "@mui/material/Button";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import CategoryDialog from "./CategoryDialog";
 import useFetchProductsAndCategories from "../../hook/useProductsAndCategories";
+import {ErrorPanel} from "../../misc/ErrorPanel";
 
 export default function ProductsPanel() {
 
@@ -69,7 +70,8 @@ export default function ProductsPanel() {
                     </Box>
                     {loading && <CircularProgress color="primary"/>}
                     {/*TODO generic error panel :*/}
-                    {error && <span>{error}</span>}
+                    {/*{error && <span>{error}</span>}*/}
+                    {error && <ErrorPanel message={"ERROR order error: " +  error}/>}
 
                     <Box key={"tabs"}>
                         <Tabs value={productTabValue} onChange={handleProdTab} aria-label="products-tab">

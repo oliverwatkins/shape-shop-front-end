@@ -1,5 +1,5 @@
 import * as React from "react";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 import {faCreditCard, faHandHolding, faMoneyBill, faTruck} from "@fortawesome/free-solid-svg-icons";
 
@@ -7,13 +7,21 @@ import {faCreditCard, faHandHolding, faMoneyBill, faTruck} from "@fortawesome/fr
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import {calculateTotal2} from "../order/utils";
-import {Address, Authorization, DeliveryType, OrderState, OrderStateType, PaymentType} from "../AppState";
+import {
+    Address, AppState,
+    Authorization,
+    DeliveryType,
+    OrderState,
+    OrderStateType,
+    PaymentType,
+} from "../AppState";
 import "./orderPanel.scss";
-import {useDispatch} from "react-redux";
-import {useAsync} from "react-async-hook";
+import {useDispatch, useSelector} from "react-redux";
 import {CircularProgress} from "@mui/material";
 import {api} from "../api/api";
 import {fetchOrdersSuccessAction} from "./redux/adminReducer";
+import {ErrorPanel} from "../misc/ErrorPanel";
+import {Notify} from "../notify";
 
 type Props = {
     type: OrderStateType,
@@ -24,24 +32,32 @@ type Props = {
 export default function OrderPanel(props: Props) {
 
     let dispatch = useDispatch();
-    //TODO get rid of useAsync, do how it is in products
-    const {
-        loading: orderLoading,
-        error: orderError,
-        result: orders = null,
-    } = useAsync<OrderState[]>(api.fetchOrders, [props.Authorization, props.type]);
+
+    //TODO move to selectors
+    let orders = useSelector((state: AppState) => state.admin.orders.filter(o => o.orderState === "OPEN"));
+
+    let [loading, setLoading] = useState<boolean>(false);
+    let [error, setError] = useState<string>();
 
     useEffect(() => {
-        if (orders) {
-            dispatch(fetchOrdersSuccessAction({data: orders}));
-        }
-    }, [orders]);
+        setLoading(true)
+
+        api.fetchOrders(props.Authorization, props.type).then((data: OrderState[]) => {
+            dispatch(fetchOrdersSuccessAction({data: data}));
+        }).catch((error: { message: any; }) => {
+            Notify.error(`Error fetching orders : ${error.message}`);
+            setError(error.message)
+        }).finally(() => {
+            setLoading(false)
+            // setLoading(false)
+        });
+    }, []);
 
     return (
         <>
-            {orderLoading && <CircularProgress color="primary"/>}
-            {orderError &&
-                <span>ERROR order error: {orderError.message}</span>
+            {loading && <CircularProgress color="primary"/>}
+            {error &&
+                <ErrorPanel message={"ERROR order error: " +  error}/>
             }
 
             <table className={"orderTable"}>
@@ -126,9 +142,7 @@ export default function OrderPanel(props: Props) {
     )
 }
 
-
 function AddressPanel(props: {address: Address | undefined}) {
-
 
     if (!props.address)
         return (<div></div>)
