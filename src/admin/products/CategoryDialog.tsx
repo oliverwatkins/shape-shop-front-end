@@ -34,10 +34,10 @@ export default function CategoryDialog(props: Props) {
         setLoading(true)
         if (props.type === "Create") {
 
-            api.createCategory(categoryData, loginToken).then(() => {
+            api.createCategory(categoryData, loginToken).then((data: { data: any; }) => {
                 Notify.success("Created Category " + categoryData.name);
 
-                dispatch(addCategoryAction({category: categoryData}))
+                dispatch(addCategoryAction({category: data.data}))
             }).catch((error: { message: any; }) => {
                 Notify.error(`onRejected function called: ${error.message}`);
                 throw "this is an error"

@@ -17,6 +17,7 @@ export const ProductActions = {
     ADD_PRODUCT: 'ADD_PRODUCT',
     UPDATE_PRODUCT: 'UPDATE_PRODUCT_SUCCESS',
     DELETE_PRODUCT: 'DELETE_PRODUCT',
+    DELETE_CATEGORY: 'DELETE_CATEGORY',
     ADD_CATEGORY: 'ADD_CATEGORY',
     UPDATE_CATEGORY: 'UPDATE_CATEGORY',
     FETCH_CATEGORIES: 'FETCH_CATEGORIES',
@@ -27,6 +28,8 @@ export const updateCategorySuccessAction = createAction<{ category: Category } >
 export const addProductAction = createAction<{ product: Product } >(ProductActions.ADD_PRODUCT);
 export const updateProductSuccessAction = createAction<{ product: Product } >(ProductActions.UPDATE_PRODUCT);
 export const deleteProductAction = createAction<{ product: Product } >(ProductActions.DELETE_PRODUCT);
+
+export const deleteCategoryAction = createAction<{ category: Category } >(ProductActions.DELETE_CATEGORY);
 
 export const fetchProductsSuccessAction = createAction<{ data: any }>(ProductActions.FETCH_PRODUCTS);
 
@@ -39,27 +42,7 @@ export const updateProductSelection = createAction<{ value: number, productid: s
 // maybe even go further with "createSlice" ? https://redux-toolkit.js.org/usage/usage-with-typescript
 export function productsReducer(state: ProductsState = initialState, action: AnyAction): ProductsState {
 
-    if (addCategoryAction.match(action)) {
 
-        let cats = [...state.categories, action.payload.category]
-        return {
-            ...state,
-            categories: cats
-        };
-    }
-    if (updateCategorySuccessAction.match(action)) {
-
-        const cats = state.categories.map((elem) => {
-            if (elem.id === action.payload.category.id)
-                return action.payload.category;
-            return elem;
-        });
-
-        return {
-            ...state,
-            categories: cats
-        };
-    }
 
 
     if (addProductAction.match(action)) {
@@ -112,12 +95,7 @@ export function productsReducer(state: ProductsState = initialState, action: Any
         };
     }
 
-    if (fetchCategoriesSuccessAction.match(action)) {
-        return {
-            ...state,
-            categories: action.payload.data
-        };
-    }
+
     if (updateProductSelection.match(action)) {
 
         let allProducts = state.allProducts.map((item): Product => {
@@ -136,6 +114,61 @@ export function productsReducer(state: ProductsState = initialState, action: Any
             allProducts: allProducts,
             categoryProducts: productsAndCategories
         };
+    }
+
+
+    if (fetchCategoriesSuccessAction.match(action)) {
+        return {
+            ...state,
+            categories: action.payload.data
+        };
+    }
+    if (addCategoryAction.match(action)) {
+
+        let cats = [...state.categories, action.payload.category]
+        return {
+            ...state,
+            categories: cats
+        };
+    }
+    if (updateCategorySuccessAction.match(action)) {
+
+        const cats = state.categories.map((elem) => {
+            if (elem.id === action.payload.category.id)
+                return action.payload.category;
+            return elem;
+        });
+
+        return {
+            ...state,
+            categories: cats
+        };
+    }
+    if (deleteCategoryAction.match(action)) {
+
+
+        //TODO
+
+        return {
+            ...state,
+        };
+
+        // let allProducts = state.allProducts.map((item): Product => {
+        //     if (item.id === action.payload.productid) {
+        //         return {
+        //             ...item,
+        //             amount: action.payload.value
+        //         }
+        //     }
+        //     return item;
+        // })
+        // //recalculate PCs
+        // let productsAndCategories = getCategoryProducts(allProducts)
+        // return {
+        //     ...state,
+        //     allProducts: allProducts,
+        //     categoryProducts: productsAndCategories
+        // };
     }
     return state;
 }

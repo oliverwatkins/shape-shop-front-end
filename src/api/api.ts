@@ -17,35 +17,8 @@ function checkForToken(auth: Authorization) {
 const apiReal = {
 
 
-    /**
-     * Fetch products for company. If category exists, filter results by category.
-     *
-     * @param category
-     */
-    fetchCategories: async ()=> {
-        // await sleep(100);
 
-        let data = await fetch(constants.baseURL + constants.company + '/categories', {
-            method: "GET",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json()
-        }).then(allCategories => {
-            return {
-                status:200,
-                data: allCategories
-            }
-        }).catch(error => {
-            // console.error(error)
-            throw error;
-        });
-        return data.data;
-    },
+
     /**
      * Fetch products for company. If category exists, filter results by category.
      *
@@ -189,7 +162,7 @@ const apiReal = {
 		});
 		return data;
 	},
-    createCategory: async (values: Category, auth: Authorization)=> {
+    createCategory: async (values: Category, auth: Authorization) => {
 
         checkForToken(auth);
 
@@ -221,6 +194,30 @@ const apiReal = {
         });
         return data;
     },
+    fetchCategories: async ()=> {
+        // await sleep(100);
+
+        let data = await fetch(constants.baseURL + constants.company + '/categories', {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json()
+        }).then(allCategories => {
+            return {
+                status:200,
+                data: allCategories
+            }
+        }).catch(error => {
+            // console.error(error)
+            throw error;
+        });
+        return data.data;
+    },
 
     updateCategory: async (values: Category, auth: Authorization) => {
 
@@ -250,46 +247,40 @@ const apiReal = {
         });
         return data;
     },
+    deleteCategory: async (values: Category, auth: Authorization)=> {
 
-
-	fetchOrders: async (auth: Authorization, orderState: OrderStateType) => {
         checkForToken(auth);
 
-        // await sleep(1000);
+        if (!values.id)
+            throw "categorz has no id"
 
-        // let kkk=  'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiTUVSQ0hBTlQiLCJleHAiOjE1NTAyNDc5MjAsInN0YXR1cyI6ImFjdGl2ZSJ9.Y0Qg1meZb2t7fUFLJ9l0WN-smsN1Wrg7bgXVlKLA26O2SM5l_NYGQ6NXy3d16QGAiyFOyV0wKN6DvDjDfUPn5g';
+        let data = await fetch(constants.baseURL + constants.company + '/categories/'  + values.id, {
+            method: "DELETE",
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': "Bearer " + auth.token
+            },
+        }).then(response => {
+            console.info("status : " + response.status)
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            // return response.json()
+        }).then(data => {
+            return {
+                status: 200,
+                data: data
+            }
+        }).catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+            return Promise.reject("error")
+        });
+        return data;
+    },
 
-		let data = await fetch(constants.baseURL + constants.company + '/orders', {
-			method: "GET",
-			// headers: [["Authorization", kkk]]
-            headers: [["Authorization", "Bearer " + auth.token]]
-		}).then(response => {
-			console.info("status : " + response.status)
-			if (!response.ok) {
-                if (response.status === 500)
-                    throw new Error('Unauthorized');
-                else
-                    throw new Error('Network response was not ok');
-			}
-			return response.json()
-		}).then(data => {
-
-			data = data.filter((o: OrderState) => o.orderState === orderState);
-
-			return {
-				status:200,
-				data: data
-			}
-		}).catch(error => {
 
 
-			console.error('There has been a problem with your fetch operation:', error);
-			throw error;
-		});
-		console.info(" the data returned : " + data)
-
-		return data.data;
-	},
 
 	loginUser: (credentials: any) => {
 		console.info("credentialis " + JSON.stringify(credentials))
@@ -342,7 +333,7 @@ const apiReal = {
 		// return data;
 	},
 
-    placeOrder: async (values: OrderState) => {
+    createOrder: async (values: OrderState) => {
         await sleep(2000);
 
         let data = await fetch(constants.baseURL + constants.company + '/orders', {
@@ -370,6 +361,46 @@ const apiReal = {
 
         return data;
     },
+
+    fetchOrders: async (auth: Authorization, orderState: OrderStateType) => {
+        checkForToken(auth);
+
+        // await sleep(1000);
+
+        // let kkk=  'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJyb2xlIjoiTUVSQ0hBTlQiLCJleHAiOjE1NTAyNDc5MjAsInN0YXR1cyI6ImFjdGl2ZSJ9.Y0Qg1meZb2t7fUFLJ9l0WN-smsN1Wrg7bgXVlKLA26O2SM5l_NYGQ6NXy3d16QGAiyFOyV0wKN6DvDjDfUPn5g';
+
+        let data = await fetch(constants.baseURL + constants.company + '/orders', {
+            method: "GET",
+            // headers: [["Authorization", kkk]]
+            headers: [["Authorization", "Bearer " + auth.token]]
+        }).then(response => {
+            console.info("status : " + response.status)
+            if (!response.ok) {
+                if (response.status === 500)
+                    throw new Error('Unauthorized');
+                else
+                    throw new Error('Network response was not ok');
+            }
+            return response.json()
+        }).then(data => {
+
+            data = data.filter((o: OrderState) => o.orderState === orderState);
+
+            return {
+                status:200,
+                data: data
+            }
+        }).catch(error => {
+
+
+            console.error('There has been a problem with your fetch operation:', error);
+            throw error;
+        });
+        console.info(" the data returned : " + data)
+
+        return data.data;
+    },
+
     uploadImage: async (auth: Authorization, file: any, productId: string) => {
 
         checkForToken(auth);

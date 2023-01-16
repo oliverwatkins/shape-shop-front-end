@@ -34,7 +34,7 @@ export default function OKStep() {
 		loading: loading,
 		error: error,
 		result: result = null,
-	} = useAsync<any>(api.placeOrder, [order]); //TODO deprecated, use nmormal async await
+	} = useAsync<any>(api.createOrder, [order]); //TODO deprecated, use nmormal async await
 
 	useEffect( () => {
 		if (result)

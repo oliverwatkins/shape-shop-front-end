@@ -5,20 +5,20 @@ import {AppState, ProductsState} from "../../AppState";
 import {ProductItem} from "./ProductItem";
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import {Box, Grid} from "@mui/material";
+import {Box, Grid, Tooltip} from "@mui/material";
 import OKCancelDialog from "../common/OKCancelDialog";
 import CategoryDialog from "./CategoryDialog";
 import ProductDialog from "./ProductDialog";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import {api} from "../../api/api";
-import {deleteProductAction, productsReducer} from "../redux/productsReducer";
+import {deleteCategoryAction, deleteProductAction, productsReducer} from "../redux/productsReducer";
 import {useSelector} from "react-redux";
 import {Notify} from "../../notify";
 import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 
 type Props = {
-    category?: Category,
+    category: Category,
     products: Array<Product> | null
 }
 
@@ -47,12 +47,22 @@ export default function ProductPanel(props: Props) {
     const [openCategoryDialog, setOpenCategoryDialog] = React.useState(false);
     const [deleteCatDialogOpen, setDeleteCatDialogOpen] = React.useState(false);
 
+    //todo move into ProductItem?
     const deleteProductCallback = async (item: Product) => {
         api.deleteProduct(item, Authorization).then(() => {
             dispatch(deleteProductAction({product: item}))
             Notify.success("Deleted Product " + item.name);
         }).catch((error: { message: any; }) => {
             Notify.error(`Deleted Product error ${error.message}`);
+        });
+    }
+
+    const deleteCategory = async (item: Category) => {
+        api.deleteCategory(item, Authorization).then(() => {
+            dispatch(deleteCategoryAction({category: item}))
+            Notify.success("Deleted Category " + item.name);
+        }).catch((error: { message: any; } | string) => {
+            Notify.error(`Deleted Category error ${error}`);
         });
     }
 
@@ -107,12 +117,16 @@ export default function ProductPanel(props: Props) {
                                                        open={openCategoryDialog} category={props.category}/>
                 }
                 {/*delete category*/}
-                <Button onClick={() => setDeleteCatDialogOpen(true)} variant={"outlined"} sx={buttonStyle}>Delete
+                {/*TODO tooltip only working on enabled buttons*/}
+                <Tooltip title="Can only delte Category if there are no products" arrow>
+                <Button disabled={!!props.products as boolean} onClick={() => setDeleteCatDialogOpen(true)} variant={"outlined"} sx={buttonStyle}>Delete
                     Category</Button>
+                    </Tooltip>
                 {deleteCatDialogOpen && <OKCancelDialog open={true} title={"Delete Thing!"}
                                                         content={"Are you sure you want to delete thing?"}
                                                         handleOK={() => {
-                                                            alert("yeah! delete")
+                                                            // alert("yeah! delete")
+                                                            deleteCategory(props.category);
                                                             setDeleteCatDialogOpen(false);
                                                         }}
                                                         handleCancel={() => {
