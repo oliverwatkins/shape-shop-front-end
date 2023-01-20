@@ -14,11 +14,12 @@ import {MOCK_MODE} from "./constants";
 
 
 export default function Nav() {
-	{/*//TODO put first cat name in here*/}
-	let firstCat = "main";
+	{/*//TODO put first cat name in here!!!!*/}
+	let firstCat = "beers";
 
 	let isUserLoggedInx = useSelector(isUserLoggedIn);
 	let username = useSelector(selectUserEmail);
+
 
 	let l = MOCK_MODE;
 
@@ -57,6 +58,14 @@ export default function Nav() {
 				</li>
 				}
 			</ul>
+			<div>
+				<div>
+					<img className="asdfasdf" style={{width:"20%"}} src={welcome} alt="  " />
+				</div>
+				<div className={"lower"}>
+					ONLINE SHOP
+				</div>
+			</div>
 		</nav>
 	);
 }

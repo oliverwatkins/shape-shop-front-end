@@ -118,7 +118,7 @@ export default function ProductDialog(props: Props) {
                                 <InputLabel>category</InputLabel>
                                 <Select variant="outlined"
                                         multiline={true}
-                                        defaultValue={"main"}
+                                        defaultValue={categories[0].name}
                                         fullWidth={true}
                                         {...register("categoriesForForm", {required: true, maxLength: 95})}
                                 >

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import type {Product} from "../AppState";
 import './itemBox.scss';
-import {baseURL} from "../constants";
+import {baseURL, company} from "../constants";
 
 type Props = {
 	product: Product,
@@ -31,7 +31,7 @@ export default function ItemBox(props: Props) {
 		props.handleChangeSelection(e.currentTarget.value, props.product.id)
 	}
 
-	let baseurl = baseURL + "images/alpenhof/"
+	let baseurl = baseURL + "images/" + company + "/"
 
 	return(
 		<div className={"item-box " + selected}>
