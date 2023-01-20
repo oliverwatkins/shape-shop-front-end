@@ -36,7 +36,7 @@ describe('Products test', () => {
 
 		screen.debug();
 
-		await screen.findByText('Network response was not ok', { collapseWhitespace: true })
+		await screen.findByText('ERROR order error: Network response was not ok', { collapseWhitespace: true })
 	});
 	// https://kentcdodds.com/blog/stop-mocking-fetch
 	it("renders products correctly", async () => {

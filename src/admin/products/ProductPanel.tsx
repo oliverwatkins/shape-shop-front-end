@@ -118,7 +118,7 @@ export default function ProductPanel(props: Props) {
                 }
                 {/*delete category*/}
                 {/*TODO tooltip only working on enabled buttons*/}
-                <Tooltip title="Can only delte Category if there are no products" arrow>
+                <Tooltip title="Can only delete Category if there are no products" arrow>
                 <Button disabled={!!props.products as boolean} onClick={() => setDeleteCatDialogOpen(true)} variant={"outlined"} sx={buttonStyle}>Delete
                     Category</Button>
                     </Tooltip>

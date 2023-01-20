@@ -202,14 +202,14 @@ exports[`Products test matches snapshot 1`] = `
           />
         </button>
         <button
-          class="MuiButtonBase-root MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-hmvwos-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
+          aria-label="Can only delete Category if there are no products"
+          class="MuiButtonBase-root Mui-disabled MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium css-hmvwos-MuiButtonBase-root-MuiButton-root"
+          data-mui-internal-clone-element="true"
+          disabled=""
+          tabindex="-1"
           type="button"
         >
           Delete Category
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
         </button>
       </div>
       <div

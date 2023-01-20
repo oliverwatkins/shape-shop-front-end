@@ -34,12 +34,10 @@ export default function ProductsPanel() {
         setProductTabValue(newValue);
     };
     let category;
-    if (productTabValue >= categories.length) {
+    if (productTabValue >= categories.length && productTabValue !== 0) {
         setProductTabValue(productTabValue - 1 );
-
     }else {
         category = categories[productTabValue];
-
     }
 
     // @ts-ignore

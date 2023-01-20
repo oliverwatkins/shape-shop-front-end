@@ -13,11 +13,18 @@ import ProductsPanel from "./products/ProductsPanel";
 
 export default function AdminScreen() {
 
-    let orders = useSelector((state: AppState) => state.admin.orders)
     let loginToken = useSelector((state: AppState) => state.login.loginToken)
 
+
+    let prodUrl = false
+
+    //kind of hacky but refactor when updating router
+    if (window.location.href.endsWith("admin/products")) {
+        prodUrl = true
+    }
+
     //tab state : (move into hook?)
-    const [topTabValue, setTopTabValue] = React.useState<number>(0);
+    const [topTabValue, setTopTabValue] = React.useState<number>(prodUrl ? 1 : 0);
     const handleTopTab = (event: any, newValue: number) => {
         setTopTabValue(newValue);
     };
@@ -72,6 +79,7 @@ export default function AdminScreen() {
                 <Tab label="Settings" component={Link} to={"/admin/settings"} {...a11yProps(2)} />
             </Tabs>
 
+            {/*TODO refactor to current way of using browserrouter*/}
             <Switch>
                 <Route path="/admin/orders">
                     <Box sx={{width: '100%'}}>
