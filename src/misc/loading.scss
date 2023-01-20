@@ -26,6 +26,45 @@
 	border-radius:100%;
 }
 
+
+.loading2 {
+	//top: 0;
+	//left: 0;
+	//right: 0;
+	//bottom: 0;
+	//position: absolute;
+	z-index: 100;
+	background-color: rgba( gray, .7 )
+}
+
+.loading__spinner2 {
+	//position: relative;
+	//left: 50%;
+	//top: 20%;
+	height:40px;
+	width:40px;
+	margin:0px auto;
+	-webkit-animation: rotation .6s infinite linear;
+	-moz-animation: rotation .6s infinite linear;
+	-o-animation: rotation .6s infinite linear;
+	animation: rotation .6s infinite linear;
+	border-left:6px solid rgba(0,174,239,.15);
+	border-right:6px solid rgba(0,174,239,.15);
+	border-bottom:6px solid rgba(0,174,239,.15);
+	border-top:6px solid rgba(0,174,239,.8);
+	border-radius:100%;
+}
+
+
+
+
+
+
+
+
+
+
+
 @-webkit-keyframes rotation {
 	from {-webkit-transform: rotate(0deg);}
 	to {-webkit-transform: rotate(359deg);}
