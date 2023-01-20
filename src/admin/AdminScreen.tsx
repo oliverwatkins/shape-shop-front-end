@@ -13,6 +13,12 @@ import ProductsPanel from "./products/ProductsPanel";
 
 export default function AdminScreen() {
 
+
+    //todo move to constants
+    let paddingLeft = "40px"
+    let marginTop = "0px"
+
+
     let loginToken = useSelector((state: AppState) => state.login.loginToken)
 
 
@@ -44,20 +50,20 @@ export default function AdminScreen() {
     return (
         <div className={"admin-screen"}>
             <Box sx={{
-                display: "flex"
+                display: "flex",
+                mt: "20px",
+                mr: "30px"
             }}>
-                <Box>
+                <Box sx={{ml: paddingLeft, mt: marginTop}} >
                     <Typography variant="h4" color='primary'>Administration Console</Typography>
-                    <Box>
-                        <Typography sx={{ml: "2.5em"}} variant="body1" color='primary'>Manage orders, products,
-                            categories, and settings</Typography>
-                    </Box>
+                    <Typography variant="body1" color='primary'>Manage orders, products,
+                        categories, and settings</Typography>
                 </Box>
-                <Box sx={{marginLeft: "auto"}}>
+                <Box sx={{ml: "auto", mt: marginTop}}>
                     <Button component={Link} to="/" endIcon={<DoubleArrowIcon/>} variant={"contained"}>To
                         website </Button>
                 </Box>
-                <Box sx={{marginLeft: "2em"}}>
+                <Box sx={{ml: "2em", mt: marginTop}}>
                     <Button component={Link} variant={"text"} to="/logout" color="primary">
                         Logout
                     </Button>
@@ -73,6 +79,7 @@ export default function AdminScreen() {
                 variant="standard"
                 aria-label="full width tabs example"
                 value={topTabValue}
+                sx={{ml: paddingLeft, mt: "0px"}}
             >
                 <Tab label="Orders" component={Link} to={"/admin/orders"} {...a11yProps(0)}/>
                 <Tab label="Products" component={Link} to={"/admin/products"}  {...a11yProps(1)} />
@@ -84,7 +91,9 @@ export default function AdminScreen() {
                 <Route path="/admin/orders">
                     <Box sx={{width: '100%'}}>
                         <Box sx={{borderBottom: 1, borderColor: 'divider'}}>
-                            <Tabs value={orderTabValue} onChange={handleOrderTab} >
+                            <Tabs value={orderTabValue} onChange={handleOrderTab}
+                                  sx={{ml: paddingLeft, mt: "0px"}}
+                            >
                                 <Tab label="Open Orders" {...a11yProps(0)} />
                                 <Tab label="Closed Orders" {...a11yProps(1)} />
                             </Tabs>

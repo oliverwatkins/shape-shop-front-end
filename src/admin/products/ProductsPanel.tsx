@@ -74,7 +74,7 @@ export default function ProductsPanel() {
                     {loading && <CircularProgress color="primary"/>}
                     {error && <ErrorPanel message={"ERROR order error: " +  error}/>}
                     <Box key={"tabs"}>
-                        <Tabs value={productTabValue} onChange={handleProdTab} aria-label="products-tab">
+                        <Tabs                  value={productTabValue} onChange={handleProdTab} aria-label="products-tab">
                             {
                                 categories.map((category: Category, i:number) => {
                                     return <Tab key={category.name} label={category.name} {...a11yProps(i)} />
