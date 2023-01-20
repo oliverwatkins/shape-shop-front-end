@@ -146,11 +146,14 @@ export function productsReducer(state: ProductsState = initialState, action: Any
     }
     if (deleteCategoryAction.match(action)) {
 
-
-        //TODO
+        let cats = state.categories.filter((elem) => {
+            return elem.id !== action.payload.category.id
+        })
+        //TODO not updating. store is reset
 
         return {
             ...state,
+            categories: cats
         };
 
         // let allProducts = state.allProducts.map((item): Product => {

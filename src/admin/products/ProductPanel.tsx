@@ -13,7 +13,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import {api} from "../../api/api";
 import {deleteCategoryAction, deleteProductAction, productsReducer} from "../redux/productsReducer";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Notify} from "../../notify";
 import {FileUploadDialog} from "../FileUpload/FileUploadDialog";
 
@@ -35,7 +35,7 @@ const initialState: ProductsState = {
  */
 export default function ProductPanel(props: Props) {
 
-    const [state, dispatch] = useReducer(productsReducer, initialState); //TODO useDispatch
+    const dispatch = useDispatch()
 
     const Authorization: any = useSelector((state: AppState) => state.login.loginToken)
 

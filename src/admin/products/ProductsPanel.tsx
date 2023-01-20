@@ -33,9 +33,14 @@ export default function ProductsPanel() {
     const handleProdTab = (event: any, newValue: number) => {
         setProductTabValue(newValue);
     };
+    let category;
+    if (productTabValue >= categories.length) {
+        setProductTabValue(productTabValue - 1 );
 
+    }else {
+        category = categories[productTabValue];
 
-    let category = categories[productTabValue];
+    }
 
     // @ts-ignore
     return (
@@ -69,10 +74,7 @@ export default function ProductsPanel() {
                         </AppBar>
                     </Box>
                     {loading && <CircularProgress color="primary"/>}
-                    {/*TODO generic error panel :*/}
-                    {/*{error && <span>{error}</span>}*/}
                     {error && <ErrorPanel message={"ERROR order error: " +  error}/>}
-
                     <Box key={"tabs"}>
                         <Tabs value={productTabValue} onChange={handleProdTab} aria-label="products-tab">
                             {
@@ -82,7 +84,7 @@ export default function ProductsPanel() {
                             }
                         </Tabs>
                     </Box>
-                    {categoryProducts && <ProductPanel key={productTabValue} category={category} products={categoryProducts[category.name]}/>}
+                    {categoryProducts && category && <ProductPanel key={productTabValue} category={category} products={categoryProducts[category.name]}/>}
                 </Box>
             </Box>
         </>
