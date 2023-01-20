@@ -8,6 +8,8 @@ import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
 import Nav from "./Nav";
 
+import "./styles.scss"
+
 import OrderWizard from "./order/OrderWizardContainer";
 import Footer from "./Footer";
 import RedirectToLogout from "./login/RedirectToLogout";

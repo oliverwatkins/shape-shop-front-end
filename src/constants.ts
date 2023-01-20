@@ -1,6 +1,6 @@
 
 
-export const company = "alpenhof";
+export const company = "higgins";
 
 
 

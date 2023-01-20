@@ -3,7 +3,13 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {isUserLoggedIn, selectUserEmail} from "./selectors";
 import {useSelector} from "react-redux";
+
+
 import "./nav.scss"
+
+import welcome from './assets/img/ezgif-5-e18193c8ba03.png';
+
+
 import {MOCK_MODE} from "./constants";
 
 
@@ -18,6 +24,11 @@ export default function Nav() {
 
 	return (
 		<nav className={"main-nav"}>
+			<div className={"upper"}>
+				Maxvorstadt, 80333, München, Bayern, Germany
+				+491728462474
+			</div>
+
 			<ul>
 				<li>
 					<Link to="/">Home</Link>
