@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {Link} from "react-router-dom";
-import {isUserLoggedIn, selectUserEmail} from "./selectors";
+import {isUserLoggedIn, selectCategories, selectUserEmail} from "./selectors";
 import {useSelector} from "react-redux";
 import "./nav.scss"
 import {MOCK_MODE} from "./constants";
@@ -9,7 +9,10 @@ import {MOCK_MODE} from "./constants";
 
 export default function Nav() {
 	{/*//TODO put first cat name in here*/}
-	let firstCat = "main";
+	// let categories = useSelector(selectCategories);
+	let firstCat = "squares";
+
+
 
 	let isUserLoggedInx = useSelector(isUserLoggedIn);
 	let username = useSelector(selectUserEmail);

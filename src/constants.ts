@@ -1,14 +1,14 @@
 
 
-export const company = "alpenhof";
+export const company = "shapeshop";
 
 
 
-// two container use :
-// export const baseURL = "http://localhost:8080/";
+/* two container use : */
+export const baseURL = "http://localhost:8080/";
 
-// docker compose use :
-export const baseURL = "http://localhost:8081/";
+/* 'docker compose up' use : */
+// export const baseURL = "http://localhost:8081/";
 
 
 
