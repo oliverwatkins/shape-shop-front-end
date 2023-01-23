@@ -2,17 +2,20 @@ import {LoginActions} from './loginActions';
 import type {LoginState} from "../../AppState";
 import {Notify} from "../../notify";
 
-export function reducer(state: LoginState = initialState, action) {
+export function reducer(state: LoginState = initialState, action: any) {
 
-	console.info("in reducer with action " + action.type)
+	// console.log("in login reducer with action " + action.type)
 
+	//login action is being caugt in SAGA
 	switch (action.type) {
 		case LoginActions.LOGIN_SUCCESS:
+
+			console.info("action.token = " + action.token)
 			return {
 				...state,
 				loginToken: action.token,
 				loggingIn: false,
-				role: action.role,
+				// role: action.role,
 				logout: null,
 			};
 		case LoginActions.LOGIN_FAIL:
@@ -22,7 +25,7 @@ export function reducer(state: LoginState = initialState, action) {
 			return {
 				...state,
 				loginToken: null,
-				role: false,
+				// role: false,
 				// loginError: "Error logging  do we NEEDTHIS?",
 				loggingIn: false,
 			};
@@ -42,7 +45,5 @@ export function reducer(state: LoginState = initialState, action) {
 }
 
 const initialState = {
-	role: "", //???
 	loggingIn: false,
-	loginToken: {},
 };

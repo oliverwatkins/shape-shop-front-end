@@ -1,51 +1,43 @@
-
-//nav
 .main-nav {
   background-color: red;
-
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333333;
-  }
-
-  li {
-    float: left;
-  }
-
-  li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-  }
-  li.mock {
-    float: right;
-    padding: 16px;
-    color: #9dff00;
-  }
-  li.loggedIn {
-    padding: 16px;
-    color: red;
-    float: right;
-  }
-  li.logout {
-    cursor: pointer;
-    color: #4fe3c6;
-    float: right;
-  }
-
-  li.admin {
-    //padding: 16px;
-    color: orange;
-    float: right;
-  }
-
-  li a:hover {
-    background-color: #111111;
-  }
 }
-
+.main-nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+.main-nav li {
+  float: left;
+}
+.main-nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+.main-nav li.mock {
+  float: right;
+  padding: 16px;
+  color: #9dff00;
+}
+.main-nav li.loggedIn {
+  padding: 16px;
+  color: red;
+  float: right;
+}
+.main-nav li.logout {
+  cursor: pointer;
+  color: #4fe3c6;
+  float: right;
+}
+.main-nav li.admin {
+  color: orange;
+  float: right;
+}
+.main-nav li a:hover {
+  background-color: #111;
+}
+ 

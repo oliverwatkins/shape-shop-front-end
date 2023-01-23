@@ -1,24 +1,25 @@
 import * as React from 'react';
 import type {Product} from "../AppState";
 import './itemBox.scss';
-import {baseURL} from "../api/api";
+import {baseURL, company} from "../constants";
 
 type Props = {
 	product: Product,
-	handleChangeSelection: any
+	handleChangeSelection: (arg1: number, arg2: string) => void //qty, id
 }
 
 
-function ItemBox(props: Props) {
+export default function ItemBox(props: Props) {
 
 	let selected = ""
 	let checked = false
-	if (props.product.quantity > 0) {
+	if (props.product.amount && props.product.amount > 0) {
 		selected = "selected"
 		checked = true
+		// alert()
 	}
 
-	function handleChangeCheckbox(e) {
+	function handleChangeCheckbox(e: any) {
 		if (e.currentTarget.checked) {
 			props.handleChangeSelection(1, props.product.id)
 		} else {
@@ -26,11 +27,11 @@ function ItemBox(props: Props) {
 		}
 	}
 
-	function handleChangeQuantity(e) {
+	function handleChangeQuantity(e: any) {
 		props.handleChangeSelection(e.currentTarget.value, props.product.id)
 	}
 
-	let baseurl = baseURL + "images/"
+	let baseurl = baseURL + "images/" + company + "/"
 
 	return(
 		<div className={"item-box " + selected}>
@@ -47,7 +48,7 @@ function ItemBox(props: Props) {
 					   id="selectCheckbox"
 					   checked={checked}
 					   onChange={handleChangeCheckbox}/>
-				<select className={"item-box-options"} id="qty" onChange={handleChangeQuantity} value={props.product.quantity}>
+				<select className={"item-box-options"} id="qty" onChange={handleChangeQuantity} value={props.product.amount}>
 					<option value="0">0</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -59,4 +60,4 @@ function ItemBox(props: Props) {
 	)
 }
 
-export default ItemBox;
+// export default ItemBox;

@@ -1,23 +1,29 @@
 import * as React from 'react';
 
 import ItemBox from "./ItemBox";
-import {createUpdateProductSelection} from "./redux/productActions";
-import {connect} from "react-redux";
+import {updateProductSelection} from "../admin/redux/productsReducer";
+import {connect, useDispatch} from "react-redux";
 import type {Product} from "../AppState";
 
 type Props = {
 	productItems?: Array<Product>,
-	updateProductSelection: Function
 }
 
-function ProductSelection(props: Props) {
+export default function ProductSelection(props: Props) {
 	let items = props.productItems;
+
+	const dispatch = useDispatch();
+
+	let updateProdSelection = (quantity: number, productId: string) => {
+		dispatch(updateProductSelection({value: quantity, productid: productId}));
+	}
+
 	return (
 		<div>
 			<div className="product-selection">
 				{
 					items && items.map((e) => (
-						<ItemBox key={e.name} product={e} handleChangeSelection={props.updateProductSelection}/>
+						<ItemBox key={e.name} product={e} handleChangeSelection={updateProdSelection}/>
 						)
 					)
 				}
@@ -25,17 +31,4 @@ function ProductSelection(props: Props) {
 		</div>
 	);
 }
-
-const mapDispatchToProps = (dispatch: any) => {
-	return {
-		updateProductSelection: (value: any, id: any) => {
-			dispatch(createUpdateProductSelection(value, id));
-		},
-	};
-};
-
-export default connect(
-	null,
-	mapDispatchToProps,
-)(ProductSelection);
 

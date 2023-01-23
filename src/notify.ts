@@ -15,5 +15,16 @@ export const Notify = {
             draggable: true,
             progress: undefined,
         });
+    },
+    success: (msg: string) => {
+        toast.success(msg, {
+            position: "top-right",
+            autoClose: 800000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
     }
 }

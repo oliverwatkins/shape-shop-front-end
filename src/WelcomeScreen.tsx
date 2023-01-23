@@ -1,9 +1,6 @@
 import * as React from 'react';
-import {connect} from "react-redux";
 
-import welcome from './assets/img_DEPRECATED/welcome.jpg';
-
-
+import welcome from './assets/img/welcome.jpg';
 
 export default function Overview (props: any) {
 	return (

@@ -4,9 +4,9 @@ import type {Product} from "../AppState";
 /**
  * from order list
  */
-export function calculateTotal2(products) {
-	let t = products.reduce((acc, cur: Product) => {
-		return acc + (cur.quantity * cur.price);
+export function calculateTotal2(products: any) {
+	let t = products.reduce((acc: any, cur: Product) => {
+		return acc + ((cur.amount ? cur.amount : 0) * cur.price);
 	}, 0)
 
 	t = t.toFixed(2);
@@ -16,16 +16,16 @@ export function calculateTotal2(products) {
 /**
  * from product selection
  */
-export function calculateTotal(selectedProducts, selectedProducts2) {
+export function calculateTotal(selectedProducts?: Array<Product>) {
 
-	let t = selectedProducts.reduce((acc, cur: Product) => {
-		return acc + (cur.quantity * cur.price);
-	}, 0)
+	if (selectedProducts) {
+		let t = selectedProducts.reduce((acc: any, cur: Product) => {
+			return acc + ((cur.amount ? cur.amount : 0) * cur.price);
+		}, 0)
 
-	let d = selectedProducts2.reduce((acc, cur: Product) => {
-		return acc + (cur.quantity * cur.price);
-	}, 0)
-	t = (t + d).toFixed(2);
-	return t
+		t = (t).toFixed(2);
+		return t
+	}
+	return 0;
 }
 

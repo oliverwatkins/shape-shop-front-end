@@ -1,30 +1,20 @@
-import {call, put, take} from 'redux-saga/effects';
+import {call, fork, put, take} from 'redux-saga/effects';
+// @ts-ignore
 import jwtDecode from 'jwt-decode';
 import {createLoginFailAction, createLoginSuccessAction, LoginActions} from './loginActions';
 import {api} from "../../api/api";
 
-
 export function* loginWatcher() {
+	console.info("starting LOGIN SAGA")
+
 	while (true) {
 		const { user, password } = yield take(LoginActions.LOGIN);
+		// @ts-ignore
 		yield call(login, user, password);
 	}
 }
 
-// function* loginWorker(user, password) {
-// 	if (user && password) {
-// 		user = user.trim().toLowerCase();
-// 	}
-// 	const credentials = {
-// 		username: user,
-// 		password: password,
-// 	};
-// 	yield call(login, credentials, false);
-// }
-
 function* login(user: string, password?: string) {
-
-	console.info("in LOGIN SAGA")
 
 	if (user && password) {
 		user = user.trim().toLowerCase();
@@ -35,6 +25,7 @@ function* login(user: string, password?: string) {
 	};
 
 	try {
+		// @ts-ignore
 		const response = yield call(api.loginUser, credentials);
 
 		console.info(JSON.stringify(response));
@@ -60,6 +51,7 @@ function* login(user: string, password?: string) {
 		}
 	} catch (e) {
 		console.error(e)
+		// @ts-ignore
 		yield put(createLoginFailAction(e.message));
 	}
 }

@@ -1,15 +1,14 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {createLoginAction} from './redux/loginActions';
 import {isUserLoggedIn} from '../selectors';
 import "./login.scss"
-import {LoggedIn} from "./LoggedIn";
-import {AppState} from "../AppState";
+import {BasicLoginForm} from "./LoginForm";
+import {Redirect} from "react-router";
 
 type Props = {
 	isUserLoggedIn?: boolean,
 	errorMessage?: string,
-	onSubmit: Function
 }
 
 type State = {
@@ -17,85 +16,27 @@ type State = {
 	password?: string
 }
 
-export class BasicLoginForm extends React.PureComponent<Props, State> {
+export default function LoginScreen(props: Props) {
 
-	constructor(props: Props) {
-		super(props);
-		this.state = {
-			username: '',
-			password: '',
-		};
+	// alert("in login screen")
+	const dispatch = useDispatch();
+
+	const isLoggedIn = useSelector(isUserLoggedIn)
+
+	let onSubmit = (data:any) => {
+		dispatch(createLoginAction(data.username, data.password));
+	}
+	console.info("is logged in = " + isLoggedIn)
+
+	if (isLoggedIn) {
+		console.info("is logged in ")
+		return <Redirect to="/admin/orders/" />
 	}
 
-	handleChange = (e: any) => {
-		const {name, value} = e.currentTarget;
-		this.setState({[name]: value});
-	};
-
-	onSubmit = (e: any) => {
-		e !== undefined && e.preventDefault();
-		const {username, password} = this.state;
-		this.props.onSubmit(username, password);
-	};
-
-	render() {
-		if (this.props.isUserLoggedIn)
-			return <LoggedIn name={""}/>;
-
-		const {username, password} = this.state;
-
-		if (this.props.errorMessage) {
-			alert("this.props.errorMessage " + this.props.errorMessage)
-
-		}
-
-		return (
-			<div>
-				<h1>Login </h1>
-				<form onSubmit={this.onSubmit} className={"loginForm"}>
-					<div className="container">
-						<label htmlFor="uname"><b>Username</b></label>
-						<input type="text" placeholder="Enter Username" name="username" value={username}
-									 onChange={this.handleChange}
-									 required/>
-
-						<label htmlFor="psw"><b>Password</b></label>
-						<input type="password" placeholder="Enter Password" name="password" value={password}
-									 onChange={this.handleChange} required/>
-
-						<button type="submit">Login</button>
-						<label>
-							<input type="checkbox" checked={false} name="remember"/> Remember me
-						</label>
-					</div>
-
-					<div className="container" style={{backgroundColor: "#f1f1f1"}}>
-						<button type="button" className="cancelbtn">Cancel</button>
-						<span className="psw">Forgot <a href="#">password?</a></span>
-					</div>
-				</form>
-			</div>);
+	if (props.errorMessage) {
+		alert("this.props.errorMessage " + props.errorMessage)
 	}
+	return (
+		<BasicLoginForm onSubmit={onSubmit}/>
+	);
 }
-
-
-const mapStateToProps = (state: AppState) => {
-	return {
-		isUserLoggedIn: isUserLoggedIn(state)
-		// errorMessage: state.login.errorMessage,
-		// loginError: state.login.loginError
-	};
-};
-
-const mapDispatchToProps = (dispatch: any) => {
-	return {
-		onSubmit: (name: string, password: string) => {
-			dispatch(createLoginAction(name, password));
-		},
-	};
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(BasicLoginForm);

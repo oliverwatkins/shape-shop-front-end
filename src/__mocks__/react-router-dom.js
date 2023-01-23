@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-// TODO is this really needed?
+// DO NOT DELETE
 
 //override browser router when running jest test. Effectively disabble it.
 const reactRouterDom = require("react-router-dom")

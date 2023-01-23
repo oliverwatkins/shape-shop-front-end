@@ -3,46 +3,74 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "11.10.4",
+    "@emotion/styled": "^11.10.4",
     "@fortawesome/fontawesome-svg-core": "^1.2.28",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@fortawesome/react-fontawesome": "^0.1.9",
-    "@material-ui/core": "^4.11.4",
+    "@hookform/resolvers": "^2.9.10",
+    "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
+    "@mui/icons-material": "5.10.3",
+    "@mui/material": "5.10.3",
+    "@mui/styles": "^5.2.3",
+    "@reduxjs/toolkit": "^1.8.6",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.5.0",
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/node": "^16.0.1",
-    "@types/react": "^17.0.14",
-    "@types/react-dom": "^17.0.9",
+    "@types/node": "^17.0.0",
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
+    "@types/react-redux": "^7.1.20",
+    "@types/react-router-dom": "^5.3.2",
     "apisauce": "^1.0.1",
     "formik": "^2.1.4",
     "history": "^4.10.1",
     "jwt-decode": "^2.2.0",
     "moment": "^2.27.0",
-    "node-sass": "^4.14.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^18.2.0",
+    "react-async-hook": "^4.0.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.22.5",
     "react-redux": "^7.2.0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
-    "react-toastify": "^7.0.4",
+    "react-scripts": "5.0.0",
+    "react-toastify": "^8.1.0",
     "redux": "4.0.1",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.1.3",
-    "typescript": "^4.3.5"
+    "sass": "^1.45.0",
+    "sass-loader": "^10.2.0",
+    "storybook": "^6.5.10",
+    "typescript": "^4.8.2",
+    "yup": "^0.32.11"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "test-c": "jest --coverage",
-    "eject": "react-scripts eject"
+    "test-c": "react-scripts test --coverage",
+    "eject": "react-scripts eject",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(ts|tsx|js|jsx)$": "ts-jest"
+    }
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
@@ -57,16 +85,13 @@
     ]
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^14.4.3",
     "@types/jest": "^25.2.3",
-    "@types/jwt-decode": "^3.1.0",
-    "@types/react-redux": "^7.1.17",
-    "@types/react-router": "^5.1.16",
-    "@types/react-router-dom": "^5.1.8",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.2",
-    "flow-bin": "^0.152.0",
+    "@types/redux-mock-store": "^1.0.3",
     "jest-serializer-html": "^7.0.0",
-    "react-test-renderer": "^16.13.1",
-    "redux-mock-store": "^1.5.4"
+    "redux-mock-store": "^1.5.4",
+    "ts-jest": "^29.0.3"
   }
 }

@@ -1,52 +1,60 @@
-//@flow
-
-import {selectClosedOrders, selectOpenOrders, selectProductsByType} from "./selectors";
-
 export type AppState = {
 	products: ProductsState,
-	order: OrderState,
+	order: OrderState, //current order
 	login: LoginState,
-	admin: AdminState
+	admin: AdminState,
+
 };
 
 export type ProductsState = {
 	productsError: string,
 	updatingProduct: boolean,
-	items: Array<Product>,
+	allProducts: Array<Product>,
+	categoryProducts?: { [category: string]: Array<Product> }
+	categories: Array<Category>
 }
 
+export type Product = {
+	id: string,
+	name: string,
+	price: number,
+	description: string,
+	imageFilename?: string,
+	image?: any, //??
+	amount?: number, //selected quantity
+	categories?: Array<Category>
+	categoriesForForm?: Array<string> | string //needed for form
 
+}
+
+export type ByCategory = { [cat: string]: Array<Product> };
 
 
 export type AdminState = {
-	orders: Array<OrderState>,
+	Authorization?: Authorization, //??
 	orderError?: string,
-	closedOrders: Array<OrderState>,
-	products1: Array<Product>,
-	products2: Array<Product>,
-	Authorization: any, //??
+	orders: OrderState[]
 }
 
 export type LoginState = {
-	// loginError: string,
-	loginToken?: {
-		role?: string,
-		token?: string,
-		username?: string
-	},
-	role?: string, //??
+	loginToken?: Authorization,
 	loggingIn: boolean,
 }
 
+export type Authorization = {
+	username: string,
+	token: string,
+	role?: string
+};
 
 export enum PaymentType {
-	cash = "CASH",
-	card = "CARD"
+	CASH = "CASH",
+	CARD = "CARD"
 }
 
 export enum DeliveryType {
-	pickup = "PICKUP",
-	delivery = "DELIVERY"
+	PICKUP = "PICKUP",
+	DELIVERY = "DELIVERY"
 }
 
 export enum OrderStateType {
@@ -54,18 +62,23 @@ export enum OrderStateType {
 	CLOSED = "CLOSED"
 }
 
-
+//todo rename to order
 export type OrderState = {
 	id?: string,
-	state: OrderStateType,
-	paymentType: PaymentType,
-	deliveryType: string,
-	addressEntity?: Address,
+	selectedProducts: Array<Product>,
+	orderState?: OrderStateType,
+	paymentType?: PaymentType,
+	deliveryType?: DeliveryType,
+	address?: Address,
 	date?: Date,
-	orderItems?: Array<ProductsState>
-	creditCardEntity?: CreditCardEntity,
+	// orderItems?: Array<ProductsState> // ????
+
+	orderItems: Array<{product: Product, amount?: number}>,
+
+
+	creditCard?: CreditCardEntity,
 	submittingOrder?:boolean,
-	orderError?:string,
+	// orderError?:string,
 }
 
 export type CreditCardEntity = {
@@ -75,14 +88,9 @@ export type CreditCardEntity = {
 	type: string,
 }
 
-export type Product = {
-	id: string,
-	name: string,
-	quantity: number, //selected quantity
-	price: number,
-	description: string,
-	type: string,
-	imageFilename: string,
+export type Category = {
+	id: string
+	name:string,
 }
 
 export type Address = {
@@ -93,6 +101,3 @@ export type Address = {
 	username: string,
 	email: string
 }
-
-
-

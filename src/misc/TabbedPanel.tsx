@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-import "./tabs.scss"
+import "./tabs.css"
 import {DeliveryType} from "../AppState";
 import { Button } from '@material-ui/core';
 
-
+// deprecated
 
 type Props = {
 	children: Array<any>,
@@ -53,24 +53,10 @@ export function Tabs(props: Props) {
 type Props3 = {
 	activeTab: string,
 	title: string,
-	onClick: (string) => any
+	onClick: (string: any) => any
 }
 
 function Tab(props: Props3)  {
-
-	// let onClickX = () => {
-	// 	// const { title, onClick } = props;
-	// 	onClick(props.title);
-	// }
-
-	// const {
-	// 	onClickX,
-	// 	props: {
-	// 		activeTab,
-	// 		title,
-	// 	},
-	// } = this;
-
 	let className = 'tab-list-item';
 
 	if (props.activeTab === props.title) {

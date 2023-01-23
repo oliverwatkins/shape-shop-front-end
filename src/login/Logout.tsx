@@ -1,32 +1,12 @@
-//@flow
 import * as React from 'react';
-import {connect} from 'react-redux';
-import {createLogoutAction} from './redux/loginActions';
+import "./login.scss"
 
-/**
- * Just empty component. needed?
- */
-class Logout extends React.PureComponent<any> {
-	componentDidMount(): void {
-		this.props.dispatch(createLogoutAction(this.props.token, this.props.history))
-	}
-	render() {
-		return null;
-	}
+export default function Logout() {
+	return <div>
+		<h1>Logged Out</h1>
+		<div className="container" style={{backgroundColor: "#f1f1f1"}}>
+		</div>
+	</div>;
+
 }
-
-type state = {
-	login: any,
-	logout: null | string,
-};
-
-const mapStateToProps = ({ login }: state) => {
-	return {
-		token: 'loginToken' in login && login.loginToken.token,
-		logout: login.logout,
-	};
-};
-
-export default connect(mapStateToProps)(Logout);
-
 

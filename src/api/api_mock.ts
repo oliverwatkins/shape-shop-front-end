@@ -19,7 +19,7 @@ export const api_MOCK: APIinteface = {
 
 		let response;
 
-		if ((credentials.username == "admin") && (credentials.password == "admin")) {
+		if ((credentials.username === "admin") && (credentials.password === "admin")) {
 			response = {
 				ok: true,
 				status: 200,

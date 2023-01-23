@@ -10,10 +10,10 @@ import createSagaMiddleware from 'redux-saga';
 
 import {combineReducers} from 'redux';
 import {reducer as login} from './login/redux/loginReducer';
-import {reducer as products} from './order/redux/productsReducer';
-import {reducer as order} from './order/redux/orderReducer';
+import {productsReducer as products} from './admin/redux/productsReducer';
+import {reducer as order} from './admin/redux/orderReducer';
 import {reducer as admin} from './admin/redux/adminReducer';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router} from "react-router-dom";
 
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -50,6 +50,10 @@ const persistor = persistStore(store);
 // 	persistor.purge();
 // 	window.location.replace(`${window.location.protocol}//${window.location.host}${window.location.pathname}`);
 // }
+
+
+// store.subscribe()
+
 
 if (!CACHE) {
 	persistor.purge();
