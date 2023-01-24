@@ -34,7 +34,7 @@ export default function ItemBox(props: Props) {
 	let baseurl = baseURL + "images/" + company + "/"
 
 	return(
-		<div className={"item-box " + selected}>
+		<div className={"item item-box " + selected}>
 			<img className={"item-box-image"} src={baseurl + props.product.imageFilename} alt=""/>
 			<div className={"item-box-desc " + selected} title={props.product.name} >
 				{props.product.name}

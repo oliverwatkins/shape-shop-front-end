@@ -22,7 +22,7 @@ function ProductStep(props: Props) {
 		throw "no category"
 
 	return (
-		<div className="wizardPanel products1-step">
+		<div className="wizardPanel">
 			<h2 className="wizardHeader">{props.category.name}</h2>
 			<div className="wizardMain">
 				<BackButton page={getPrevPageURL(props)}/>

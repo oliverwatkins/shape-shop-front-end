@@ -20,7 +20,7 @@ export default function ProductSelection(props: Props) {
 
 	return (
 		<div>
-			<div className="product-selection">
+			<div className="product-selection container">
 				{
 					items && items.map((e) => (
 						<ItemBox key={e.name} product={e} handleChangeSelection={updateProdSelection}/>

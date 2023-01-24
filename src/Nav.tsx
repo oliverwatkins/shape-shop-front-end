@@ -10,7 +10,7 @@ import {MOCK_MODE} from "./constants";
 export default function Nav() {
 	{/*//TODO put first cat name in here*/}
 	// let categories = useSelector(selectCategories);
-	let firstCat = "squares";
+	let firstCat = "main";
 
 
 
