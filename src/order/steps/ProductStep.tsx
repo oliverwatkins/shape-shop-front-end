@@ -6,6 +6,8 @@ import type {Category, Product} from "../../AppState";
 import {BackButton} from "../buttons/BackButton";
 
 import "./productStep.scss";
+import Header from "./Header";
+
 
 
 type Props = {
@@ -22,18 +24,14 @@ function ProductStep(props: Props) {
 		throw "no category"
 
 	return (
-		<div className="wizardPanel">
-			<h2 className="wizardHeader">{props.category.name}</h2>
-			<div className="wizardMain">
-				<BackButton page={getPrevPageURL(props)}/>
-				<div className="wizardCenter">
-					<ProductSelection productItems={props.categoryProducts[props.category.name]} />
-				</div>
-				<div style={{textAlign: "right"}}>
-					<NextButton label={"next"} page={getNextPageURL(props)} disabled={false}/>
-					<OrderSummary/>
-				</div>
-			</div>
+		<div className={"wiz-container"}>
+			{/*TODO figure out how to use empty space with CSS Grid (and get rid of this) :*/}
+			<div className={"emptySpace"}/>
+			<Header text={props.category.name}/>
+			<BackButton page={getPrevPageURL(props)}/>
+			<ProductSelection productItems={props.categoryProducts[props.category.name]} />
+			<NextButton label={"next"} page={getNextPageURL(props)} disabled={false}/>
+			<OrderSummary/>
 		</div>
 	);
 }

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {selectCategories, selectCategoriesFromProducts} from "../selectors";
+import {useSelector} from "react-redux";
+import {selectCategoriesFromProducts} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Summary from "./steps/SummaryStep";
 import WhichPayment from "./steps/WhichPaymentStep";
@@ -10,11 +10,7 @@ import PaymentStep from "./steps/PaymentStep";
 import AddressStep from "./steps/AddressStep";
 import ProductStep from "./steps/ProductStep";
 
-import "./order.scss"
-import {useEffect, useState} from "react";
-import {api} from "../api/api";
-import {fetchCategoriesSuccessAction, fetchProductsSuccessAction} from "../admin/redux/productsReducer";
-import {Notify} from "../notify";
+// import "./order.scss"
 import useProductsAndCategories from "../hook/useProductsAndCategories";
 
 //navigation links

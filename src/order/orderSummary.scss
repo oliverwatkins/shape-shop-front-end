@@ -4,9 +4,10 @@
 //TODO rename to "box thing" or something. It is slao sbeing used in address summary
 .order-summary {
   background: $shaded-background;
-  //border: 2px #1cd5af dashed;
+  border: 2px #1cd5af double;
+
   border-radius: 9px;
-  text-align: left;
+  //text-align: left;
   width: 300px;
   //background: #3bdef0;
   td {

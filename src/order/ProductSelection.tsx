@@ -19,8 +19,8 @@ export default function ProductSelection(props: Props) {
 	}
 
 	return (
-		<div>
-			<div className="product-selection container">
+		// <div>
+			<div className="product-selection wiz-item">
 				{
 					items && items.map((e) => (
 						<ItemBox key={e.name} product={e} handleChangeSelection={updateProdSelection}/>
@@ -28,7 +28,7 @@ export default function ProductSelection(props: Props) {
 					)
 				}
 			</div>
-		</div>
+		// </div>
 	);
 }
 
