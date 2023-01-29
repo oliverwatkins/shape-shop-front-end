@@ -7,6 +7,7 @@ import {BackButton} from "../buttons/BackButton";
 
 import "./productStep.scss";
 import Header from "./Header";
+import Footer from "../../Footer";
 
 
 
@@ -32,6 +33,7 @@ function ProductStep(props: Props) {
 			<ProductSelection productItems={props.categoryProducts[props.category.name]} />
 			<NextButton label={"next"} page={getNextPageURL(props)} disabled={false}/>
 			<OrderSummary/>
+			<Footer/>
 		</div>
 	);
 }

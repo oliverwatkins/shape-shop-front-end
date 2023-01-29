@@ -19,9 +19,11 @@ import "./addressStep.scss"
 
 export default function Header(props) {
     return (
-        <h3 className="wizardHeader  wiz-item">
-            {props.text}
-        </h3>
+        <div className="wizardHeader wiz-item">
+            <h3>
+                {props.text}
+            </h3>
+        </div>
     );
 }
 

@@ -1,18 +1,9 @@
 @import "./../../index.scss";
-@import "./step";
+//@import "./step";
 
-//TODO use GRID
-
-//Product selection
-//.product-selection {
-//
-//
-//  //display: grid;
-//  //grid-template-columns: repeat(4, 1fr);
-//  //grid-gap: 10px;
-//
-//
-//  display: flex;
-//  flex-wrap: wrap;
-//  //background-color: #fff6fe;
-//}
+.product-selection {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}

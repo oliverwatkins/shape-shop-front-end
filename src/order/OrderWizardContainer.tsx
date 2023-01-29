@@ -52,7 +52,7 @@ export default function OrderWizardContainer() {
 						<Summary/>
 					</Route>
 					<Route path={wizardPages.OK}>
-						<OKStep />
+						<OKStep/>
 					</Route>
 					<Route path={wizardPages.PAYMENT}>
 						<PaymentStep />

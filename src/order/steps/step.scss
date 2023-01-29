@@ -9,59 +9,109 @@
   }
 }
 
+.wiz-container {
 
-.wizardHeader {
-  //grid-column: span 3
-  grid-column-start: 2;
-  grid-column-end: 4;
+  //border: 11px #bb1ce7 dashed;
+  display: grid;
+  grid-template-columns: 200px auto 400px;
+  grid-template-rows: 100px auto;
 
-  grid-row-start: 1;
-  //border: 11px #47a1e1 double;
+  //min-height: 100%;
+
+  .wizardHeader {
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    //border: 11px #47a1e1 double;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  .wizardStep {
+    //min-height: 100%;
+    //border: 11px #c6b753 double;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 6;
+  }
+
+  .nextButton {
+    grid-column-start: 3;
+    grid-row-start: 2;
+    //border: 0;
+  }
+
+  .emptySpace {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+
+  .backButton {
+    grid-column-start: 1;
+    grid-row-start: 6;
+    width: 100%;
+    //border: 11px #62c653 dashed;
+    //border: 0;
+  }
+
+  .footer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  //border: 3px #47a1e1 dashed;
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .4s;
+  width: 100%;
+
+  //display: flex;
+  //flex-direction: column;
+  background: #faf2f9;
+
+  h1 {
+    color: $h1-color;
+    font-family: "Arial", Times, serif;
+  }
+
+  h2 {
+    //font:
+    color: $h2-color;
+    font-family: "Arial", Times, serif;
+    font-style: normal;
+    font-size: 50px;
+    font-weight: normal;
+  }
+
+  h3 {
+    font-family: "Arial", Times, serif;
+    font-style: normal;
+    color: $h3-color;
+  }
+
+  h4 {
+    font-family: "Arial", Times, serif;
+    font-style: normal;
+  }
+
+
+
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
 }
 
 
-.product-selection {
-  border: 11px #c6b753 double;
-
-  grid-column-start: 2;
-  grid-column-end: 3;
-
-  grid-row-start: 2;
-  grid-row-end: 6;
-
-  //display: grid;
-  //grid-template-columns: 1fr 1fr 1fr;
 
 
-  //width: 300px;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
 
-  //justify-content: space-between;
 
-  //justify-content: space-between;
-  justify-content: space-evenly;
 
-  //| space-around | space-evenly | start | end | left | right ... + safe | unsafe;
 
-}
-
-.nextButton {
-  grid-column-start: 3;
-  grid-row-start: 2;
-}
-
-.emptySpace {
-  grid-column-start: 1;
-  grid-row-start: 1;
-}
-
-.backButton {
-  grid-column-start: 1;
-  grid-row-start: 6;
-  //border: 11px #62c653 dashed;
-}
 .order-summary {
   grid-column-start: 3;
   grid-row-start: 3;
@@ -69,135 +119,13 @@
 }
 
 
-
-
-
-
-
+.wizardHeader {
+  //border: 11px #47a1e1 double;
+  font-size: 2rem;
+  padding-left: 10px;
+}
 
 .wiz-item {
   //border: 1px #47a1e1 dashed;
 }
-.wiz-container {
-  //border: 11px #bb1ce7 dashed;
-  display: grid;
-  grid-template-columns: 200px 70% 400px;
-  grid-template-rows: 100px 200px auto;
-
-
-    border: 3px #47a1e1 dashed;
-    opacity: 1;
-    animation-name: fadeInOpacity;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in;
-    animation-duration: .4s;
-    width: 100%;
-    //display: flex;
-    //flex-direction: column;
-    background: #faf2f9;
-
-    h1 {
-      color: $h1-color;
-      font-family: "Arial", Times, serif;
-    }
-
-    h2 {
-      //font:
-      color: $h2-color;
-      font-family: "Arial", Times, serif;
-      font-style: normal;
-      font-size: 50px;
-      font-weight: normal;
-    }
-
-    h3 {
-      font-family: "Arial", Times, serif;
-      font-style: normal;
-      color: $h3-color;
-    }
-
-    h4 {
-      font-family: "Arial", Times, serif;
-      font-style: normal;
-    }
-
-    .wizardHeader {
-      //border: 2px #367d06 dashed;
-      //margin-left: 200px;
-      margin-top: 30px;
-      margin-bottom: 10px;
-    }
-}
-
-//
-//
-////not being used at the moment
-//  //border layout center piece :
-//.wizardPanel {
-//  border: 3px #47a1e1 dashed;
-//  opacity: 1;
-//  animation-name: fadeInOpacity;
-//  animation-iteration-count: 1;
-//  animation-timing-function: ease-in;
-//  animation-duration: .4s;
-//  width: 100%;
-//  //display: flex;
-//  //flex-direction: column;
-//  background: #faf2f9;
-//  h1 {
-//    color: $h1-color;
-//    font-family: "Arial", Times, serif;
-//  }
-//
-//  h2 {
-//    //font:
-//    color: $h2-color;
-//    font-family: "Arial", Times, serif;
-//    font-style: normal;
-//    font-size: 50px;
-//    font-weight: normal;
-//  }
-//
-//  h3 {
-//    font-family: "Arial", Times, serif;
-//    font-style: normal;
-//    color: $h3-color;
-//  }
-//
-//  h4 {
-//    font-family: "Arial", Times, serif;
-//    font-style: normal;
-//  }
-//
-//  .wizardHeader {
-//    border: 2px #367d06 dashed;
-//    margin-left: 200px;
-//    margin-top: 30px;
-//    margin-bottom: 10px;
-//  }
-//
-//  .wizardMain {
-//    border: 2px #0a7d06 dashed;
-//    display: flex;
-//    flex-direction: row;
-//
-//    .wizardCenter {
-//      border: 1px #6c1c86 dashed;
-//      width:100%;
-//      margin: 40px;
-//      flex: 4;
-//    }
-//  }
-//
-//  label {
-//    margin-bottom: 10px;
-//    display: block;
-//  }
-//
-//  //span.price {
-//  //  float: right;
-//  //  color: grey;
-//  //}
-//}
-//
 

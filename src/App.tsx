@@ -53,7 +53,7 @@ export default function App() {
                         <Nav/>
                         {/*{getMarq()}*/}
                         <OrderWizard />
-                        <Footer/>
+                        {/*<Footer/>*/}
                     </Route>
                     <Route path="/login">
                         <Nav/>

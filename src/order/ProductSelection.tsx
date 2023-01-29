@@ -20,7 +20,7 @@ export default function ProductSelection(props: Props) {
 
 	return (
 		// <div>
-			<div className="product-selection wiz-item">
+			<div className="product-selection wiz-item wizardStep">
 				{
 					items && items.map((e) => (
 						<ItemBox key={e.name} product={e} handleChangeSelection={updateProdSelection}/>
