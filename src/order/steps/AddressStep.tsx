@@ -10,14 +10,13 @@ import {useDispatch, useSelector} from "react-redux";
 import {wizardPages as pages} from "../OrderWizardContainer"
 import {NextButton} from "../buttons/NextButton";
 import {BackButton} from "../buttons/BackButton";
-import {Address, DeliveryType, Product} from "../../AppState";
+import {Address, DeliveryType} from "../../AppState";
 import {updateAddressAction, updateDeliveryTypeAction} from "../../admin/redux/orderReducer";
 import {useForm} from "react-hook-form";
 import {selectOrder} from "../../selectors";
 
 import "./addressStep.scss"
 import Header from "./Header";
-import ProductSelection from "../ProductSelection";
 import OrderSummary from "../OrderSummary";
 
 export default function AddresStep() {

@@ -185,7 +185,9 @@ async function testDrinks() {
 async function testContact() {
 
     await screen.findAllByRole('heading')
-    expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
+
+    let headings = screen.getAllByRole('heading')
+    expect(headings[0]).toHaveTextContent('Delivery or Pickup?');
 
     let [backbutton, forwardButton] = await screen.findAllByRole("button");
 
@@ -202,7 +204,10 @@ async function testContact() {
 
     //Will NOT move to the next screen, because the form is not yet valid.
     await screen.findAllByRole('heading')
-    expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?');
+
+
+    headings = screen.getAllByRole('heading')
+    expect(headings[0]).toHaveTextContent('Delivery or Pickup?');
 
     fireEvent.change(textBoxes[0], {target: {value: 'bob'}})
     fireEvent.change(textBoxes[1], {target: {value: '123456789'}})
@@ -220,7 +225,11 @@ async function testContact() {
 
     // now we are in the next screen
     await screen.findAllByRole('heading')
-    expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
+
+
+    headings = screen.getAllByRole('heading')
+
+    expect(headings[0]).toHaveTextContent('How do you wish to pay?');
 
     [backbutton, forwardButton] = await screen.findAllByRole("button");
     fireEvent.click(backbutton);
@@ -240,7 +249,10 @@ async function testContact() {
         fireEvent.click(forwardButton2);
     });
 
-    expect(screen.getByRole('heading')).toHaveTextContent('How do you wish to pay?');
+
+    headings = screen.getAllByRole('heading')
+
+    expect(headings[0]).toHaveTextContent('How do you wish to pay?');
 
 
 }
