@@ -71,14 +71,9 @@ export type OrderState = {
 	deliveryType?: DeliveryType,
 	address?: Address,
 	date?: Date,
-	// orderItems?: Array<ProductsState> // ????
-
 	orderItems: Array<{product: Product, amount?: number}>,
-
-
 	creditCard?: CreditCardEntity,
 	submittingOrder?:boolean,
-	// orderError?:string,
 }
 
 export type CreditCardEntity = {

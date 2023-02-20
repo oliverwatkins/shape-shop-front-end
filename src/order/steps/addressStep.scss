@@ -2,20 +2,18 @@
 @import "./step";
 
 .address-step {
+  //border: 2px solid #ccc;
   label {
     color: $base-text-color;
     font-weight: bold;
   }
 
-
   input[type="radio"] {
     size: 100px;
-    //color: pink;
     font-size: 20px;
     width: 2em;
     height: 2em;
   }
-
 
   //TODO width shouldnt be on form
   form {
@@ -23,10 +21,8 @@
   }
 
   .radioBox {
-    //background: red;
     display: flex;
     margin: 20px;
-    //padding: 20px;
     input {
       margin:15px;
     }
@@ -62,7 +58,6 @@
     width: 50%;
     margin-bottom: 20px;
     padding: 12px;
-    //border: 2px solid #ccc;
     border-radius: 3px;
   }
 }

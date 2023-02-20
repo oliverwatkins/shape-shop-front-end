@@ -14,6 +14,7 @@ import RedirectToLogout from "./login/RedirectToLogout";
 import Logout from "./login/Logout";
 import AdminScreen from "./admin/AdminScreen";
 import {ToastContainer} from "react-toastify";
+import Playground from "./Playground";
 
 export default function App() {
 
@@ -35,6 +36,10 @@ export default function App() {
                     <Route path="/admin">
                         <AdminScreen/>
                     </Route>
+                    <Route path="/playground">
+                        <Playground/>
+                    </Route>
+
 
                     {/*this component just redirects to logout2*/}
                     <Route path="/logout">

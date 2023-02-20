@@ -9,8 +9,6 @@ import "./productStep.scss";
 import Header from "./Header";
 import Footer from "../../Footer";
 
-
-
 type Props = {
 	categoryProducts: { [category: string]: Array<Product> },
 	category: Category,

@@ -12,8 +12,6 @@ export default function Nav() {
 	// let categories = useSelector(selectCategories);
 	let firstCat = "main";
 
-
-
 	let isUserLoggedInx = useSelector(isUserLoggedIn);
 	let username = useSelector(selectUserEmail);
 
@@ -28,6 +26,9 @@ export default function Nav() {
 				<li>
 
 					<Link to={"/order/cat_" + firstCat} >Order</Link>
+				</li>
+				<li className={"playground"}>
+					<Link to="/playground">Playground</Link>
 				</li>
 				<li className={"admin"}>
 					<Link to="/login">Admin</Link>

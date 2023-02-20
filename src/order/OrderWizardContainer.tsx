@@ -10,7 +10,6 @@ import PaymentStep from "./steps/PaymentStep";
 import AddressStep from "./steps/AddressStep";
 import ProductStep from "./steps/ProductStep";
 
-// import "./order.scss"
 import useProductsAndCategories from "../hook/useProductsAndCategories";
 
 //navigation links
@@ -27,11 +26,10 @@ export const wizardPages = {
 export default function OrderWizardContainer() {
 
 
+	//TODO loading and error msg
 	let [loading, error] = useProductsAndCategories();
 
 	let categories = useSelector(selectCategoriesFromProducts)
-	// let categories = useSelector(selectCategoriesWithProducts)
-
 
 	let categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
 	let productsError = useSelector((state: AppState) => state.products.productsError)

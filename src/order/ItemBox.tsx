@@ -8,7 +8,6 @@ type Props = {
 	handleChangeSelection: (arg1: number, arg2: string) => void //qty, id
 }
 
-
 export default function ItemBox(props: Props) {
 
 	let selected = ""
@@ -59,5 +58,3 @@ export default function ItemBox(props: Props) {
 		</div>
 	)
 }
-
-// export default ItemBox;

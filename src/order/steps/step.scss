@@ -15,20 +15,16 @@
   display: grid;
   grid-template-columns: 200px auto 400px;
   grid-template-rows: 100px auto;
-
-  //min-height: 100%;
-
   .wizardHeader {
+    //border: 11px #47a1e1 double;
     grid-column-start: 2;
     grid-column-end: 4;
     grid-row-start: 1;
-    //border: 11px #47a1e1 double;
     margin-top: 30px;
     margin-bottom: 10px;
   }
 
   .wizardStep {
-    //min-height: 100%;
     //border: 11px #c6b753 double;
     grid-column-start: 2;
     grid-column-end: 3;
@@ -39,7 +35,6 @@
   .nextButton {
     grid-column-start: 3;
     grid-row-start: 2;
-    //border: 0;
   }
 
   .emptySpace {
@@ -48,11 +43,10 @@
   }
 
   .backButton {
+    //border: 11px #62c653 dashed;
     grid-column-start: 1;
     grid-row-start: 6;
     width: 100%;
-    //border: 11px #62c653 dashed;
-    //border: 0;
   }
 
   .footer {
@@ -67,9 +61,6 @@
   animation-timing-function: ease-in;
   animation-duration: .4s;
   width: 100%;
-
-  //display: flex;
-  //flex-direction: column;
   background: #faf2f9;
 
   h1 {
@@ -78,7 +69,6 @@
   }
 
   h2 {
-    //font:
     color: $h2-color;
     font-family: "Arial", Times, serif;
     font-style: normal;
@@ -97,8 +87,6 @@
     font-style: normal;
   }
 
-
-
   label {
     margin-bottom: 10px;
     display: block;
@@ -106,16 +94,10 @@
 }
 
 
-
-
-
-
-
-
 .order-summary {
+  //border: 11px #47a1e1 double;
   grid-column-start: 3;
   grid-row-start: 3;
-  //border: 11px #47a1e1 double;
 }
 
 

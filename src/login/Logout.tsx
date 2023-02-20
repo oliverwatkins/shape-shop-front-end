@@ -7,6 +7,5 @@ export default function Logout() {
 		<div className="container" style={{backgroundColor: "#f1f1f1"}}>
 		</div>
 	</div>;
-
 }
 

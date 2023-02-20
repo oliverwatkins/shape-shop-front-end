@@ -18,7 +18,6 @@ type State = {
 
 export default function LoginScreen(props: Props) {
 
-	// alert("in login screen")
 	const dispatch = useDispatch();
 
 	const isLoggedIn = useSelector(isUserLoggedIn)

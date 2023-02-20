@@ -25,8 +25,6 @@ export function NextButton(props: Props) {
 		//TODO these buttons are almost identiacal except for onCLick
 		//the redirect happens in the onSubmit, not here
 		return (
-
-
 			<button disabled={props.disabled} className={"nextButton next-prev-button wiz-item"} type={props.type} form={props.form}>
 				{/*Form button*/}
 				<div style={{display: "flex"}}>

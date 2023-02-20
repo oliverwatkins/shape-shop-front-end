@@ -11,9 +11,9 @@
       <excludeFolder url="file://$MODULE_DIR$/src/dist" />
       <excludeFolder url="file://$MODULE_DIR$/temp" />
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
-      <excludeFolder url="file://$MODULE_DIR$/src/playground" />
       <excludeFolder url="file://$MODULE_DIR$/coverage" />
     </content>
+    <content url="file://$MODULE_DIR$/src/playground/googleMaps" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
