@@ -13,7 +13,7 @@ function doSomething(x: number | string) {
     // x.substr(1); // Error: There is no guarantee that `x` is a `string`
 }
 
-export {}
+
 
 //'in' key. Checks property
 interface A {
@@ -81,5 +81,7 @@ function isFoo(arg: any): arg is Foo3 {
     return arg.foo !== undefined;
 }
 
+
+export {}
 
 

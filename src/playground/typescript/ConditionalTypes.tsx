@@ -15,6 +15,23 @@ interface Dog extends Animal {
 type Example1 = Dog extends Animal ? number : string; // = number
 
 
+//here is ane example of Exclude
+
+type Animal2 = "dog" | "cat" | "bird" | "fish";
+type SmallAnimal = Exclude<Animal2, "dog" | "cat">;
+
+
+// Here is an example of a conditional type that checks whether a given type is an array and, if so, returns the type of its elements:
+
+type ArrayElementType<T> = T extends (infer U)[] ? U : never;
+
+//TODO explain infer
+
+// Example usage:
+type StringArray = ArrayElementType<string[]>; // Type of StringArray is string
+type NumberArray = ArrayElementType<number[]>; // Type of NumberArray is number
+
+
 /**
  * Can have generic that checks constraint
  */
