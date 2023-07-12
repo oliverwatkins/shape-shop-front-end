@@ -34,7 +34,7 @@ uses netlify for deployment.
 2. netlify deploy (make sure build directory points to ./build   !!)
 
 
-
+az spring app logs --resource-group shapeShopResourceGroup --service shapeshop2 --name shape-shop-app --follow
 
 
 https://www.netlify.com/blog/2016/07/22/deploy-react-apps-in-less-than-30-seconds/

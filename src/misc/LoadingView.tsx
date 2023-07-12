@@ -11,9 +11,6 @@ export const LoadingView = (props: any) => {
 	);
 };
 
-
-
-
 export const LoadingView2 = (props: any) => {
 	if (props.children && props.active)
 		return (
