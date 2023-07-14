@@ -25,22 +25,14 @@ http://localhost:8788/
 
 ### NETLIFY
 
+1. check CONSTANTS.TS. Makes sure baseURL is pointing to the correct azure instance. Currently it is :
+"https://shape-shop-app.happywave-c1a7da5f.westeurope.azurecontainerapps.io/"
+2. npm run build
+3. netlify deploy (make sure build directory points to ./build   !!)
 
-Shape shop
+latest is :
+https://64b10cd334d49621b798aed1--alpenhof3.netlify.app
 
-uses netlify for deployment.
-
-1. npm run build
-2. netlify deploy (make sure build directory points to ./build   !!)
-
-
-az spring app logs --resource-group shapeShopResourceGroup --service shapeshop2 --name shape-shop-app --follow
-
-
-https://www.netlify.com/blog/2016/07/22/deploy-react-apps-in-less-than-30-seconds/
-
-
-https://63be42470416b94a5463e5b6--alpenhof3.netlify.app/
 
 
 
