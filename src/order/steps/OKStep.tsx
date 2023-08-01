@@ -50,7 +50,7 @@ export default function OKStep() {
 		<div className={"okPanel"}>
 			{loading && <CircularProgress color="primary"/>}
 			{error && <span className={"error"}>{error}</span>}
-			{submittingOrder && <LoadingView msg={"Placing Order"}/>}
+			{submittingOrder && <LoadingView msg={"Placing Order"} desc={""}/>}
 			{!submittingOrder && !error &&
 			<div>
 				<div>

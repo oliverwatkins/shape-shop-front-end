@@ -7,6 +7,12 @@
 	z-index: 100;
 	background-color: rgba( gray, .7 )
 }
+.loading__spinner_container {
+	position: absolute;
+	//position: relative;
+
+
+}
 
 .loading__spinner {
 	position: absolute;
@@ -26,6 +32,26 @@
 	border-radius:100%;
 }
 
+
+.loading__spinner_text {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	bottom: 50%;
+	font-size: 30px;
+	color: #0033ff;
+}
+
+.loading__spinner_subtext {
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	//border: 5px SOLID RED;
+	bottom: 40%;
+	//align-content: center;
+	font-size: 20px;
+	color: #0033ff;
+}
 
 .loading2 {
 	//top: 0;

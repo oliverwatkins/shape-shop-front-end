@@ -11,6 +11,7 @@ import AddressStep from "./steps/AddressStep";
 import ProductStep from "./steps/ProductStep";
 
 import useProductsAndCategories from "../hook/useProductsAndCategories";
+import {LoadingView} from "../misc/LoadingView";
 
 //navigation links
 export const wizardPages = {
@@ -36,6 +37,11 @@ export default function OrderWizardContainer() {
 
 	return (
 		<div className={"order-wizard"}>
+
+			{/*{loading && <LoadingView msg={"asdfasdf"}/>}*/}
+			{loading && <LoadingView msg={"Loading"} desc={"This may take a while intially. Currently Shape Shop is running" +
+				" on a cloud consumption plan that deactivates the containers when not in use. If Shape Shop has not" +
+				" been run in a while this may take a few seconds to load"}/>}
 			{productsError && <span className={"error"}>{productsError}</span>}
 			<Router>
 				<Switch>
