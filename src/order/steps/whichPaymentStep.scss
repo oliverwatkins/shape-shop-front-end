@@ -1,11 +1,10 @@
-
 @import "./../../index.scss";
+@import "./step";
 
 .payment-step {
 
   input[type="radio"] {
     size: 100px;
-    //color: pink;
     font-size: 20px;
     width: 2em;
     height: 2em;

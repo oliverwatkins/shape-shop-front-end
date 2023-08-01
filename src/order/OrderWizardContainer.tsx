@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {selectCategories, selectCategoriesFromProducts} from "../selectors";
+import {useSelector} from "react-redux";
+import {selectCategoriesFromProducts} from "../selectors";
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Summary from "./steps/SummaryStep";
 import WhichPayment from "./steps/WhichPaymentStep";
@@ -10,11 +10,6 @@ import PaymentStep from "./steps/PaymentStep";
 import AddressStep from "./steps/AddressStep";
 import ProductStep from "./steps/ProductStep";
 
-import "./order.scss"
-import {useEffect, useState} from "react";
-import {api} from "../api/api";
-import {fetchCategoriesSuccessAction, fetchProductsSuccessAction} from "../admin/redux/productsReducer";
-import {Notify} from "../notify";
 import useProductsAndCategories from "../hook/useProductsAndCategories";
 
 //navigation links
@@ -31,11 +26,10 @@ export const wizardPages = {
 export default function OrderWizardContainer() {
 
 
+	//TODO loading and error msg
 	let [loading, error] = useProductsAndCategories();
 
 	let categories = useSelector(selectCategoriesFromProducts)
-	// let categories = useSelector(selectCategoriesWithProducts)
-
 
 	let categoryProducts = useSelector((state: AppState) => state.products.categoryProducts)
 	let productsError = useSelector((state: AppState) => state.products.productsError)
@@ -56,7 +50,7 @@ export default function OrderWizardContainer() {
 						<Summary/>
 					</Route>
 					<Route path={wizardPages.OK}>
-						<OKStep />
+						<OKStep/>
 					</Route>
 					<Route path={wizardPages.PAYMENT}>
 						<PaymentStep />

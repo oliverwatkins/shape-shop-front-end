@@ -25,7 +25,7 @@ export function NextButton(props: Props) {
 		//TODO these buttons are almost identiacal except for onCLick
 		//the redirect happens in the onSubmit, not here
 		return (
-			<button disabled={props.disabled} className={"nextButton next-prev-button"} type={props.type} form={props.form}>
+			<button disabled={props.disabled} className={"nextButton next-prev-button wiz-item"} type={props.type} form={props.form}>
 				{/*Form button*/}
 				<div style={{display: "flex"}}>
 					<div className={"label"}>
@@ -39,7 +39,7 @@ export function NextButton(props: Props) {
 		)
 	} else {
 		return (
-			<button disabled={props.disabled} className={"nextButton next-prev-button"} type={props.type} form={props.form}
+			<button disabled={props.disabled} className={"nextButton next-prev-button wiz-item"} type={props.type} form={props.form}
 					onClick={() => push('' + props.page)}>
 				<div style={{display: "flex"}}>
 					<div className={"label"}>

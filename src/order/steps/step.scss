@@ -1,0 +1,113 @@
+@import "src/index";
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.wiz-container {
+
+  //border: 11px #bb1ce7 dashed;
+  display: grid;
+  grid-template-columns: 200px auto 400px;
+  grid-template-rows: 100px auto;
+  .wizardHeader {
+    //border: 11px #47a1e1 double;
+    grid-column-start: 2;
+    grid-column-end: 4;
+    grid-row-start: 1;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+
+  .wizardStep {
+    //border: 11px #c6b753 double;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 6;
+  }
+
+  .nextButton {
+    grid-column-start: 3;
+    grid-row-start: 2;
+  }
+
+  .emptySpace {
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+
+  .backButton {
+    //border: 11px #62c653 dashed;
+    grid-column-start: 1;
+    grid-row-start: 6;
+    width: 100%;
+  }
+
+  .footer {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  //border: 3px #47a1e1 dashed;
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: .4s;
+  width: 100%;
+  background: #faf2f9;
+
+  h1 {
+    color: $h1-color;
+    font-family: "Arial", Times, serif;
+  }
+
+  h2 {
+    color: $h2-color;
+    font-family: "Arial", Times, serif;
+    font-style: normal;
+    font-size: 50px;
+    font-weight: normal;
+  }
+
+  h3 {
+    font-family: "Arial", Times, serif;
+    font-style: normal;
+    color: $h3-color;
+  }
+
+  h4 {
+    font-family: "Arial", Times, serif;
+    font-style: normal;
+  }
+
+  label {
+    margin-bottom: 10px;
+    display: block;
+  }
+}
+
+
+.order-summary {
+  //border: 11px #47a1e1 double;
+  grid-column-start: 3;
+  grid-row-start: 3;
+}
+
+
+.wizardHeader {
+  //border: 11px #47a1e1 double;
+  font-size: 2rem;
+  padding-left: 10px;
+}
+
+.wiz-item {
+  //border: 1px #47a1e1 dashed;
+}
+

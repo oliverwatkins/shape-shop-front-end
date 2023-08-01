@@ -3,7 +3,7 @@ import * as React from 'react';
 
 export default function Footer() {
 	return (
-		<div className="container">
+		<div className="container footer">
 			<div className="ce_bs_gridStart mt-30 first row">
 				<div className="col-sm-6 col-md-3">
 					<div className="ce_hyperlink karte">

@@ -57,14 +57,13 @@ describe('Address Step test', () => {
 
 		await screen.findAllByRole('heading')
 
-		expect(screen.getByRole('heading')).toHaveTextContent('Delivery or Pickup?')
+		let x = screen.getAllByRole('heading')
+
+		expect(x[0]).toHaveTextContent('Delivery or Pickup?')
+		expect(x[1]).toHaveTextContent('Order Summary')
 
 		const labelRadio: HTMLInputElement[] = await screen.findAllByRole('radio');
 
-
-
-
-		//TODO not working :
 		expect(labelRadio[0].checked).toEqual(true);
 
 		let firstRadio = labelRadio[0];

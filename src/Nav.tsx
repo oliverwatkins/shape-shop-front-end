@@ -10,9 +10,7 @@ import {MOCK_MODE} from "./constants";
 export default function Nav() {
 	{/*//TODO put first cat name in here*/}
 	// let categories = useSelector(selectCategories);
-	let firstCat = "squares";
-
-
+	let firstCat = "main";
 
 	let isUserLoggedInx = useSelector(isUserLoggedIn);
 	let username = useSelector(selectUserEmail);
@@ -28,6 +26,9 @@ export default function Nav() {
 				<li>
 
 					<Link to={"/order/cat_" + firstCat} >Order</Link>
+				</li>
+				<li className={"playground"}>
+					<Link to="/playground">Playground</Link>
 				</li>
 				<li className={"admin"}>
 					<Link to="/login">Admin</Link>

@@ -10,12 +10,14 @@ import {useDispatch, useSelector} from "react-redux";
 import {wizardPages as pages} from "../OrderWizardContainer"
 import {NextButton} from "../buttons/NextButton";
 import {BackButton} from "../buttons/BackButton";
-import {Address, DeliveryType, Product} from "../../AppState";
+import {Address, DeliveryType} from "../../AppState";
 import {updateAddressAction, updateDeliveryTypeAction} from "../../admin/redux/orderReducer";
 import {useForm} from "react-hook-form";
 import {selectOrder} from "../../selectors";
 
 import "./addressStep.scss"
+import Header from "./Header";
+import OrderSummary from "../OrderSummary";
 
 export default function AddresStep() {
 
@@ -64,90 +66,91 @@ export default function AddresStep() {
         setRedirect(true)
     }
     return (
-        <div className="wizardPanel address-step">
+        <div className={"wiz-container address-step"}>
+            {/*TODO figure out how to use empty space with CSS Grid (and get rid of this) :*/}
+            <div className={"emptySpace"}/>
+            <Header text={"Delivery or Pickup?"}/>
+            <BackButton page={"/order/cat_drinks"}/> {/*TODO*/}
 
-            {/*{order && order.deliveryType}*/}
-            <h2 className={"wizardHeader"}>Delivery or Pickup?</h2>
-                <div className="wizardMain">
-                    <BackButton page={"/order/cat_drinks"}/>
-                    <form onSubmit={handleSubmit(onSubmit)} id="addressForm" aria-label="form">
-                        <div className="wizardCenter">
-                            <div className="icon-container">
-                                <FontAwesomeIcon icon={faTruck} style={{fontSize: "60px", color: "navy", margin: "25px"}}/>
-                            </div>
-                            <div className={"radioBox"}>
-                                <input type="radio"
-                                       id="contactChoice1"
-                                       name="pickupOrDelivery"
-                                       value={DeliveryType.PICKUP}
-                                       onChange={onRadioChanged}
-                                       checked={order.deliveryType === DeliveryType.PICKUP}/>
-                                <label htmlFor="contactChoice1">Pickup</label>
-                                <input type="radio"
-                                       id="contactChoice2"
-                                       name="pickupOrDelivery"
-                                       value={DeliveryType.DELIVERY}
-                                       checked={order.deliveryType === DeliveryType.DELIVERY}
-                                       onChange={onRadioChanged}/>
-                                <label htmlFor="contactChoice2">Delivery</label>
-                            </div>
+            <div className={"wizardStep"} >
 
+                <form onSubmit={handleSubmit(onSubmit)} id="addressForm" aria-label="form">
+                    <div className="icon-container">
+                        <FontAwesomeIcon icon={faTruck} style={{fontSize: "60px", color: "navy", margin: "25px"}}/>
+                    </div>
+                    <div className={"radioBox"}>
+                        <input type="radio"
+                               id="contactChoice1"
+                               name="pickupOrDelivery"
+                               value={DeliveryType.PICKUP}
+                               onChange={onRadioChanged}
+                               checked={order.deliveryType === DeliveryType.PICKUP}/>
+                        <label htmlFor="contactChoice1">Pickup</label>
+                        <input type="radio"
+                               id="contactChoice2"
+                               name="pickupOrDelivery"
+                               value={DeliveryType.DELIVERY}
+                               checked={order.deliveryType === DeliveryType.DELIVERY}
+                               onChange={onRadioChanged}/>
+                        <label htmlFor="contactChoice2">Delivery</label>
+                    </div>
+
+                    <div>
+                        <label htmlFor="name">Name</label>
+                        <input id="name" type="text"
+                               {...register("name", {required: true, maxLength: 45, })}
+                        />
+                        <span className={"error"}>
+                            {errors.name?.type === 'required' && <p role="alert">Name is required</p>}
+                        </span>
+                    </div>
+                    {order.deliveryType && (order.deliveryType === DeliveryType.DELIVERY) &&
+                        <div>
                             <div>
-                                <label htmlFor="name">Name</label>
-                                <input id="name" type="text"
-                                    {...register("name", {required: true, maxLength: 45, })}
+                                <label htmlFor="street">Strasse</label>
+                                <input id="street" type="text"
+                                       {...register("street", {required: true, maxLength: 85})}
                                 />
-                                <span className={"error"}>
-                                    {errors.name?.type === 'required' && <p role="alert">Name is required</p>}
-                                </span>
+                                <span className={"error"}></span>
                             </div>
-                            {order.deliveryType && (order.deliveryType === DeliveryType.DELIVERY) &&
-                                <div>
-                                    <div>
-                                        <label htmlFor="street">Strasse</label>
-                                        <input id="street" type="text"
-                                            {...register("street", {required: true, maxLength: 85})}
-                                        />
-                                        <span className={"error"}></span>
-                                    </div>
-                                    <div>
-                                        <label htmlFor="postcode">Postleitzahl</label>
-                                        <input
-                                            id="postcode"
-                                            type="text"
-                                            {...register("postcode", {required: true, maxLength: 85})}
-                                        />
-                                        <span className={"error"}></span>
-                                    </div>
-                                </div>
-                            }
                             <div>
-                                <label htmlFor="tel">Telefon</label>
+                                <label htmlFor="postcode">Postleitzahl</label>
                                 <input
-                                    id="tel"
+                                    id="postcode"
                                     type="text"
-                                    {...register("telephone", {required: true, maxLength: 85})}
+                                    {...register("postcode", {required: true, maxLength: 85})}
                                 />
-                                <span className={"error"}>
-                                    {errors.telephone?.type === 'required' && <p role="alert">Telephone is required</p>}
-                                </span>
-                            </div>
-                            <div>
-                                <label htmlFor="email">Email</label>
-                                <input
-                                    id="email"
-                                    type="text"
-                                    value={order.address?.email}
-                                    {...register("email", {required: false, maxLength: 85})}
-                                />
-                                <span className={"error"}>
-                                    {errors.email?.type === 'pattern' && <p role="alert">Email pattern is wrong</p>}
-                                </span>
+                                <span className={"error"}></span>
                             </div>
                         </div>
-                    </form>
-                <NextButton label={"next"} type={"submit"} form={"addressForm"} disabled={false}/>
+                    }
+                    <div>
+                        <label htmlFor="tel">Telefon</label>
+                        <input
+                            id="tel"
+                            type="text"
+                            {...register("telephone", {required: true, maxLength: 85})}
+                        />
+                        <span className={"error"}>
+                            {errors.telephone?.type === 'required' && <p role="alert">Telephone is required</p>}
+                        </span>
+                    </div>
+                    <div>
+                        <label htmlFor="email">Email</label>
+                        <input
+                            id="email"
+                            type="text"
+                            value={order.address?.email}
+                            {...register("email", {required: false, maxLength: 85})}
+                        />
+                        <span className={"error"}>
+                            {errors.email?.type === 'pattern' && <p role="alert">Email pattern is wrong</p>}
+                        </span>
+                    </div>
+                </form>
             </div>
+            <NextButton label={"next"} type={"submit"} form={"addressForm"} disabled={false}/>
+            <OrderSummary/>
         </div>
     );
 }

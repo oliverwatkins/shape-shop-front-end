@@ -1,21 +1,8 @@
 @import "./../../index.scss";
 
-//TODO this has no effect?
-//Product selection
 .product-selection {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
-  //background-color: #fff6fe;
+  justify-content: flex-start;
 }
-//.wizardHeader {
-//  margin-left: 3000px;
-//}
-
-//select {
-//  padding: 0;
-//  //size: 100px;
-//  //color: pink;
-//  //font-size: 20px;
-//  width: 50px;
-//  height: 20px;
-//}

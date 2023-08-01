@@ -13,7 +13,7 @@ export default function OrderSummary() {
 
     let order = useSelector(selectOrder);
     return (
-        <div className = {"order-summary"} data-testid = {"order-summary"}>
+        <div className = {"order-summary wiz-item"} data-testid = {"order-summary"}>
             <h3>Order Summary</h3>
             {getContent(order.selectedProducts)}
         </div>

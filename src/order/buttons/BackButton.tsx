@@ -12,7 +12,7 @@ type Props = {
 export function BackButton(props: Props) {
 	return (
 		<Link to={props.page}>
-			<button className={"backButton next-prev-button"}>
+			<button className={"backButton next-prev-button wiz-item"}>
 				<FontAwesomeIcon icon={faArrowCircleLeft} className={"icon"}/>
 			</button>
 		</Link>
