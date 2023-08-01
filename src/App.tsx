@@ -45,25 +45,25 @@ export default function App() {
                     </Route>
                     <Route path="/logout2">
                         <Nav/>
-                        {getMarq()}
+                        {/*{getMarq()}*/}
                         <Logout/>
                         <Footer/>
                     </Route>
                     <Route path="/order">
                         <Nav/>
-                        {getMarq()}
+                        {/*{getMarq()}*/}
                         <OrderWizard />
-                        <Footer/>
+                        {/*<Footer/>*/}
                     </Route>
                     <Route path="/login">
                         <Nav/>
-                        {getMarq()}
+                        {/*{getMarq()}*/}
                         <LoginScreen/>
                         <Footer/>
                     </Route>
                     <Route path="/">
                         <Nav/>
-                        {getMarq()}
+                        {/*{getMarq()}*/}
                         <Welcome/>
                         <Footer/>
                     </Route>
