@@ -32,8 +32,7 @@ export default function ProductDialog(props: Props) {
     const {register, handleSubmit, formState: {errors}} = useForm<Product>();
     const onSubmit = (productData: Product) => {
         setLoading(true)
-        let cs = extractCategories(productData, categories);
-        productData.categories = cs;
+        productData.categories = extractCategories(productData, categories);
 
         if (props.type === "Create") {
 
@@ -118,7 +117,7 @@ export default function ProductDialog(props: Props) {
                                 <InputLabel>category</InputLabel>
                                 <Select variant="outlined"
                                         multiline={true}
-                                        defaultValue={"main"}
+                                        defaultValue={props.product?.categories?.[0].name}
                                         fullWidth={true}
                                         {...register("categoriesForForm", {required: true, maxLength: 95})}
                                 >

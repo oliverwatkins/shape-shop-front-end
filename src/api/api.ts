@@ -468,7 +468,7 @@ export function extractCategories(product: Product, categories: Array<Category>)
             if (c)
                 cats = [c];
             else
-                throw "cannopt find cat"
+                throw "cannopt find cat " + product.categoriesForForm
 
         } else {
             throw "error..."

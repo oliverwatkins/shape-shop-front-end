@@ -30,9 +30,11 @@ http://localhost:8788/
 2. npm run build
 3. netlify deploy (make sure build directory points to ./build   !!)
 
-latest is :
+check the link to see if its OK, latest is :
 https://64b10cd334d49621b798aed1--alpenhof3.netlify.app
 
+
+4. netlify deploy --prod (make sure build directory points to ./build   !!)
 
 
 

@@ -25,18 +25,18 @@ export function getCategoryProducts(productsArray: Array<Product>): { [category:
             return false;
         })
 
-        let stripOutCats = (el: Product): Product => {
-            //strip out categories, qty,
-            return {
-                id: el.id,
-                name: el.name,
-                price: el.price,
-                imageFilename: el.imageFilename,
-                description: el.description,
-                amount: el.amount
-            }
-        }
-        filtered = filtered.map(stripOutCats);
+        // let stripOutCats = (el: Product): Product => {
+        //     //strip out categories, qty,
+        //     return {
+        //         id: el.id,
+        //         name: el.name,
+        //         price: el.price,
+        //         imageFilename: el.imageFilename,
+        //         description: el.description,
+        //         amount: el.amount
+        //     }
+        // }
+        // filtered = filtered.map(stripOutCats);
         catProds[uniqueCategory.name] = filtered;
     }
     return catProds;
@@ -47,21 +47,6 @@ export function getCategoryProducts(productsArray: Array<Product>): { [category:
  */
 export function extractUniqueCategories(productsArray: Array<Product>) {
     let uniqueCategories: Array<Category> = [];
-
-
-    // {
-    //     "id": 34,
-    //     "company": {
-    //     "id": 1,
-    //         "name": "alpenhof"
-    // },
-    //     "orders": [],
-    //     "productCategories": [],
-    //     "name": "asdfasdf",
-    //     "description": "sdfg",
-    //     "price": 12,
-    //     "imageFilename": "todo"
-    // }
 
     for (const product of productsArray) {
         let categories: Array<Category> | undefined = product.categories;
