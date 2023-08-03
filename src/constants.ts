@@ -18,16 +18,6 @@ export const baseURL = "http://localhost:8080/";
 // switches -
 
 
-
-
-
-
-
-
-
-
-
-
 // export const company = "alpenhof";
 //
 //

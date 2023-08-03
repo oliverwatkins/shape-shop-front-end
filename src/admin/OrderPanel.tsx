@@ -13,7 +13,7 @@ import {
     DeliveryType,
     OrderState,
     OrderStateType,
-    PaymentType,
+    PaymentType, Product,
 } from "../AppState";
 import "./orderPanel.scss";
 import {useDispatch, useSelector} from "react-redux";
@@ -22,6 +22,7 @@ import {api} from "../api/api";
 import {fetchOrdersSuccessAction} from "./redux/adminReducer";
 import {ErrorPanel} from "../misc/ErrorPanel";
 import {Notify} from "../notify";
+import * as Constants from "../constants";
 
 type Props = {
     type: OrderStateType,
@@ -34,7 +35,7 @@ export default function OrderPanel(props: Props) {
     let dispatch = useDispatch();
 
     //TODO move to selectors
-    let orders = useSelector((state: AppState) => state.admin.orders.filter(o => o.orderState === "OPEN"));
+    let orders = useSelector((state: AppState) => state.admin.orders.filter(o => o.orderState === props.type));
 
     let [loading, setLoading] = useState<boolean>(false);
     let [error, setError] = useState<string>();
@@ -190,11 +191,12 @@ function CardPanel(props: any) {
     )
 }
 
-function ProductListPanel(props: any) {
+function ProductListPanel(props: {orderItems: Array<{product: Product, amount?: number}>,}) {
     return (
         <table className={"productListTable"}>
             <thead key={"head"}>
             <tr key={"head-tr"}>
+                <td  key={"i"}> </td>
                 <td  key={"i"}>item</td>
                 <td  key={"p"}>price</td>
                 <td  key={"t"}>type</td>
@@ -204,6 +206,12 @@ function ProductListPanel(props: any) {
             <tbody>
             {props.orderItems && props.orderItems.map((item: any) =>
                 <tr className={"orderItemBox"} key={item.id}>
+                    <td key={item.id + "-0"}>
+                        <img
+                            width="40px"
+                            src={Constants.baseURL + "images/" + Constants.company + "/" + item.product.imageFilename}>
+                        </img>
+                    </td>
                     <td key={item.id + "-1"}> {item.product.name} </td>
                     <td key={item.id + "-2"}> {item.product.price} </td>
                     <td key={item.id + "-3"}> {item.product.type} </td>
