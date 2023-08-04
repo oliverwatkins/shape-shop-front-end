@@ -41,7 +41,7 @@ describe('Address Step test', () => {
 	it('matches snapshot', () => {
 		expect(render(<Provider store={store}>
 			<MemoryRouter>
-				<AddressStep/>
+				<AddressStep lastCategory={{name: "asfd", id: "2"}}/>
 			</MemoryRouter>
 		</Provider>)).toMatchSnapshot();
 	});
@@ -51,7 +51,7 @@ describe('Address Step test', () => {
 
 		render(<Provider store={store}>
 		 			<MemoryRouter>
-		 				<AddressStep/>
+						<AddressStep lastCategory={{name: "asfd", id: "2"}}/>
 					</MemoryRouter>
 				</Provider>)
 

@@ -47,7 +47,7 @@ export default function OrderWizardContainer() {
 				<Switch>
 					{createCategoryPages(categoryProducts, categories)}
 					<Route path={wizardPages.ADDRESS}>
-						<AddressStep/>
+						<AddressStep lastCategory={categories[categories.length - 1]}/>
 					</Route>
 					<Route path={wizardPages.WHICH_PAYMENT}>
 						<WhichPayment/>

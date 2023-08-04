@@ -10,7 +10,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {wizardPages as pages} from "../OrderWizardContainer"
 import {NextButton} from "../buttons/NextButton";
 import {BackButton} from "../buttons/BackButton";
-import {Address, DeliveryType} from "../../AppState";
+import {Address, Category, DeliveryType, Product} from "../../AppState";
 import {updateAddressAction, updateDeliveryTypeAction} from "../../admin/redux/orderReducer";
 import {useForm} from "react-hook-form";
 import {selectOrder} from "../../selectors";
@@ -19,7 +19,14 @@ import "./addressStep.scss"
 import Header from "./Header";
 import OrderSummary from "../OrderSummary";
 
-export default function AddresStep() {
+// Props = {
+//     lastCategory: Category
+// }
+type Props = {
+    lastCategory: Category
+}
+
+export default function AddresStep(props: Props) {
 
     const order = useSelector(selectOrder);
 
@@ -70,7 +77,7 @@ export default function AddresStep() {
             {/*TODO figure out how to use empty space with CSS Grid (and get rid of this) :*/}
             <div className={"emptySpace"}/>
             <Header text={"Delivery or Pickup?"}/>
-            <BackButton page={"/order/cat_drinks"}/> {/*TODO*/}
+            <BackButton page={"/order/cat_" + props.lastCategory.name}/> {/*TODO*/}
 
             <div className={"wizardStep"} >
 
