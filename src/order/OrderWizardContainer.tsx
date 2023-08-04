@@ -36,7 +36,7 @@ export default function OrderWizardContainer() {
 	let productsError = useSelector((state: AppState) => state.products.productsError)
 
 	return (
-		<div className={"order-wizard"}>
+		<div className={"order-wizard-"}>
 
 			{/*{loading && <LoadingView msg={"asdfasdf"}/>}*/}
 			{loading && <LoadingView msg={"Loading"} desc={"This may take a while intially. Currently Shape Shop is running" +

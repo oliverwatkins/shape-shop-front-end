@@ -7,7 +7,6 @@ export const LoadingView = (props: {msg:string, desc:string}) => {
 			<span className="loading__spinner" />
 			<div className="loading__spinner_text" >{props.msg}</div>
 			<div className="loading__spinner_subtext" >{props.desc}</div>
-
 		</div>
 	);
 }
