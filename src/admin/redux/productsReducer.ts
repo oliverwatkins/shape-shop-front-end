@@ -1,7 +1,7 @@
 import type {Category, ProductsState} from "../../AppState";
 import {extractUniqueCategories, getCategoryProducts} from "../../util/util";
 import { AnyAction } from "redux";
-import {createAction} from "@reduxjs/toolkit";
+import {createAction, PayloadAction} from "@reduxjs/toolkit";
 import {Product} from "../../AppState";
 
 const initialState: ProductsState = {
@@ -24,7 +24,7 @@ export const ProductActions = {
 }
 
 export const addCategoryAction = createAction<{ category: Category } >(ProductActions.ADD_CATEGORY);
-export const updateCategorySuccessAction = createAction<{ category: Category } >(ProductActions.UPDATE_CATEGORY);
+export const updateCategorySuccessAction = createAction<{ category: Category, oldCatName: string  } >(ProductActions.UPDATE_CATEGORY);
 export const addProductAction = createAction<{ product: Product } >(ProductActions.ADD_PRODUCT);
 export const updateProductSuccessAction = createAction<{ product: Product } >(ProductActions.UPDATE_PRODUCT);
 export const deleteProductAction = createAction<{ product: Product } >(ProductActions.DELETE_PRODUCT);
@@ -39,6 +39,8 @@ export const fetchCategoriesSuccessAction = createAction<{ data: any }>(ProductA
 export const updateProductSelection = createAction<{ value: number, productid: string } >(ProductActions.UPDATE_PRODUCT_SELECTION);
 
 //TODO this is how reducers are supposed to be written. Change other reducers to this, or
+
+
 // maybe even go further with "createSlice" ? https://redux-toolkit.js.org/usage/usage-with-typescript
 export function productsReducer(state: ProductsState = initialState, action: AnyAction): ProductsState {
 
@@ -138,9 +140,13 @@ export function productsReducer(state: ProductsState = initialState, action: Any
                 return action.payload.category;
             return elem;
         });
+        let categoryProducts = updateCategorayProductsWithNewName(state, action);
+
+
 
         return {
             ...state,
+            categoryProducts: categoryProducts,
             categories: cats
         };
     }
@@ -155,23 +161,25 @@ export function productsReducer(state: ProductsState = initialState, action: Any
             ...state,
             categories: cats
         };
-
-        // let allProducts = state.allProducts.map((item): Product => {
-        //     if (item.id === action.payload.productid) {
-        //         return {
-        //             ...item,
-        //             amount: action.payload.value
-        //         }
-        //     }
-        //     return item;
-        // })
-        // //recalculate PCs
-        // let productsAndCategories = getCategoryProducts(allProducts)
-        // return {
-        //     ...state,
-        //     allProducts: allProducts,
-        //     categoryProducts: productsAndCategories
-        // };
     }
     return state;
+}
+
+
+function updateCategorayProductsWithNewName(state: ProductsState, action: PayloadAction<{ category: Category; oldCatName: string }, string, never, never>) {
+    //update category products for the category whose name has changed. Find the old entry,
+    // and re assign with new value
+    let categoryProducts: { [category: string]: Array<Product> } = {}
+    if (state.categoryProducts) {
+        Object.entries(state.categoryProducts).forEach(([key, value]) => {
+
+            if (key == action.payload.oldCatName) {
+                categoryProducts[action.payload.category.name] =
+                    value
+            } else {
+                categoryProducts[key] = value
+            }
+        });
+    }
+    return categoryProducts;
 }

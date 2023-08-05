@@ -24,19 +24,6 @@ export function getCategoryProducts(productsArray: Array<Product>): { [category:
                 }
             return false;
         })
-
-        // let stripOutCats = (el: Product): Product => {
-        //     //strip out categories, qty,
-        //     return {
-        //         id: el.id,
-        //         name: el.name,
-        //         price: el.price,
-        //         imageFilename: el.imageFilename,
-        //         description: el.description,
-        //         amount: el.amount
-        //     }
-        // }
-        // filtered = filtered.map(stripOutCats);
         catProds[uniqueCategory.name] = filtered;
     }
     return catProds;

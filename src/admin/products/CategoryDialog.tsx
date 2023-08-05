@@ -29,6 +29,9 @@ export default function CategoryDialog(props: Props) {
     const dispatch = useDispatch()
     let [loading, setLoading] = useState(true);
 
+
+    let oldCatName = props.category?.name;
+
     const onSubmit = (categoryData: Category) => {
 
         setLoading(true)
@@ -52,7 +55,9 @@ export default function CategoryDialog(props: Props) {
 
             api.updateCategory(categoryData, loginToken).then(() => {
                 Notify.success("Updated Category " + categoryData.name);
-                dispatch(updateCategorySuccessAction({category: categoryData}))
+                if (oldCatName) {
+                    dispatch(updateCategorySuccessAction({category: categoryData, oldCatName: oldCatName}))
+                }
             }).catch((error: { message: any; }) => {
                 Notify.error(`onRejected function called: ${error.message}`);
             }).finally(() => {

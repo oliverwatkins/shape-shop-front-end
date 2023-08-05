@@ -29,9 +29,6 @@ type Props = {
 export default function OKCancelDialog(props: Props) {
     return (
         <Dialog
-            // sx={
-            //     style
-            // }
             open={props.open}
             onClose={props.handleCancel}
             aria-labelledby="alert-dialog-title"
