@@ -11,7 +11,6 @@ import {
     CardActions,
     CardContent,
     CardHeader,
-    CardMedia,
     Collapse,
     Grid,
     IconButton,
@@ -27,7 +26,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import PhotoIcon from '@mui/icons-material/Photo';
 
-import * as Constants from "./../../constants";
+import ShapeShopImage from "../../common/ShapeShopImage";
 
 type Props = {
     item: Product;
@@ -62,7 +61,7 @@ export function ProductItem(props: Props) {
 
     const heigt = 25;
     return (
-        <Card className="admin-item-box" data-testid="custom-element" role={"fuck"}>
+        <Card className="admin-item-box" data-testid="custom-element" role={"asfd"}>
             <CardHeader
                 action={
                     <>
@@ -106,13 +105,7 @@ export function ProductItem(props: Props) {
                     product.name
                 }
             />
-            <CardMedia
-                component="img"
-                height="250px"
-                width="300px"
-                image={Constants.baseURL + "images/" + Constants.company + "/" + product.imageFilename}
-                alt={product.imageFilename}
-            />
+            <ShapeShopImage product={product}/>
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <ErrorBoundary>
@@ -162,8 +155,6 @@ function getProductFields(product: Product) {
             <Grid item xs={12}>
                 <TextField variant="outlined"
                            fullWidth={true}
-                    // InputLabelProps={{style: {fontFamily: 'Arial', fontSize: 16}}}
-                    // inputProps={{style: {fontFamily: 'Arial', fontSize: 18}}}
                            label={"price"}
                            value={"€ " + product.price}/>
             </Grid>

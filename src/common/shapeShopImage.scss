@@ -1,0 +1,33 @@
+
+
+.shape-shop-image {
+  overflow: hidden; /* required */
+  margin: 25px auto; /* for demo only */
+  position: relative; /* required  for demo*/
+}
+
+.shape-shop-image-sash {
+  margin: 0;
+  padding: 0;
+  background: rebeccapurple;
+  color:white;
+  padding:1em 0;
+  position: absolute;
+  top:0;
+  right:0;
+  transform: translateX(30%) translateY(0%) rotate(45deg);
+  transform-origin: top left;
+}
+.shape-shop-image-sash:before,
+.shape-shop-image-sash:after {
+  content: '';
+  position: absolute;
+  top:0;
+  margin: 0 -1px; /* tweak */
+  width: 100%;
+  height: 100%;
+  background: rebeccapurple;
+}
+.shape-shop-image-sash:before {
+  right:100%;
+}

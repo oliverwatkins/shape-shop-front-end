@@ -2,6 +2,7 @@ import * as React from 'react';
 import type {Product} from "../AppState";
 import './itemBox.scss';
 import {baseURL, company} from "../constants";
+import ShapeShopImage from "../common/ShapeShopImage";
 
 type Props = {
 	product: Product,
@@ -15,7 +16,6 @@ export default function ItemBox(props: Props) {
 	if (props.product.amount && props.product.amount > 0) {
 		selected = "selected"
 		checked = true
-		// alert()
 	}
 
 	function handleChangeCheckbox(e: any) {
@@ -34,7 +34,8 @@ export default function ItemBox(props: Props) {
 
 	return(
 		<div className={"item item-box " + selected}>
-			<img className={"item-box-image"} src={baseurl + props.product.imageFilename} alt=""/>
+			<ShapeShopImage product={props.product}/>
+
 			<div className={"item-box-desc " + selected} title={props.product.name} >
 				{props.product.name}
 			</div>

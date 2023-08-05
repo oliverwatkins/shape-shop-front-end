@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Welcome from "./WelcomeScreen";
 import LoginScreen from "./login/LoginScreen";
 import Nav from "./Nav";
-
+import {Link, useHistory} from "react-router-dom";
 import OrderWizard from "./order/OrderWizardContainer";
 import Footer from "./Footer";
 import RedirectToLogout from "./login/RedirectToLogout";
@@ -15,8 +15,19 @@ import Logout from "./login/Logout";
 import AdminScreen from "./admin/AdminScreen";
 import {ToastContainer} from "react-toastify";
 import Playground from "./Playground";
+import {useSelector} from "react-redux";
+import {AppState} from "./AppState";
 
 export default function App() {
+
+    let loginToken = useSelector((state: AppState) => state.login.loginToken)
+    const history = useHistory();
+    if (loginToken && loginToken.token) {
+        // alert(loginToken.token)
+        history.push("/login");
+
+    }
+
 // alert()
     return (
         <div className="App">
@@ -34,7 +45,7 @@ export default function App() {
                 />
                 <Switch>
                     <Route path="/admin">
-                        <AdminScreen/>
+                        {loginToken && loginToken.token && <AdminScreen/>}
                     </Route>
                     <Route path="/playground">
                         <Playground/>

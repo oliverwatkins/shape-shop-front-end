@@ -24,6 +24,7 @@ export type Product = {
 	amount?: number, //selected quantity
 	categories?: Array<Category>
 	categoriesForForm?: Array<string> | string //needed for form
+	sashText?: string
 
 }
 

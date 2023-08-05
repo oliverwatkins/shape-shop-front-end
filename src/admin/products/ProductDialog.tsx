@@ -114,6 +114,16 @@ export default function ProductDialog(props: Props) {
                                 />
                             </Grid>
                             <Grid item xs={12}>
+                                <TextField variant="outlined"
+                                           defaultValue={props.product?.sashText}
+                                           fullWidth={true}
+                                           label={"sash text"}
+                                           {...register("sashText", {required: false, maxLength: 50})}
+                                    // error={errors.price}
+                                           helperText={errors.sashText?.type}
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
                                 <InputLabel>category</InputLabel>
                                 <Select variant="outlined"
                                         multiline={true}
