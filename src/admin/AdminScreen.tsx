@@ -51,7 +51,6 @@ export default function AdminScreen() {
     }
 
     return (
-
     <div className={"admin-screen"}>
         <Box sx={{
             display: "flex",

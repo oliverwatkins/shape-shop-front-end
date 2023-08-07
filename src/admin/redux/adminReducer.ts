@@ -3,7 +3,6 @@ import {AnyAction} from "redux";
 import {createAction} from "@reduxjs/toolkit";
 
 export const AdminActions = {
-	// FETCH_ORDERS: 'FETCH_ORDERS',
 	FETCH_ORDERS_SUCCESS: 'FETCH_ORDERS_SUCCESS',
 	FETCH_ORDERS_FAIL: 'FETCH_ORDERS_FAIL',
 };

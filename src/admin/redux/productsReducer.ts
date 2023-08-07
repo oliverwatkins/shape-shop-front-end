@@ -28,24 +28,13 @@ export const updateCategorySuccessAction = createAction<{ category: Category, ol
 export const addProductAction = createAction<{ product: Product } >(ProductActions.ADD_PRODUCT);
 export const updateProductSuccessAction = createAction<{ product: Product } >(ProductActions.UPDATE_PRODUCT);
 export const deleteProductAction = createAction<{ product: Product } >(ProductActions.DELETE_PRODUCT);
-
 export const deleteCategoryAction = createAction<{ category: Category } >(ProductActions.DELETE_CATEGORY);
-
 export const fetchProductsSuccessAction = createAction<{ data: any }>(ProductActions.FETCH_PRODUCTS);
-
 export const fetchCategoriesSuccessAction = createAction<{ data: any }>(ProductActions.FETCH_CATEGORIES);
-
-
 export const updateProductSelection = createAction<{ value: number, productid: string } >(ProductActions.UPDATE_PRODUCT_SELECTION);
-
-//TODO this is how reducers are supposed to be written. Change other reducers to this, or
-
 
 // maybe even go further with "createSlice" ? https://redux-toolkit.js.org/usage/usage-with-typescript
 export function productsReducer(state: ProductsState = initialState, action: AnyAction): ProductsState {
-
-
-
 
     if (addProductAction.match(action)) {
         let allProds = [...state.allProducts, action.payload.product]

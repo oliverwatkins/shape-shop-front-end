@@ -60,7 +60,6 @@ export default function OrderPanel(props: Props) {
             {error &&
                 <ErrorPanel message={"ERROR order error: " +  error}/>
             }
-
             <table className={"orderTable"}>
                 <thead>
                 {/*<tbody>*/}

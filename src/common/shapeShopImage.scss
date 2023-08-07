@@ -1,9 +1,34 @@
 
 
 .shape-shop-image {
-  overflow: hidden; /* required */
-  margin: 25px auto; /* for demo only */
-  position: relative; /* required  for demo*/
+  overflow: hidden;
+  margin: 25px auto;
+  position: relative;
+  transition: transform 0.2s ease; /* Smooth animation on hover */
+}
+
+
+.shape-shop-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Enlarge the image on hover */
+.shape-shop-image:hover {
+  transform: scale(1.1); /* You can adjust the scale factor to your preference */
+}
+
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Enlarge the image on hover */
+.image-container:hover {
+  transform: scale(1.1); /* You can adjust the scale factor to your preference */
 }
 
 .shape-shop-image-sash {

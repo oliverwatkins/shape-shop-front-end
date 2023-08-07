@@ -51,7 +51,6 @@ export default function CategoryDialog(props: Props) {
         } else {
 
             categoryData.id = props?.category?.id as string;
-            // categoryData.imageFilename = props?.product?.imageFilename;
 
             api.updateCategory(categoryData, loginToken).then(() => {
                 Notify.success("Updated Category " + categoryData.name);

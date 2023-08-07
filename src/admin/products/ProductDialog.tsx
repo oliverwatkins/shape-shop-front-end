@@ -19,7 +19,6 @@ type Props = {
     type: "Create" | "Edit"
     handleClose: () => void
     product?: Product
-    // currentCategory?: Category
 }
 // TODO comment back in errors
 //create/update
