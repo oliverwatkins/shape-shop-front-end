@@ -4,7 +4,7 @@ import {Route, Switch} from "react-router-dom";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import Welcome from "./WelcomeScreen";
+import Welcome from "./Home";
 import LoginScreen from "./login/LoginScreen";
 import Nav from "./Nav";
 import {Link, useHistory} from "react-router-dom";
@@ -23,12 +23,9 @@ export default function App() {
     let loginToken = useSelector((state: AppState) => state.login.loginToken)
     const history = useHistory();
     if (loginToken && loginToken.token) {
-        // alert(loginToken.token)
         history.push("/login");
-
     }
 
-// alert()
     return (
         <div className="App">
             <div>
@@ -89,8 +86,4 @@ export default function App() {
     );
 }
 
-function getMarq() {
-    return <div className={"marquee"}>
-        <p>-- Wir haben ab 30. Mai 2020 geöffnet, ab 5. Juni 2020 sind Hochzeiten wieder möglich! -- </p>
-    </div>;
-}
+

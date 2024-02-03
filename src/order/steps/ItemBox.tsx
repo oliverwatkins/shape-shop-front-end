@@ -1,8 +1,8 @@
 import * as React from 'react';
-import type {Product} from "../AppState";
+import type {Product} from "../../AppState";
 import './itemBox.scss';
-import {baseURL, company} from "../constants";
-import ShapeShopImage from "../common/ShapeShopImage";
+import {baseURL, company} from "../../constants";
+import ShapeShopImage from "../../common/ShapeShopImage";
 
 type Props = {
 	product: Product,

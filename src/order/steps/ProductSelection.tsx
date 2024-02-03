@@ -1,14 +1,20 @@
 import * as React from 'react';
 
 import ItemBox from "./ItemBox";
-import {updateProductSelection} from "../admin/redux/productsReducer";
+import {updateProductSelection} from "../../admin/redux/productsReducer";
 import {connect, useDispatch} from "react-redux";
-import type {Product} from "../AppState";
+import type {Product} from "../../AppState";
+
+import "./productSelection.scss"
 
 type Props = {
 	productItems?: Array<Product>,
 }
 
+
+/**
+ * Product central area
+ */
 export default function ProductSelection(props: Props) {
 	let items = props.productItems;
 

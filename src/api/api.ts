@@ -252,7 +252,7 @@ const apiReal = {
         checkForToken(auth);
 
         if (!values.id)
-            throw "categorz has no id"
+            throw "category has no id"
 
         let data = await fetch(constants.baseURL + constants.company + '/categories/'  + values.id, {
             method: "DELETE",

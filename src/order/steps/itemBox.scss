@@ -1,5 +1,5 @@
 
-@import "./../index.scss";
+@import "src/index";
 
 .item-box.selected {
   background-color: $itembox-color-selected;
@@ -7,26 +7,27 @@
 
 .item-box {
   //background-color: $itembox-color-unselected;
-  font-size: medium;
+  //font-size: 20px;
   margin: 10px;
   //padding: 10px;
   width: 250px;
+  //height: 250px;
 
-
-  .item-box-image {
-    width: 246px;
-    height: 230px;
-    margin: 2px;
-    overflow: hidden;
-    position: relative;
-    text-align: center;
-  }
+  //.item-box-image {
+  //  width: 246px;
+  //  height: 230px;
+  //  margin: 322px;
+  //  overflow: hidden;
+  //  position: relative;
+  //  text-align: center;
+  //}
 
   .item-box-desc {
     padding: 2px;
     height: 70px;
     overflow: hidden;
-    font-size: 14px;
+    font-size: 1.5em;
+    color: lighten(gray, 6);
     //background: #f3f8f7;
     margin: 6px;
     //font-style: italic;

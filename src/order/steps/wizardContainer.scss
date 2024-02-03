@@ -8,13 +8,50 @@
     opacity: 1;
   }
 }
+//.wiz-container:before {
+//  content: ' dfdd';
+//  //display: block;
+//  //left: 0;
+//  width: 100vw;
+//  height: 100vh;
+//  opacity: 0.3;
+//  background-image: url('./../../assets/img/welcome.jpg');
+//  background-repeat: no-repeat;
+//  //background-position: 50% 0;
+//  background-size: cover;
+//
+//
+//  border: 11px #56e71c dashed;
+//}
+//.wiz-container:before {
+//  content: ' dfdd';
+//}
+
+
+.order-wizard {
+  //border: 11px #1caae7 dashed;
+  background-image: url('./../../assets/img/welcome.jpg');
+  //opacity: 0.5;
+}
 
 .wiz-container {
 
+
+  //background-image: url('./../../assets/img/welcome.jpg');
+  //border: 11px #47a1e1 double;
+
   //border: 11px #bb1ce7 dashed;
+  height: 100vh;
   display: grid;
   grid-template-columns: 200px auto 400px;
   grid-template-rows: 100px auto;
+
+  .emptySpace {
+    //border: 11px #277734 double;
+    grid-column-start: 1;
+    grid-row-start: 1;
+  }
+
   .wizardHeader {
     //border: 11px #47a1e1 double;
     grid-column-start: 2;
@@ -22,6 +59,15 @@
     grid-row-start: 1;
     margin-top: 30px;
     margin-bottom: 10px;
+    margin-right:30px;
+  }
+
+  .backButton {
+    //border: 11px #62c653 dashed;
+    //border: 11px #c6b753 double;
+    grid-column-start: 1;
+    grid-row-start: 6;
+    width: 100%;
   }
 
   .wizardStep {
@@ -33,21 +79,12 @@
   }
 
   .nextButton {
+    //border: 11px #5396c6 dashed;
     grid-column-start: 3;
     grid-row-start: 2;
   }
 
-  .emptySpace {
-    grid-column-start: 1;
-    grid-row-start: 1;
-  }
 
-  .backButton {
-    //border: 11px #62c653 dashed;
-    grid-column-start: 1;
-    grid-row-start: 6;
-    width: 100%;
-  }
 
   .footer {
     grid-column-start: 1;
@@ -55,13 +92,19 @@
   }
 
   //border: 3px #47a1e1 dashed;
-  opacity: 1;
+  //opacity: 1;
   animation-name: fadeInOpacity;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: .4s;
   width: 100%;
-  background: #faf2f9;
+  background-color: rgba(255, 255, 255, 0.9);
+
+  //background: #faf2f9;
+
+
+
+  //background: red;
 
   h1 {
     color: $h1-color;

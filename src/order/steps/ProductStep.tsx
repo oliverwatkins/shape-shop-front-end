@@ -1,11 +1,18 @@
 import * as React from 'react';
-import ProductSelection from "../ProductSelection";
+import ProductSelection from "./ProductSelection";
 import OrderSummary from "../OrderSummary";
 import {NextButton} from "../buttons/NextButton";
 import type {Category, Product} from "../../AppState";
 import {BackButton} from "../buttons/BackButton";
 
-import "./productStep.scss";
+
+
+
+import "./wizardContainer.scss";
+
+
+
+
 import Header from "./Header";
 import Footer from "../../Footer";
 

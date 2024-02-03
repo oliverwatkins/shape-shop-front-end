@@ -1,0 +1,62 @@
+
+
+
+.home {
+  //border: 4px darkgreen dashed ;
+  //background-image: url('./assets/img/welcome.jpg');
+  //height: 200px;
+  //opacity: 50%;
+  height: 100vh;
+}
+
+
+.home:before {
+  content: ' ';
+  display: block;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.3;
+  background-image: url('./assets/img/welcome.jpg');
+  background-repeat: no-repeat;
+  background-position: 50% 0;
+  background-size: cover;
+}
+
+#welcome {
+
+  width: 100%;
+  //opacity: 70%;
+}
+
+.continue-button-panel {
+  //border: 5px solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 10px;
+}
+
+.rounded-button {
+  display: inline-block;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  font-size: 46px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 60px; /* Adjust the border-radius to control the roundness */
+  border: 6px solid #da1919; /* Change the border color */
+  color: #da1919;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Add hover effect */
+.rounded-button:hover {
+  background-color: #eeacb2; /* Change the background color on hover */
+  color: #fff; /* Change the text color on hover */
+}
